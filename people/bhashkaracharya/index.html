@@ -188,14 +188,6 @@ function setup() {
 function windowResized() { resizeCanvas(windowWidth, windowHeight); }
 
 function nextScreen() {
-    // AWARD LOGIC
-    if (state === TOTAL_SCREENS - 1) {
-        if (!window.hasAwarded) {
-             window.parent.postMessage({ type: 'sparks_award', amount: 250 }, '*');
-             window.hasAwarded = true;
-        }
-    }
-
     if (isTransitioning) return;
     isTransitioning = true;
     fadeDirection = 1;
