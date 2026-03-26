@@ -82,6 +82,29 @@
         <span class="highlight">HISTORICAL INSIGHT:</span>
         <span id="insight-text">Loading...</span>
     </div>
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
+        Tap anywhere to advance ➔
+    </div>
+
+    <div id="act-indicator">ACT I: THE JAIN COURT</div>
+
+    <div id="label">
+        <h1 id="title">The Rashtrakuta Kingdom</h1>
+        <p id="subtitle">Karnataka, c. 850 CE</p>
+        <p id="description">In the lush Deccan Plateau of southern India, the mighty Rashtrakuta Empire was at the peak of its cultural glory. Its capital hummed with scholars, poets, and astronomers. King Amoghavarsha — himself a poet and philosopher — was the greatest patron of learning of his age.</p>
+    </div>
+
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">Under Amoghavarsha's court, the sciences flourished like nowhere else in the medieval world.</span>
+        <h1 id="title">Title</h1>
+        <p id="subtitle">Subtitle</p>
+        <p id="description">Description goes here.</p>
+    </div>
+
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">Loading...</span>
+    </div>
 
 <script>
 let time = 0;
@@ -187,6 +210,14 @@ function nextScreen() {
     ['label','insight-bar','nav-hint','act-indicator'].forEach(id => {
         document.getElementById(id).style.opacity = 0;
     });
+    if (isTransitioning) return;
+    isTransitioning = true;
+    fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    document.getElementById("label").style.opacity = 0;
+    document.getElementById("insight-bar").style.opacity = 0;
+    document.getElementById("nav-hint").style.opacity = 0;
+    document.getElementById("act-indicator").style.opacity = 0;
 }
 
 function updateUI() {
