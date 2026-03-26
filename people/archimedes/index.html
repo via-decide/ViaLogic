@@ -38,8 +38,8 @@
         /* Insight Bar */
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(255, 127, 80, 0.1);
-            border-top: 1px solid rgba(255, 127, 80, 0.4);
+            background: rgba(0, 168, 168, 0.1);
+            border-top: 1px solid rgba(0, 168, 168, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
@@ -54,7 +54,7 @@
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF7F50; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px;}
+        .viamath-logo { color: #00A8A8; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px;}
 
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
@@ -69,11 +69,11 @@
 </head>
 <body onclick="nextScreen()">
     <div id="nav-hint">
-        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC</div></a>
+        <div class="viamath-logo">VIAMATH</div>
         Tap anywhere to advance ➔
     </div>
     
-    <div id="act-indicator">ACT I: THE CITY OF SYRACUSE</div>
+    <div id="act-indicator">ACT I: THE LEGEND</div>
 
     <div id="label">
         <h1 id="title">Title</h1>
@@ -94,87 +94,77 @@ let fadeAlpha = 0;
 let fadeDirection = 0;
 let targetState = 0;
 const FADE_SPEED = 12;
-const TOTAL_SCREENS = 10;
 
 let particles = [];
 
 const content = [
-    // ACT I: THE LEGEND
+    // ACT I: THE LEGEND & THE ENGINEER
     {
-        title: "The Siege of Syracuse", sub: "Defending the Homeland",
-        desc: "Archimedes spent his life in Syracuse, Sicily. When the Romans attacked, he didn't use a sword; he used math. He designed massive cranes and mirrors to destroy the Roman fleet.",
-        insight: "He is considered the first 'Weapon Systems' engineer in history."
+        title: "The Mad Genius of Syracuse", sub: "c. 287 – 212 BC",
+        desc: "While Euclid quietly organized math in a library, Archimedes of Syracuse was applying it to reality. He was an eccentric genius, bridging the gap between abstract geometry and physical engineering.",
+        insight: "He was humanity's first true Mathematical Physicist."
     },
     {
-        title: "Eureka!", sub: "The Law of Buoyancy",
-        desc: "Legend says the King tasked him with verifying a gold crown's purity without damaging it. While stepping into a bath, he noticed the water level rise. He had found a way to measure volume by displacement.",
-        insight: "Buoyant force is equal to the weight of the fluid displaced."
+        title: "The Crown & The Bath", sub: "Eureka! (I have found it!)",
+        desc: "Tasked with finding if the King's crown was pure gold or mixed with cheap silver, Archimedes realized while taking a bath that the water level rose exactly by the volume of his body. He discovered fluid displacement.",
+        insight: "Legend says he was so excited, he ran naked through the streets shouting 'Eureka!'"
     },
     {
-        title: "Give Me a Lever", sub: "Moving the World",
-        desc: "Archimedes proved the power of leverage. He famously said, 'Give me a place to stand, and I shall move the Earth.' He invented the compound pulley and calculated the mechanical advantage of the simple machine.",
-        insight: "He understood that smaller forces could move massive objects with enough distance."
-    },
-    // ACT II: THE INFINITE PI
-    {
-        title: "Approximating Pi", sub: "The 96-Sided Polygon",
-        desc: "By surrounding a circle with polygons and increasing the number of sides, Archimedes was the first to rigorously calculate Pi. He stopped at 96 sides, proving Pi was between 3.1408 and 3.1428.",
-        insight: "This was the world's most accurate calculation for over 1,000 years."
+        title: "The Law of the Lever", sub: "Mechanical Advantage",
+        desc: "Archimedes mathematically proved how levers worked. By using a long enough beam and a fulcrum, a single human could lift impossible weights.",
+        insight: "'Give me a place to stand, and a lever long enough, and I shall move the Earth.'"
     },
     {
-        title: "Area of a Circle", sub: "Infinite Triangles",
-        desc: "He proved that the area of a circle is equal to a triangle with a base equal to the circumference and height equal to the radius. This 'Method of Exhaustion' laid the foundations for calculus.",
-        insight: "He was doing integration 2,000 years before Newton and Leibniz."
+        title: "The Cattle Problem", sub: "Trolling the Mathematicians",
+        desc: "Archimedes sent a poem to the 'arrogant' mathematicians in Alexandria. It asked them to count the Sun God's cattle based on simple color ratios. It was a trap. The solution required an unimaginably massive number.",
+        insight: "The answer is 7.76 × 10^206544. Humanity couldn't actually solve it until computers in 1965!"
     },
     {
-        title: "Sphere and Cylinder", sub: "His Favorite Discovery",
-        desc: "His proudest achievement was proving that a sphere has two-thirds the volume and surface area of its circumscribing cylinder. He even requested this diagram be engraved on his tombstone.",
-        insight: "It is considered one of the most elegant geometric proofs in history."
+        title: "Do Not Disturb My Circles", sub: "The Death of a Genius",
+        desc: "When the Romans finally breached Syracuse, Archimedes was deeply focused on a geometric diagram drawn in the sand. A Roman soldier ordered him to move. Archimedes refused, and the soldier killed him.",
+        insight: "His last words were famously: 'Noli turbare circulos meos' (Do not disturb my circles)."
     },
-    // ACT III: THE ENGINEER'S REACH
+    // ACT II: THE MATHEMATICS & INFINITY
     {
-        title: "The Archimedean Screw", sub: "Anti-Gravity Irrigation",
-        desc: "Syracuse needed to pump water out of massive ships. Archimedes designed a rotating spiral within a cylinder that could 'lift' water uphill. It is still used today in modern irrigation and space technology.",
-        insight: "A testament to his ability to see the world as a complex machine."
-    },
-    {
-        title: "The Sand Reckoner", sub: "Naming Large Numbers",
-        desc: "To prove math had no limit, he tried to calculate how many grains of sand would fit in the universe. He had to invent a new system for counting massive numbers, reaching 10 to the power of 64.",
-        insight: "He proved that 'Infinity' was a concept that math could tackle."
+        title: "The Method of Exhaustion", sub: "Getting Infinitely Close",
+        desc: "Archimedes wanted to find the exact area of curved shapes. To do this, he placed shapes he COULD measure (like triangles and polygons) inside the curve, adding more and more sides to 'exhaust' the empty space.",
+        insight: "This concept of 'infinite slicing' was the seed that would become Calculus 2,000 years later."
     },
     {
-        title: "The Death of a GIANT", sub: "Do Not Disturb My Circles",
-        desc: "When Syracuse finally fell to the Romans, a soldier found him drawing diagrams in the sand. Archimedes reportedly told the soldier, 'Do not disturb my circles.' The soldier killed him where he sat.",
-        insight: "His legacy is the blueprint for the modern world's mechanical power."
+        title: "Chasing Pi (π)", sub: "Trapping the Circle",
+        desc: "To find the true value of Pi, he drew a polygon inside a circle, and one outside. He knew Pi was trapped between them. He kept doubling the sides—from 6, to 12, to 24, to 48, up to a 96-sided polygon!",
+        insight: "He proved Pi is strictly between 3.1408 and 3.1428. Unbelievable accuracy for his time."
     },
     {
-        title: "The Engineer's Spirit", sub: "Build the Future",
-        desc: "From the Archimedean screw to the calculus of NASA, your journey into engineering begins with the man who looked at a circle and saw a world waiting to be moved.",
-        insight: "ViaMath: Where history and logic connect. Welcome home."
+        title: "Unrolling the Circle", sub: "Measurement of a Circle",
+        desc: "He proved that the area of a circle is exactly equal to a right-angled triangle where the height is the circle's radius (r), and the base is the circle's circumference (C). Area = 1/2 × r × C.",
+        insight: "Since C = 2πr, this simplifies perfectly to Area = πr²."
+    },
+    {
+        title: "The Sphere & The Cylinder", sub: "His Proudest Discovery",
+        desc: "Archimedes discovered that if you place a sphere perfectly inside a cylinder, the sphere takes up exactly 2/3 of the cylinder's volume. Likewise, its surface area is exactly 2/3 of the cylinder's.",
+        insight: "He was so proud of this beautiful 2:3 ratio that he requested it be carved on his tombstone."
+    },
+    {
+        title: "The Blueprint of Calculus", sub: "The Infinite Mind",
+        desc: "Archimedes wasn't afraid of infinity. By breaking curved reality down into infinitely small, measurable straight lines, he laid the groundwork for modern engineering, physics, and calculus.",
+        insight: "He pushed human thought to its absolute limits. Welcome to ViaMath."
     }
 ];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    for(let i=0; i<50; i++) particles.push({x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI)});
+    for(let i=0; i<80; i++) particles.push({x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI)});
     updateUI();
 }
 
 function windowResized() { resizeCanvas(windowWidth, windowHeight); }
 
 function nextScreen() {
-    // AWARD LOGIC
-    if (state === TOTAL_SCREENS - 1) {
-        if (!window.hasAwarded) {
-             window.parent.postMessage({ type: 'sparks_award', amount: 250 }, '*');
-             window.hasAwarded = true;
-        }
-    }
-
     if (isTransitioning) return;
     isTransitioning = true;
     fadeDirection = 1;
-    targetState = (state + 1) % TOTAL_SCREENS;
+    targetState = (state + 1) % 10;
     
     document.getElementById("label").style.opacity = 0;
     document.getElementById("insight-bar").style.opacity = 0;
@@ -190,53 +180,58 @@ function updateUI() {
     let actInd = document.getElementById("act-indicator");
     let labelBorder = document.getElementById("label");
     
-    if (state < 3) {
-        actInd.innerText = "ACT I: THE CITY OF SYRACUSE";
-        actInd.style.color = "#FF7F50"; // Coral
+    if (state < 5) {
+        actInd.innerText = "ACT I: THE LEGEND & THE ENGINEER";
+        actInd.style.color = "#FF7F50"; // Coral/Orange
         labelBorder.style.borderLeftColor = "#FF7F50";
-    } else if (state < 6) {
-        actInd.innerText = "ACT II: THE INFINITE PI";
-        actInd.style.color = "#FFD700"; // Gold
-        labelBorder.style.borderLeftColor = "#FFD700";
     } else {
-        actInd.innerText = "ACT III: THE ENGINEER'S REACH";
-        actInd.style.color = "#00BFFF"; // Deep Sky Blue
-        labelBorder.style.borderLeftColor = "#00BFFF";
+        actInd.innerText = "ACT II: THE MATHEMATICS OF INFINITY";
+        actInd.style.color = "#00A8A8"; // Deep Teal/Cyan
+        labelBorder.style.borderLeftColor = "#00A8A8";
     }
 
+    let span = document.querySelector('.highlight');
+    if (state < 5) {
+        span.innerText = "HISTORICAL INSIGHT:"; span.style.color = "#FF7F50";
+    } else if (state === 9) {
+        span.innerText = "REFLECTION:"; span.style.color = "#00A8A8";
+    } else {
+        span.innerText = "GEOMETRIC LAW:"; span.style.color = "#00A8A8";
+    }
     document.getElementById("insight-text").innerText = content[state].insight;
 }
 
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(10, 17, 24);
+    background(10, 17, 24); // Deep Ocean Night
 
-    // Ancient stone grid background
-    stroke(255, 5); strokeWeight(1);
-    for (let i = 0; i < width; i += 100) line(i, 0, i, height);
-    for (let j = 0; j < height; j += 100) line(0, j, width, j);
+    // Abstract grid
+    stroke(255, 6); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
 
     time += 0.02;
 
-    // Dust particles
+    // Ambient floating water/sand particles
     for(let p of particles) {
-        p.y -= 0.3; p.x += sin(p.a + time) * 0.2;
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
         if(p.y < 0) { p.y = height; p.x = random(width); }
-        fill(255, 50); noStroke();
+        let cColor = (state < 5) ? color(255, 127, 80, 50) : color(0, 168, 168, 50);
+        fill(cColor); noStroke();
         ellipse(p.x, p.y, p.s);
     }
 
     // State Router
-    if      (state === 0) drawSyracuse();
+    if      (state === 0) drawSyracuseIntro();
     else if (state === 1) drawEureka();
     else if (state === 2) drawLever();
-    else if (state === 3) draw96Sides();
-    else if (state === 4) drawCircleTri();
-    else if (state === 5) drawSphereCyl();
-    else if (state === 6) drawScrew();
-    else if (state === 7) drawSand();
-    else if (state === 8) drawCirclesDeath();
+    else if (state === 3) drawCattleProblem();
+    else if (state === 4) drawDeathInSand();
+    else if (state === 5) drawExhaustion();
+    else if (state === 6) drawChasingPi();
+    else if (state === 7) drawUnrollCircle();
+    else if (state === 8) drawSphereCylinder();
     else if (state === 9) drawLegacy();
 
     // Cinematic fade overlay
@@ -257,197 +252,396 @@ function draw() {
     }
 }
 
-// -------------------------------------------------------------
-// ACT SCREENS
-// -------------------------------------------------------------
+// ============================================================
+// ACT I: THE LEGEND
+// ============================================================
 
-function drawSyracuse() {
+function drawSyracuseIntro() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
-    
-    // Sunlight reflecting on harbor
-    let yOffset = sin(time)*10;
-    noStroke(); fill(255, 127, 80, 20);
-    rect(-300, 100, 600, 100);
 
-    // Ships
-    fill(139, 69, 19); stroke(0);
-    for(let i=-200; i<=200; i+=100) {
-        arc(i + sin(time + i)*10, 150, 80, 40, 0, PI);
-        line(i + sin(time + i)*10, 150, i + sin(time + i)*10, 80);
+    // Abstract gears turning
+    stroke(255, 127, 80, 150); noFill(); strokeWeight(2);
+    
+    // Center Gear
+    push(); rotate(time * 0.5); drawGear(0, 0, 80, 12); pop();
+    // Interlocking Gear
+    push(); translate(130, 0); rotate(-time * 0.5 + PI/12); drawGear(0, 0, 50, 8); pop();
+    
+    // Abstract geometric lines measuring reality
+    stroke(0, 168, 168, 150); strokeWeight(1);
+    line(-200, 100, 200, 100);
+    for(let i=-200; i<=200; i+=20) {
+        line(i, 100, i, (i%40==0) ? 80 : 90);
     }
     
-    // Greek Columns
-    fill(200); rect(-350, -50, 40, 200); rect(-280, -50, 40, 200);
-    rect(310, -50, 40, 200); rect(240, -50, 40, 200);
+    fill(255); noStroke(); textAlign(CENTER); textSize(24); letterSpacing = 4;
+    text("PHYSICS  +  GEOMETRY", 0, -120);
     pop();
+}
+
+function drawGear(x, y, r, teeth) {
+    beginShape();
+    for (let i = 0; i < TWO_PI; i += TWO_PI/teeth) {
+        vertex(x + cos(i - 0.1)*r, y + sin(i - 0.1)*r);
+        vertex(x + cos(i - 0.05)*(r+15), y + sin(i - 0.05)*(r+15));
+        vertex(x + cos(i + 0.05)*(r+15), y + sin(i + 0.05)*(r+15));
+        vertex(x + cos(i + 0.1)*r, y + sin(i + 0.1)*r);
+    }
+    endShape(CLOSE);
+    ellipse(x, y, r * 0.5); // Inner hole
 }
 
 function drawEureka() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
-    
-    // Bathing tub
-    noFill(); stroke(200); strokeWeight(5);
-    arc(0, 50, 300, 200, 0, PI);
 
-    // Water level
-    let wLevel = 50 + sin(time*4)*5;
-    fill(0, 191, 215, 150); noStroke();
-    rect(-145, wLevel, 290, 100-wLevel);
-
-    // The Crown
-    fill(255, 215, 0); stroke(255); strokeWeight(1);
-    ellipse(0, wLevel + 20, 40, 40);
+    let waterLevel = 50 + sin(time)*15; // Water sloshing
     
-    // Water droplets
-    fill(255, 100);
-    for(let i=0; i<5; i++) ellipse(random(-150, 150), wLevel + random(0, 30), 5);
+    // Bath Tub
+    stroke(255, 100); fill(20, 30, 40); strokeWeight(4);
+    rect(-150, 0, 300, 150, 20, 20, 40, 40);
+
+    // Water
+    noStroke(); fill(0, 168, 168, 150);
+    beginShape();
+    vertex(-146, 146);
+    vertex(146, 146);
+    for(let x=146; x>=-146; x-=10) {
+        vertex(x, waterLevel + sin(x*0.05 + time*2)*5);
+    }
+    endShape(CLOSE);
+
+    // The Crown sinking
+    let crownY = map(sin(time), -1, 1, -50, 120);
+    fill(255, 215, 0); stroke(200, 150, 0); strokeWeight(2);
+    push();
+    translate(0, crownY);
+    beginShape();
+    vertex(-40, -10); vertex(-20, 15); vertex(0, -15); vertex(20, 15); vertex(40, -10);
+    vertex(30, 30); vertex(-30, 30);
+    endShape(CLOSE);
     pop();
+
+    // Displacement Arrows
+    if (crownY > 50) {
+        stroke(0, 168, 168); strokeWeight(3); fill(0, 168, 168);
+        drawArrow(-180, 80, -180, 30);
+        drawArrow(180, 80, 180, 30);
+        noStroke(); fill(0, 168, 168); textSize(16); textAlign(CENTER);
+        text("DISPLACEMENT", -220, 20);
+        text("DISPLACEMENT", 220, 20);
+    }
+
+    fill(255, 127, 80); noStroke(); textAlign(CENTER); textSize(40); fontStyle = "italic";
+    text("EUREKA!", 0, -100);
+    pop();
+}
+
+function drawArrow(x1, y1, x2, y2) {
+    line(x1, y1, x2, y2);
+    push(); translate(x2, y2); rotate(atan2(y2-y1, x2-x1));
+    triangle(0, 0, -10, 5, -10, -5); pop();
 }
 
 function drawLever() {
     push();
     translate(width/2, height/2 + 100);
     scale(getScaleFactor());
+
+    let leverLen = 600;
     
+    // Oscillating balance
+    let angle = sin(time * 0.8) * 0.15;
+
     // Fulcrum
-    fill(100); noStroke();
-    triangle(0, 0, -20, 40, 20, 40);
-    
-    // Lever beam
-    let angle = sin(time)*0.2;
-    rotate(angle);
-    stroke(255); strokeWeight(10);
-    line(-300, 0, 150, 0);
-    
-    // Person (effort)
     fill(255, 127, 80); noStroke();
-    ellipse(-300, -20, 20);
+    triangle(0, 0, -30, 60, 30, 60);
     
-    // Heavy mass
-    fill(60); stroke(255); strokeWeight(1);
-    rect(120, -50, 60, 50);
+    push();
+    rotate(angle);
+    
+    // Lever Beam
+    stroke(200); strokeWeight(8);
+    line(-leverLen/2, 0, leverLen/2 - 100, 0);
+
+    // Human (Small force) on the long end
+    fill(0, 168, 168); noStroke();
+    ellipse(leverLen/2 - 120, -20, 30); // head
+    rect(leverLen/2 - 125, -5, 10, 40); // body
+
+    // Earth (Massive weight) on the short end
+    fill(30, 100, 200); stroke(100, 200, 255); strokeWeight(2);
+    ellipse(-leverLen/2 + 50, -60, 120);
+    // Continents
+    fill(100, 200, 100); noStroke();
+    ellipse(-leverLen/2 + 30, -70, 40, 30);
+    ellipse(-leverLen/2 + 70, -40, 50, 20);
+
+    pop();
+
+    fill(255); noStroke(); textAlign(CENTER); textSize(20); letterSpacing = 2;
+    text("Distance Multiplies Force", 0, 120);
     pop();
 }
 
-function draw96Sides() {
+function drawCattleProblem() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
+
+    // Innocent Cow Icon
+    fill(255); stroke(150); strokeWeight(2);
+    rect(-30, -100, 60, 40, 10); // body
+    rect(-40, -120, 25, 25, 5); // head
+    line(-35, -120, -45, -130); line(-20, -120, -10, -130); // horns
+    line(25, -100, 35, -70); // tail
+
+    // Falling matrix of numbers representing the impossible solution
+    fill(0, 168, 168, 150); noStroke(); textSize(14); textAlign(CENTER);
+    let numStr = "77602714064868182695302328332138866642323224059233761234567890";
     
-    noFill(); stroke(255, 100);
-    ellipse(0, 0, 250); // Circle
+    for(let i=0; i<15; i++) {
+        let yPos = (time * 100 + i*30) % 400 - 100;
+        let alpha = map(yPos, -100, 300, 255, 0);
+        fill(255, 127, 80, alpha);
+        
+        // Jumble the string for effect
+        let jumbled = numStr.substring((i + Math.floor(time*5)) % 40, ((i + Math.floor(time*5)) % 40) + 30);
+        text(jumbled, 0, yPos);
+    }
+
+    fill(255); noStroke(); textSize(28); textAlign(CENTER);
+    text("Total Cattle =", 0, -10);
+    fill(255, 127, 80); textSize(48); fontStyle = "italic";
+    text("7.76 × 10", 0, 50);
+    textSize(24); text("206544", 120, 25); // Exponent
     
-    // Polygon approximation
-    stroke(255, 215, 0); strokeWeight(2);
-    let sides = 6 + floor((sin(time)*0.5+0.5)*90);
+    fill(255, 150); textSize(16); fontStyle = "normal";
+    text("A number with over 206,000 digits.", 0, 100);
+    text("Archimedes trolled the world.", 0, 125);
+
+    pop();
+}
+
+function drawDeathInSand() {
+    push();
+    translate(width/2, height/2 + 50);
+    scale(getScaleFactor());
+
+    // Sandy background
+    fill(139, 115, 85, 100); noStroke();
+    rect(-1000, -500, 2000, 1000);
+
+    // Concentric circles drawn in sand
+    noFill(); stroke(200, 180, 140); strokeWeight(4);
+    for(let i=1; i<=4; i++) {
+        ellipse(0, 0, i * 60);
+    }
+
+    // A stick drawing the outer circle
+    let drawA = time;
+    let dx = cos(drawA) * 150;
+    let dy = sin(drawA) * 150;
+    stroke(100, 80, 50); strokeWeight(6);
+    line(dx, dy, dx + 40, dy - 60);
+
+    // The sudden Roman spear / disruption (red slash)
+    if (time % 4 > 3) { // Flashes every 4 seconds
+        stroke(255, 0, 0, 200); strokeWeight(10);
+        line(-150, -150, 150, 150);
+        fill(255, 0, 0); noStroke(); textAlign(CENTER); textSize(24);
+        text("Noli turbare circulos meos.", 0, 200);
+    } else {
+        fill(255); noStroke(); textAlign(CENTER); textSize(24);
+        text("Do not disturb my circles.", 0, 200);
+    }
+    pop();
+}
+
+// ============================================================
+// ACT II: THE MATHEMATICS OF INFINITY
+// ============================================================
+
+function drawExhaustion() {
+    push();
+    translate(width/2, height/2 + 50);
+    scale(getScaleFactor());
+
+    let r = 180;
+    
+    // Abstract curve (Parabola)
+    stroke(255, 100); strokeWeight(3); noFill();
     beginShape();
-    for(let a=0; a<TWO_PI; a+=TWO_PI/sides) {
-        let x = cos(a)*125;
-        let y = sin(a)*125;
-        vertex(x, y);
+    for(let x=-250; x<=250; x+=10) {
+        vertex(x, (x*x)/400 - 100);
     }
-    endShape(CLOSE);
+    endShape();
+
+    // Slicing it into measurable rectangles/triangles
+    let numSlices = Math.floor(map(sin(time), -1, 1, 2, 25)); // Breathing effect
+    let sliceW = 500 / numSlices;
     
+    fill(0, 168, 168, 100); stroke(0, 168, 168); strokeWeight(1);
+    for(let i=0; i<numSlices; i++) {
+        let x1 = -250 + i*sliceW;
+        let x2 = x1 + sliceW;
+        let y1 = (x1*x1)/400 - 100;
+        let y2 = (x2*x2)/400 - 100;
+        
+        // Rectangles exhausting the area under the curve to a flat base
+        beginShape();
+        vertex(x1, 150);
+        vertex(x1, y1);
+        vertex(x2, y2);
+        vertex(x2, 150);
+        endShape(CLOSE);
+    }
+
     fill(255); noStroke(); textAlign(CENTER); textSize(24);
-    text(sides + " SIDES", 0, -150);
+    text("Approximating the Curve", 0, 200);
+    fill(0, 168, 168); textSize(16);
+    text("Slices = " + numSlices, 0, 230);
     pop();
 }
 
-function drawCircleTri() {
+function drawChasingPi() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
-    
-    let radius = 100;
-    noFill(); stroke(255, 50);
-    ellipse(-150, 0, radius*2);
-    
-    // Connecting line to triangle
-    let circum = PI * radius * 2;
-    stroke(255, 215, 0);
-    triangle(50, -radius, 50 + circum/4, -radius, 50, radius);
-    
-    pop();
-}
 
-function drawSphereCyl() {
-    push();
-    translate(width/2, height/2 + 80);
-    scale(getScaleFactor());
+    let r = 160;
     
-    rotateY(time);
-    noFill(); stroke(255, 150); strokeWeight(1);
+    // Smooth Circle (The true bounds)
+    stroke(255, 50); strokeWeight(4); noFill();
+    ellipse(0, 0, r*2);
+
+    // Number of sides increases over time 3, 6, 12, 24, 48, 96
+    let stage = Math.floor(time * 0.8) % 6; 
+    let sides = 3 * Math.pow(2, stage);
+
+    // Inscribed Polygon (Inside)
+    stroke(255, 127, 80); strokeWeight(2); fill(255, 127, 80, 40);
+    beginShape();
+    for(let i=0; i<TWO_PI; i+=TWO_PI/sides) vertex(cos(i)*r, sin(i)*r);
+    endShape(CLOSE);
+
+    // Circumscribed Polygon (Outside)
+    stroke(0, 168, 168); strokeWeight(2); noFill();
+    let outR = r / cos(PI/sides);
+    beginShape();
+    for(let i=0; i<TWO_PI; i+=TWO_PI/sides) vertex(cos(i)*outR, sin(i)*outR);
+    endShape(CLOSE);
+
+    fill(255); noStroke(); textAlign(CENTER); textSize(24);
+    text("Polygon Sides: " + sides, 0, r + 50);
     
-    // Cylinder
-    for(let a=0; a<TWO_PI; a+=PI/8) {
-        line(cos(a)*100, -100, cos(a)*100, 100);
+    // Pi estimation text
+    let piEst = (sides * sin(PI/sides)).toFixed(5);
+    fill(255, 127, 80); textSize(20);
+    text("Inside < π < Outside", 0, r + 80);
+    
+    if (sides >= 96) {
+        fill(255, 215, 0); textSize(28); fontStyle = "italic";
+        text("π ≈ 3.141...", 0, -r - 40);
     }
-    ellipse(0, -100, 200, 50);
-    ellipse(0, 100, 200, 50);
 
-    // Sphere
-    stroke(0, 191, 255);
-    sphere(100);
     pop();
 }
 
-function drawScrew() {
+function drawUnrollCircle() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
+
+    let r = 120;
+    let circumference = TWO_PI * r;
     
-    rotate(PI/4);
-    noFill(); stroke(255); strokeWeight(3);
-    
-    // Cylinder
-    rect(-30, -150, 60, 300);
-    
-    // Moving spiral
-    stroke(0, 191, 255);
-    for(let y=-150; y<150; y+=2) {
-        let a = y*0.1 + time*5;
-        let x = cos(a)*25;
-        point(x, y);
+    // Base line (Circumference unrolled)
+    stroke(255, 50); strokeWeight(2);
+    line(-circumference/2, 100, circumference/2, 100);
+
+    // Unrolling progress
+    let t = (sin(time) + 1)/2; // 0 to 1
+
+    // Concentric rings unrolling into triangles
+    let numRings = 15;
+    for(let i=1; i<=numRings; i++) {
+        let curR = (i/numRings) * r;
+        let curC = TWO_PI * curR;
+        
+        let cColor = lerpColor(color(0, 168, 168), color(255, 127, 80), i/numRings);
+        stroke(cColor); noFill(); strokeWeight(3);
+        
+        // Arc part
+        let arcEnd = TWO_PI * (1-t);
+        if (arcEnd > 0) {
+            arc(0, 100 - r, curR*2, curR*2, HALF_PI, HALF_PI + arcEnd);
+        }
+
+        // Straight part (unrolled)
+        let straightLen = curC * t;
+        if (straightLen > 0) {
+            line(0, 100 - r + curR, straightLen/2, 100 - r + curR);
+            line(0, 100 - r + curR, -straightLen/2, 100 - r + curR);
+        }
+    }
+
+    if (t > 0.9) {
+        // Draw the boundary right triangle Area = 1/2 * r * C
+        stroke(255); strokeWeight(4); noFill();
+        triangle(-circumference/2, 100, 0, 100 - r, circumference/2, 100);
+        
+        fill(255); noStroke(); textAlign(CENTER); textSize(20);
+        text("Base = Circumference (2πr)", 0, 130);
+        text("Height = r", 30, 100 - r/2);
+        
+        fill(255, 127, 80); textSize(24);
+        text("Area = ½ × r × 2πr  =  πr²", 0, -r - 40);
     }
     pop();
 }
 
-function drawSand() {
+function drawSphereCylinder() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
-    
-    for(let i=0; i<200; i++) {
-        let a = random(TWO_PI);
-        let d = random(250);
-        let x = cos(a)*d;
-        let y = sin(a)*d;
-        fill(255, 215, 0, 150); noStroke();
-        ellipse(x, y, 2, 2);
-    }
-    
-    fill(255); textAlign(CENTER); textSize(32);
-    text("COUNTING THE UNCOUNTABLE", 0, 0);
-    pop();
-}
 
-function drawCirclesDeath() {
-    push();
-    translate(width/2, height/2 + 80);
-    scale(getScaleFactor());
+    let r = 120;
     
-    // Sand drawing
-    stroke(255, 150); strokeWeight(2);
-    for(let i=1; i<4; i++) ellipse(0, 0, i*50);
-    line(-100, 0, 100, 0);
-    
-    // Ominous shadow
-    fill(0, 150); noStroke();
-    rect(-200, -300 + (time%4)*100, 400, 50);
+    // Rotate the 3D illusion
+    let rot = time * 0.5;
+
+    // Cylinder Outline
+    stroke(0, 168, 168); strokeWeight(3); noFill();
+    // Top ellipse
+    ellipse(0, -r, r*2, r*0.4);
+    // Bottom ellipse
+    ellipse(0, r, r*2, r*0.4);
+    // Sides
+    line(-r, -r, -r, r); line(r, -r, r, r);
+
+    // Sphere Outline
+    stroke(255, 127, 80); strokeWeight(4);
+    ellipse(0, 0, r*2, r*2);
+    // Sphere 3D equator
+    stroke(255, 127, 80, 150); strokeWeight(2);
+    ellipse(0, 0, r*2, r*0.4);
+    // Vertical meridian spinning
+    ellipse(0, 0, cos(rot)*r*2, r*2);
+
+    // Math Text
+    fill(255); noStroke(); textAlign(CENTER); textSize(24);
+    text("The Perfect Ratio", 0, r + 60);
+
+    fill(255, 127, 80); textSize(28); fontStyle = "italic";
+    text("Sphere = 2/3 Cylinder", 0, r + 100);
+
+    fill(255, 150); textSize(16); fontStyle = "normal";
+    text("Both Volume and Surface Area follow this rule.", 0, r + 130);
+
     pop();
 }
 
@@ -455,22 +649,32 @@ function drawLegacy() {
     push();
     translate(width/2, height/2 + 50);
     scale(getScaleFactor());
+
+    // Abstract calculus curves emerging from geometric origins
+    let numCurves = 5;
     
-    // Floating gear
-    push();
-    rotate(time);
-    stroke(255, 127, 80); noFill(); strokeWeight(2);
-    for(let a=0; a<TWO_PI; a+=TWO_PI/12) {
-        push(); rotate(a); rect(80, -10, 30, 20); pop();
+    for(let i=0; i<numCurves; i++) {
+        stroke(0, 168, 168, 150 - i*20); noFill(); strokeWeight(3);
+        
+        beginShape();
+        for(let x=-400; x<=400; x+=10) {
+            let y = sin(x * 0.01 + time + i*0.5) * 100 * exp(-abs(x)*0.005);
+            vertex(x, y);
+        }
+        endShape();
     }
-    ellipse(0, 0, 160);
-    pop();
-    
-    fill(255); textAlign(CENTER); textSize(40);
-    text("MODERN ENGINEERING", 0, -10);
+
+    // Central geometric anchor
+    stroke(255, 127, 80); strokeWeight(4); noFill();
+    ellipse(0, 0, 100);
+    fill(255, 127, 80); noStroke(); ellipse(0, 0, 15);
+
+    fill(255); noStroke(); textAlign(CENTER); textSize(28); letterSpacing = 4;
+    text("THE SEED OF CALCULUS", 0, 200);
+    fill(255, 150); textSize(16); letterSpacing = 1;
+    text("His mind touched infinity, waiting 2,000 years for Newton.", 0, 230);
     pop();
 }
-
 </script>
 </body>
 </html>

@@ -65,7 +65,7 @@
 </head>
 <body onclick="nextScreen()">
     <div id="nav-hint">
-        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
         Tap anywhere to advance ➔
     </div>
 
@@ -174,14 +174,6 @@ function setup() {
 function windowResized() { resizeCanvas(windowWidth, windowHeight); }
 
 function nextScreen() {
-    // AWARD LOGIC
-    if (state === TOTAL_SCREENS - 1) {
-        if (!window.hasAwarded) {
-             window.parent.postMessage({ type: 'sparks_award', amount: 250 }, '*');
-             window.hasAwarded = true;
-        }
-    }
-
     if (isTransitioning) return;
     isTransitioning = true;
     fadeDirection = 1;
