@@ -5,6 +5,10 @@ Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/asset
 
 CONSTRAINTS
 Zero NPM dependencies. Each component must be visually distinct. Use 'PromptMatrix' CSS standards to ensure cross-browser compatibility for the glass-morphism effects.
+Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
+
+CONSTRAINTS
+The bot must never attempt to 'append' or 'insert' text into an existing file. Every PR must be a pure 'Add' operation of a new, unique folder. This ensures 100% automerge compatibility.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
