@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #6: Add Pierre de Fermat to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+Strict Atomic Isolation. The bot must not touch any shared files. The logic.js must be an optimized modular math function. The UI must follow the 'Sovereign' Daxini OS aesthetic.
 Build 'DaxiniRuntime'-a secure, high-performance logic execution sandbox for the 24,000-unit network. CORE ARCHITECTURE (The Intelligence Reactor): 1. The Virtual Console: - In 'index.html', implement a 'Logic Lab' overlay for every entity card.
 
 CONSTRAINTS
