@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+Strict Atomic Isolation. Every file must be unique to the Napier folder. The logic.js must be a clean, reusable math module. The 'Tokens saved' audit line must be present.
 Execute Record PR #5: Add Johannes Kepler to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
