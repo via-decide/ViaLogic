@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance 'DaxiniMapper' with 'DaxiniWayfinder'-a relational graph logic that connects the 24,000-unit population. CORE ARCHITECTURE (The Intelligence Web): 1. The Relationship Parser: - Update 'scripts/generate-registry.js' to identify 'Influences' or 'Collaborators' within the 'bio.md' or 'metadata.json' of each entity.
+Enhance 'DaxiniMapper' with 'DaxiniChronos'-a temporal sequencing logic for the 24,000-unit timeline. CORE ARCHITECTURE (The Time-Space Bridge): 1. The Chronological Parser: - Update 'scripts/generate-registry.js' to extract 'Birth Year' or 'Discovery Date' from the metadata of each folder.
 
 RULES
 1. Audit touched files first and identify regressions.
