@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance 'DaxiniMapper' with 'DaxiniPulse'-a real-time activity heat-map logic for the 24,000-unit network. CORE ARCHITECTURE (The Neural Excitation Engine): 1. The Event Listener (System-Wide): - In 'js/registry-loader.js', implement a WebSocket or Poll listener that tracks the 'Last Modified' timestamp of every entity folder. 2. The Heat Diffusion Algorithm:
+Enhance 'DaxiniMapper' with 'DaxiniStream'-a reactive live-feed logic for the 24,000-unit production run. CORE ARCHITECTURE (The Reactive Spine): 1. The Polling Hook (Simulated WebSocket): - Implement a high-frequency fetch logic in 'js/registry-loader.js' that pings the 'registry.json' every 30 seconds. 2. The Virtual Delta-Detection:
 
 RULES
 1. Audit touched files first and identify regressions.
