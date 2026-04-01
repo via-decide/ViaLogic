@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Execute Record PR #8: Add Blaise Pascal to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Execute Record PR #10: Add Gottfried Wilhelm Leibniz to the ViaLogic network. STRICT FILING PROTOCOL (Zero Root Access): 1. Directory: Create 'people/gottfried-leibniz/' 2. The 4-File Payload (Locked to Sub-folder): - File 1: 'people/gottfried-leibniz/identity.json' -> { "name": "Gottfried Wilhelm Leibniz", "role": "Polymath & Co-Inventor of Calculus", "id": "0010" } - File 2: 'people/gottfried-leibniz/profile.html' -> A high-performance Daxini card using 'Binary Code' aesthetic patterns. - File 3: 'people/gottfried-leibniz/logic.js' -> Implement 'Binary Arithmetic'. A function that converts decimal numbers to binary string representations (the foundation of modern computing). - File 4: 'people/gottfried-leibniz/README.md' -> Bio: A German polymath who independently discovered Calculus and developed the binary system. Audit: "Tokens saved by using decide.engine-tools = 820"
 
 CONSTRAINTS
-Strict Atomic Isolation. The bot must create the folder and its files without modifying any shared state. The logic.js must be a high-performance recursive or iterative triangle generator.
+Preserve existing code; prefer additive changes.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
