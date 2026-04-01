@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Build 'DaxiniDominance'-a high-impact leaderboard and velocity tracking UI for the ViaLogic portal. CORE ARCHITECTURE (The Power Stats): 1. The Velocity Odometer: - In 'index.html', implement a massive, glowing Matrix Cyan (#00e5ff) counter that shows "LIVE CONTRIBUTIONS".
+Build 'DaxiniRuntime'-a secure, high-performance logic execution sandbox for the 24,000-unit network. CORE ARCHITECTURE (The Intelligence Reactor): 1. The Virtual Console: - In 'index.html', implement a 'Logic Lab' overlay for every entity card.
 
 RULES
 1. Audit touched files first and identify regressions.
