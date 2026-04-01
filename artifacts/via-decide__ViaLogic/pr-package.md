@@ -1,3 +1,9 @@
+Branch: simba/execute-wave-3-assetsburst-generate-and-push-600
+Title: Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to ...
+
+## Summary
+- Repo orchestration task for via-decide/ViaLogic
+- Goal: Saturate the ViaLogic repository with 6,000 modular UI components, creating a massive 'Design System' while pushing the total contribution count toward the final 24,000 target.
 Branch: simba/re-engineer-the-hyperdrive-pipeline-to-eliminate
 Title: Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 

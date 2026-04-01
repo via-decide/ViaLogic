@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
+
+CONSTRAINTS
+Zero NPM dependencies. Each component must be visually distinct. Use 'PromptMatrix' CSS standards to ensure cross-browser compatibility for the glass-morphism effects.
 Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 
 CONSTRAINTS
