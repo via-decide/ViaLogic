@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
+Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
 
 RULES
 1. Audit touched files first and identify regressions.
