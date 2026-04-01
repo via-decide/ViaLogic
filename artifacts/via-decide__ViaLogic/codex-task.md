@@ -5,6 +5,10 @@ Execute Record PR #6: Add Pierre de Fermat to the sovereign network. CORE ARCHIT
 
 CONSTRAINTS
 Strict Atomic Isolation. The bot must not touch any shared files. The logic.js must be an optimized modular math function. The UI must follow the 'Sovereign' Daxini OS aesthetic.
+Build 'DaxiniRuntime'-a secure, high-performance logic execution sandbox for the 24,000-unit network. CORE ARCHITECTURE (The Intelligence Reactor): 1. The Virtual Console: - In 'index.html', implement a 'Logic Lab' overlay for every entity card.
+
+CONSTRAINTS
+Strictly no 'eval()'. Use the 'New Function' or 'Blob' approach within a Web Worker for security. Ensure zero latency between the user input and the sandbox output.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.

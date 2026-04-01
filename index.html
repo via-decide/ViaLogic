@@ -2,801 +2,301 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
-    <title>ViaLogic | Cartography of Minds</title>
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaLogic | Sovereign Map</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="./daxini-renderer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================
-           BASE STYLES
-           ========================================== */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            user-select: none; -webkit-user-select: none;
+        :root {
+            --bg-deep: #050a14;
+            --dx-cyan: #00e5ff;
+            --dx-saffron: #ff671f;
         }
 
         body {
-            background-color: #05060F;
-            color: #E2E8F0;
-            overflow: hidden;
-            width: 100vw; height: 100vh;
+            margin: 0; padding: 0; background-color: var(--bg-deep);
+            color: white; font-family: 'JetBrains Mono', monospace;
+            overflow: hidden; user-select: none;
         }
 
-        /* ==========================================
-           EXPLORATION VIEWPORT & MAP
-           ========================================== */
-        #viewport {
-            position: relative;
-            width: 100%; height: 100%;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #0B1120 0%, #05060F 100%);
-            touch-action: none;
-        }
-
-        /* Blueprint / Constellation Grid */
-        #viewport::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 143, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 143, 0, 0.05) 1px, transparent 1px);
+        /* Dotted Grid Canvas Background */
+        #grid-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
-            pointer-events: none; z-index: 0;
-        }
-
-        #map-container {
-            position: absolute;
-            width: 4000px; height: 4000px;
-            transform-origin: 0 0;
-            will-change: transform;
-            cursor: grab; z-index: 1;
-        }
-        #map-container:active { cursor: grabbing; }
-
-        /* SVG Paths connecting figures */
-        #map-paths {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1;
         }
-        
-        .path-line {
-            fill: none;
-            stroke: rgba(255, 143, 0, 0.15);
-            stroke-width: 3;
-            stroke-dasharray: 12 8;
-            animation: dash 60s linear infinite;
+
+        canvas { display: block; z-index: 2; position: relative; }
+
+        /* Floating Command Bridge */
+        #bridge {
+            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 1000; display: flex; gap: 15px; align-items: center;
+            background: rgba(10, 15, 25, 0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px; border-radius: 18px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
 
-        @keyframes dash { to { stroke-dashoffset: -1000; } }
+        .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--dx-cyan); letter-spacing: 2px; }
 
-        /* ==========================================
-           LORE ENTITIES (The Figures)
-           ========================================== */
-        .entity {
-            position: absolute; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            transform: translate(-50%, -50%);
-            cursor: pointer; z-index: 10;
+        input#search {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.15);
+            padding: 8px 15px; border-radius: 10px; color: white; width: 250px;
+            outline: none; font-family: 'JetBrains Mono', monospace; font-size: 13px;
         }
 
-        .entity-glow {
-            position: absolute; width: 130px; height: 130px;
-            border-radius: 50%; opacity: 0.12;
-            animation: pulse-glow 4s ease-in-out infinite alternate;
+        input#search:focus { border-color: var(--dx-cyan); background: rgba(255, 255, 255, 0.08); }
+
+        .filter-group { display: flex; gap: 8px; }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #98dce7; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 11px;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { border-color: var(--dx-cyan); color: white; background: rgba(0, 229, 255, 0.1); }
+
+        /* Dynamic Tooltip Container */
+        #tooltip-anchor {
+            position: fixed; pointer-events: none; z-index: 2000;
+            transition: opacity 0.2s; opacity: 0; transform: translate(-50%, -100%);
+            margin-top: -20px;
         }
 
-        .entity-icon {
-            width: 76px; height: 76px;
-            background: #0F172A;
-            border: 2px solid;
-            border-radius: 22px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 34px; color: white;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-            position: relative; z-index: 2;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        #stats-bar {
+            position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+            font-size: 10px; color: var(--dx-saffron); letter-spacing: 2px; opacity: 0.6;
         }
 
-        .entity:hover .entity-icon { transform: scale(1.15) translateY(-8px); filter: brightness(1.2); }
-
-        .entity-label {
-            margin-top: 14px; background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 7px 16px; border-radius: 24px;
-            font-size: 13px; font-weight: 700; color: #E2E8F0;
-            backdrop-filter: blur(6px); box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-            display: flex; align-items: center; gap: 7px; white-space: nowrap;
-            max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+        @media (max-width: 800px) {
+            #bridge { width: 95%; flex-direction: column; top: 10px; }
+            input#search { width: 100%; }
         }
-
-        .level-text { color: #FF8F00; font-weight: 800; font-family: monospace; }
-
-        @keyframes pulse-glow {
-            from { transform: scale(0.7); opacity: 0.08; }
-            to { transform: scale(1.3); opacity: 0.22; }
-        }
-
-        /* Scenery Decorations */
-        .scenery {
-            position: absolute; font-size: 26px; opacity: 0.2;
-            filter: grayscale(100%) brightness(1.8); pointer-events: none;
-            color: rgba(255,143,0,0.4);
-        }
-
-        /* ==========================================
-           HUD CONTROLS
-           ========================================== */
-        .hud-top-left {
-            position: absolute; top: max(24px, calc(env(safe-area-inset-top) + 12px)); left: 24px; z-index: 50;
-            background: rgba(15,23,42,0.85); padding: 12px 24px;
-            border-radius: 16px; border: 1px solid rgba(255,255,255,0.15);
-            display: flex; align-items: center; gap: 12px;
-            backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-
-        .resource-count { font-size: 20px; font-weight: 900; color: #FFD700; letter-spacing: 1px; }
-        
-        .hud-controls {
-            position: absolute; bottom: max(32px, calc(env(safe-area-inset-bottom) + 16px)); right: 24px; z-index: 50;
-            display: flex; flex-direction: column; gap: 12px;
-        }
-
-        .control-btn {
-            width: 52px; height: 52px;
-            background: rgba(15,23,42,0.92); border: 1px solid rgba(255,143,0,0.4);
-            border-radius: 14px; color: #FF8F00; font-size: 26px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; backdrop-filter: blur(10px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.4); transition: transform 0.2s;
-        }
-        .control-btn:active { transform: scale(0.9); }
-
-        /* ==========================================
-           DETAIL / UPGRADE MODAL
-           ========================================== */
-        #detail-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 6, 15, 0.7); backdrop-filter: blur(12px);
-            z-index: 100; display: flex; flex-direction: column; justify-content: flex-end;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s;
-        }
-        #detail-modal.active { opacity: 1; pointer-events: auto; }
-
-        .modal-content {
-            background: #0F172A; width: 100%; height: min(85%, 85dvh);
-            border-radius: 36px 36px 0 0; border-top: 1px solid rgba(255,255,255,0.15);
-            display: flex; flex-direction: column;
-            transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative; box-shadow: 0 -15px 50px rgba(0,0,0,0.6); overflow: hidden;
-        }
-        #detail-modal.active .modal-content { transform: translateY(0); }
-        .modal-content::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 48px;
-            height: 5px;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, 0.55);
-            z-index: 12;
-        }
-
-        .close-modal-btn {
-            position: absolute; top: 24px; right: 24px;
-            width: 44px; height: 44px; background: rgba(255,255,255,0.06);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; color: #94A3B8; cursor: pointer; border: 1px solid rgba(255,255,255,0.12);
-            transition: all 0.2s; z-index: 10;
-        }
-        .close-modal-btn:hover { background: rgba(255,255,255,0.1); color: white; }
-
-        /* Modal Header (The Figure View) */
-        .modal-header {
-            flex-grow: 1; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; padding: 40px 20px;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.04) 0%, transparent 80%);
-        }
-
-        .modal-icon-wrapper {
-            width: 130px; height: 130px; border-radius: 32px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 64px; color: white; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            margin-bottom: 24px; border: 3px solid;
-            animation: float 4s ease-in-out infinite;
-        }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
-        .modal-title { font-size: 32px; font-weight: 900; color: white; margin-bottom: 6px; text-align: center; letter-spacing: -0.5px; }
-        .modal-subtitle { color: #94A3B8; font-size: 16px; margin-bottom: 24px; text-align: center; font-weight: 500; }
-        
-        .power-rating {
-            background: rgba(0,0,0,0.45); padding: 10px 28px; border-radius: 32px;
-            color: #FFD700; font-size: 22px; font-weight: 900;
-            display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,215,0,0.25);
-            box-shadow: 0 4px 15px rgba(255,215,0,0.1);
-        }
-
-        /* Modal Bottom UI */
-        .modal-body {
-            background: #1E293B; padding: 32px 24px; border-radius: 36px 36px 0 0;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            overflow-y: auto; -webkit-overflow-scrolling: touch;
-            padding-bottom: calc(32px + env(safe-area-inset-bottom));
-        }
-
-        .stats-card {
-            background: #0F172A; border-radius: 24px; padding: 24px;
-            display: flex; align-items: center; gap: 24px;
-            margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .level-badge {
-            display: flex; flex-direction: column; align-items: center;
-            padding-right: 24px; border-right: 1px solid rgba(255,255,255,0.12);
-        }
-        .level-badge span:first-child { font-size: 12px; color: #94A3B8; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .level-badge span:last-child { font-size: 44px; font-weight: 900; color: white; line-height: 1; }
-
-        .stats-list { flex-grow: 1; display: flex; flex-direction: column; gap: 14px; }
-        .stat-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
-        .stat-label { color: #94A3B8; font-weight: 700; }
-        .stat-val { color: #4ADE80; font-weight: 900; background: rgba(74, 222, 128, 0.12); padding: 6px 14px; border-radius: 10px; }
-
-        /* Actions Bar */
-        .modal-actions { display: flex; gap: 12px; }
-
-        .action-btn {
-            height: 64px; border: none; border-radius: 20px;
-            font-size: 18px; font-weight: 900; text-transform: uppercase;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s;
-        }
-
-        .enter-btn {
-            flex: 1; background: #E2E8F0; color: #0F172A;
-            box-shadow: 0 5px 0 #CBD5E1;
-        }
-        .enter-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #CBD5E1; }
-
-        .upgrade-btn {
-            flex: 2; background: #FF8F00; color: #0F172A;
-            display: flex; flex-direction: column; padding: 10px;
-            box-shadow: 0 5px 0 #CC7300;
-        }
-        .upgrade-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #CC7300; }
-        .upgrade-btn.disabled { background: #334155; color: #64748B; box-shadow: 0 5px 0 #1E293B; cursor: not-allowed; }
-
-        .cost-row { display: flex; align-items: center; gap: 8px; font-size: 16px; margin-top: 4px; font-weight: 800; }
-        .cost-current { color: white; }
-        .cost-current.insufficient { color: #FF4757; }
-
-        .float-text {
-            position: absolute; color: #FF8F00; font-size: 32px; font-weight: 900;
-            pointer-events: none; animation: floatUp 1.2s ease-out forwards; z-index: 150;
-            text-shadow: 0 0 20px rgba(255,143,0,0.5);
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-120px) scale(1.6); opacity: 0; }
-        }
-
-        @media (max-width: 480px) {
-            .hud-top-left { left: 12px; padding: 10px 16px; border-radius: 14px; }
-            .resource-count { font-size: 16px; }
-            .hud-controls { right: 12px; gap: 10px; }
-            .control-btn { width: 46px; height: 46px; font-size: 22px; border-radius: 12px; }
-            .entity-icon { width: 62px; height: 62px; font-size: 28px; border-radius: 18px; }
-            .entity-label { font-size: 11px; padding: 6px 12px; max-width: 160px; }
-            .modal-content { border-radius: 24px 24px 0 0; }
-            .close-modal-btn { top: 14px; right: 14px; width: 40px; height: 40px; }
-            .modal-header { padding: 28px 14px; }
-            .modal-icon-wrapper { width: 98px; height: 98px; font-size: 46px; margin-bottom: 14px; border-radius: 22px; }
-            .modal-title { font-size: 24px; }
-            .modal-subtitle { font-size: 14px; margin-bottom: 16px; }
-            .power-rating { font-size: 18px; padding: 8px 18px; }
-            .modal-body { padding: 20px 14px; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
-            .stats-card { padding: 16px; gap: 14px; margin-bottom: 18px; border-radius: 16px; }
-            .level-badge { padding-right: 14px; }
-            .level-badge span:last-child { font-size: 34px; }
-            .stat-row { font-size: 13px; }
-            .stat-val { padding: 5px 10px; }
-            .action-btn { height: 56px; font-size: 14px; border-radius: 14px; }
-            .cost-row { font-size: 13px; gap: 6px; }
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- HUD -->
-    <div class="hud-top-left">
-        <i class="ph-fill ph-lightbulb text-2xl text-yellow-400"></i>
-        <span class="resource-count" id="hud-sparks">1,250</span>
-    </div>
+    <div id="grid-overlay"></div>
 
-    <div class="hud-controls">
-        <button class="control-btn" onclick="zoomMap(0.25)" title="Zoom In"><i class="ph ph-plus"></i></button>
-        <button class="control-btn" onclick="zoomMap(-0.25)" title="Zoom Out"><i class="ph ph-minus"></i></button>
-        <button class="control-btn" onclick="centerOn('aryabhata')" title="Focus Aryabhata"><i class="ph ph-crosshair"></i></button>
-    </div>
-
-    <!-- MAP VIEWPORT -->
-    <div id="viewport">
-        <div id="map-container">
-            <!-- Connecting Paths -->
-            <svg id="map-paths">
-                <!-- Greek Constellation -->
-                <path class="path-line" d="M 800 1500 Q 900 1800 1000 1800" /> <!-- Thales to Pythagoras -->
-                <path class="path-line" d="M 1000 1800 Q 1100 2000 1200 2100" /> <!-- Pythagoras to Plato -->
-                <path class="path-line" d="M 1200 2100 Q 1400 2200 1600 2100" /> <!-- Plato to Euclid -->
-                <path class="path-line" d="M 1600 2100 Q 1800 2000 1900 1800" /> <!-- Euclid to Archimedes -->
-                <path class="path-line" d="M 1900 1800 Q 2000 1600 1900 1400" /> <!-- Archimedes to Ptolemy -->
-                <path class="path-line" d="M 1900 1400 Q 1800 1200 1600 1100" /> <!-- Ptolemy to Hypatia -->
-                
-                <!-- The Bridge of Knowledge -->
-                <path class="path-line" d="M 1600 1100 Q 2000 1000 2400 1200" style="stroke: rgba(79, 195, 247, 0.3)"/> <!-- Hypatia to Aryabhata -->
-                
-                <!-- Indian Constellation -->
-                <path class="path-line" d="M 2400 1200 Q 2600 1400 2600 1600" /> <!-- Aryabhata to Brahmagupta -->
-                <path class="path-line" d="M 2600 1600 Q 2500 1900 2400 2100" /> <!-- Brahmagupta to Mahaviracharya -->
-                <path class="path-line" d="M 2400 1600 Q 2800 1800 3000 1900" /> <!-- Brahmagupta to Bhaskaracharya -->
-                
-                <!-- Islamic Golden Age Bridge -->
-                <path class="path-line" d="M 2600 1600 Q 3000 1400 3200 1300" /> <!-- Brahmagupta to Al-Khwarizmi -->
-                <path class="path-line" d="M 3200 1300 Q 3400 1500 3400 1700" /> <!-- Al-Khwarizmi to Omar Khayyam -->
-            </svg>
-
-            <!-- Dynamic Entities Container -->
-            <div id="entities-layer"></div>
+    <div id="bridge">
+        <div class="logo">VIALOGIC</div>
+        <input type="text" id="search" placeholder="SEARCH NEURAL MESH...">
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="Math">MATH</button>
+            <button class="filter-btn" data-filter="Philosophy">PHILOSOPHY</button>
+            <button class="filter-btn" data-filter="Modern">MODERN</button>
         </div>
     </div>
 
-    <!-- DETAIL MODAL -->
-    <div id="detail-modal">
-        <div class="modal-content">
-            <div class="close-modal-btn" onclick="closeModal()"><i class="ph ph-x"></i></div>
-            
-            <div class="modal-header">
-                <div class="modal-icon-wrapper" id="modal-icon">🎨</div>
-                <div class="modal-title" id="modal-title">Leonardo da Vinci</div>
-                <div class="modal-subtitle" id="modal-subtitle">The Universal Mind</div>
-                <div class="power-rating">
-                    <i class="ph-fill ph-lightning"></i> <span id="modal-power">10,500</span>
-                </div>
-            </div>
+    <div id="tooltip-anchor"></div>
 
-            <div class="modal-body">
-                <div class="stats-card">
-                    <div class="level-badge">
-                        <span>Level</span>
-                        <span id="modal-level">5</span>
-                    </div>
-                    <div class="stats-list">
-                        <div class="stat-row">
-                            <span class="stat-label" id="modal-buff1-label">Insight Flow</span>
-                            <span class="stat-val" id="modal-buff1-val">+12.5%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label" id="modal-buff2-label">Logic Stability</span>
-                            <span class="stat-val" id="modal-buff2-val">+8.0%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-actions">
-                    <button class="action-btn enter-btn" id="btn-enter" onclick="enterCharacter()">
-                        ENTER
-                    </button>
-                    <button class="action-btn upgrade-btn" id="btn-upgrade">
-                        UPGRADE
-                        <div class="cost-row">
-                            <i class="ph-fill ph-lightbulb text-yellow-400"></i>
-                            <span class="cost-current" id="modal-cost-current">1250</span>
-                            <span style="color:rgba(255,255,255,0.3)">/</span>
-                            <span id="modal-cost-req">450</span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="stats-bar">SYSTEM: STABLE | ENTITIES: <span id="count">0</span> | VIALOGIC MAP v2.0</div>
 
     <script>
-        // --- GAME STATE ---
-        let totalSparks = parseInt(localStorage.getItem('via_logic_sparks')) || 1250;
-        let currentActiveEntityId = null;
+    let people = [];
+    let nodes = [];
+    let zoom = 1;
+    let offset;
+    let hoveredNode = null;
+    let searchQuery = '';
+    let currentFilter = 'all';
 
-        /**
-         * LORE REGISTRY - Maps all 14 folders in the repo
-         */
-        const loreData = [
-            // --- GREEK BRANCH ---
-            {
-                id: 'thales', name: 'Thales', title: 'The First Philosopher',
-                icon: '🏛️', color: '#fbbf24', x: 800, y: 1500, path: 'people/thales/',
-                level: 1, power: 850, cost: 120,
-                buff1Name: 'Deduction', buff1Val: 5.0,
-                buff2Name: 'Symmetry', buff2Val: 2.0
-            },
-            {
-                id: 'pythagoras', name: 'Pythagoras', title: 'Harmony of Spheres',
-                icon: '📐', color: '#10b981', x: 1000, y: 1800, path: 'people/pythagoras/',
-                level: 1, power: 1200, cost: 250,
-                buff1Name: 'Harmonics', buff1Val: 8.5,
-                buff2Name: 'Triangulation', buff2Val: 4.0
-            },
-            {
-                id: 'plato', name: 'Plato', title: 'The World of Forms',
-                icon: '🏛️', color: '#E2E8F0', x: 1200, y: 2100, path: 'people/plato/',
-                level: 1, power: 1500, cost: 400,
-                buff1Name: 'Ideality', buff1Val: 10.0,
-                buff2Name: 'Dialectics', buff2Val: 5.0
-            },
-            {
-                id: 'euclid', name: 'Euclid', title: 'Father of Geometry',
-                icon: '📐', color: '#3b82f6', x: 1600, y: 2100, path: 'people/euclid/',
-                level: 1, power: 2500, cost: 600,
-                buff1Name: 'Axioms', buff1Val: 15.0,
-                buff2Name: 'Postulates', buff2Val: 7.5
-            },
-            {
-                id: 'archimedes', name: 'Archimedes', title: 'The Eureka Genius',
-                icon: '⚖️', color: '#ef4444', x: 1900, y: 1800, path: 'people/archimedes/',
-                level: 1, power: 4200, cost: 900,
-                buff1Name: 'Buoyancy', buff1Val: 18.0,
-                buff2Name: 'Leverage', buff2Val: 12.0
-            },
-            {
-                id: 'ptolemy', name: 'Ptolemy', title: 'Celestial Mapper',
-                icon: '🌌', color: '#f472b6', x: 1900, y: 1400, path: 'people/ptolemy/',
-                level: 1, power: 3000, cost: 750,
-                buff1Name: 'Epicycles', buff1Val: 12.0,
-                buff2Name: 'Chords', buff2Val: 6.5
-            },
-            {
-                id: 'hypatia', name: 'Hypatia', title: 'The Last Light',
-                icon: '🕯️', color: '#8b5cf6', x: 1600, y: 1100, path: 'people/hypatia/',
-                level: 1, power: 3500, cost: 850,
-                buff1Name: 'Conic Sections', buff1Val: 14.0,
-                buff2Name: 'Astrolabe', buff2Val: 9.0
-            },
+    const CATEGORY_ICONS = {
+        'Math & Science': '📐',
+        'Philosophy': '🏛️',
+        'Sovereign': '👑',
+        'Modern': '🧩'
+    };
 
-            // --- INDIAN BRANCH ---
-            {
-                id: 'aryabhata', name: 'Aryabhata', title: 'The Cosmic Poet',
-                icon: '🔭', color: '#ff8c00', x: 2400, y: 1200, path: 'people/aryabhata/',
-                level: 1, power: 5500, cost: 1200,
-                buff1Name: 'Jya (Sine)', buff1Val: 22.5,
-                buff2Name: 'Rotation', buff2Val: 15.0
-            },
-            {
-                id: 'brahmagupta', name: 'Brahmagupta', title: 'Master of Zero',
-                icon: '⭕', color: '#34d399', x: 2600, y: 1600, path: 'people/brahmagupta/',
-                level: 1, power: 6500, cost: 1500,
-                buff1Name: 'Śūnyatā', buff1Val: 30.0,
-                buff2Name: 'Negatives', buff2Val: 20.0
-            },
-            {
-                id: 'mahaviracharya', name: 'Mahaviracharya', title: 'The Jain Scholar',
-                icon: '🧿', color: '#6366f1', x: 2400, y: 2100, path: 'people/mahaviracharya/',
-                level: 1, power: 4800, cost: 1100,
-                buff1Name: 'Permutations', buff1Val: 16.5,
-                buff2Name: 'LCM Logic', buff2Val: 11.0
-            },
-            {
-                id: 'bhashkaracharya', name: 'Bhaskara II', title: 'Medieval Calculus',
-                icon: '☄️', color: '#f59e0b', x: 3000, y: 1900, path: 'people/bhashkaracharya/',
-                level: 1, power: 8000, cost: 2000,
-                buff1Name: 'Fluxions', buff1Val: 40.0,
-                buff2Name: 'Instants', buff2Val: 25.0
-            },
+    /* ── Node Class ────────────────────────────────────────────── */
+    class Node {
+        constructor(person) {
+            this.person = person;
+            this.pos = createVector(random(width), random(height));
+            this.vel = createVector(0, 0);
+            this.acc = createVector(0, 0);
+            this.icon = CATEGORY_ICONS[person.category] || '📐';
+            this.r = 30;
+            this.color = person.category.includes('Math') ? '#00e5ff' : '#ff671f';
+        }
 
-            // --- ISLAMIC / PERSIAN BRANCH ---
-            {
-                id: 'al-khwarizmi', name: 'Al-Khwarizmi', title: 'Father of Algebra',
-                icon: '📜', color: '#10b981', x: 3200, y: 1300, path: 'people/al-khwarizmi/',
-                level: 1, power: 7500, cost: 1800,
-                buff1Name: 'Reduction', buff1Val: 35.0,
-                buff2Name: 'Algorithms', buff2Val: 28.0
-            },
-            {
-                id: 'omar-khayyam', name: 'Omar Khayyam', title: 'Poet of Cubic Curves',
-                icon: '🍷', color: '#db2777', x: 3400, y: 1700, path: 'people/omar-khayyam/',
-                level: 1, power: 9000, cost: 2500,
-                buff1Name: 'Cubic Logic', buff1Val: 45.0,
-                buff2Name: 'Quatrains', buff2Val: 30.0
-            },
+        applyForces(allNodes) {
+            // Attraction to center
+            let center = createVector(width/2, height/2);
+            let force = p5.Vector.sub(center, this.pos);
+            force.mult(0.0001);
+            this.acc.add(force);
 
-            // --- UNIVERSAL NODE ---
-            {
-                id: 'golden-ratio', name: 'Golden Ratio', title: 'Nature\'s Algorithm',
-                icon: '🌀', color: '#fef3c7', x: 2100, y: 600, path: 'golden-ratio.html',
-                level: 1, power: 15000, cost: 5000,
-                buff1Name: 'Phi Scaling', buff1Val: 100.0,
-                buff2Name: 'Aesthetic Max', buff2Val: 75.0
+            // Repulsion from other nodes
+            for (let other of allNodes) {
+                if (other !== this) {
+                    let d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                    if (d < 150) {
+                        let repulse = p5.Vector.sub(this.pos, other.pos);
+                        repulse.normalize();
+                        repulse.mult(1 / (d * 0.1));
+                        this.acc.add(repulse);
+                    }
+                }
             }
-        ];
 
-        // --- INIT MAP ENTITIES ---
-        const entitiesLayer = document.getElementById('entities-layer');
+            // Mouse Repulsion
+            let mouse = createVector((mouseX - offset.x) / zoom, (mouseY - offset.y) / zoom);
+            let dMouse = dist(this.pos.x, this.pos.y, mouse.x, mouse.y);
+            if (dMouse < 100) {
+                let mRepulse = p5.Vector.sub(this.pos, mouse);
+                mRepulse.normalize();
+                mRepulse.mult(2);
+                this.acc.add(mRepulse);
+            }
+        }
+
+        update() {
+            this.vel.add(this.acc);
+            this.vel.mult(0.95); // Friction
+            this.pos.add(this.vel);
+            this.acc.mult(0);
+        }
+
+        draw() {
+            let isMatch = this.matchesFilter();
+            let alpha = isMatch ? 255 : 30;
+            
+            push();
+            translate(this.pos.x, this.pos.y);
+            
+            // Glow
+            if (isMatch) {
+                noStroke();
+                fill(this.color + '22');
+                ellipse(0, 0, 80);
+            }
+
+            // Node Circle
+            fill(isMatch ? '#0a0f19' : '#050a14');
+            stroke(this.color + (isMatch ? 'ff' : '44'));
+            strokeWeight(2);
+            ellipse(0, 0, this.r * 2);
+
+            // Icon
+            textAlign(CENTER, CENTER);
+            textSize(20);
+            fill(255, alpha);
+            text(this.icon, 0, 1);
+            
+            // Name label (subtle)
+            if (isMatch && zoom > 0.6) {
+                textSize(10);
+                fill(255, 150);
+                text(this.person.name.toUpperCase(), 0, this.r + 15);
+            }
+            pop();
+        }
+
+        matchesFilter() {
+            const matchSearch = this.person.name.toLowerCase().includes(searchQuery.toLowerCase());
+            if (currentFilter === 'all') return matchSearch;
+            return matchSearch && (this.person.category.includes(currentFilter) || this.person.era.includes(currentFilter));
+        }
+
+        isHovered() {
+            let mouse = createVector((mouseX - offset.x) / zoom, (mouseY - offset.y) / zoom);
+            return dist(this.pos.x, this.pos.y, mouse.x, mouse.y) < this.r;
+        }
+    }
+
+    /* ── Main p5.js Loop ────────────────────────────────────────── */
+    async function setup() {
+        createCanvas(windowWidth, windowHeight);
+        offset = createVector(0, 0);
         
-        function renderEntities() {
-            entitiesLayer.innerHTML = '';
-            loreData.forEach(data => {
-                const el = document.createElement('div');
-                el.className = 'entity';
-                el.style.left = data.x + 'px';
-                el.style.top = data.y + 'px';
-                
-                // Load local level from storage if exists
-                const savedLevel = localStorage.getItem(`via_logic_lv_${data.id}`);
-                if(savedLevel) data.level = parseInt(savedLevel);
+        try {
+            const res = await fetch('./people-registry.json');
+            const data = await res.json();
+            people = data.people;
+            document.getElementById('count').innerText = people.length;
+            
+            for (let p of people) {
+                nodes.push(new Node(p));
+            }
+        } catch (e) { console.error(e); }
+    }
 
-                el.innerHTML = `
-                    <div class="entity-glow" style="background: ${data.color}"></div>
-                    <div class="entity-icon" style="border-color: ${data.color}80; color: ${data.color};">
-                        ${data.icon}
-                    </div>
-                    <div class="entity-label">
-                        <span class="level-text" style="color:${data.color}">Lv. ${data.level}</span> ${data.name}
-                    </div>
-                `;
-
-                // Handle click vs drag
-                let startX, startY;
-                el.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; });
-                el.addEventListener('pointerup', (e) => {
-                    let dx = Math.abs(e.clientX - startX);
-                    let dy = Math.abs(e.clientY - startY);
-                    if (dx < 10 && dy < 10) openModal(data.id);
-                });
-
-                entitiesLayer.appendChild(el);
-            });
-        }
-
-        // --- MAP NAVIGATION (Pan & Zoom) ---
-        const mapContainer = document.getElementById('map-container');
-        const viewport = document.getElementById('viewport');
+    function draw() {
+        background(5, 10, 20);
         
-        let mapState = { x: -1000, y: -800, scale: 0.5 };
-        let isDragging = false;
-        let isPinching = false;
-        let dragStart = { x: 0, y: 0 };
-        let pinchStartDistance = 0;
+        push();
+        translate(offset.x, offset.y);
+        scale(zoom);
+        
+        let newHover = null;
+        for (let node of nodes) {
+            node.applyForces(nodes);
+            node.update();
+            node.draw();
+            if (node.isHovered() && node.matchesFilter()) newHover = node;
+        }
+        pop();
 
-        function updateMapTransform() {
-            mapContainer.style.transform = `translate(${mapState.x}px, ${mapState.y}px) scale(${mapState.scale})`;
+        handleHover(newHover);
+    }
+
+    function handleHover(node) {
+        const anchor = document.getElementById('tooltip-anchor');
+        if (node && node !== hoveredNode) {
+            hoveredNode = node;
+            anchor.style.opacity = 1;
+            anchor.innerHTML = '';
+            const card = window.DaxiniRenderer.renderCard(node.person);
+            anchor.appendChild(card);
+        } else if (!node) {
+            hoveredNode = null;
+            anchor.style.opacity = 0;
         }
 
-        // Mouse / Touch Dragging
-        viewport.addEventListener('pointerdown', (e) => {
-            if (e.target.closest('.entity') || e.target.closest('.hud-controls') || e.target.closest('.hud-top-left')) return;
-            isDragging = true;
-            dragStart.x = e.clientX - mapState.x;
-            dragStart.y = e.clientY - mapState.y;
-            viewport.style.cursor = 'grabbing';
-            mapContainer.style.transition = 'none';
+        if (hoveredNode) {
+            anchor.style.left = mouseX + 'px';
+            anchor.style.top = mouseY + 'px';
+        }
+    }
+
+    function mousePressed() {
+        if (hoveredNode) {
+            window.location.href = hoveredNode.person.path;
+        }
+    }
+
+    function mouseDragged() {
+        offset.x += mouseX - pmouseX;
+        offset.y += mouseY - pmouseY;
+    }
+
+    function mouseWheel(event) {
+        zoom -= event.delta * 0.001;
+        zoom = constrain(zoom, 0.2, 3);
+        return false;
+    }
+
+    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+
+    /* ── UI Logic ──────────────────────────────────────────────── */
+    document.getElementById('search').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
         });
-
-        window.addEventListener('pointermove', (e) => {
-            if (!isDragging || isPinching) return;
-            mapState.x = e.clientX - dragStart.x;
-            mapState.y = e.clientY - dragStart.y;
-            updateMapTransform();
-        });
-
-        window.addEventListener('pointerup', () => {
-            isDragging = false;
-            viewport.style.cursor = 'grab';
-        });
-
-        function getTouchDistance(touchA, touchB) {
-            return Math.hypot(touchA.clientX - touchB.clientX, touchA.clientY - touchB.clientY);
-        }
-
-        function getTouchMidpoint(touchA, touchB) {
-            return {
-                x: (touchA.clientX + touchB.clientX) / 2,
-                y: (touchA.clientY + touchB.clientY) / 2
-            };
-        }
-
-        viewport.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 2) {
-                isPinching = true;
-                isDragging = false;
-                pinchStartDistance = getTouchDistance(e.touches[0], e.touches[1]);
-            }
-        }, { passive: true });
-
-        viewport.addEventListener('touchmove', (e) => {
-            if (e.touches.length !== 2 || !isPinching) return;
-            e.preventDefault();
-
-            const currentDistance = getTouchDistance(e.touches[0], e.touches[1]);
-            if (!pinchStartDistance) pinchStartDistance = currentDistance;
-
-            const midpoint = getTouchMidpoint(e.touches[0], e.touches[1]);
-            const zoomDelta = (currentDistance - pinchStartDistance) / 260;
-            if (Math.abs(zoomDelta) > 0.01) {
-                zoomMap(zoomDelta, midpoint.x, midpoint.y);
-                pinchStartDistance = currentDistance;
-            }
-        }, { passive: false });
-
-        viewport.addEventListener('touchend', (e) => {
-            if (e.touches.length < 2) {
-                isPinching = false;
-                pinchStartDistance = 0;
-            }
-        }, { passive: true });
-
-        // Wheel Zooming
-        viewport.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const zoomAmount = e.deltaY > 0 ? -0.12 : 0.12;
-            zoomMap(zoomAmount, e.clientX, e.clientY);
-        }, { passive: false });
-
-        function zoomMap(amount, focalX = window.innerWidth/2, focalY = window.innerHeight/2) {
-            let oldScale = mapState.scale;
-            mapState.scale = Math.min(Math.max(0.3, mapState.scale + amount), 2.2);
-            
-            let scaleRatio = mapState.scale / oldScale;
-            mapState.x = focalX - (focalX - mapState.x) * scaleRatio;
-            mapState.y = focalY - (focalY - mapState.y) * scaleRatio;
-            
-            updateMapTransform();
-        }
-
-        function centerOn(id) {
-            const data = loreData.find(d => d.id === id);
-            if (!data) return;
-            mapContainer.style.transition = 'transform 0.8s cubic-bezier(0.19, 1, 0.22, 1)';
-            mapState.scale = 1.2;
-            mapState.x = window.innerWidth/2 - data.x * mapState.scale;
-            mapState.y = window.innerHeight/2 - data.y * mapState.scale;
-            updateMapTransform();
-        }
-
-
-        // --- UI & MODAL LOGIC ---
-        const modal = document.getElementById('detail-modal');
-        const btnUpgrade = document.getElementById('btn-upgrade');
-
-        function updateHUD() {
-            document.getElementById('hud-sparks').innerText = totalSparks.toLocaleString();
-            document.getElementById('modal-cost-current').innerText = totalSparks.toLocaleString();
-            localStorage.setItem('via_logic_sparks', totalSparks);
-        }
-
-        function openModal(id) {
-            currentActiveEntityId = id;
-            const data = loreData.find(d => d.id === id);
-            
-            // Populate Modal
-            const iconWrapper = document.getElementById('modal-icon');
-            iconWrapper.innerText = data.icon;
-            iconWrapper.style.borderColor = data.color;
-            iconWrapper.style.color = data.color;
-            iconWrapper.style.boxShadow = `0 15px 35px ${data.color}40`;
-
-            document.getElementById('modal-title').innerText = data.name;
-            document.getElementById('modal-subtitle').innerText = data.title;
-            
-            // Scale stats by level
-            let displayPower = Math.floor(data.power * (1 + (data.level-1)*0.4));
-            let displayBuff1 = (data.buff1Val * (1 + (data.level-1)*0.2)).toFixed(1);
-            let displayBuff2 = (data.buff2Val * (1 + (data.level-1)*0.15)).toFixed(1);
-            let displayCost = Math.floor(data.cost * Math.pow(1.5, data.level-1));
-
-            document.getElementById('modal-power').innerText = displayPower.toLocaleString();
-            document.getElementById('modal-level').innerText = data.level;
-            
-            document.getElementById('modal-buff1-label').innerText = data.buff1Name;
-            document.getElementById('modal-buff1-val').innerText = `+${displayBuff1}%`;
-            document.getElementById('modal-buff2-label').innerText = data.buff2Name;
-            document.getElementById('modal-buff2-val').innerText = `+${displayBuff2}%`;
-            
-            document.getElementById('modal-cost-req').innerText = displayCost.toLocaleString();
-
-            updateUpgradeButton(displayCost);
-            updateHUD();
-            
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            currentActiveEntityId = null;
-        }
-
-        function updateUpgradeButton(cost) {
-            const curEl = document.getElementById('modal-cost-current');
-            if (totalSparks >= cost) {
-                curEl.classList.remove('insufficient');
-                btnUpgrade.classList.remove('disabled');
-            } else {
-                curEl.classList.add('insufficient');
-                btnUpgrade.classList.add('disabled');
-            }
-        }
-
-        function enterCharacter() {
-            const data = loreData.find(d => d.id === currentActiveEntityId);
-            if(data) window.location.href = data.path;
-        }
-
-        // Upgrade Action
-        btnUpgrade.addEventListener('click', (e) => {
-            if (!currentActiveEntityId) return;
-            const data = loreData.find(d => d.id === currentActiveEntityId);
-            const cost = Math.floor(data.cost * Math.pow(1.5, data.level-1));
-            
-            if (totalSparks >= cost) {
-                // Deduct & Increase Stats
-                totalSparks -= cost;
-                data.level++;
-                localStorage.setItem(`via_logic_lv_${data.id}`, data.level);
-                
-                // Update UIs
-                openModal(currentActiveEntityId); 
-                renderEntities(); 
-                
-                // Visual FX
-                spawnFloatingText(window.innerWidth / 2, window.innerHeight * 0.4, "INSIGHT SYNTHESIZED!");
-                
-                const icon = document.getElementById('modal-icon');
-                icon.style.transform = 'scale(1.25)';
-                setTimeout(() => icon.style.transform = 'scale(1)', 300);
-
-            } else {
-                // Shake button
-                btnUpgrade.style.transform = 'translateX(-8px)';
-                setTimeout(() => btnUpgrade.style.transform = 'translateX(8px)', 60);
-                setTimeout(() => btnUpgrade.style.transform = 'translateX(-4px)', 120);
-                setTimeout(() => btnUpgrade.style.transform = 'translateX(0)', 180);
-            }
-        });
-
-        function spawnFloatingText(x, y, text) {
-            const el = document.createElement('div');
-            el.className = 'float-text';
-            el.innerText = text;
-            el.style.left = (x - 150) + 'px';
-            el.style.top = y + 'px';
-            document.body.appendChild(el);
-            setTimeout(() => el.remove(), 1200);
-        }
-
-        // --- DECORATIVE SCENERY GENERATION ---
-        function generateScenery() {
-            const props = ['✧', '✦', '⋆', '⚙', '⚲', '△', '○', '☐'];
-            for(let i=0; i<120; i++) {
-                let prop = document.createElement('div');
-                prop.className = 'scenery';
-                prop.innerText = props[Math.floor(Math.random() * props.length)];
-                prop.style.left = Math.random() * 4000 + 'px';
-                prop.style.top = Math.random() * 4000 + 'px';
-                prop.style.transform = `rotate(${Math.random()*360}deg) scale(${Math.random() + 0.5})`;
-                mapContainer.appendChild(prop);
-            }
-        }
-
-        // Initialize Everything
-        window.onload = () => {
-            generateScenery();
-            renderEntities();
-            centerOn('aryabhata');
-            updateMapTransform();
-        };
-
+    });
     </script>
 </body>
 </html>
