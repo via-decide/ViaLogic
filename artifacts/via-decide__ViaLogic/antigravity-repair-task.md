@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
+Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 RULES
 1. Audit touched files first and identify regressions.
@@ -20,7 +20,7 @@ SOP: REPAIR PROTOCOL (MANDATORY)
 
 REPO CONTEXT
 - README snippet:
-not found
+# ViaLogic
 - AGENTS snippet:
 not found
 - package.json snippet:
