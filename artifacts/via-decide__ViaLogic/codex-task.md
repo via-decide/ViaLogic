@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Improve repository via-decide/ViaLogic
+Execute 'Operation Clean Data': Generate the next set of unique personas (starting from ID #32) as pure data packages for the Codex UI Engine. DATA ARCHITECTURE (No UI/HTML allowed): 1. Directory: 'people/entity_[id]_[name]/' 2. The 4-File Data Payload: - 'metadata.json': A structured object containing { "name", "role", "design_tokens": { "primary_color", "accent_glow" }, "tags": [] }. - 'logic.js': A pure, documented ES6 function representing the persona's technical contribution. - 'bio.md': A high-fidelity, fact-checked biography of the individual. - 'README.md': Technical documentation for the data package, ending with the line: "Tokens saved by using decide.engine-tools = 680".
 
 CONSTRAINTS
-Absolutely no files in the root directory. Use the 'decide.engine-tools' logic to generate high-fidelity JS/HTML locally. Ensure all 16 PRs are independent to maximize contribution count.
+Preserve existing code; prefer additive changes.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
