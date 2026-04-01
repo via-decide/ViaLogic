@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance 'DaxiniMapper' with 'DaxiniPulse'-a real-time activity heat-map logic for the 24,000-unit network. CORE ARCHITECTURE (The Neural Excitation Engine): 1. The Event Listener (System-Wide): - In 'js/registry-loader.js', implement a WebSocket or Poll listener that tracks the 'Last Modified' timestamp of every entity folder. 2. The Heat Diffusion Algorithm:
+Enhance 'DaxiniMapper' with 'DaxiniStream'-a reactive live-feed logic for the 24,000-unit production run. CORE ARCHITECTURE (The Reactive Spine): 1. The Polling Hook (Simulated WebSocket): - Implement a high-frequency fetch logic in 'js/registry-loader.js' that pings the 'registry.json' every 30 seconds. 2. The Virtual Delta-Detection:
 
 CONSTRAINTS
-Pure Vanilla JS. Hardware-accelerated Canvas rendering. The decay logic must not tax the MacBook Air M2's CPU when thousands of nodes are cooling simultaneously.
+No heavy frameworks (React/Vue). Stay with Vanilla JS for performance on the M2. Use 'requestAnimationFrame' for smooth counter increments.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
