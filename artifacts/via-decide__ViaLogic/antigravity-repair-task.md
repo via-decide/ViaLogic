@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
+Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 
 RULES
 1. Audit touched files first and identify regressions.
