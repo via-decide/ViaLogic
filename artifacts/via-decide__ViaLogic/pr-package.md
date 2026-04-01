@@ -1,3 +1,11 @@
+Branch: simba/continue-the-world-record-run-with-the-second-so
+Title: Continue the 'World Record Run' with the second sovereign entity: Nic...
+
+## Summary
+- Repo orchestration task for via-decide/ViaLogic
+- Goal: Demonstrate the scalability of the Atomic Isolation protocol by adding the second major historical architect to the ViaLogic population with zero merge friction.
+Branch: simba/inaugurate-the-world-record-run-by-creating-the-
+Title: Inaugurate the 'World Record Run' by creating the first sovereign ent...
 Branch: simba/execute-record-pr-2-add-niccol-tartaglia-to-the-
 Title: Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network....
 

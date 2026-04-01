@@ -1,6 +1,11 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Continue the 'World Record Run' with the second sovereign entity: Nicolaus Copernicus. CORE ARCHITECTURE (Atomic Folder): 1. The Directory:
+
+CONSTRAINTS
+Strict 'No-Touch' policy on index.html. Rely entirely on the Registry Loader for UI integration. Use 'decide.engine-tools' templates for the celestial CSS glass-morphism.
+Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
 Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS

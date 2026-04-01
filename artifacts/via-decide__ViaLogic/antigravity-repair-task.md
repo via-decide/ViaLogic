@@ -4,6 +4,8 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
+Continue the 'World Record Run' with the second sovereign entity: Nicolaus Copernicus. CORE ARCHITECTURE (Atomic Folder): 1. The Directory:
+Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
 Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
