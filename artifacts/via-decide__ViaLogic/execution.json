@@ -2,6 +2,8 @@
   "repo": "via-decide/ViaLogic",
   "mode": "codex_then_antigravity",
   "branch": "simba/execute-wave-4-opsburst-generate-and-push-6000-u",
+  "branch": "simba/execute-wave-3-assetsburst-generate-and-push-600",
+  "branch": "simba/re-engineer-the-hyperdrive-pipeline-to-eliminate",
   "files_to_create": [
     "codex-task.md",
     "antigravity-repair-task.md",

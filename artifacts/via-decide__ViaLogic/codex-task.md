@@ -5,6 +5,14 @@ Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' dir
 
 CONSTRAINTS
 Zero NPM dependencies. Each SOP must be logically coherent. Use 'PromptMatrix' XML standards for the prompt.txt files. Ensure every PR is a unique branch.
+Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
+
+CONSTRAINTS
+Zero NPM dependencies. Each component must be visually distinct. Use 'PromptMatrix' CSS standards to ensure cross-browser compatibility for the glass-morphism effects.
+Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
+
+CONSTRAINTS
+The bot must never attempt to 'append' or 'insert' text into an existing file. Every PR must be a pure 'Add' operation of a new, unique folder. This ensures 100% automerge compatibility.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
