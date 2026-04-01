@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Build 'DaxiniPortal v2.0'-the high-performance, dynamic entry point for the 24,000-unit population. CORE ARCHITECTURE (Root index.html): 1. The Discovery Script (Registry-Loader): - Update 'registry-loader.js' to perform a recursive fetch of the '/people/' directory.
+Build 'DaxiniLive'-the dynamic, auto-updating leaderboard for the main README.md. CORE LOGIC (GitHub Actions + SVG): 1. The Pulse Generator: - Create a GitHub Action .github/workflows/pulse.yml that triggers on every 'Merge' to the main branch.
 
 CONSTRAINTS
-Zero external libraries (React/Vue/etc). Pure Vanilla JS only. The scroll logic must be optimized for mobile (MacBook Air M2 and mobile chrome). Must be 100% compatible with the Atomic Isolation folders.
+Zero external hosting. Everything must run via GitHub Actions. The README update must be atomic to avoid commit-loop conflicts with the Orchestrator.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.

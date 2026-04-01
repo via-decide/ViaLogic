@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Build 'DaxiniPortal v2.0'-the high-performance, dynamic entry point for the 24,000-unit population. CORE ARCHITECTURE (Root index.html): 1. The Discovery Script (Registry-Loader): - Update 'registry-loader.js' to perform a recursive fetch of the '/people/' directory.
+Build 'DaxiniLive'-the dynamic, auto-updating leaderboard for the main README.md. CORE LOGIC (GitHub Actions + SVG): 1. The Pulse Generator: - Create a GitHub Action .github/workflows/pulse.yml that triggers on every 'Merge' to the main branch.
 
 RULES
 1. Audit touched files first and identify regressions.
