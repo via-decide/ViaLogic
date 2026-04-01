@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
+Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
-Use 'decide.engine-tools' logic to ensure the UI is high-performance. Strictly follow the Atomic Isolation protocol: Leonardo's files must live ONLY in his folder. The index.html must be built for dynamic expansion.
+Strict Atomic Isolation. No shared files. The logic.js must include the trigonometric Law of Cosines function. The UI must follow the Daxini OS high-performance standard.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
@@ -16,10 +16,10 @@ PROCESS (MANDATORY)
 7. Return complete final file contents for every modified or created file.
 
 REPO AUDIT CONTEXT
-- Description: Audit fallback: fetch failed
-- Primary language: unknown
+- Description: 
+- Primary language: HTML
 - README snippet:
-not found
+# ViaLogic
 
 - AGENTS snippet:
 not found
