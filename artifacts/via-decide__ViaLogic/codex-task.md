@@ -6,9 +6,10 @@ Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to the '/logic'
 CONSTRAINTS
 Zero NPM dependencies. Each function must be syntactically valid. Use 'PromptMatrix' formatting for the documentation. Ensure each PR is a unique branch to count toward the graph.
 Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
+Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 
 CONSTRAINTS
-Zero NPM dependencies. Ensure the 'Tokens saved' line is clearly visible in the PR description or README. Each persona must be a unique PR to ensure 6,000 individual graph contributions. Use the 'PromptMatrix' CSS standard for all 6,000 UI cards.
+The bot must never attempt to 'append' or 'insert' text into an existing file. Every PR must be a pure 'Add' operation of a new, unique folder. This ensures 100% automerge compatibility.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
