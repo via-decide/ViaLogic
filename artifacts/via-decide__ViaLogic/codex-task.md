@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+Strict Atomic Isolation. No shared files. The logic.js must include the trigonometric Law of Cosines function. The UI must follow the Daxini OS high-performance standard.
 Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
