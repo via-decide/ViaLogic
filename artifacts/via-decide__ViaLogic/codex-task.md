@@ -6,6 +6,14 @@ Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to the '/logic'
 CONSTRAINTS
 Zero NPM dependencies. Each function must be syntactically valid. Use 'PromptMatrix' formatting for the documentation. Ensure each PR is a unique branch to count toward the graph.
 Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
+Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
+
+CONSTRAINTS
+Zero NPM dependencies. Each SOP must be logically coherent. Use 'PromptMatrix' XML standards for the prompt.txt files. Ensure every PR is a unique branch.
+Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
+
+CONSTRAINTS
+Zero NPM dependencies. Each component must be visually distinct. Use 'PromptMatrix' CSS standards to ensure cross-browser compatibility for the glass-morphism effects.
 Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 
 CONSTRAINTS
