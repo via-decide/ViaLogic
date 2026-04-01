@@ -70,7 +70,7 @@
 
     /* ── Content Data (Injected by VisualForge) ────────────────────── */
     const PERSONA = {"id":"dr-br-ambedkar","name":"Dr Br Ambedkar","title":"Revolution | Modern","summary":"Sovereign UI profile for Dr Br Ambedkar — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = undefined;
+    const SCENARIOS = [{"act":"Act I: THE ARCHITECT","title":"The Constitution of India","sub":"Drafting Committee (1947)","desc":"Babasaheb Ambedkar architected the supreme law of the land, ensuring social justice, equality, and the abolition of untouchability.","insight":"I measure the progress of a community by the degree of progress which women have achieved.","logic_result":"Legal Framework: Article 17 -> Abolition of Untouchability.","color":"#3f51b5"}];
 
     /* ── Setup ───────────────────────────────────────────────────── */
     function setup() {
@@ -136,7 +136,21 @@
         background(5, 10, 20);
         
         // Injected p5.js Logic (VisualForge)
-        undefined
+        
+            time += 0.02;
+            let scale = getScale();
+            // Blue Law Vectors
+            stroke(63, 81, 181, 80);
+            for(let i=0; i<12; i++) {
+                let y = (height/12) * i;
+                line(0, y, width, y);
+            }
+            // Book of Order
+            noFill(); stroke(255); strokeWeight(2);
+            translate(width/2, height/2);
+            rotateY(time);
+            rect(-50*scale, -70*scale, 100*scale, 140*scale);
+        
 
         // Fade overlay
         if (isTransitioning) {

@@ -70,7 +70,7 @@
 
     /* ── Content Data (Injected by VisualForge) ────────────────────── */
     const PERSONA = {"id":"alluri-sitarama-raju","name":"Alluri Sitarama Raju","title":"Revolution | Modern","summary":"Sovereign UI profile for Alluri Sitarama Raju — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = undefined;
+    const SCENARIOS = [{"act":"Act I: THE FOREST PROTECTOR","title":"Rampa Rebellion","sub":"Guerrilla Warfare (1922)","desc":"Manyam Veerudu (Hero of the Jungles) led tribal uprisings against the British using bows, arrows, and unmatched guerrilla tactics.","insight":"The jungle is our mother, and we are its warriors.","logic_result":"Stealth mode: active. Enemy detection: 0.","color":"#4caf50"}];
 
     /* ── Setup ───────────────────────────────────────────────────── */
     function setup() {
@@ -136,7 +136,17 @@
         background(5, 10, 20);
         
         // Injected p5.js Logic (VisualForge)
-        undefined
+        
+            time += 0.04;
+            let scale = getScale();
+            // Arrow Vectors
+            stroke(76, 175, 80, 100);
+            for(let i=0; i<20; i++) {
+                let x = (time * 200 + i * 100) % width;
+                line(x, height/2, x-20*scale, height/2-10*scale);
+                line(x, height/2, x-20*scale, height/2+10*scale);
+            }
+        
 
         // Fade overlay
         if (isTransitioning) {

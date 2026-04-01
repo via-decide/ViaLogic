@@ -70,7 +70,7 @@
 
     /* ── Content Data (Injected by VisualForge) ────────────────────── */
     const PERSONA = {"id":"sardar-vallabhbhai-patel","name":"Sardar Vallabhbhai Patel","title":"Revolution | Modern","summary":"Sovereign UI profile for Sardar Vallabhbhai Patel — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = undefined;
+    const SCENARIOS = [{"act":"Act I: THE IRON MAN","title":"Political Integration","sub":"Merging 565 Princely States","desc":"Patel achieved the impossible: the unification of a fragmented subcontinent into a single, cohesive nation. He used a mix of diplomacy and firm resolve.","insight":"Faith is of no avail in absence of strength. Faith and strength, both are essential.","logic_result":"System status: Unified. Integration integrity: 100%.","color":"#2196f3"}];
 
     /* ── Setup ───────────────────────────────────────────────────── */
     function setup() {
@@ -136,7 +136,17 @@
         background(5, 10, 20);
         
         // Injected p5.js Logic (VisualForge)
-        undefined
+        
+            time += 0.05;
+            let scale = getScale();
+            // Iron Grids (Unification)
+            stroke(33, 150, 243, 40); strokeWeight(1);
+            for(let i=0; i<width; i+=50*scale) line(i, 0, i, height);
+            for(let i=0; i<height; i+=50*scale) line(0, i, width, i);
+            // Unified Core
+            fill(33, 150, 243, 150); noStroke();
+            ellipse(width/2, height/2, (100 + sin(time)*20) * scale);
+        
 
         // Fade overlay
         if (isTransitioning) {
