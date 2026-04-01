@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Generate high-fidelity 'Sovereign UI' components for the ViaLogic population, starting with Leonardo da Vinci.
+Build 'DaxiniPortal v2.0'-the high-performance, dynamic entry point for the 24,000-unit population. CORE ARCHITECTURE (Root index.html): 1. The Discovery Script (Registry-Loader): - Update 'registry-loader.js' to perform a recursive fetch of the '/people/' directory.
 
 RULES
 1. Audit touched files first and identify regressions.
