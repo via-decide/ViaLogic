@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Build 'DaxiniDominance'-a high-impact leaderboard and velocity tracking UI for the ViaLogic portal. CORE ARCHITECTURE (The Power Stats): 1. The Velocity Odometer: - In 'index.html', implement a massive, glowing Matrix Cyan (#00e5ff) counter that shows "LIVE CONTRIBUTIONS".
+Build 'DaxiniRuntime'-a secure, high-performance logic execution sandbox for the 24,000-unit network. CORE ARCHITECTURE (The Intelligence Reactor): 1. The Virtual Console: - In 'index.html', implement a 'Logic Lab' overlay for every entity card.
 
 CONSTRAINTS
-Zero external frameworks. Optimized for the M2 chip's rendering capabilities. Ensure the 'Boss Mode' animation is smooth and doesn't lag the browser during high-velocity updates.
+Strictly no 'eval()'. Use the 'New Function' or 'Blob' approach within a Web Worker for security. Ensure zero latency between the user input and the sandbox output.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
