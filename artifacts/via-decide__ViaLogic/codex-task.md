@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance 'DaxiniMapper' with 'DaxiniChronos'-a temporal sequencing logic for the 24,000-unit timeline. CORE ARCHITECTURE (The Time-Space Bridge): 1. The Chronological Parser: - Update 'scripts/generate-registry.js' to extract 'Birth Year' or 'Discovery Date' from the metadata of each folder.
+Enhance 'DaxiniMapper' with 'DaxiniLense'-a semantic zoom logic for multi-layered 24,000-unit visualization. CORE ARCHITECTURE (The Detail Engine): 1. The Level-of-Detail (LOD) Manager: - Implement 4 distinct Zoom States ($Z$): - Z1 (Macro): Only show Sector Glows (Science, Math, etc.) and Population Density. - Z2 (Meso): Reveal Entity IDs and Cluster names as glowing text. - Z3 (Micro): Render 'DaxiniProfile' cards with names and procedural SVG assets. - Z4 (Atomic): Fully hydrate the card with 'bio.md' text and the interactive 'logic.js' console. 2. The Frustum Culler:
 
 CONSTRAINTS
-Zero external timeline libraries. Use the Canvas API for the 24,000-node spiral rendering. The sorting logic must handle BC/BCE dates correctly to avoid 'negative index' errors.
+Zero external mapping engines (No OpenLayers/D3). Use the CSS 'transform: scale()' and 'opacity' properties for hardware-accelerated rendering. Must support smooth pinch-to-zoom for mobile chrome.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
