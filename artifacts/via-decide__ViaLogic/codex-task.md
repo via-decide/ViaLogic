@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Execute 'The Great Saturation': Generate 6,000 unique PRs using Atomic Isolation and decide.engine-tools logic. CORE EXECUTION (Zero-Conflict Protocol): 1. Local Synthesis (The Stem): - Use the 'decide.engine-tools' methodology to generate 6,000 unique Personas locally. - NO cloud calls for individual bios; use a local procedural loop to shuffle traits, roles, and IDs. 2. The Atomic Payload (Strict Isolation): - For each persona, create ONE new directory: /people/entity_[unique_id]/. - Create 4 Files in that directory: 1. data.json (Metadata) 2. profile.html (Daxini Glass-morphic UI) 3. logic.js (Component behavior) 4. README.md (Bio + Audit)
+Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
-Strict 'No-Touch' on existing files. Every PR must be a pure 'ADD' of a new folder. Use the Daxini OS design standard for all UI cards. Ensure the bot stores the 'Merge Queue' state for the Telegram 'Merge All' command.
+No edits to index.html allowed. The folder must be self-contained. The logic.js must be a clean, production-ready ES6 export. The 'Tokens saved' line must be at the very bottom of the README.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
