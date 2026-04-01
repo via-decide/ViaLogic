@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #5: Add René Descartes to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+Strict Atomic Isolation. No shared file modifications. The logic.js must provide a clean export for the distance formula. The UI must follow the Daxini OS glass-morphic standard.
 Execute Record PR #6: Add Pierre de Fermat to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
