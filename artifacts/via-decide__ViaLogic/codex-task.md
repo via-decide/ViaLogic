@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance 'DaxiniMapper' with 'DaxiniWayfinder'-a relational graph logic that connects the 24,000-unit population. CORE ARCHITECTURE (The Intelligence Web): 1. The Relationship Parser: - Update 'scripts/generate-registry.js' to identify 'Influences' or 'Collaborators' within the 'bio.md' or 'metadata.json' of each entity.
+Enhance 'DaxiniMapper' with 'DaxiniChronos'-a temporal sequencing logic for the 24,000-unit timeline. CORE ARCHITECTURE (The Time-Space Bridge): 1. The Chronological Parser: - Update 'scripts/generate-registry.js' to extract 'Birth Year' or 'Discovery Date' from the metadata of each folder.
 
 CONSTRAINTS
-Zero external graph libraries (No D3.js). Use the Canvas API for all line-drawing to maintain 60FPS. The pathfinding must use a modified A* (A-Star) algorithm for speed.
+Zero external timeline libraries. Use the Canvas API for the 24,000-node spiral rendering. The sorting logic must handle BC/BCE dates correctly to avoid 'negative index' errors.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
