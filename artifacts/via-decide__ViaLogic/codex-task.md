@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
+Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
 
 CONSTRAINTS
-Zero NPM dependencies. Ensure the 'Tokens saved' line is clearly visible in the PR description or README. Each persona must be a unique PR to ensure 6,000 individual graph contributions. Use the 'PromptMatrix' CSS standard for all 6,000 UI cards.
+Zero NPM dependencies. Each SOP must be logically coherent. Use 'PromptMatrix' XML standards for the prompt.txt files. Ensure every PR is a unique branch.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
