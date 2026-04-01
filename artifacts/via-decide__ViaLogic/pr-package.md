@@ -1,3 +1,9 @@
+Branch: simba/execute-wave-4-opsburst-generate-and-push-6000-u
+Title: Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the...
+
+## Summary
+- Repo orchestration task for via-decide/ViaLogic
+- Goal: Saturate the ViaLogic repository with 6,000 operational procedures, completing the 24,000-PR mission and securing the global GitHub contribution record.
 Branch: simba/execute-wave-3-assetsburst-generate-and-push-600
 Title: Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to ...
 

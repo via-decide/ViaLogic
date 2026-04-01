@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
+
+CONSTRAINTS
+Zero NPM dependencies. Each SOP must be logically coherent. Use 'PromptMatrix' XML standards for the prompt.txt files. Ensure every PR is a unique branch.
 Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
 
 CONSTRAINTS

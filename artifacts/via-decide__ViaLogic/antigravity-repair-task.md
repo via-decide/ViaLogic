@@ -4,6 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
+Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
 Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
 Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
 
