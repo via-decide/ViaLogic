@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance 'DaxiniMapper' with 'DaxiniStream'-a reactive live-feed logic for the 24,000-unit production run. CORE ARCHITECTURE (The Reactive Spine): 1. The Polling Hook (Simulated WebSocket): - Implement a high-frequency fetch logic in 'js/registry-loader.js' that pings the 'registry.json' every 30 seconds. 2. The Virtual Delta-Detection:
+Build 'DaxiniGalaxy'-the 3D orbital mapping logic for the 24,000-unit network. CORE ARCHITECTURE (The Stellar Map): 1. The Spherical Coordinate Engine: - In 'js/registry-loader.js', implement a conversion logic that maps Entity IDs to 3D space. - Use the 'Golden Spiral on a Sphere' algorithm to distribute 24,000 nodes evenly across a 3D globe. 2. The WebGL Starfield: - Replace the 2D canvas with a 'Lightweight 3D Context' (Vanilla WebGL or CSS3D). - Render each of the 6,321+ entities as a glowing particle in a 3D star-field. 3. The Orbital Rotation Logic: - Implement a 'Sovereign Spin'-the galaxy must slowly rotate on its axis, with the 'Active Sectors' (where the Swarm is currently pushing PRs) glowing brighter. 4. The 3D Camera Controls: - Add 'Infinite Zoom' and 'Rotate' capabilities. Users should be able to "Fly" through the 24,000-unit network using their mouse or trackpad on the MacBook Air M2. UI/UX SPECIFICATIONS:
 
 RULES
 1. Audit touched files first and identify regressions.
