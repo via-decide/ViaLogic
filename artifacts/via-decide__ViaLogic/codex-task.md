@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance 'DaxiniMapper' with 'DaxiniLense'-a semantic zoom logic for multi-layered 24,000-unit visualization. CORE ARCHITECTURE (The Detail Engine): 1. The Level-of-Detail (LOD) Manager: - Implement 4 distinct Zoom States ($Z$): - Z1 (Macro): Only show Sector Glows (Science, Math, etc.) and Population Density. - Z2 (Meso): Reveal Entity IDs and Cluster names as glowing text. - Z3 (Micro): Render 'DaxiniProfile' cards with names and procedural SVG assets. - Z4 (Atomic): Fully hydrate the card with 'bio.md' text and the interactive 'logic.js' console. 2. The Frustum Culler:
+Enhance 'DaxiniMapper' with 'DaxiniPulse'-a real-time activity heat-map logic for the 24,000-unit network. CORE ARCHITECTURE (The Neural Excitation Engine): 1. The Event Listener (System-Wide): - In 'js/registry-loader.js', implement a WebSocket or Poll listener that tracks the 'Last Modified' timestamp of every entity folder. 2. The Heat Diffusion Algorithm:
 
 CONSTRAINTS
-Zero external mapping engines (No OpenLayers/D3). Use the CSS 'transform: scale()' and 'opacity' properties for hardware-accelerated rendering. Must support smooth pinch-to-zoom for mobile chrome.
+Pure Vanilla JS. Hardware-accelerated Canvas rendering. The decay logic must not tax the MacBook Air M2's CPU when thousands of nodes are cooling simultaneously.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
