@@ -5,6 +5,10 @@ Continue the 'World Record Run' with the second sovereign entity: Nicolaus Coper
 
 CONSTRAINTS
 Strict 'No-Touch' policy on index.html. Rely entirely on the Registry Loader for UI integration. Use 'decide.engine-tools' templates for the celestial CSS glass-morphism.
+Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
+
+CONSTRAINTS
+Use 'decide.engine-tools' logic to ensure the UI is high-performance. Strictly follow the Atomic Isolation protocol: Leonardo's files must live ONLY in his folder. The index.html must be built for dynamic expansion.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
@@ -16,10 +20,10 @@ PROCESS (MANDATORY)
 7. Return complete final file contents for every modified or created file.
 
 REPO AUDIT CONTEXT
-- Description: 
-- Primary language: HTML
+- Description: Audit fallback: fetch failed
+- Primary language: unknown
 - README snippet:
-# ViaLogic
+not found
 
 - AGENTS snippet:
 not found

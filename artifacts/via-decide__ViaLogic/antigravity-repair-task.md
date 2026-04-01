@@ -5,6 +5,7 @@ Validate and repair only the files touched by the previous implementation.
 
 TASK
 Continue the 'World Record Run' with the second sovereign entity: Nicolaus Copernicus. CORE ARCHITECTURE (Atomic Folder): 1. The Directory:
+Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
 
 RULES
 1. Audit touched files first and identify regressions.
@@ -20,7 +21,7 @@ SOP: REPAIR PROTOCOL (MANDATORY)
 
 REPO CONTEXT
 - README snippet:
-# ViaLogic
+not found
 - AGENTS snippet:
 not found
 - package.json snippet:
