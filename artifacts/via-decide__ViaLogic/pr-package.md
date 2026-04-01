@@ -1,9 +1,9 @@
-Branch: simba/enhance-the-daxinimapper-logic-to-enable-fully-a
-Title: Enhance the 'DaxiniMapper' logic to enable fully autonomous, zero-con...
+Branch: simba/enhance-daxinimapper-with-daxiniatlas-a-spatial-
+Title: Enhance 'DaxiniMapper' with 'DaxiniAtlas'-a spatial clustering logic ...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Ensure that every new person added via the 24,000-PR run is immediately and automatically visible on the Index UI, completing the 'Real-for-Real' April Fool's automation.
+- Goal: Transform the 24,000-PR record into an interactive 'Universe of Intelligence,' making the April Fool's reveal a world-class visual experience.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
