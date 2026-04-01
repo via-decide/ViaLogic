@@ -1,9 +1,9 @@
-Branch: simba/execute-operation-global-record-generate-6000-un
-Title: Execute 'Operation Global Record': Generate 6,000 unique PRs for '/pe...
+Branch: simba/execute-wave-3-assetsburst-generate-and-push-600
+Title: Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to ...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Break the GitHub global contribution record while demonstrating a 95% reduction in API overhead through the use of sovereign 'decide.engine-tools' local synthesis.
+- Goal: Saturate the ViaLogic repository with 6,000 modular UI components, creating a massive 'Design System' while pushing the total contribution count toward the final 24,000 target.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
