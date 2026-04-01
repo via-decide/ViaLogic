@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance the 'DaxiniMapper' logic to enable fully autonomous, zero-config discovery of new entities. CORE ARCHITECTURE (The Discovery Engine): 1. The Registry Generator (Node.js): - Create a root script 'scripts/generate-registry.js'. - This script must scan the '/people' directory, extract 'id', 'name', and 'path' from every sub-folder, and output a minified 'registry.json' in the root. 2. The Dynamic Loader (Vanilla JS): - Update 'js/registry-loader.js' to fetch the 'registry.json' instead of a hardcoded array.
+Enhance 'DaxiniMapper' with 'DaxiniAtlas'-a spatial clustering logic for 24,000-unit navigation. CORE ARCHITECTURE (The Spatial Bridge): 1. The Sector Classifier: - Enhance 'scripts/generate-registry.js' to read the 'tags' and 'role' from 'metadata.json'. - Map each entity to one of four 'Knowledge Sectors': [Science], [Math], [Code], [Logic]. 2. The Coordinate Generator:
 
 CONSTRAINTS
-Zero external libraries. Pure Vanilla JS. The mapper must be 'Fault-Tolerant'-if a folder is empty or a JSON is malformed, it must skip that entity without crashing the entire UI.
+Zero external mapping libraries (No Leaflet, No D3). Use pure Vanilla JS and HTML5 Canvas for the 24,000-node render to ensure 60FPS on the MacBook Air M2.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
