@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance the 'DaxiniMapper' logic to enable fully autonomous, zero-config discovery of new entities. CORE ARCHITECTURE (The Discovery Engine): 1. The Registry Generator (Node.js): - Create a root script 'scripts/generate-registry.js'. - This script must scan the '/people' directory, extract 'id', 'name', and 'path' from every sub-folder, and output a minified 'registry.json' in the root. 2. The Dynamic Loader (Vanilla JS): - Update 'js/registry-loader.js' to fetch the 'registry.json' instead of a hardcoded array.
+Enhance 'DaxiniMapper' with 'DaxiniAtlas'-a spatial clustering logic for 24,000-unit navigation. CORE ARCHITECTURE (The Spatial Bridge): 1. The Sector Classifier: - Enhance 'scripts/generate-registry.js' to read the 'tags' and 'role' from 'metadata.json'. - Map each entity to one of four 'Knowledge Sectors': [Science], [Math], [Code], [Logic]. 2. The Coordinate Generator:
 
 RULES
 1. Audit touched files first and identify regressions.
