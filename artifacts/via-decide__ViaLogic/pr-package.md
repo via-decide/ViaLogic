@@ -1,9 +1,9 @@
-Branch: simba/build-daxinilive-the-dynamic-auto-updating-leade
-Title: Build 'DaxiniLive'-the dynamic, auto-updating leaderboard for the mai...
+Branch: simba/enhance-the-daxinimapper-logic-to-enable-fully-a
+Title: Enhance the 'DaxiniMapper' logic to enable fully autonomous, zero-con...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Provide an undeniable, real-time public record of the 24,000-PR mission, turning the repository into a live showcase of autonomous productivity.
+- Goal: Ensure that every new person added via the 24,000-PR run is immediately and automatically visible on the Index UI, completing the 'Real-for-Real' April Fool's automation.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
