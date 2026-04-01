@@ -5,6 +5,11 @@ Validate and repair only the files touched by the previous implementation.
 
 TASK
 Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Execute Record PR #5: Add Johannes Kepler to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Execute Record PR #5: Add René Descartes to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Execute Record PR #6: Add Pierre de Fermat to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+Build 'DaxiniRuntime'-a secure, high-performance logic execution sandbox for the 24,000-unit network. CORE ARCHITECTURE (The Intelligence Reactor): 1. The Virtual Console: - In 'index.html', implement a 'Logic Lab' overlay for every entity card.
 
 RULES
 1. Audit touched files first and identify regressions.
