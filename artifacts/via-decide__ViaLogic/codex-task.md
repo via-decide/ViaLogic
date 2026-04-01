@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+No edits to index.html allowed. The folder must be self-contained. The logic.js must be a clean, production-ready ES6 export. The 'Tokens saved' line must be at the very bottom of the README.
 Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS

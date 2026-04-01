@@ -4,6 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
+Execute Record PR #2: Add Niccolò Tartaglia to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 Execute Record PR #3: Add François Viète to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 Execute Record PR #4: Add John Napier to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 Execute Record PR #5: Add Johannes Kepler to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
