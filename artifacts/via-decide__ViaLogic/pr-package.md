@@ -1,9 +1,9 @@
-Branch: simba/improve-repository-via-decidevialogic
-Title: Improve repository via-decide/ViaLogic
+Branch: simba/execute-operation-clean-data-generate-the-next-s
+Title: Execute 'Operation Clean Data': Generate the next set of unique perso...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Fix the previous pathing errors by correctly populating the 'people' folder with 16 unique historical figures, restoring the momentum of the world-record attempt.
+- Goal: Break the GitHub contribution record by saturating the 'people' folder with high-value raw data while ensuring zero risk to the repository's UI integrity or root architecture.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
