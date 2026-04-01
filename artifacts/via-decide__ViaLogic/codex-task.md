@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Execute 'The Great Saturation': Generate 6,000 unique PRs using Atomic Isolation and decide.engine-tools logic. CORE EXECUTION (Zero-Conflict Protocol): 1. Local Synthesis (The Stem): - Use the 'decide.engine-tools' methodology to generate 6,000 unique Personas locally. - NO cloud calls for individual bios; use a local procedural loop to shuffle traits, roles, and IDs. 2. The Atomic Payload (Strict Isolation): - For each persona, create ONE new directory: /people/entity_[unique_id]/. - Create 4 Files in that directory: 1. data.json (Metadata) 2. profile.html (Daxini Glass-morphic UI) 3. logic.js (Component behavior) 4. README.md (Bio + Audit)
+Inaugurate the 'World Record Run' by creating the first sovereign entity: Leonardo da Vinci. CORE ARCHITECTURE (First-Run Initialization): 1. The Atomic Folder:
 
 CONSTRAINTS
-Strict 'No-Touch' on existing files. Every PR must be a pure 'ADD' of a new folder. Use the Daxini OS design standard for all UI cards. Ensure the bot stores the 'Merge Queue' state for the Telegram 'Merge All' command.
+Use 'decide.engine-tools' logic to ensure the UI is high-performance. Strictly follow the Atomic Isolation protocol: Leonardo's files must live ONLY in his folder. The index.html must be built for dynamic expansion.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
@@ -16,10 +16,10 @@ PROCESS (MANDATORY)
 7. Return complete final file contents for every modified or created file.
 
 REPO AUDIT CONTEXT
-- Description: 
-- Primary language: HTML
+- Description: Audit fallback: fetch failed
+- Primary language: unknown
 - README snippet:
-# ViaLogic
+not found
 
 - AGENTS snippet:
 not found
