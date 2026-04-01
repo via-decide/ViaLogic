@@ -1,9 +1,9 @@
-Branch: simba/execute-operation-global-record-generate-6000-un
-Title: Execute 'Operation Global Record': Generate 6,000 unique PRs for '/pe...
+Branch: simba/execute-wave-4-opsburst-generate-and-push-6000-u
+Title: Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Break the GitHub global contribution record while demonstrating a 95% reduction in API overhead through the use of sovereign 'decide.engine-tools' local synthesis.
+- Goal: Saturate the ViaLogic repository with 6,000 operational procedures, completing the 24,000-PR mission and securing the global GitHub contribution record.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
