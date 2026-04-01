@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance 'DaxiniMapper' with 'DaxiniLense'-a semantic zoom logic for multi-layered 24,000-unit visualization. CORE ARCHITECTURE (The Detail Engine): 1. The Level-of-Detail (LOD) Manager: - Implement 4 distinct Zoom States ($Z$): - Z1 (Macro): Only show Sector Glows (Science, Math, etc.) and Population Density. - Z2 (Meso): Reveal Entity IDs and Cluster names as glowing text. - Z3 (Micro): Render 'DaxiniProfile' cards with names and procedural SVG assets. - Z4 (Atomic): Fully hydrate the card with 'bio.md' text and the interactive 'logic.js' console. 2. The Frustum Culler:
+Enhance 'DaxiniMapper' with 'DaxiniPulse'-a real-time activity heat-map logic for the 24,000-unit network. CORE ARCHITECTURE (The Neural Excitation Engine): 1. The Event Listener (System-Wide): - In 'js/registry-loader.js', implement a WebSocket or Poll listener that tracks the 'Last Modified' timestamp of every entity folder. 2. The Heat Diffusion Algorithm:
 
 RULES
 1. Audit touched files first and identify regressions.
