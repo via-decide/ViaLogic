@@ -1,6 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute Record PR #5: Add Johannes Kepler to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
+
+CONSTRAINTS
+Strict Atomic Isolation. The logic.js must contain a valid JavaScript implementation of the Harmonic Law. The UI should reflect the Daxini OS design system with a 'Celestial' twist.
 Execute Record PR #5: Add René Descartes to the sovereign network. CORE ARCHITECTURE (Atomic Payload): 1. The Atomic Folder:
 
 CONSTRAINTS
