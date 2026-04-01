@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Enhance 'DaxiniMapper' with 'DaxiniAtlas'-a spatial clustering logic for 24,000-unit navigation. CORE ARCHITECTURE (The Spatial Bridge): 1. The Sector Classifier: - Enhance 'scripts/generate-registry.js' to read the 'tags' and 'role' from 'metadata.json'. - Map each entity to one of four 'Knowledge Sectors': [Science], [Math], [Code], [Logic]. 2. The Coordinate Generator:
+Enhance 'DaxiniMapper' with 'DaxiniWayfinder'-a relational graph logic that connects the 24,000-unit population. CORE ARCHITECTURE (The Intelligence Web): 1. The Relationship Parser: - Update 'scripts/generate-registry.js' to identify 'Influences' or 'Collaborators' within the 'bio.md' or 'metadata.json' of each entity.
 
 CONSTRAINTS
-Zero external mapping libraries (No Leaflet, No D3). Use pure Vanilla JS and HTML5 Canvas for the 24,000-node render to ensure 60FPS on the MacBook Air M2.
+Zero external graph libraries (No D3.js). Use the Canvas API for all line-drawing to maintain 60FPS. The pathfinding must use a modified A* (A-Star) algorithm for speed.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
