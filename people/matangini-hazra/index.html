@@ -70,7 +70,7 @@
 
     /* ── Content Data (Injected by VisualForge) ────────────────────── */
     const PERSONA = {"id":"matangini-hazra","name":"Matangini Hazra","title":"Revolution | Modern","summary":"Sovereign UI profile for Matangini Hazra — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = undefined;
+    const SCENARIOS = [{"act":"Act I: THE OLD LADY OF BENGAL","title":"Holding the Flag High","sub":"Quit India (1942)","desc":"At 73, Matangini kept marching with the Indian flag even after being shot multiple times. She died with 'Vande Mataram' on her lips.","insight":"The flag shall never fall while there is breath in this body.","logic_result":"Resilience index: Eternal. Flag state: Vertically Stabilized.","color":"#ff5722"}];
 
     /* ── Setup ───────────────────────────────────────────────────── */
     function setup() {
@@ -136,7 +136,19 @@
         background(5, 10, 20);
         
         // Injected p5.js Logic (VisualForge)
-        undefined
+        
+            time += 0.1;
+            let scale = getScale();
+            // Undying Flag Wave
+            stroke(255, 87, 34, 150);
+            noFill();
+            beginShape();
+            for(let x=0; x<width; x+=10) {
+                let y = height/2 + sin(x*0.01 + time) * 50 * scale;
+                vertex(x, y);
+            }
+            endShape();
+        
 
         // Fade overlay
         if (isTransitioning) {
