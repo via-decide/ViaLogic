@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Enhance 'DaxiniMapper' with 'DaxiniChronos'-a temporal sequencing logic for the 24,000-unit timeline. CORE ARCHITECTURE (The Time-Space Bridge): 1. The Chronological Parser: - Update 'scripts/generate-registry.js' to extract 'Birth Year' or 'Discovery Date' from the metadata of each folder.
+Enhance 'DaxiniMapper' with 'DaxiniLense'-a semantic zoom logic for multi-layered 24,000-unit visualization. CORE ARCHITECTURE (The Detail Engine): 1. The Level-of-Detail (LOD) Manager: - Implement 4 distinct Zoom States ($Z$): - Z1 (Macro): Only show Sector Glows (Science, Math, etc.) and Population Density. - Z2 (Meso): Reveal Entity IDs and Cluster names as glowing text. - Z3 (Micro): Render 'DaxiniProfile' cards with names and procedural SVG assets. - Z4 (Atomic): Fully hydrate the card with 'bio.md' text and the interactive 'logic.js' console. 2. The Frustum Culler:
 
 RULES
 1. Audit touched files first and identify regressions.
