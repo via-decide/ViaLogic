@@ -1,7 +1,7 @@
 {
   "repo": "via-decide/ViaLogic",
   "mode": "codex_then_antigravity",
-  "branch": "simba/execute-record-pr-8-add-blaise-pascal-to-the-sov",
+  "branch": "simba/execute-record-pr-10-add-gottfried-wilhelm-leibn",
   "files_to_create": [
     "codex-task.md",
     "antigravity-repair-task.md",
