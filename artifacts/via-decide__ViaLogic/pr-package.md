@@ -1,3 +1,11 @@
+Branch: simba/execute-wave-2-logicburst-generate-and-push-6000
+Title: Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to t...
+
+## Summary
+- Repo orchestration task for via-decide/ViaLogic
+- Goal: Populate the ViaLogic repository with a library of 6,000 unique JS utilities, creating a massive functional 'Logic Hub' while moving the total commit count toward the 24,000 target.
+Branch: simba/execute-operation-global-record-generate-6000-un
+Title: Execute 'Operation Global Record': Generate 6,000 unique PRs for '/pe...
 Branch: simba/execute-wave-4-opsburst-generate-and-push-6000-u
 Title: Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the...
 

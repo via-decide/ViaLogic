@@ -1,6 +1,11 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
+Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to the '/logic' directory to solidify the world-record attempt.
+
+CONSTRAINTS
+Zero NPM dependencies. Each function must be syntactically valid. Use 'PromptMatrix' formatting for the documentation. Ensure each PR is a unique branch to count toward the graph.
+Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
 Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
 
 CONSTRAINTS
