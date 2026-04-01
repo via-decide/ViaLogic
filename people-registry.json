@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-04-01T05:58:45.843Z",
+  "generatedAt": "2026-04-01T06:00:14.177Z",
   "total": 98,
   "people": [
     {
-      "id": "mahaviracharya",
+      "id": "Mahaviracharya",
       "name": "Mahaviracharya",
-      "era": "Classical",
+      "era": "Golden Age",
       "category": "Math & Science",
-      "path": "./people/mahaviracharya/",
+      "path": "./people/Mahaviracharya/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Mahaviracharya — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Mahaviracharya. Part of ViaLogic's historical population."
     },
     {
       "id": "ada-lovelace",
       "name": "Ada Lovelace",
-      "era": "Classical",
+      "era": "Modern",
       "category": "Math & Science",
       "path": "./people/ada-lovelace/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Ada Lovelace — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Ada Lovelace. Part of ViaLogic's historical population."
     },
     {
       "id": "adi-shankara",
@@ -27,7 +27,7 @@
       "category": "Philosophy",
       "path": "./people/adi-shankara/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Adi Shankara — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Adi Shankara. Part of ViaLogic's historical population."
     },
     {
       "id": "al-khwarizmi",
@@ -36,7 +36,7 @@
       "category": "Math & Science",
       "path": "./people/al-khwarizmi/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Al Khwarizmi — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Al Khwarizmi. Part of ViaLogic's historical population."
     },
     {
       "id": "alan-turing",
@@ -45,7 +45,7 @@
       "category": "Math & Science",
       "path": "./people/alan-turing/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Alan Turing — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Alan Turing. Part of ViaLogic's historical population."
     },
     {
       "id": "albert-camus",
@@ -54,7 +54,7 @@
       "category": "Philosophy",
       "path": "./people/albert-camus/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Albert Camus — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Albert Camus. Part of ViaLogic's historical population."
     },
     {
       "id": "albert-einstein",
@@ -63,7 +63,7 @@
       "category": "Math & Science",
       "path": "./people/albert-einstein/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Albert Einstein — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Albert Einstein. Part of ViaLogic's historical population."
     },
     {
       "id": "andrew-wiles",
@@ -72,7 +72,7 @@
       "category": "Math & Science",
       "path": "./people/andrew-wiles/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Andrew Wiles — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Andrew Wiles. Part of ViaLogic's historical population."
     },
     {
       "id": "andrey-kolmogorov",
@@ -81,7 +81,7 @@
       "category": "Math & Science",
       "path": "./people/andrey-kolmogorov/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Andrey Kolmogorov — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Andrey Kolmogorov. Part of ViaLogic's historical population."
     },
     {
       "id": "archimedes",
@@ -90,7 +90,7 @@
       "category": "Math & Science",
       "path": "./people/archimedes/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Archimedes — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Archimedes. Part of ViaLogic's historical population."
     },
     {
       "id": "aristotle",
@@ -99,7 +99,7 @@
       "category": "Philosophy",
       "path": "./people/aristotle/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Aristotle — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Aristotle. Part of ViaLogic's historical population."
     },
     {
       "id": "arthur-schopenhauer",
@@ -108,7 +108,7 @@
       "category": "Philosophy",
       "path": "./people/arthur-schopenhauer/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Arthur Schopenhauer — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Arthur Schopenhauer. Part of ViaLogic's historical population."
     },
     {
       "id": "aryabhata",
@@ -117,7 +117,7 @@
       "category": "Math & Science",
       "path": "./people/aryabhata/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Aryabhata — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Aryabhata. Part of ViaLogic's historical population."
     },
     {
       "id": "augustine-of-hippo",
@@ -126,7 +126,7 @@
       "category": "Philosophy",
       "path": "./people/augustine-of-hippo/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Augustine Of Hippo — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Augustine Of Hippo. Part of ViaLogic's historical population."
     },
     {
       "id": "baruch-spinoza",
@@ -135,7 +135,7 @@
       "category": "Math & Science",
       "path": "./people/baruch-spinoza/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Baruch Spinoza — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Baruch Spinoza. Part of ViaLogic's historical population."
     },
     {
       "id": "benoit-mandelbrot",
@@ -144,7 +144,7 @@
       "category": "Math & Science",
       "path": "./people/benoit-mandelbrot/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Benoit Mandelbrot — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Benoit Mandelbrot. Part of ViaLogic's historical population."
     },
     {
       "id": "bernhard-riemann",
@@ -153,7 +153,7 @@
       "category": "Math & Science",
       "path": "./people/bernhard-riemann/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Bernhard Riemann — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Bernhard Riemann. Part of ViaLogic's historical population."
     },
     {
       "id": "bertrand-russell",
@@ -162,7 +162,7 @@
       "category": "Math & Science",
       "path": "./people/bertrand-russell/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Bertrand Russell — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Bertrand Russell. Part of ViaLogic's historical population."
     },
     {
       "id": "bhashkaracharya",
@@ -171,7 +171,7 @@
       "category": "Math & Science",
       "path": "./people/bhashkaracharya/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Bhashkaracharya — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Bhashkaracharya. Part of ViaLogic's historical population."
     },
     {
       "id": "blaise-pascal",
@@ -180,7 +180,7 @@
       "category": "Math & Science",
       "path": "./people/blaise-pascal/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Blaise Pascal — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Blaise Pascal. Part of ViaLogic's historical population."
     },
     {
       "id": "brahmagupta",
@@ -189,7 +189,7 @@
       "category": "Math & Science",
       "path": "./people/brahmagupta/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Brahmagupta — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Brahmagupta. Part of ViaLogic's historical population."
     },
     {
       "id": "brian-greene",
@@ -198,7 +198,7 @@
       "category": "Math & Science",
       "path": "./people/brian-greene/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Brian Greene — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Brian Greene. Part of ViaLogic's historical population."
     },
     {
       "id": "carl-friedrich-gauss",
@@ -207,7 +207,7 @@
       "category": "Math & Science",
       "path": "./people/carl-friedrich-gauss/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Carl Friedrich Gauss — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Carl Friedrich Gauss. Part of ViaLogic's historical population."
     },
     {
       "id": "chanakya",
@@ -216,7 +216,7 @@
       "category": "Math & Science",
       "path": "./people/chanakya/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Chanakya — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Chanakya. Part of ViaLogic's historical population."
     },
     {
       "id": "charles-babbage",
@@ -225,7 +225,7 @@
       "category": "Math & Science",
       "path": "./people/charles-babbage/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Charles Babbage — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Charles Babbage. Part of ViaLogic's historical population."
     },
     {
       "id": "claude-shannon",
@@ -234,7 +234,7 @@
       "category": "Math & Science",
       "path": "./people/claude-shannon/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Claude Shannon — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Claude Shannon. Part of ViaLogic's historical population."
     },
     {
       "id": "confucius",
@@ -243,7 +243,7 @@
       "category": "Philosophy",
       "path": "./people/confucius/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Confucius — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Confucius. Part of ViaLogic's historical population."
     },
     {
       "id": "david-hilbert",
@@ -252,7 +252,7 @@
       "category": "Math & Science",
       "path": "./people/david-hilbert/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for David Hilbert — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for David Hilbert. Part of ViaLogic's historical population."
     },
     {
       "id": "david-hume",
@@ -261,7 +261,7 @@
       "category": "Philosophy",
       "path": "./people/david-hume/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for David Hume — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for David Hume. Part of ViaLogic's historical population."
     },
     {
       "id": "diogenes-of-sinope",
@@ -270,7 +270,7 @@
       "category": "Philosophy",
       "path": "./people/diogenes-of-sinope/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Diogenes Of Sinope — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Diogenes Of Sinope. Part of ViaLogic's historical population."
     },
     {
       "id": "edward-witten",
@@ -279,7 +279,7 @@
       "category": "Math & Science",
       "path": "./people/edward-witten/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Edward Witten — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Edward Witten. Part of ViaLogic's historical population."
     },
     {
       "id": "emmy-noether",
@@ -288,7 +288,7 @@
       "category": "Math & Science",
       "path": "./people/emmy-noether/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Emmy Noether — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Emmy Noether. Part of ViaLogic's historical population."
     },
     {
       "id": "epicurus",
@@ -297,7 +297,7 @@
       "category": "Philosophy",
       "path": "./people/epicurus/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Epicurus — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Epicurus. Part of ViaLogic's historical population."
     },
     {
       "id": "erwin-schrodinger",
@@ -306,7 +306,7 @@
       "category": "Math & Science",
       "path": "./people/erwin-schrodinger/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Erwin Schrodinger — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Erwin Schrodinger. Part of ViaLogic's historical population."
     },
     {
       "id": "euclid",
@@ -315,7 +315,7 @@
       "category": "Math & Science",
       "path": "./people/euclid/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Euclid — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Euclid. Part of ViaLogic's historical population."
     },
     {
       "id": "friedrich-nietzsche",
@@ -324,7 +324,7 @@
       "category": "Philosophy",
       "path": "./people/friedrich-nietzsche/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Friedrich Nietzsche — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Friedrich Nietzsche. Part of ViaLogic's historical population."
     },
     {
       "id": "galileo-galilei",
@@ -333,7 +333,7 @@
       "category": "Math & Science",
       "path": "./people/galileo-galilei/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Galileo Galilei — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Galileo Galilei. Part of ViaLogic's historical population."
     },
     {
       "id": "georg-hegel",
@@ -342,7 +342,7 @@
       "category": "Philosophy",
       "path": "./people/georg-hegel/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Georg Hegel — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Georg Hegel. Part of ViaLogic's historical population."
     },
     {
       "id": "gottfried-leibniz",
@@ -351,7 +351,7 @@
       "category": "Math & Science",
       "path": "./people/gottfried-leibniz/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Gottfried Leibniz — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Gottfried Leibniz. Part of ViaLogic's historical population."
     },
     {
       "id": "grigori-perelman",
@@ -360,7 +360,7 @@
       "category": "Math & Science",
       "path": "./people/grigori-perelman/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Grigori Perelman — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Grigori Perelman. Part of ViaLogic's historical population."
     },
     {
       "id": "henri-poincare",
@@ -369,7 +369,7 @@
       "category": "Math & Science",
       "path": "./people/henri-poincare/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Henri Poincare — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Henri Poincare. Part of ViaLogic's historical population."
     },
     {
       "id": "heraclitus",
@@ -378,7 +378,7 @@
       "category": "Philosophy",
       "path": "./people/heraclitus/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Heraclitus — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Heraclitus. Part of ViaLogic's historical population."
     },
     {
       "id": "hypatia",
@@ -387,7 +387,7 @@
       "category": "Math & Science",
       "path": "./people/hypatia/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Hypatia — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Hypatia. Part of ViaLogic's historical population."
     },
     {
       "id": "immanuel-kant",
@@ -396,7 +396,7 @@
       "category": "Philosophy",
       "path": "./people/immanuel-kant/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Immanuel Kant — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Immanuel Kant. Part of ViaLogic's historical population."
     },
     {
       "id": "isaac-newton",
@@ -405,7 +405,7 @@
       "category": "Math & Science",
       "path": "./people/isaac-newton/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Isaac Newton — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Isaac Newton. Part of ViaLogic's historical population."
     },
     {
       "id": "james-clerk-maxwell",
@@ -414,7 +414,7 @@
       "category": "Math & Science",
       "path": "./people/james-clerk-maxwell/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for James Clerk Maxwell — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for James Clerk Maxwell. Part of ViaLogic's historical population."
     },
     {
       "id": "jean-paul-sartre",
@@ -423,7 +423,7 @@
       "category": "Philosophy",
       "path": "./people/jean-paul-sartre/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Jean Paul Sartre — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Jean Paul Sartre. Part of ViaLogic's historical population."
     },
     {
       "id": "johannes-kepler",
@@ -432,7 +432,7 @@
       "category": "Math & Science",
       "path": "./people/johannes-kepler/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Johannes Kepler — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Johannes Kepler. Part of ViaLogic's historical population."
     },
     {
       "id": "john-conway",
@@ -441,7 +441,7 @@
       "category": "Math & Science",
       "path": "./people/john-conway/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for John Conway — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for John Conway. Part of ViaLogic's historical population."
     },
     {
       "id": "john-locke",
@@ -450,7 +450,7 @@
       "category": "Math & Science",
       "path": "./people/john-locke/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for John Locke — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for John Locke. Part of ViaLogic's historical population."
     },
     {
       "id": "john-nash",
@@ -459,7 +459,7 @@
       "category": "Math & Science",
       "path": "./people/john-nash/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for John Nash — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for John Nash. Part of ViaLogic's historical population."
     },
     {
       "id": "john-von-neumann",
@@ -468,7 +468,7 @@
       "category": "Math & Science",
       "path": "./people/john-von-neumann/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for John Von Neumann — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for John Von Neumann. Part of ViaLogic's historical population."
     },
     {
       "id": "joseph-louis-lagrange",
@@ -477,7 +477,7 @@
       "category": "Math & Science",
       "path": "./people/joseph-louis-lagrange/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Joseph Louis Lagrange — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Joseph Louis Lagrange. Part of ViaLogic's historical population."
     },
     {
       "id": "karl-marx",
@@ -486,7 +486,7 @@
       "category": "Philosophy",
       "path": "./people/karl-marx/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Karl Marx — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Karl Marx. Part of ViaLogic's historical population."
     },
     {
       "id": "katherine-johnson",
@@ -495,7 +495,7 @@
       "category": "Math & Science",
       "path": "./people/katherine-johnson/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Katherine Johnson — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Katherine Johnson. Part of ViaLogic's historical population."
     },
     {
       "id": "kip-thorne",
@@ -504,7 +504,7 @@
       "category": "Math & Science",
       "path": "./people/kip-thorne/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Kip Thorne — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Kip Thorne. Part of ViaLogic's historical population."
     },
     {
       "id": "kurt-godel",
@@ -513,7 +513,7 @@
       "category": "Math & Science",
       "path": "./people/kurt-godel/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Kurt Godel — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Kurt Godel. Part of ViaLogic's historical population."
     },
     {
       "id": "laozi",
@@ -522,7 +522,7 @@
       "category": "Philosophy",
       "path": "./people/laozi/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Laozi — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Laozi. Part of ViaLogic's historical population."
     },
     {
       "id": "leonard-susskind",
@@ -531,7 +531,7 @@
       "category": "Math & Science",
       "path": "./people/leonard-susskind/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Leonard Susskind — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Leonard Susskind. Part of ViaLogic's historical population."
     },
     {
       "id": "leonardo-da-vinci",
@@ -540,7 +540,7 @@
       "category": "Math & Science",
       "path": "./people/leonardo-da-vinci/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Leonardo Da Vinci — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Leonardo Da Vinci. Part of ViaLogic's historical population."
     },
     {
       "id": "leonhard-euler",
@@ -549,7 +549,7 @@
       "category": "Math & Science",
       "path": "./people/leonhard-euler/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Leonhard Euler — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Leonhard Euler. Part of ViaLogic's historical population."
     },
     {
       "id": "ludwig-wittgenstein",
@@ -558,7 +558,7 @@
       "category": "Philosophy",
       "path": "./people/ludwig-wittgenstein/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Ludwig Wittgenstein — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Ludwig Wittgenstein. Part of ViaLogic's historical population."
     },
     {
       "id": "marcus-aurelius",
@@ -567,7 +567,7 @@
       "category": "Philosophy",
       "path": "./people/marcus-aurelius/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Marcus Aurelius — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Marcus Aurelius. Part of ViaLogic's historical population."
     },
     {
       "id": "martin-heidegger",
@@ -576,7 +576,7 @@
       "category": "Philosophy",
       "path": "./people/martin-heidegger/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Martin Heidegger — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Martin Heidegger. Part of ViaLogic's historical population."
     },
     {
       "id": "maryam-mirzakhani",
@@ -585,7 +585,7 @@
       "category": "Math & Science",
       "path": "./people/maryam-mirzakhani/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Maryam Mirzakhani — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Maryam Mirzakhani. Part of ViaLogic's historical population."
     },
     {
       "id": "nagarjuna",
@@ -594,16 +594,16 @@
       "category": "Philosophy",
       "path": "./people/nagarjuna/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Nagarjuna — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Nagarjuna. Part of ViaLogic's historical population."
     },
     {
       "id": "niccolo-machiavelli",
       "name": "Niccolo Machiavelli",
       "era": "Classical",
-      "category": "Math & Science",
+      "category": "Philosophy",
       "path": "./people/niccolo-machiavelli/",
-      "icon": "📐",
-      "summary": "Sovereign UI profile for Niccolo Machiavelli — part of the ViaLogic population cluster."
+      "icon": "🏛️",
+      "summary": "Sovereign UI profile for Niccolo Machiavelli. Part of ViaLogic's historical population."
     },
     {
       "id": "nicolaus-copernicus",
@@ -612,7 +612,7 @@
       "category": "Math & Science",
       "path": "./people/nicolaus-copernicus/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Nicolaus Copernicus — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Nicolaus Copernicus. Part of ViaLogic's historical population."
     },
     {
       "id": "niels-bohr",
@@ -621,16 +621,16 @@
       "category": "Math & Science",
       "path": "./people/niels-bohr/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Niels Bohr — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Niels Bohr. Part of ViaLogic's historical population."
     },
     {
       "id": "noam-chomsky",
       "name": "Noam Chomsky",
       "era": "Classical",
-      "category": "Math & Science",
+      "category": "Philosophy",
       "path": "./people/noam-chomsky/",
-      "icon": "📐",
-      "summary": "Sovereign UI profile for Noam Chomsky — part of the ViaLogic population cluster."
+      "icon": "🏛️",
+      "summary": "Sovereign UI profile for Noam Chomsky. Part of ViaLogic's historical population."
     },
     {
       "id": "omar-khayyam",
@@ -639,7 +639,7 @@
       "category": "Math & Science",
       "path": "./people/omar-khayyam/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Omar Khayyam — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Omar Khayyam. Part of ViaLogic's historical population."
     },
     {
       "id": "parmenides",
@@ -648,7 +648,7 @@
       "category": "Philosophy",
       "path": "./people/parmenides/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Parmenides — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Parmenides. Part of ViaLogic's historical population."
     },
     {
       "id": "paul-erdos",
@@ -657,7 +657,7 @@
       "category": "Math & Science",
       "path": "./people/paul-erdos/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Paul Erdos — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Paul Erdos. Part of ViaLogic's historical population."
     },
     {
       "id": "pierre-de-fermat",
@@ -666,7 +666,7 @@
       "category": "Math & Science",
       "path": "./people/pierre-de-fermat/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Pierre De Fermat — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Pierre De Fermat. Part of ViaLogic's historical population."
     },
     {
       "id": "pierre-simon-laplace",
@@ -675,7 +675,7 @@
       "category": "Math & Science",
       "path": "./people/pierre-simon-laplace/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Pierre Simon Laplace — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Pierre Simon Laplace. Part of ViaLogic's historical population."
     },
     {
       "id": "plato",
@@ -684,7 +684,7 @@
       "category": "Philosophy",
       "path": "./people/plato/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Plato — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Plato. Part of ViaLogic's historical population."
     },
     {
       "id": "ptolemy",
@@ -693,7 +693,7 @@
       "category": "Math & Science",
       "path": "./people/ptolemy/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Ptolemy — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Ptolemy. Part of ViaLogic's historical population."
     },
     {
       "id": "pythagoras",
@@ -702,7 +702,7 @@
       "category": "Math & Science",
       "path": "./people/pythagoras/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Pythagoras — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Pythagoras. Part of ViaLogic's historical population."
     },
     {
       "id": "pythagorous",
@@ -711,7 +711,7 @@
       "category": "Math & Science",
       "path": "./people/pythagorous/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Pythagorous — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Pythagorous. Part of ViaLogic's historical population."
     },
     {
       "id": "rene-descartes",
@@ -720,7 +720,7 @@
       "category": "Math & Science",
       "path": "./people/rene-descartes/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Rene Descartes — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Rene Descartes. Part of ViaLogic's historical population."
     },
     {
       "id": "richard-feynman",
@@ -729,7 +729,7 @@
       "category": "Math & Science",
       "path": "./people/richard-feynman/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Richard Feynman — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Richard Feynman. Part of ViaLogic's historical population."
     },
     {
       "id": "rumi",
@@ -738,7 +738,7 @@
       "category": "Math & Science",
       "path": "./people/rumi/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Rumi — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Rumi. Part of ViaLogic's historical population."
     },
     {
       "id": "seneca",
@@ -747,7 +747,7 @@
       "category": "Math & Science",
       "path": "./people/seneca/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Seneca — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Seneca. Part of ViaLogic's historical population."
     },
     {
       "id": "simone-de-beauvoir",
@@ -756,7 +756,7 @@
       "category": "Philosophy",
       "path": "./people/simone-de-beauvoir/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Simone De Beauvoir — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Simone De Beauvoir. Part of ViaLogic's historical population."
     },
     {
       "id": "socrates",
@@ -765,7 +765,7 @@
       "category": "Philosophy",
       "path": "./people/socrates/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Socrates — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Socrates. Part of ViaLogic's historical population."
     },
     {
       "id": "sofia-kovalevskaya",
@@ -774,7 +774,7 @@
       "category": "Math & Science",
       "path": "./people/sofia-kovalevskaya/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Sofia Kovalevskaya — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Sofia Kovalevskaya. Part of ViaLogic's historical population."
     },
     {
       "id": "soren-kierkegaard",
@@ -783,7 +783,7 @@
       "category": "Math & Science",
       "path": "./people/soren-kierkegaard/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Soren Kierkegaard — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Soren Kierkegaard. Part of ViaLogic's historical population."
     },
     {
       "id": "srinivasa-ramanujan",
@@ -792,7 +792,7 @@
       "category": "Math & Science",
       "path": "./people/srinivasa-ramanujan/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Srinivasa Ramanujan — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Srinivasa Ramanujan. Part of ViaLogic's historical population."
     },
     {
       "id": "stephen-hawking",
@@ -801,7 +801,7 @@
       "category": "Math & Science",
       "path": "./people/stephen-hawking/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Stephen Hawking — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Stephen Hawking. Part of ViaLogic's historical population."
     },
     {
       "id": "sun-tzu",
@@ -810,7 +810,7 @@
       "category": "Math & Science",
       "path": "./people/sun-tzu/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Sun Tzu — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Sun Tzu. Part of ViaLogic's historical population."
     },
     {
       "id": "terence-tao",
@@ -819,7 +819,7 @@
       "category": "Math & Science",
       "path": "./people/terence-tao/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Terence Tao — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Terence Tao. Part of ViaLogic's historical population."
     },
     {
       "id": "thales-of-miletus",
@@ -828,7 +828,7 @@
       "category": "Math & Science",
       "path": "./people/thales-of-miletus/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Thales Of Miletus — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Thales Of Miletus. Part of ViaLogic's historical population."
     },
     {
       "id": "thales",
@@ -837,7 +837,7 @@
       "category": "Math & Science",
       "path": "./people/thales/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Thales — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Thales. Part of ViaLogic's historical population."
     },
     {
       "id": "thomas-aquinas",
@@ -846,16 +846,16 @@
       "category": "Philosophy",
       "path": "./people/thomas-aquinas/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Thomas Aquinas — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Thomas Aquinas. Part of ViaLogic's historical population."
     },
     {
       "id": "voltaire",
       "name": "Voltaire",
       "era": "Classical",
-      "category": "Math & Science",
+      "category": "Philosophy",
       "path": "./people/voltaire/",
-      "icon": "📐",
-      "summary": "Sovereign UI profile for Voltaire — part of the ViaLogic population cluster."
+      "icon": "🏛️",
+      "summary": "Sovereign UI profile for Voltaire. Part of ViaLogic's historical population."
     },
     {
       "id": "werner-heisenberg",
@@ -864,7 +864,7 @@
       "category": "Math & Science",
       "path": "./people/werner-heisenberg/",
       "icon": "📐",
-      "summary": "Sovereign UI profile for Werner Heisenberg — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Werner Heisenberg. Part of ViaLogic's historical population."
     },
     {
       "id": "zeno-of-citium",
@@ -873,7 +873,7 @@
       "category": "Philosophy",
       "path": "./people/zeno-of-citium/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Zeno Of Citium — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Zeno Of Citium. Part of ViaLogic's historical population."
     },
     {
       "id": "zhuangzi",
@@ -882,7 +882,7 @@
       "category": "Philosophy",
       "path": "./people/zhuangzi/",
       "icon": "🏛️",
-      "summary": "Sovereign UI profile for Zhuangzi — part of the ViaLogic population cluster."
+      "summary": "Sovereign UI profile for Zhuangzi. Part of ViaLogic's historical population."
     }
   ]
 }
