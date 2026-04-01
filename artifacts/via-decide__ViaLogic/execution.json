@@ -2,6 +2,7 @@
   "repo": "via-decide/ViaLogic",
   "mode": "codex_then_antigravity",
   "branch": "simba/execute-wave-2-logicburst-generate-and-push-6000",
+  "branch": "simba/execute-operation-global-record-generate-6000-un",
   "files_to_create": [
     "codex-task.md",
     "antigravity-repair-task.md",

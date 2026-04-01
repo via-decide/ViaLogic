@@ -5,6 +5,7 @@ Validate and repair only the files touched by the previous implementation.
 
 TASK
 Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to the '/logic' directory to solidify the world-record attempt.
+Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
 
 RULES
 1. Audit touched files first and identify regressions.
