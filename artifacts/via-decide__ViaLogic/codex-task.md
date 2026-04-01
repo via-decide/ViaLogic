@@ -1,23 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Execute 'Wave 2: LogicBurst': Generate and push 6,000 unique PRs to the '/logic' directory to solidify the world-record attempt.
+Execute 'The Great Saturation': Generate 6,000 unique PRs using Atomic Isolation and decide.engine-tools logic. CORE EXECUTION (Zero-Conflict Protocol): 1. Local Synthesis (The Stem): - Use the 'decide.engine-tools' methodology to generate 6,000 unique Personas locally. - NO cloud calls for individual bios; use a local procedural loop to shuffle traits, roles, and IDs. 2. The Atomic Payload (Strict Isolation): - For each persona, create ONE new directory: /people/entity_[unique_id]/. - Create 4 Files in that directory: 1. data.json (Metadata) 2. profile.html (Daxini Glass-morphic UI) 3. logic.js (Component behavior) 4. README.md (Bio + Audit)
 
 CONSTRAINTS
-Zero NPM dependencies. Each function must be syntactically valid. Use 'PromptMatrix' formatting for the documentation. Ensure each PR is a unique branch to count toward the graph.
-Execute 'Operation Global Record': Generate 6,000 unique PRs for '/people' to break the GitHub contribution record.
-Execute 'Wave 4: OpsBurst': Generate and push 6,000 unique PRs to the '/ops' directory to reach the final 24,000 record-shattering target.
-
-CONSTRAINTS
-Zero NPM dependencies. Each SOP must be logically coherent. Use 'PromptMatrix' XML standards for the prompt.txt files. Ensure every PR is a unique branch.
-Execute 'Wave 3: AssetsBurst': Generate and push 6,000 unique PRs to the '/assets' directory to move the total commit count to 18,000.
-
-CONSTRAINTS
-Zero NPM dependencies. Each component must be visually distinct. Use 'PromptMatrix' CSS standards to ensure cross-browser compatibility for the glass-morphism effects.
-Re-engineer the HyperDrive pipeline to eliminate Git Merge Conflicts.
-
-CONSTRAINTS
-The bot must never attempt to 'append' or 'insert' text into an existing file. Every PR must be a pure 'Add' operation of a new, unique folder. This ensures 100% automerge compatibility.
+Strict 'No-Touch' on existing files. Every PR must be a pure 'ADD' of a new folder. Use the Daxini OS design standard for all UI cards. Ensure the bot stores the 'Merge Queue' state for the Telegram 'Merge All' command.
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.
