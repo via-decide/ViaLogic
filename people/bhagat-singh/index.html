@@ -3,170 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Bhagat Singh</title>
+    <title>ViaLogic | The Revolutionary Spark (Bhagat Singh)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="../../daxini-renderer.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #050a14; overflow: hidden;
-            color: white; font-family: 'JetBrains Mono', monospace;
+            margin: 0; padding: 0; background-color: #080404; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
-        
-        #daxini-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-            pointer-events: none;
-        }
-
-        #daxini-container * { pointer-events: auto; }
-
-        #nav-hint {
-            position: absolute; top: 30px; right: 30px;
-            color: rgba(0, 229, 255, 0.4); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            z-index: 1000; text-align: right;
-        }
-        .vialogic-logo { color: #00e5ff; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
-
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #ff671f; font-size: 14px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; z-index: 1000;
+            color: #EF5350; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #EF5350;
+            padding-left: 20px; z-index: 10;
+            background: rgba(8, 4, 4, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #EF5350; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(239, 83, 80, 0.08);
+            border-top: 1px solid rgba(239, 83, 80, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #EF5350; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFCA28; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
-            #act-indicator { top: 20px; left: 20px; font-size: 11px; }
-            #nav-hint { top: 20px; right: 20px; font-size: 10px; }
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
         }
     </style>
 </head>
 <body onclick="nextScreen()">
-
     <div id="nav-hint">
-        <a href="../../index.html" style="text-decoration:none"><div class="vialogic-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
+    <div id="act-indicator">ACT I: NAVEEN BHARAT</div>
+    <div id="label">
+        <h1 id="title">The Young Firebrand</h1>
+        <p id="subtitle">1907 — 1931 CE</p>
+        <p id="description">Born in Banga (Punjab). Witness to the horrific Jallianwala Bagh massacre at age 12, he collected a bottle of the blood-soaked soil to remind him of the price of freedom.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He left home at 16 to join the HRA, refusing to get married as his life 'belonged to the nation.'</span>
+    </div>
 
-    <div id="act-indicator">ACT I: INITIALIZATION</div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div id="daxini-container"></div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "NAVEEN BHARAT";
+const ACT2_LABEL = "THE ULTIMATE SACRIFICE";
+const ACCENT1 = "#EF5350";
+const ACCENT2 = "#FFCA28";
 
-    <script>
-    let time = 0;
-    let state = 0;
-    let isTransitioning = false;
-    let fadeAlpha = 0;
-    let fadeDirection = 0;
-    let targetState = 0;
-    const FADE_SPEED = 14;
-    const TOTAL_SCREENS = 10;
+const content = [
+    { title: "The Young Firebrand", sub: "1907 — 1931 CE", desc: "Born in Banga (Punjab). Witness to the horrific Jallianwala Bagh massacre at age 12, he collected a bottle of the blood-soaked soil to remind him of the price of freedom.", insight: "He left home at 16 to join the HRA, refusing to get married as his life 'belonged to the nation.'", label: "HISTORICAL INSIGHT" },
+    { title: "The HRA Radical", sub: "Hindustan Republican Assoc.", desc: "Inspired by the Russian Revolution, he and Chandra Shekhar Azad radicalized the HRA into the HSRA. They wanted more than freedom — they wanted equality.", insight: "He was a voracious reader, consuming Marxist and socialist literature in secret hideouts.", label: "HISTORICAL INSIGHT" },
+    { title: "The Saunders Incident", sub: "Justice for Lala", desc: "To avenge the death of Lala Lajpat Rai after a British lathi charge, Bhagat Singh and his comrades assassinated officer John Saunders in Lahore.", insight: "This act proved that the youth of India would no longer tolerate imperial brutality.", label: "HISTORICAL INSIGHT" },
+    { title: "The Assembly Bombing", sub: "To Make the Deaf Hear", desc: "In 1929, he and Batukeshwar Dutt threw non-lethal smoke bombs into the Central Legislative Assembly, then stayed to be arrested.", insight: "Their goal was not to kill, but to use the trial as a stage to spread their message.", label: "HISTORICAL INSIGHT" },
+    { title: "Death Before Surrender", sub: "The Lahore Jail Hunger Strike", desc: "In prison, he led a 116-day hunger strike to demand political prisoner status for Indian revolutionaries, outlasting the British will.", insight: "He spent his final days writing 'Why I am an Atheist,' a brilliant philosophical treatise.", label: "HISTORICAL INSIGHT" },
+    { title: "The Noose of Immortality", sub: "March 23, 1931", desc: "At just 23, Bhagat Singh, Rajguru, and Sukhdev were executed. They walked to the gallows singing patriotic songs with smiles on their faces.", insight: "Their execution sparked a massive nationwide surge in the independence movement.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Inquilab Zindabad", sub: "The Eternal Slogan", desc: "He popularized the slogan 'Inquilab Zindabad' (Long Live Revolution). To him, revolution was not just violence, but the overturning of an unjust social order.", insight: "His ideology transcended nationalism to include the total emancipation of the worker.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Pen and the Pistol", sub: "Warrior Poet", desc: "He used the pen more effectively than the pistol, writing leaflets that challenged the very logic of British rule in India.", insight: "His writings remain among the most articulate defenses of liberty in Indian history.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Legacy of the Turban", sub: "Icon of Resistance", desc: "The image of the young man in the felt hat or the yellow turban became the ultimate symbol of fearlessness for generations of Indians.", insight: "He proved that an idea cannot be killed by a hangman's noose.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Martyr of Peace", sub: "Beyond National Borders", desc: "He remains one of India's most loved folk heroes, a symbol of youth power and intellectual depth combined with fearless action.", insight: "His sacrifice ensured that India's demand for freedom would never be silent again. Welcome to ViaLogic.", label: "REFLECTION" },
+];
 
-    /* ── Content Data (Injected by VisualForge) ────────────────────── */
-    const PERSONA = {"id":"bhagat-singh","name":"Bhagat Singh","title":"Revolution | Modern","summary":"Sovereign UI profile for Bhagat Singh — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = [{"act":"Act I: THE REVOLUTIONARY","title":"Inquilab Zindabad","sub":"Central Assembly Bombing","desc":"Bhagat Singh threw non-lethal bombs in the assembly to 'make the deaf hear'. He used the court as a platform to spread revolutionary ideas.","insight":"They may kill me, but they cannot kill my ideas. They can crush my body, but they will not be able to crush my spirit.","logic_result":"Revolutionary constant: 1929. Impact: Nationwide.","color":"#ff6d00"},{"act":"Act II: THE MARTYRDOM","title":"The Final Sacrifice","sub":"March 23, 1931","desc":"At the age of 23, Bhagat Singh went to the gallows with a smile. His sacrifice ignited a fire in every Indian heart.","insight":"Revolution is an inalienable right of mankind. Freedom is an imperishable birthright of all.","logic_result":"Output: Eternal Glory.","color":"#d32f2f"}];
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    /* ── Setup ───────────────────────────────────────────────────── */
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        updateUI();
+function draw() {
+    background(8, 4, 4);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function nextScreen() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        fadeDirection = 1;
-        targetState = (state + 1) % TOTAL_SCREENS;
-        
-        document.getElementById('daxini-container').style.opacity = 0;
-        document.getElementById('act-indicator').style.opacity = 0;
-        document.getElementById('nav-hint').style.opacity = 0;
-    }
-
-    function updateUI() {
-        const scenario = SCENARIOS[state];
-        const container = document.getElementById('daxini-container');
-        container.innerHTML = '';
-        
-        // Render Using DaxiniRenderer
-        const card = window.DaxiniRenderer.renderCard(PERSONA, scenario.desc);
-        
-        // Customize card for current screen
-        const nameEl = card.querySelector('.daxini-card__name');
-        const titleEl = card.querySelector('.daxini-card__title');
-        const outputEl = card.querySelector('[data-logic-output]');
-        
-        nameEl.innerText = scenario.title;
-        titleEl.innerText = scenario.sub;
-        outputEl.innerText = scenario.insight;
-        
-        container.appendChild(card);
-        
-        // Update Act Indicator
-        const actEl = document.getElementById('act-indicator');
-        actEl.innerText = scenario.act;
-        actEl.style.color = scenario.color || '#ff671f';
-        
-        // Add Logic Trigger
-        const btn = card.querySelector('[data-run-logic]');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerLogic();
-        });
-    }
-
-    function triggerLogic() {
-        const output = document.querySelector('[data-logic-output]');
-        output.innerText = "Executing quantum logic...\\n" + SCENARIOS[state].logic_result;
-        // Visual trigger for p5.js
-        window.logicTriggered = true;
-        setTimeout(() => { window.logicTriggered = false; }, 1000);
-    }
-
-    /* ── Draw loop ───────────────────────────────────────────────── */
-    function draw() {
-        background(5, 10, 20);
-        
-        // Injected p5.js Logic (VisualForge)
-        
-            time += 0.08;
-            let scale = getScale();
-            // Revolutionary Spark
-            for(let i=0; i<5; i++) {
-                stroke(255, 109, 0, random(100, 255));
-                line(width/2, height/2, width/2 + random(-300, 300) * scale, height/2 + random(-300, 300) * scale);
-            }
-            // Impact Circles
-            noFill(); stroke(211, 47, 47, 50);
-            ellipse(width/2, height/2, (time * 100) % 600 * scale);
-        
-
-        // Fade overlay
-        if (isTransitioning) {
-            fadeAlpha += FADE_SPEED * fadeDirection;
-            if (fadeDirection === 1 && fadeAlpha >= 255) {
-                fadeAlpha = 255; fadeDirection = -1;
-                state = targetState; time = 0;
-                updateUI();
-                document.getElementById('daxini-container').style.opacity = 1;
-                document.getElementById('act-indicator').style.opacity = 1;
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
                 document.getElementById('nav-hint').style.opacity = 1;
-            } else if (fadeDirection === -1 && fadeAlpha <= 0) {
-                fadeAlpha = 0; isTransitioning = false;
-            }
-            push(); fill(5, 10, 20, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
+        push(); fill(8, 4, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function getScale() { return min(1, width / 800); }
-    </script>
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Jallianwala Bagh pulse (Red circle pulse)
+function drawS0() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(239, 83, 80, 200 - i * 40);
+        strokeWeight(2);
+        ellipse(0, 0, i * 60 + (time * 100) % 60);
+    }
+    fill(239, 83, 80, 50);
+    ellipse(0, 0, 40);
+    pop();
+}
+
+// S1: Red leaflets falling
+function drawS1() {
+    push();
+    for (let i = 0; i < 20; i++) {
+        let y = -200 + (time * 100 + i * 50) % 400;
+        fill(239, 83, 80, 150);
+        rect(sin(i + time) * 200, y, 30, 40);
+    }
+    pop();
+}
+
+// S2: Assassination focus (Target circle)
+function drawS2() {
+    push();
+    noFill();
+    stroke(239, 83, 80);
+    strokeWeight(2);
+    ellipse(0, 0, 100);
+    line(-60, 0, 60, 0);
+    line(0, -60, 0, 60);
+    pop();
+}
+
+// S3: Assembly smoke bomb
+function drawS3() {
+    push();
+    for (let i = 0; i < 15; i++) {
+        fill(100, 100, 100, 40);
+        noStroke();
+        ellipse(sin(time + i) * 50, -100 + i * 15, i * 20);
+    }
+    pop();
+}
+
+// S4: Prison bars
+function drawS4() {
+    push();
+    stroke(200, 100);
+    strokeWeight(10);
+    for (let i = -5; i <= 5; i++) {
+        line(i * 40, -200, i * 40, 200);
+    }
+    pop();
+}
+
+// S5: Noose silhouette
+function drawS5() {
+    push();
+    noFill();
+    stroke(255);
+    strokeWeight(4);
+    ellipse(0, -100, 50, 70);
+    line(0, -170, 0, -250);
+    pop();
+}
+
+// S6: "Inquilab Zindabad" pulse
+function drawS6() {
+    push();
+    fill(255, 202, 40, 150 + sin(time * 5) * 50);
+    textSize(40);
+    textAlign(CENTER);
+    text("INQUILAB ZINDABAD", 0, 0);
+    pop();
+}
+
+// S7: Pen and flame
+function drawS7() {
+    push();
+    stroke(255);
+    line(-10, 100, 10, -100);
+    fill(239, 83, 80);
+    ellipse(10, -100, 10, 20); // Flame
+    pop();
+}
+
+// S8: Turban silhouette glow
+function drawS8() {
+    push();
+    fill(255, 202, 40, 50);
+    ellipse(0, 0, 200, 100);
+    pop();
+}
+
+// S9: Tri-colour aura
+function drawS9() {
+    push();
+    noFill();
+    stroke(255, 152, 0, 100); ellipse(0, 0, 300);
+    stroke(255, 255, 255, 100); ellipse(0, 0, 310);
+    stroke(76, 175, 80, 100); ellipse(0, 0, 320);
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>
