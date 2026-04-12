@@ -1,18 +1,708 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coming Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaMath | The Father of Algebra (Al-Khwarizmi)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #050E0A; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #4CAF50; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #4CAF50;
+            padding-left: 20px; z-index: 10;
+            background: rgba(5, 14, 10, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #4CAF50; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(76, 175, 80, 0.08);
+            border-top: 1px solid rgba(76, 175, 80, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #4CAF50; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #29B6F6; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
 </head>
-<body>
-  <main>
-    <h1>Character page coming soon</h1>
-    <p>This folder is reserved for future character content.</p>
-  </main>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: THE HOUSE OF WISDOM</div>
+    <div id="label">
+        <h1 id="title">The Scholar of Khwarazm</h1>
+        <p id="subtitle">c. 780 CE — Baghdad</p>
+        <p id="description">Born in Khwarazm (modern Uzbekistan), c. 780 CE. He joined the House of Wisdom in Baghdad under Caliph al-Ma'mun and became its greatest scholar.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He compiled, translated and synthesized Greek, Indian, and Persian knowledge into Arabic.</span>
+    </div>
 
-    <!-- Sovereign Audit: Back to Map -->
-    <a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
-        
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
+
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE HOUSE OF WISDOM";
+const ACT2_LABEL = "THE ALGEBRA OF AL-JABR";
+const ACCENT1 = "#4CAF50";
+const ACCENT2 = "#29B6F6";
+
+const content = [
+    { title: "The Scholar of Khwarazm", sub: "c. 780 CE — Baghdad", desc: "Born in Khwarazm (modern Uzbekistan), c. 780 CE. He joined the House of Wisdom in Baghdad under Caliph al-Ma'mun and became its greatest scholar.", insight: "He compiled, translated and synthesized Greek, Indian, and Persian knowledge into Arabic.", label: "HISTORICAL INSIGHT" },
+    { title: "Bayt al-Hikma", sub: "The House of Wisdom", desc: "The House of Wisdom (Bayt al-Hikma) was the greatest library since Alexandria. Al-Khwarizmi was its star scholar, leading translation and original research.", insight: "He translated Ptolemy's Almagest and Brahmagupta's Indian astronomy into Arabic.", label: "HISTORICAL INSIGHT" },
+    { title: "The Measure of the Earth", sub: "Geography & Cartography", desc: "He calculated the circumference of the Earth using shadow measurements — within 4% of the modern value. He also produced the first accurate world map.", insight: "He corrected Ptolemy's coordinates for 2,402 cities across the known world.", label: "HISTORICAL INSIGHT" },
+    { title: "The Name Behind the Machine", sub: "Algoritmi → Algorithm", desc: "The word 'Algorithm' comes from the Latin transliteration of his name: Algoritmi. His step-by-step arithmetic manual became the foundation of computational thinking.", insight: "Without al-Khwarizmi, there is no algorithm, no flowchart, no computer science.", label: "HISTORICAL INSIGHT" },
+    { title: "The Gift of Zero", sub: "Hindu-Arabic Numerals", desc: "His book on Hindu-Arabic numerals introduced Europe to the decimal positional system. Roman numerals vanished from mathematics because of this single text.", insight: "The word 'zero' entered European mathematics through his work.", label: "HISTORICAL INSIGHT" },
+    { title: "Al-Kitab al-Mukhtasar", sub: "The Book of Algebra", desc: "'Al-Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' — the book whose name gave us the word ALGEBRA.", insight: "The title means 'The Compendious Book on Calculation by Completion and Balancing.'", label: "MATHEMATICAL GENIUS" },
+    { title: "Two Operations", sub: "Al-Jabr & Al-Muqabala", desc: "Al-jabr (completion) = moving a subtracted term to the other side. Al-muqabala (balancing) = cancelling equal terms. Two operations. All of algebra.", insight: "Every equation you solve in school uses these two operations.", label: "MATHEMATICAL GENIUS" },
+    { title: "Completing the Square", sub: "Geometric Proof", desc: "He classified quadratic equations into 6 types and gave geometric proofs for each solution — 800 years before Descartes formalized coordinate geometry.", insight: "He solved x² + 10x = 39 by 'completing the square' — a technique still taught today.", label: "MATHEMATICAL GENIUS" },
+    { title: "The Zij Tables", sub: "Astronomical Precision", desc: "His astronomical tables (Zij) were used to calculate prayer times across the Islamic world for centuries. They incorporated Indian sine tables with Greek planetary models.", insight: "He proved that mathematics could unify different civilisations' knowledge.", label: "MATHEMATICAL GENIUS" },
+    { title: "The Eternal Legacy", sub: "Algebra · Algorithm · Numerals", desc: "His legacy: the word algebra, the word algorithm, the adoption of Hindu-Arabic numerals in Europe, and the foundation of all equation-solving.", insight: "He is the reason you can type a formula into a calculator. Welcome to ViaMath.", label: "REFLECTION" },
+];
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
+
+function draw() {
+    background(5, 14, 10);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
+    }
+
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
+
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
+        }
+        push(); fill(5, 14, 10, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+    }
+}
+
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Islamic 8-point star rotating
+function drawS0() {
+    push();
+    rotate(time * 0.3);
+    let r = 180;
+    // Outer 8-point star
+    for (let layer = 0; layer < 3; layer++) {
+        let lr = r - layer * 40;
+        noFill();
+        stroke(76, 175, 80, 200 - layer * 60);
+        strokeWeight(2 - layer * 0.5);
+        beginShape();
+        for (let i = 0; i < 16; i++) {
+            let a = TWO_PI * i / 16;
+            let rad = (i % 2 === 0) ? lr : lr * 0.55;
+            vertex(cos(a) * rad, sin(a) * rad);
+        }
+        endShape(CLOSE);
+    }
+    // Inner tessellation lines
+    stroke(76, 175, 80, 60);
+    strokeWeight(1);
+    for (let i = 0; i < 8; i++) {
+        let a = TWO_PI * i / 8;
+        line(0, 0, cos(a) * r, sin(a) * r);
+    }
+    // Pulsing center
+    fill(76, 175, 80, 40 + sin(time * 3) * 30);
+    noStroke();
+    ellipse(0, 0, 60 + sin(time * 2) * 10);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text("بيت الحكمة", 0, 0);
+    pop();
+}
+
+// S1: Floating scrolls organizing into a library
+function drawS1() {
+    push();
+    let numScrolls = 18;
+    let t = min(time * 0.4, 1.0);
+    for (let i = 0; i < numScrolls; i++) {
+        let cx = noise(i * 10, time * 0.5) * 600 - 300;
+        let cy = noise(i * 20, time * 0.5) * 400 - 200;
+        let cRot = noise(i * 30, time * 0.5) * TWO_PI;
+        let ox = 0;
+        let oy = 120 - (i * 14);
+        let oRot = 0;
+        let curX = lerp(cx, ox, t);
+        let curY = lerp(cy, oy, t);
+        let curRot = lerp(cRot, oRot, t);
+        push();
+        translate(curX, curY);
+        rotate(curRot);
+        fill(76, 175, 80, map(t, 0, 1, 100, 200));
+        stroke(40, 120, 50);
+        strokeWeight(2);
+        rect(-70, -5, 140, 10, 3);
+        fill(255, 220);
+        noStroke();
+        ellipse(-70, 0, 12, 12);
+        ellipse(70, 0, 12, 12);
+        pop();
+    }
+    if (t > 0.9) {
+        // Central glow
+        fill(76, 175, 80, 30);
+        noStroke();
+        ellipse(0, 50, 300, 100);
+        fill(41, 182, 246);
+        textAlign(CENTER);
+        textSize(20);
+        text("BAYT AL-HIKMA", 0, 170);
+    }
+    pop();
+}
+
+// S2: Globe wireframe with shadow measurement
+function drawS2() {
+    push();
+    let globeR = 150;
+    // Globe wireframe
+    noFill();
+    stroke(76, 175, 80, 80);
+    strokeWeight(1);
+    ellipse(0, 0, globeR * 2);
+    // Latitude lines
+    for (let lat = -60; lat <= 60; lat += 30) {
+        let y = sin(radians(lat)) * globeR;
+        let xr = cos(radians(lat)) * globeR;
+        ellipse(0, y, xr * 2, abs(xr) * 0.3);
+    }
+    // Longitude lines (rotating)
+    for (let lon = 0; lon < 180; lon += 30) {
+        push();
+        rotate(radians(lon) + time * 0.2);
+        noFill();
+        stroke(76, 175, 80, 50);
+        ellipse(0, 0, 20, globeR * 2);
+        pop();
+    }
+    // Shadow measurement
+    let stickX = globeR + 60;
+    let stickH = 80;
+    stroke(255);
+    strokeWeight(3);
+    line(stickX, 40, stickX, 40 - stickH);
+    // Shadow
+    let shadowLen = stickH * tan(time * 0.5 % (PI/3) + 0.3);
+    stroke(255, 100);
+    strokeWeight(2);
+    line(stickX, 40, stickX + shadowLen, 40);
+    // Sun rays
+    stroke(76, 175, 80, 100);
+    for (let i = 0; i < 5; i++) {
+        let rx = stickX - 40 + i * 20;
+        line(rx, -120, rx + 30, 40);
+    }
+    // Circumference arc
+    noFill();
+    stroke(41, 182, 246);
+    strokeWeight(3);
+    arc(0, 0, globeR * 2.4, globeR * 2.4, -PI * 0.3, PI * 0.3);
+    fill(41, 182, 246);
+    noStroke();
+    textAlign(CENTER);
+    textSize(14);
+    text("C ≈ 40,248 km", 0, globeR + 40);
+    text("(actual: 40,075 km)", 0, globeR + 60);
+    pop();
+}
+
+// S3: Flowchart boxes — Algorithm
+function drawS3() {
+    push();
+    let boxes = ["INPUT", "READ", "PROCESS", "COMPARE", "OUTPUT"];
+    let bw = 130, bh = 45, gap = 70;
+    let startY = -((boxes.length - 1) * gap) / 2;
+    for (let i = 0; i < boxes.length; i++) {
+        let t = min((time - i * 0.3) * 2, 1.0);
+        if (t <= 0) continue;
+        let y = startY + i * gap;
+        let alpha = t * 255;
+        // Box
+        fill(5, 14, 10, alpha);
+        stroke(76, 175, 80, alpha);
+        strokeWeight(2);
+        if (i === 0 || i === boxes.length - 1) {
+            // Rounded for I/O
+            rect(-bw/2, y - bh/2, bw, bh, 20);
+        } else if (i === 3) {
+            // Diamond for decision
+            push();
+            translate(0, y);
+            rotate(PI/4);
+            rect(-bh/2.5, -bh/2.5, bh * 0.8, bh * 0.8);
+            pop();
+        } else {
+            rect(-bw/2, y - bh/2, bw, bh);
+        }
+        // Label
+        fill(255, alpha);
+        noStroke();
+        textAlign(CENTER, CENTER);
+        textSize(14);
+        text(boxes[i], 0, y);
+        // Arrow to next
+        if (i < boxes.length - 1 && t >= 1.0) {
+            stroke(76, 175, 80, 150);
+            strokeWeight(2);
+            let arrowY = y + bh/2 + 5;
+            let nextY = startY + (i + 1) * gap - bh/2 - 5;
+            line(0, arrowY, 0, nextY);
+            // Arrowhead
+            fill(76, 175, 80, 150);
+            noStroke();
+            triangle(-5, nextY, 5, nextY, 0, nextY + 8);
+        }
+    }
+    // Label
+    fill(41, 182, 246);
+    textSize(12);
+    textAlign(CENTER);
+    text("ALGORITMI — STEP BY STEP", 0, startY - 50);
+    pop();
+}
+
+// S4: Roman numerals morphing into Hindu-Arabic
+function drawS4() {
+    push();
+    let t = min(time * 0.5, 1.0);
+    let romans = ["M", "C", "D", "X", "L", "I", "I"];
+    let arabics = ["1", "4", "4", "2"];
+    // Roman numerals fading out
+    fill(255, 255 * (1 - t));
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(60);
+    let romanStr = "MCDXLII";
+    text(romanStr, 0, -30);
+    // Arabic numerals fading in
+    fill(76, 175, 80, 255 * t);
+    textSize(80);
+    text("1442", 0, 30);
+    // Flying digits
+    for (let i = 0; i < 10; i++) {
+        let dx = sin(time * 2 + i * 0.7) * 300;
+        let dy = cos(time * 1.5 + i * 1.1) * 200;
+        fill(41, 182, 246, 60);
+        textSize(30);
+        text(i.toString(), dx, dy);
+    }
+    // Zero highlight
+    if (t > 0.8) {
+        fill(41, 182, 246, 200);
+        textSize(120);
+        let zeroAlpha = (t - 0.8) * 5 * 255;
+        fill(41, 182, 246, min(zeroAlpha, 100));
+        text("0", 0, 150);
+        fill(255, min(zeroAlpha, 200));
+        textSize(16);
+        text("← THE ZERO", 80, 150);
+    }
+    pop();
+}
+
+// S5: Glowing book opening with al-jabr title
+function drawS5() {
+    push();
+    translate(0, 50);
+    let openAmt = map(sin(time), -1, 1, 0.3, 1.0);
+    let bookW = 280, bookH = 380;
+    // Glow
+    drawingContext.shadowBlur = 60;
+    drawingContext.shadowColor = '#29B6F6';
+    fill(41, 182, 246, 80);
+    noStroke();
+    ellipse(0, -bookH/2, bookW * 2, bookW);
+    drawingContext.shadowBlur = 0;
+    // Left page
+    stroke(41, 182, 246, 150);
+    strokeWeight(2);
+    fill(10, 18, 14);
+    beginShape();
+    vertex(0, 0); vertex(-bookW * openAmt, -15);
+    vertex(-bookW * openAmt, -bookH); vertex(0, -bookH + 15);
+    endShape(CLOSE);
+    // Right page
+    beginShape();
+    vertex(0, 0); vertex(bookW * openAmt, -15);
+    vertex(bookW * openAmt, -bookH); vertex(0, -bookH + 15);
+    endShape(CLOSE);
+    // Title on left page
+    fill(41, 182, 246);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text("الكتاب المختصر", -bookW * openAmt / 2, -bookH / 2 - 30);
+    text("في حساب الجبر والمقابلة", -bookW * openAmt / 2, -bookH / 2);
+    // Balance scale on right page
+    let scaleX = bookW * openAmt / 2;
+    let scaleY = -bookH / 2;
+    stroke(76, 175, 80, 180);
+    strokeWeight(2);
+    // Fulcrum
+    line(scaleX, scaleY + 40, scaleX, scaleY - 20);
+    // Beam
+    let tilt = sin(time * 2) * 0.1;
+    push();
+    translate(scaleX, scaleY - 20);
+    rotate(tilt);
+    line(-60, 0, 60, 0);
+    // Pans
+    noFill();
+    arc(-60, 10, 40, 20, 0, PI);
+    arc(60, 10, 40, 20, 0, PI);
+    // Symbols in pans
+    fill(255);
+    textSize(12);
+    text("x²", -60, 25);
+    text("39", 60, 25);
+    pop();
+    pop();
+}
+
+// S6: Animated equation — al-jabr and al-muqabala
+function drawS6() {
+    push();
+    let t = min(time * 0.6, 1.0);
+    // Initial equation
+    textAlign(CENTER, CENTER);
+    textSize(28);
+    fill(255);
+    noStroke();
+    text("x² + 10x - 4  =  35 - 4", 0, -80);
+    // AL-JABR: move -4 to the right
+    if (t > 0.3) {
+        let moveT = min((t - 0.3) * 3, 1.0);
+        fill(76, 175, 80);
+        textSize(14);
+        text("← AL-JABR (Completion)", 0, -120);
+        // Show the +4 moving
+        let startX = -40, endX = 100;
+        let curX = lerp(startX, endX, moveT);
+        fill(76, 175, 80, 200);
+        textSize(28);
+        text("+4", curX, -40);
+        // Result
+        if (moveT >= 1.0) {
+            fill(255);
+            textSize(28);
+            text("x² + 10x  =  39", 0, 0);
+        }
+    }
+    // AL-MUQABALA: cancel equal terms
+    if (t > 0.7) {
+        let cancelT = min((t - 0.7) * 3, 1.0);
+        fill(41, 182, 246);
+        textSize(14);
+        text("← AL-MUQABALA (Balancing)", 0, 40);
+        // Strike-through
+        if (cancelT > 0.5) {
+            stroke(255, 50, 50, 200);
+            strokeWeight(3);
+            line(-200, -80, 200, -80);
+        }
+        // Final clean equation
+        fill(41, 182, 246, cancelT * 255);
+        noStroke();
+        textSize(36);
+        text("x² + 10x = 39", 0, 100);
+    }
+    pop();
+}
+
+// S7: Completing the square — geometric proof
+function drawS7() {
+    push();
+    translate(-50, 30);
+    let t = min(time * 0.4, 1.0);
+    let sq = 120; // x side
+    let stripW = 50; // represents 10x/2 = 5x on each side
+    // Main square x²
+    fill(76, 175, 80, 100);
+    stroke(76, 175, 80);
+    strokeWeight(2);
+    rect(0, -sq, sq, sq);
+    fill(255);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    text("x²", sq/2, -sq/2);
+    // Right strip (5x)
+    fill(41, 182, 246, 80);
+    stroke(41, 182, 246);
+    strokeWeight(2);
+    rect(sq, -sq, stripW, sq);
+    fill(255);
+    noStroke();
+    textSize(12);
+    text("5x", sq + stripW/2, -sq/2);
+    // Bottom strip (5x) — slides into position
+    if (t > 0.3) {
+        let slideT = min((t - 0.3) * 2, 1.0);
+        push();
+        let targetX = 0;
+        let targetY = 0;
+        fill(41, 182, 246, 80 * slideT);
+        stroke(41, 182, 246, 200 * slideT);
+        strokeWeight(2);
+        rect(targetX, targetY, sq, stripW * slideT);
+        if (slideT > 0.8) {
+            fill(255);
+            noStroke();
+            textSize(12);
+            text("5x", sq/2, stripW/2);
+        }
+        pop();
+    }
+    // Corner completion square (5² = 25)
+    if (t > 0.7) {
+        let compT = min((t - 0.7) * 3, 1.0);
+        fill(255, 215, 0, 80 * compT);
+        stroke(255, 215, 0, 200 * compT);
+        strokeWeight(2);
+        rect(sq, 0, stripW * compT, stripW * compT);
+        if (compT > 0.8) {
+            fill(255);
+            noStroke();
+            textSize(12);
+            text("25", sq + stripW/2, stripW/2);
+        }
+    }
+    // Labels
+    fill(255, 180);
+    noStroke();
+    textSize(14);
+    textAlign(CENTER);
+    text("(x+5)² = x² + 10x + 25", sq/2 + stripW/2, stripW + 50);
+    if (t > 0.9) {
+        fill(76, 175, 80);
+        textSize(18);
+        text("= 39 + 25 = 64", sq/2 + stripW/2, stripW + 80);
+        fill(41, 182, 246);
+        text("∴ x + 5 = 8  →  x = 3", sq/2 + stripW/2, stripW + 110);
+    }
+    pop();
+}
+
+// S8: Star chart / Zij table
+function drawS8() {
+    push();
+    // Star field
+    for (let i = 0; i < 60; i++) {
+        let sx = sin(i * 137.5 + time * 0.1) * 350;
+        let sy = cos(i * 97.3 + time * 0.05) * 250;
+        let brightness = 100 + sin(time * 3 + i) * 100;
+        fill(255, brightness);
+        noStroke();
+        ellipse(sx, sy, 2 + sin(time + i) * 1);
+    }
+    // Constellation lines
+    stroke(76, 175, 80, 60);
+    strokeWeight(1);
+    for (let i = 0; i < 8; i++) {
+        let x1 = sin(i * 137.5 + time * 0.1) * 350;
+        let y1 = cos(i * 97.3 + time * 0.05) * 250;
+        let x2 = sin((i+1) * 137.5 + time * 0.1) * 350;
+        let y2 = cos((i+1) * 97.3 + time * 0.05) * 250;
+        line(x1, y1, x2, y2);
+    }
+    // Prayer time arc (horizon)
+    noFill();
+    stroke(41, 182, 246, 150);
+    strokeWeight(2);
+    arc(0, 100, 500, 200, PI, TWO_PI);
+    // Sun path
+    let sunAngle = PI + time * 0.3;
+    let sunX = cos(sunAngle) * 250;
+    let sunY = 100 + sin(sunAngle) * 100;
+    fill(255, 200, 50);
+    noStroke();
+    ellipse(sunX, sunY, 20);
+    // Time markers along arc
+    fill(76, 175, 80);
+    textSize(10);
+    textAlign(CENTER);
+    for (let i = 0; i < 5; i++) {
+        let a = PI + (PI * i / 4);
+        let mx = cos(a) * 260;
+        let my = 100 + sin(a) * 110;
+        let labels = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+        text(labels[i], mx, my);
+    }
+    // Zij table frame
+    stroke(76, 175, 80, 80);
+    strokeWeight(1);
+    noFill();
+    rect(-120, -220, 240, 100, 5);
+    fill(76, 175, 80, 150);
+    textSize(12);
+    text("ZĪJ AL-SINDHIND", 0, -200);
+    fill(255, 120);
+    textSize(10);
+    text("sin 30° = 0.5000", 0, -180);
+    text("sin 45° = 0.7071", 0, -165);
+    text("sin 60° = 0.8660", 0, -150);
+    pop();
+}
+
+// S9: Spinning node network — legacy
+function drawS9() {
+    push();
+    let nodes = [
+        { label: "ALGEBRA", a: 0 },
+        { label: "ALGORITHM", a: TWO_PI / 4 },
+        { label: "NUMERALS", a: TWO_PI * 2 / 4 },
+        { label: "COMPUTING", a: TWO_PI * 3 / 4 }
+    ];
+    let r = 180;
+    rotate(time * 0.15);
+    // Connection lines
+    stroke(76, 175, 80, 60);
+    strokeWeight(1);
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            let x1 = cos(nodes[i].a) * r, y1 = sin(nodes[i].a) * r;
+            let x2 = cos(nodes[j].a) * r, y2 = sin(nodes[j].a) * r;
+            line(x1, y1, x2, y2);
+        }
+    }
+    // Lines to center
+    for (let n of nodes) {
+        let x = cos(n.a) * r, y = sin(n.a) * r;
+        stroke(41, 182, 246, 80);
+        strokeWeight(2);
+        line(0, 0, x, y);
+        // Node
+        fill(5, 14, 10);
+        stroke(41, 182, 246);
+        strokeWeight(2);
+        ellipse(x, y, 100, 35);
+        fill(255);
+        noStroke();
+        textAlign(CENTER, CENTER);
+        textSize(11);
+        text(n.label, x, y);
+    }
+    // Center node
+    fill(76, 175, 80, 40 + sin(time * 2) * 30);
+    noStroke();
+    ellipse(0, 0, 130);
+    fill(255);
+    textSize(12);
+    textAlign(CENTER, CENTER);
+    text("AL-KHWARIZMI", 0, -5);
+    fill(76, 175, 80);
+    textSize(10);
+    text("c. 780 — c. 850 CE", 0, 12);
+    pop();
+}
+</script>
+
+<!-- Sovereign Audit: Back to Map -->
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>
