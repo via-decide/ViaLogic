@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaLogic | The Unstoppable Azad (Chandra Shekhar Azad)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #0A0502; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #FF7043; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #FF7043;
+            padding-left: 20px; z-index: 10;
+            background: rgba(10, 5, 2, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #FF7043; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 112, 67, 0.08);
+            border-top: 1px solid rgba(255, 112, 67, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #FF7043; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFEB3B; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: THE KAKORI INCIDENT</div>
+    <div id="label">
+        <h1 id="title">The Unstoppable</h1>
+        <p id="subtitle">1906 — 1931 CE</p>
+        <p id="description">Born in Bhabhra (Madhya Pradesh). At age 15, when arrested during the Non-Cooperation Movement, he told the magistrate his name was 'Azad' (Free), his father's name 'Swatantrata' (Independence), and his home was 'Jail.'</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He famously vowed that the British would never capture him alive.</span>
+    </div>
+
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
+
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE KAKORI INCIDENT";
+const ACT2_LABEL = "THE ALFRED PARK LAST STAND";
+const ACCENT1 = "#FF7043";
+const ACCENT2 = "#FFEB3B";
+
+const content = [
+    { title: "The Unstoppable", sub: "1906 — 1931 CE", desc: "Born in Bhabhra (Madhya Pradesh). At age 15, when arrested during the Non-Cooperation Movement, he told the magistrate his name was 'Azad' (Free), his father's name 'Swatantrata' (Independence), and his home was 'Jail.'", insight: "He famously vowed that the British would never capture him alive.", label: "HISTORICAL INSIGHT" },
+    { title: "The HRA Commander", sub: "Hindustan Republican Assoc.", desc: "After the Kakori train robbery, most leaders were executed or jailed. Azad rebuilt the organization into the HSRA (Hindustan Socialist Republican Association).", insight: "He was the mentor and military commander for Bhagat Singh and the younger revolutionaries.", label: "HISTORICAL INSIGHT" },
+    { title: "Kakori Train Action", sub: "August 9, 1925", desc: "The robbery of the treasury in the Number 8 Down train at Kakori was the first major blow by the HRA against the British Raj.", insight: "Azad was the only major leader involved in Kakori who was never caught.", label: "HISTORICAL INSIGHT" },
+    { title: "Master of Disguise", sub: "The Invisible Rebel", desc: "For years, he lived as a holy man in Jhansi or a simple villager, right under the noses of the British CID, who had a massive bounty on his head.", insight: "His ability to blend into the shadows made him a ghost that the empire could not touch.", label: "HISTORICAL INSIGHT" },
+    { title: "Alfred Park Last Stand", sub: "February 27, 1931", desc: "Betrayed by an informant, he was surrounded in Alfred Park, Allahabad. He fought an entire police force alone with just his Colt pistol.", insight: "He kept the last bullet for himself to remain true to his vow of being 'Azad' until the end.", label: "HISTORICAL INSIGHT" },
+    { title: "Azad Strategy", sub: "Military Discipline", desc: "He enforced strict military drills and ethical codes for all HRA members, viewing the revolution as a professional obligation.", insight: "He was the first to implement a structured cell-based organization for Indian revolutionaries.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Sharpshooter", sub: "Deadly Precision", desc: "He was legendary for his marksmanship. He trained his men to never waste a single bullet — for every bullet belonged to the people.", insight: "His prized Colt pistol is now preserved as a national treasure.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Socialist Vision", sub: "The Goal of HSRA", desc: "He shifted the focus of the movement from mere independence to the total restructuring of society, aiming for a socialist republic.", insight: "He believed that political freedom was meaningless without economic freedom for the peasant and worker.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Silver Thread", sub: "Symbol of Commitment", desc: "Even as a revolutionary, he respected his roots. The silver sacred thread across his chest was a symbol of his purity of purpose.", insight: "His physique and mustache became icons of defiant Indian masculinity.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Flame of Independence", sub: "Eternal Freedom", desc: "He remains the ultimate symbol of the unbowed Indian spirit. He was born free, he lived free, and he died free.", insight: "His sacrifice ensured that the British could never break the resolve of the Indian youth. Welcome to ViaLogic.", label: "REFLECTION" },
+];
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
+
+function draw() {
+    background(10, 5, 2);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
+    }
+
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
+
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
+        }
+        push(); fill(10, 5, 2, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+    }
+}
+
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Benares riverbank (Water ripples)
+function drawS0() {
+    push();
+    noFill();
+    for (let i = 0; i < 6; i++) {
+        stroke(255, 112, 67, 150 - i * 25);
+        ellipse(0, 0, i * 60 + (time * 50) % 60);
+    }
+    pop();
+}
+
+// S1: Spinning Colt revolver chamber
+function drawS1() {
+    push();
+    rotate(time * 5);
+    stroke(255, 112, 67);
+    strokeWeight(10);
+    noFill();
+    ellipse(0, 0, 100);
+    for (let i = 0; i < 6; i++) {
+        let a = PI * i / 3;
+        ellipse(cos(a) * 35, sin(a) * 35, 20);
+    }
+    pop();
+}
+
+// S2: Kakori train tracks (converging lines)
+function drawS2() {
+    push();
+    stroke(255, 112, 67, 100);
+    line(-300, 200, -50, -200);
+    line(300, 200, 50, -200);
+    for (let i = 0; i < 10; i++) {
+        let y = -200 + (time * 200 + i * 40) % 400;
+        line(-100, y, 100, y);
+    }
+    pop();
+}
+
+// S3: Mask/Shadow silhouette (Master of disguise)
+function drawS3() {
+    push();
+    fill(255, 112, 67, 50);
+    ellipse(0, 0, 200, 250);
+    fill(0, 150);
+    ellipse(-40, -20, 60, 40);
+    ellipse(40, -20, 60, 40);
+    pop();
+}
+
+// S4: Alfred Park tree silhouette (Darkness)
+function drawS4() {
+    push();
+    fill(0);
+    beginShape();
+    vertex(-10, 200); vertex(10, 200); vertex(10, 0); vertex(100, -100); vertex(10, -50); vertex(-100, -150); vertex(-10, 0);
+    endShape(CLOSE);
+    pop();
+}
+
+// S5: Whistling bullet trails
+function drawS5() {
+    push();
+    stroke(255, 112, 67, 200);
+    strokeWeight(2);
+    for (let i = 0; i < 5; i++) {
+        let y = -150 + i * 60;
+        line(-300 + (time * 500 + i) % 600, y, -200 + (time * 500 + i) % 600, y);
+    }
+    pop();
+}
+
+// S6: Azad signature/name pulse
+function drawS6() {
+    push();
+    fill(255, 235, 59, 150 + sin(time * 5) * 50);
+    textSize(50);
+    textAlign(CENTER);
+    text("AZAD", 0, 0);
+    pop();
+}
+
+// S7: Cell-based organization (Nodes connecting)
+function drawS7() {
+    push();
+    for (let i = 0; i < 6; i++) {
+        let a = PI * i / 3 + time * 0.5;
+        let x = cos(a) * 100;
+        let y = sin(a) * 100;
+        line(0, 0, x, y);
+        ellipse(x, y, 10);
+    }
+    pop();
+}
+
+// S8: Silver thread pulse (Diagonal line across screen)
+function drawS8() {
+    push();
+    stroke(255, 150);
+    strokeWeight(1);
+    line(-300, -300, 300, 300);
+    pop();
+}
+
+// S9: Spark of infinite resistance
+function drawS9() {
+    push();
+    for (let i = 0; i < 20; i++) {
+        let x = random(-200, 200);
+        let y = random(-200, 200);
+        stroke(255, random(150, 255));
+        point(x, y);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
+</body>
+</html>

@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Iron Man of India (Sardar Vallabhbhai Patel)</title>
+    <title>ViaLogic | The Lion of Punjab (Lala Lajpat Rai)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080604; overflow: hidden;
+            margin: 0; padding: 0; background-color: #0C0804; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #FBC02D; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #795548;
+            letter-spacing: 1px; border-left: 4px solid #FBC02D;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 6, 4, 0.88); padding-right: 20px;
+            background: rgba(12, 8, 4, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #FBC02D; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(121, 85, 72, 0.08);
-            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            background: rgba(251, 192, 45, 0.08);
+            border-top: 1px solid rgba(251, 192, 45, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #795548; font-weight: bold; }
+        .highlight { color: #FBC02D; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF9800; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FF5722; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: BARDOLI SATYAGRAHA</div>
+    <div id="act-indicator">ACT I: THE SIMON COMMISSION</div>
     <div id="label">
-        <h1 id="title">The Sardar</h1>
-        <p id="subtitle">1875 — 1950 CE</p>
-        <p id="description">Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.</p>
+        <h1 id="title">Sher-e-Punjab</h1>
+        <p id="subtitle">1865 — 1928 CE</p>
+        <p id="description">Born in Dhudike, Punjab. Lala Lajpat Rai was a pillar of the 'Extremist' faction of the Congress, a man whose thunderous voice earned him the title 'The Lion of Punjab.'</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">The title 'Sardar' (Leader) was given to him by the women of Bardoli.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was one third of the famous Lal-Bal-Pal trio.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "BARDOLI SATYAGRAHA";
-const ACT2_LABEL = "THE ARCHITECT OF UNITY";
-const ACCENT1 = "#795548";
-const ACCENT2 = "#FF9800";
+const ACT1_LABEL = "THE SIMON COMMISSION";
+const ACT2_LABEL = "THE UNYIELDING LION";
+const ACCENT1 = "#FBC02D";
+const ACCENT2 = "#FF5722";
 
 const content = [
-    { title: "The Sardar", sub: "1875 — 1950 CE", desc: "Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.", insight: "The title 'Sardar' (Leader) was given to him by the women of Bardoli.", label: "HISTORICAL INSIGHT" },
-    { title: "Kheda and Bardoli", sub: "Peasant Revolts", desc: "He led the peasants of Kheda and Bardoli against unfair British taxes. His organizational skills forced the government to yield to the farmers' demands.", insight: "He taught the farmers how to resist without a single drop of blood being shed.", label: "HISTORICAL INSIGHT" },
-    { title: "The Iron Will", sub: "Integrity over Interests", desc: "Known as the 'Iron Man of India' for his uncompromising stand on national interest. He was the first Deputy Prime Minister and Home Minister of India.", insight: "He once said: 'Every citizen of India must remember that he is an Indian and he has every right in this country but with certain duties.'", label: "HISTORICAL INSIGHT" },
-    { title: "Integration of States", sub: "The Map Maker", desc: "At independence, India was a jigsaw puzzle of 565 princely states. Patel unified them all into a single nation with firm diplomacy and a vision of unity.", insight: "Without his iron hand, India would have been fragmented into hundreds of tiny countries.", label: "HISTORICAL INSIGHT" },
-    { title: "Steel Frame of India", sub: "The IAS Foundation", desc: "He established the Indian Administrative Service (IAS), calling it the 'Steel Frame' that would hold the diverse country together through governance.", insight: "He believed that a strong administration was the backbone of a strong democracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Political Realism", sub: "Strategy of Unity", desc: "He used a mix of 'Sam, Dam, Dand, Bhed' to persuade princely rulers to join the Indian Union, prioritizing national survival above all.", insight: "His realism balanced Gandhi's idealism in the crucial years of nation-building.", label: "POLITICAL GENIUS" },
-    { title: "Operation Polo", sub: "Hyderabad Unification", desc: "When the Nizam of Hyderabad refused to join India, Patel authorized 'Operation Polo,' a swift military action that integrated the state in just five days.", insight: "This was the final piece of the Indian unification puzzle.", label: "POLITICAL GENIUS" },
-    { title: "The Shield of the Nation", sub: "Partition Crisis", desc: "During the chaos of Partition, he managed the massive refugee crisis and maintained law and order with an iron grip, preventing further collapse.", insight: "He was the silent anchor that kept the new ship of state from sinking.", label: "POLITICAL GENIUS" },
-    { title: "Legacy of the Statue", sub: "Statue of Unity", desc: "Today, he is honored by the tallest statue in the world, the Statue of Unity, symbolizing his role as the architect of modern India.", insight: "His legacy is the very map of India we see today.", label: "POLITICAL GENIUS" },
-    { title: "The Unsung Architect", sub: "Unity in Diversity", desc: "He proved that many can become one. His life is a testament to the power of organizational genius and patriotic duty.", insight: "The Iron Man's heart beat for the unity of his motherland. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "Sher-e-Punjab", sub: "1865 — 1928 CE", desc: "Born in Dhudike, Punjab. Lala Lajpat Rai was a pillar of the 'Extremist' faction of the Congress, a man whose thunderous voice earned him the title 'The Lion of Punjab.'", insight: "He was one third of the famous Lal-Bal-Pal trio.", label: "HISTORICAL INSIGHT" },
+    { title: "Economic Nationalist", sub: "Punjab National Bank", desc: "He co-founded the PNB and Lakshmi Insurance Company, believing that true independence required Indian control over its own capital and commerce.", insight: "He was a pioneer in advocating for 'Swadeshi' or indigenous industry.", label: "HISTORICAL INSIGHT" },
+    { title: "Servant of the People", sub: "Social Reform", desc: "Beyond politics, he dedicated his life to social service through the 'Servants of the People Society,' fighting against the caste system and educational disparity.", insight: "He played a key role in the Arya Samaj movement in Punjab.", label: "HISTORICAL INSIGHT" },
+    { title: "Simon Go Back!", sub: "October 30, 1928", desc: "He led a peaceful protest in Lahore against the all-British Simon Commission. The brutal encounter that followed would change the course of history.", insight: "Thousands chanted 'Simon Go Back' under his leadership.", label: "HISTORICAL INSIGHT" },
+    { title: "The Lathi Charge", sub: "The Fatal Blow", desc: "During the protest, British police superintendent James Scott ordered a lathi charge. Lalaji was struck multiple times on the chest, leading to his eventual death.", insight: "He famously said: 'The blows struck at me today will be the last nails in the coffin of British rule in India.'", label: "HISTORICAL INSIGHT" },
+    { title: "Roar of the Lion", sub: "Oratory Power", desc: "His speeches were not just words; they were calls to action that mobilized millions across North India, bridging the gap between the elite and the masses.", insight: "He is considered one of the greatest political thinkers of modern India.", label: "POLITICAL GENIUS" },
+    { title: "National Education", sub: "DAV College Legacy", desc: "He was a staunch supporter of the DAV College movement, believing that the future of India rested on an education system that was both modern and rooted in Vedic values.", insight: "He believed that uneducated masses could never sustain a democracy.", label: "POLITICAL GENIUS" },
+    { title: "Global Advocate", sub: "Home Rule for India", desc: "He traveled to the United States and Japan, raising global awareness about the Indian independence struggle and building international support.", insight: "He co-founded the Home Rule League of America in 1917.", label: "POLITICAL GENIUS" },
+    { title: "Martyr of Lahore", sub: "November 17, 1928", desc: "His death sparked a wave of revolutionary fervor. Young revolutionaries like Bhagat Singh took an oath to avenge his death, leading to the JP Saunders assassination.", insight: "His death marked the end of peaceful petitions and the beginning of a decisive final struggle.", label: "POLITICAL GENIUS" },
+    { title: "Eternal Flame", sub: "The Lion's Spirit", desc: "Lala Lajpat Rai's sacrifice ensured that the British could never again rule by force without consequence. He is the eternal heartbeat of Punjab. Welcome to ViaLogic.", insight: "The Lion's legacy is the pride of every free Indian. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 6, 4);
+    background(12, 8, 4);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 6, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(12, 8, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,107 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map fragments merging
+// S0: Punjab wheat fields pulse
 function drawS0() {
     push();
-    for (let i = 0; i < 5; i++) {
-        let x = sin(time + i) * 50;
-        let y = cos(time + i) * 50;
-        fill(121, 85, 72, 100);
-        ellipse(x, y, 100);
+    stroke(251, 192, 45, 100);
+    for (let i = -5; i < 5; i++) {
+        let x = i * 60;
+        line(x, 200, x + sin(time) * 10, 50);
     }
     pop();
 }
 
-// S1: Peasant protest line
+// S1: PNB/Coin pulse
 function drawS1() {
     push();
-    stroke(255, 50);
-    for (let i = -5; i < 5; i++) {
-        line(i * 60, 100, i * 60 + sin(time) * 10, 0);
-    }
+    fill(251, 192, 45, 100);
+    ellipse(0, 0, 100);
+    noFill();
+    stroke(255);
+    ellipse(0, 0, 120 + sin(time * 2) * 20);
     pop();
 }
 
-// S2: Iron bars (Iron Man)
+// S2: Book silhouette (Education)
 function drawS2() {
     push();
-    stroke(100);
-    strokeWeight(15);
-    for (let i = -2; i <= 2; i++) {
-        line(i * 50, -200, i * 50, 200);
-    }
+    fill(255, 100);
+    rect(-50, -60, 100, 120, 5);
+    line(-50, 0, 50, 0); // Spine
     pop();
 }
 
-// S3: Jigsaw puzzle pieces merging
+// S3: "SIMON GO BACK" banners
 function drawS3() {
     push();
-    let gap = map(sin(time), -1, 1, 0, 50);
-    fill(121, 85, 72, 150);
-    rect(-100 - gap, -50, 100, 100);
-    rect(0 + gap, -50, 100, 100);
+    fill(255);
+    rect(-100, -100, 200, 50);
+    fill(0);
+    textSize(20);
+    textAlign(CENTER);
+    text("SIMON GO BACK", 0, -65);
     pop();
 }
 
-// S4: Steel Frame grid
+// S4: Lathi charge impact (Flash)
 function drawS4() {
     push();
-    stroke(200, 100);
-    for (let i = -5; i <= 5; i++) {
-        line(i * 40, -200, i * 40, 200);
-        line(-200, i * 40, 200, i * 40);
-    }
+    fill(255, 0, 0, 150 + sin(time * 20) * 105);
+    ellipse(0, 0, 200);
+    stroke(255);
+    line(-150, -150, 150, 150); // Impact line
     pop();
 }
 
-// S5: Sam, Dam, Dand, Bhed (4 quadrant glow)
+// S5: Lion silhouette silhouette
 function drawS5() {
     push();
-    let col = [ACCENT1, ACCENT2, "#2196F3", "#F44336"];
-    for (let i = 0; i < 4; i++) {
-        fill(col[i] + '40');
-        let a = i * HALF_PI;
-        ellipse(cos(a) * 100, sin(a) * 100, 120);
-    }
-    pop();
-}
-
-// S6: Integration gear rotation
-function drawS6() {
-    push();
-    rotate(time);
-    noFill();
-    stroke(255, 152, 0);
-    strokeWeight(5);
-    ellipse(0, 0, 150);
+    fill(251, 192, 45, 50);
+    ellipse(0, 0, 200);
+    fill(0, 100);
+    // Abstract lion mane
     for (let i = 0; i < 12; i++) {
         let a = PI * i / 6;
-        line(cos(a) * 75, sin(a) * 75, cos(a) * 90, sin(a) * 90);
+        ellipse(cos(a) * 80, sin(a) * 80, 60);
     }
     pop();
 }
 
-// S7: National Map glow (Whole India)
+// S6: Oratory shockwaves
+function drawS6() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(251, 192, 45, 200 - i * 40);
+        ellipse(0, 0, i * 60 + (time * 100) % 60);
+    }
+    pop();
+}
+
+// S7: Global advocacy map (Glow)
 function drawS7() {
     push();
-    fill(255, 152, 0, 50);
-    ellipse(0, 0, 300, 400); // Unified India
+    fill(255, 100);
+    ellipse(0, 0, 300, 150);
     pop();
 }
 
-// S8: Statue silhouette
+// S8: Torch of freedom
 function drawS8() {
     push();
-    fill(121, 85, 72, 150);
-    rect(-30, -100, 60, 250);
+    fill(255, 87, 34);
+    triangle(-20, 50, 20, 50, 0, -100);
     pop();
 }
 
-// S9: Foundation stone glow
+// S9: Eternal flame star-field
 function drawS9() {
     push();
-    fill(121, 85, 72);
-    rect(-100, 50, 200, 100);
+    for (let i = 0; i < 30; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
     pop();
 }
 

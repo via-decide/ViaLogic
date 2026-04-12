@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Youngest Flame (Khudiram Bose)</title>
+    <title>ViaLogic | The Queen of Kittur (Rani Chennamma)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080402; overflow: hidden;
+            margin: 0; padding: 0; background-color: #0C0804; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #F44336; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #9C27B0; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #F44336;
+            letter-spacing: 1px; border-left: 4px solid #9C27B0;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 4, 2, 0.88); padding-right: 20px;
+            background: rgba(12, 8, 4, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #F44336; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #9C27B0; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(244, 67, 54, 0.08);
-            border-top: 1px solid rgba(244, 67, 54, 0.4);
+            background: rgba(156, 39, 176, 0.08);
+            border-top: 1px solid rgba(156, 39, 176, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #F44336; font-weight: bold; }
+        .highlight { color: #9C27B0; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: THE ANUSHILAN SAMITI</div>
+    <div id="act-indicator">ACT I: DEFYING THE DOCTRINE</div>
     <div id="label">
-        <h1 id="title">The Schoolboy Rebel</h1>
-        <p id="subtitle">1889 — 1908 CE</p>
-        <p id="description">Born in Midnapore, Bengal. Orphaned at a young age, he was drawn into the clandestine Anushilan Samiti, a secret revolutionary society that believed in armed resistance.</p>
+        <h1 id="title">The Unbowed Queen</h1>
+        <p id="subtitle">1778 — 1829 CE</p>
+        <p id="description">Born in Kakati, Karnataka. Rani Chennamma was the first female ruler to lead an armed rebellion against the British East India Company, decades before the 1857 uprising.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was just 18 years old when he was sentenced to death.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">She defied the 'Doctrine of Lapse' 30 years before Rani Laxmibai.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "THE ANUSHILAN SAMITI";
-const ACT2_LABEL = "THE MUZAFFARPUR INCIDENT";
-const ACCENT1 = "#F44336";
+const ACT1_LABEL = "DEFYING THE DOCTRINE";
+const ACT2_LABEL = "THE BATTLE OF KITTUR";
+const ACCENT1 = "#9C27B0";
 const ACCENT2 = "#FFEB3B";
 
 const content = [
-    { title: "The Schoolboy Rebel", sub: "1889 — 1908 CE", desc: "Born in Midnapore, Bengal. Orphaned at a young age, he was drawn into the clandestine Anushilan Samiti, a secret revolutionary society that believed in armed resistance.", insight: "He was just 18 years old when he was sentenced to death.", label: "HISTORICAL INSIGHT" },
-    { title: "The Secret Press", sub: "Propaganda of the Deed", desc: "At 15, he was arrested for distributing pamphlets against British rule. He realized that words needed to be backed by action to wake up the nation.", insight: "He was a master of evading the local police in the narrow alleys of Midnapore.", label: "HISTORICAL INSIGHT" },
-    { title: "Anushilan Samiti", sub: "The Revolutionary Gym", desc: "The Samiti used physical training and spiritual education to prepare youth for a violent struggle against the British Raj.", insight: "He was one of the youngest and most fearless members of the group.", label: "HISTORICAL INSIGHT" },
-    { title: "The Target: Douglas Kingsford", sub: "Injustice Avenged", desc: "Kingsford was a magistrate known for his brutal punishments of young revolutionaries. Khudiram and Prafulla Chaki were chosen to assassinate him.", insight: "They traveled to Muzaffarpur and tracked the magistrate's movements for weeks.", label: "HISTORICAL INSIGHT" },
-    { title: "The Muzaffarpur Bombing", sub: "April 30, 1908", desc: "Khudiram threw a bomb at what he thought was Kingsford's carriage. It was a mistake that killed two British women, but it shook the empire to its core.", insight: "This was the first time an explosive device was used by Indian revolutionaries against the Raj.", label: "HISTORICAL INSIGHT" },
-    { title: "The Capture", sub: "Waini Railway Station", desc: "Exhausted after walking 25 miles on foot, he was caught at Waini station while asking for water. He surrendered with a smile, unrepentant.", insight: "His comrade Prafulla Chaki shot himself to avoid capture.", label: "REVOLUTIONARY GENIUS" },
-    { title: "The Trial", sub: "Defiant till the Gallows", desc: "During the trial, he remained cheerful and detached, as if he were watching a play. He told the judge he could teach him how to make bombs if he wanted.", insight: "He carried a copy of the Bhagavad Gita to the gallows.", label: "REVOLUTIONARY GENIUS" },
-    { title: "August 11, 1908", sub: "The Martyrdom", desc: "He was hanged in Muzaffarpur jail. His death inspired a wave of songs and became a symbol of immortal youth in Bengal's resistance.", insight: "The 'Khudiram' style of dhoti became a fashion statement of rebellion among Bengali youth.", label: "REVOLUTIONARY GENIUS" },
-    { title: "The Vande Mataram Pulse", sub: "The Eternal Cry", desc: "His final words were reportedly 'Vande Mataram.' He proved that the dream of freedom could burn brighter than the fear of death.", insight: "His sacrifice made him the youngest face of the Indian independence movement.", label: "REVOLUTIONARY GENIUS" },
-    { title: "Legacy of the Young Flame", sub: "Undying Inspiration", desc: "He proved that age is no barrier to patriotism. He remains the eternal schoolboy of the revolution. Welcome to ViaLogic.", insight: "A hundred years later, his name still ignites the fire of freedom. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "The Unbowed Queen", sub: "1778 — 1829 CE", desc: "Born in Kakati, Karnataka. Rani Chennamma was the first female ruler to lead an armed rebellion against the British East India Company, decades before the 1857 uprising.", insight: "She defied the 'Doctrine of Lapse' 30 years before Rani Laxmibai.", label: "HISTORICAL INSIGHT" },
+    { title: "Annexation Refusal", sub: "Kittur, 1824", desc: "When her son died, the British refused to recognize her adopted heir. She rejected their claim and prepared for war, declaring her kingdom sovereign.", insight: "She sent a firm letter to the British collector, St. John Thackeray, refusing to yield.", label: "HISTORICAL INSIGHT" },
+    { title: "First Victory", sub: "Defeat of the British", desc: "In the first battle of Kittur, her forces defeated the British army. Collector Thackeray was killed, and two British officers were taken as prisoners of war.", insight: "She treated the prisoners with honor, demonstrating the noble ethics of Indian warfare.", label: "HISTORICAL INSIGHT" },
+    { title: "The Siege of Kittur", sub: "Numerical Superiority", desc: "The British returned with a massive force from Mysore and Sholapur. The Rani held the fort for days against a heavy artillery bombardment.", insight: "Traitorous elements within the fort sabotaged the gunpowder, leading to its eventual fall.", label: "HISTORICAL INSIGHT" },
+    { title: "Bailhongal Prison", sub: "The Final Stand", desc: "After the fall of Kittur, she was imprisoned in the Bailhongal Fort. She spent her final days in prayer and dignity, never accepting British subjection.", insight: "She died in captivity in 1829, becoming an eternal icon of Karnataka's resistance.", label: "HISTORICAL INSIGHT" },
+    { title: "Queen of Strategy", sub: "Defense of Kittur", desc: "She personally oversaw the positioning of cannons and the organization of the Kittur infantry, proving herself a competent military commander.", insight: "Her strategy was based on utilizing the fort's unique mountain-side defense system.", label: "MILITARY GENIUS" },
+    { title: "Sangolli Rayanna", sub: "Loyal Commander", desc: "Her lieutenant, Sangolli Rayanna, continued the guerilla war long after the fort fell, a testament to the loyalty her leadership inspired.", insight: "Rayanna is still celebrated as one of India's greatest folk heroes.", label: "MILITARY GENIUS" },
+    { title: "First Spark of 1857", sub: "Precursor to Revolution", desc: "Her rebellion provided the blueprint for many later uprisings, including the Great Revolt of 1857.", insight: "She was the first to prove that the East India Company's military was not invincible.", label: "MILITARY GENIUS" },
+    { title: "Icon of Karnataka", sub: "Kittur Utsav", desc: "Every year, the people of Karnataka celebrate her legacy. To them, she is the ultimate symbol of 'Kannada Pride' and feminine courage.", insight: "Her life is taught to every child in the Deccan as the first chapter of resistance.", label: "MILITARY GENIUS" },
+    { title: "Eternal Resistance", sub: "The Unfading Flame", desc: "Rani Chennamma's name is carved in stone and heart alike. She was the first to say 'No' when the empire said 'Obey.' Welcome to ViaLogic.", insight: "She was the mother of all Indian resistance movements. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 4, 2);
+    background(12, 8, 4);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 4, 2, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(12, 8, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,110 @@ function drawScreen(s) {
     }
 }
 
-// S0: Midnapore rice fields (Green waving lines)
+// S0: Kittur fort stone architecture silhouette
 function drawS0() {
     push();
-    stroke(76, 175, 80, 100);
-    for (let i = -5; i < 5; i++) {
-        let x = i * 80;
-        line(x, 200, x + sin(time) * 20, 100);
-    }
+    fill(156, 39, 176, 50);
+    rect(-400, 100, 800, 150);
+    for (let i = -3; i <= 3; i++) rect(i * 120, 50, 80, 50);
     pop();
 }
 
-// S1: Pamphlets flying
+// S1: Shield with crossed swords
 function drawS1() {
     push();
+    noFill();
+    stroke(255);
+    strokeWeight(2);
+    ellipse(0, 0, 80);
+    line(-60, -60, 60, 60);
+    line(60, -60, -60, 60);
+    pop();
+}
+
+// S2: Purple/Yellow battle lines
+function drawS2() {
+    push();
+    stroke(156, 39, 176, 150);
+    for (let i = 0; i < 5; i++) line(-200, i * 20 - 40, 0, i * 20 - 40);
+    stroke(255, 235, 59, 150);
+    for (let i = 0; i < 5; i++) line(200, i * 20 - 40, 0, i * 20 - 40);
+    pop();
+}
+
+// S3: Cannon smoke animation
+function drawS3() {
+    push();
     for (let i = 0; i < 15; i++) {
-        fill(255, 100);
-        let y = -200 + (time * 100 + i * 40) % 400;
-        rect(sin(i + time) * 200, y, 20, 30);
+        fill(100, 100, 100, 40);
+        noStroke();
+        ellipse(sin(time + i) * 100, 100 - i * 15, i * 10);
     }
     pop();
 }
 
-// S2: Secret Samiti crest (Abstract)
-function drawS2() {
-    push();
-    noFill();
-    stroke(244, 67, 54, 150);
-    ellipse(0, 0, 150);
-    line(-50, -50, 50, 50);
-    line(50, -50, -50, 50);
-    pop();
-}
-
-// S3: Carriage silhouette
-function drawS3() {
-    push();
-    let x = -200 + (time * 80) % 400;
-    fill(50);
-    rect(x, 50, 100, 60, 10);
-    ellipse(x + 20, 110, 30);
-    ellipse(x + 80, 110, 30);
-    pop();
-}
-
-// S4: Bomb blast glow
+// S4: Envelope (Doctrine of Lapse)
 function drawS4() {
     push();
-    fill(255, 152, 0, 200 - (time * 100) % 200);
-    noStroke();
-    ellipse(0, 50, (time * 200) % 400);
+    fill(255, 100);
+    rect(-80, -50, 160, 100);
+    line(-80, -50, 0, 0);
+    line(80, -50, 0, 0);
     pop();
 }
 
-// S5: Railway station tracks
+// S5: Horse galloping trail
 function drawS5() {
     push();
-    stroke(255, 50);
-    line(-200, 100, 200, 100);
-    line(-200, 150, 200, 150);
-    for (let i = -5; i <= 5; i++) line(i * 40, 100, i * 40, 150);
+    noFill();
+    stroke(156, 39, 176);
+    beginShape();
+    for (let i = 0; i < 20; i++) {
+        vertex(-200 + i * 20, sin(time * 5 + i) * 20 + 100);
+    }
+    endShape();
     pop();
 }
 
-// S6: Bhagavad Gita silhouette
+// S6: Throne silhouette
 function drawS6() {
     push();
     fill(255, 235, 59, 100);
-    rect(-40, -60, 80, 120, 5);
+    rect(-50, 50, 100, 100);
     pop();
 }
 
-// S7: Noose of flowers
+// S7: Flag of Kittur waving
 function drawS7() {
     push();
-    stroke(244, 67, 54);
-    strokeWeight(4);
-    noFill();
-    ellipse(0, -50, 60, 100);
-    for (let i = 0; i < 12; i++) {
-        let a = PI * i / 6;
-        fill(255, 235, 59);
-        ellipse(cos(a) * 30, sin(a) * 50 - 50, 10);
+    rotate(sin(time) * 0.05);
+    stroke(156, 39, 176);
+    line(-50, -100, -50, 100);
+    fill(156, 39, 176, 150);
+    beginShape();
+    vertex(-50, -100);
+    vertex(100, -50);
+    vertex(-50, 0);
+    endShape(CLOSE);
+    pop();
+}
+
+// S8: Resistance flame
+function drawS8() {
+    push();
+    for (let i = 0; i < 10; i++) {
+        fill(156, 39, 176, 150 - i * 15);
+        ellipse(0, 100 - i * 10, 20 + noise(time + i) * 60);
     }
     pop();
 }
 
-// S8: "VANDE MATARAM" pulse
-function drawS8() {
-    push();
-    fill(255, 235, 59, 150 + sin(time * 5) * 50);
-    textSize(40);
-    textAlign(CENTER);
-    text("VANDE MATARAM", 0, 0);
-    pop();
-}
-
-// S9: Eternal star glow
+// S9: Starry night over fort
 function drawS9() {
     push();
-    for (let i = 0; i < 20; i++) {
-        fill(255, 255, 255, random(100, 255));
-        ellipse(random(-200, 200), random(-200, 200), 4);
+    for (let i = 0; i < 50; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
     }
     pop();
 }

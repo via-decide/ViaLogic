@@ -3,171 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Birsa Munda</title>
+    <title>ViaLogic | Dharati Aaba (Birsa Munda)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="../../daxini-renderer.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #050a14; overflow: hidden;
-            color: white; font-family: 'JetBrains Mono', monospace;
+            margin: 0; padding: 0; background-color: #040804; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
-        
-        #daxini-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-            pointer-events: none;
-        }
-
-        #daxini-container * { pointer-events: auto; }
-
-        #nav-hint {
-            position: absolute; top: 30px; right: 30px;
-            color: rgba(0, 229, 255, 0.4); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            z-index: 1000; text-align: right;
-        }
-        .vialogic-logo { color: #00e5ff; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
-
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #ff671f; font-size: 14px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; z-index: 1000;
+            color: #4CAF50; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #4CAF50;
+            padding-left: 20px; z-index: 10;
+            background: rgba(4, 8, 4, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #4CAF50; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(76, 175, 80, 0.08);
+            border-top: 1px solid rgba(76, 175, 80, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #4CAF50; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFEB3B; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
-            #act-indicator { top: 20px; left: 20px; font-size: 11px; }
-            #nav-hint { top: 20px; right: 20px; font-size: 10px; }
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
         }
     </style>
 </head>
 <body onclick="nextScreen()">
-
     <div id="nav-hint">
-        <a href="../../index.html" style="text-decoration:none"><div class="vialogic-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
+    <div id="act-indicator">ACT I: THE ULGULAN</div>
+    <div id="label">
+        <h1 id="title">Dharati Aaba</h1>
+        <p id="subtitle">1875 — 1900 CE</p>
+        <p id="description">Born in Ulihatu (Jharkhand). A tribal leader of the Munda community, he stood up against the British exploitation and the destruction of the tribal way of life.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was called 'Dharati Aaba' or the Father of the Earth by his people.</span>
+    </div>
 
-    <div id="act-indicator">ACT I: INITIALIZATION</div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div id="daxini-container"></div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE ULGULAN";
+const ACT2_LABEL = "THE FOREST REBELLION";
+const ACCENT1 = "#4CAF50";
+const ACCENT2 = "#FFEB3B";
 
-    <script>
-    let time = 0;
-    let state = 0;
-    let isTransitioning = false;
-    let fadeAlpha = 0;
-    let fadeDirection = 0;
-    let targetState = 0;
-    const FADE_SPEED = 14;
-    const TOTAL_SCREENS = 10;
+const content = [
+    { title: "Dharati Aaba", sub: "1875 — 1900 CE", desc: "Born in Ulihatu (Jharkhand). A tribal leader of the Munda community, he stood up against the British exploitation and the destruction of the tribal way of life.", insight: "He was called 'Dharati Aaba' or the Father of the Earth by his people.", label: "HISTORICAL INSIGHT" },
+    { title: "The Ulgulan", sub: "The Great Tumult", desc: "He launched the 'Ulgulan' (The Great Tumult) movement to reclaim tribal lands from British-backed landlords and restore the rights of the indigenous people.", insight: "His movement was not just political, but a religious and social revival of Tribal culture.", label: "HISTORICAL INSIGHT" },
+    { title: "Defying the Empire", sub: "The Fight for Jal-Jungle-Zameen", desc: "He challenged the British land laws and their attempt to turn self-sufficient forest dwellers into indentured laborers on their own soil.", insight: "His battle cry was 'Jal, Jungle, Zameen' (Water, Forest, Land).", label: "HISTORICAL INSIGHT" },
+    { title: "The Prophet of Munda", sub: "Spiritual Leadership", desc: "He preached a new faith, 'Birsait,' which rejected superstitions and animal sacrifices, unifying the tribal communities under a single spiritual banner.", insight: "Thousands believed him to be an avatar with the power to heal the sick.", label: "HISTORICAL INSIGHT" },
+    { title: "Battle of Dumbari Hill", sub: "Spears against Guns", desc: "In 1900, his followers fought a final, desperate battle at Dumbari Hill, where their traditional bows and arrows met British gunfire.", insight: "Hundreds of tribal warriors, including women and children, sacrifices their lives at Dumbari.", label: "HISTORICAL INSIGHT" },
+    { title: "Guerilla of the Hills", sub: "Military Strategy", desc: "He used the dense forests of Chhotanagpur and the rugged terrain to launch hit-and-run attacks against the British outposts.", insight: "His forces were masters of camouflage and silent movement in the forest.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Bowman", sub: "Tribal Arsenal", desc: "He turned traditional hunting tools into weapons of war, proving that a determined people could resist a modern empire with primitive means.", insight: "The Munda archers could pierce targets from incredible distances while hidden in the canopy.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Land Rights Legacy", sub: "The Chhotanagpur Act", desc: "His struggle forced the British to pass the Chhotanagpur Tenancy Act in 1908, which restricted the transfer of tribal land to non-tribals.", insight: "This Act remains a cornerstone of tribal land protection in India today.", label: "REVOLUTIONARY GENIUS" },
+    { title: "End of the Great Tumult", sub: "June 9, 1900", desc: "Captured by the British, he died in Ranchi jail at the age of just 25. His death remains shrouded in mystery, but his spirit never died.", insight: "He is the only tribal leader whose portrait hangs in the Central Hall of the Indian Parliament.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Legacy of the Son of Soil", sub: "Eternal Protector", desc: "His name is synonymous with the protection of the environment and the rights of the marginalized. He is the eternal protector of the forest.", insight: "His life reminds us that the earth does not belong to empires, but to its children. Welcome to ViaLogic.", label: "REFLECTION" },
+];
 
-    /* ── Content Data (Injected by VisualForge) ────────────────────── */
-    const PERSONA = {"id":"birsa-munda","name":"Birsa Munda","title":"Revolution | Modern","summary":"Sovereign UI profile for Birsa Munda — part of the ViaLogic population cluster.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = [{"act":"Act I: THE ULGULAN","title":"The Great Tumult","sub":"Tribal Uprising (1899)","desc":"Birsa Munda led the Munda tribes against the British and landlords. He envisioned an ideal society free from exploitation.","insight":"The earth is ours, and we are children of the earth.","logic_result":"Resilience: Level MAX. Forest Rights: Reclaimed.","color":"#4caf50"}];
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    /* ── Setup ───────────────────────────────────────────────────── */
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        updateUI();
+function draw() {
+    background(4, 8, 4);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function nextScreen() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        fadeDirection = 1;
-        targetState = (state + 1) % TOTAL_SCREENS;
-        
-        document.getElementById('daxini-container').style.opacity = 0;
-        document.getElementById('act-indicator').style.opacity = 0;
-        document.getElementById('nav-hint').style.opacity = 0;
-    }
-
-    function updateUI() {
-        const scenario = SCENARIOS[state];
-        const container = document.getElementById('daxini-container');
-        container.innerHTML = '';
-        
-        // Render Using DaxiniRenderer
-        const card = window.DaxiniRenderer.renderCard(PERSONA, scenario.desc);
-        
-        // Customize card for current screen
-        const nameEl = card.querySelector('.daxini-card__name');
-        const titleEl = card.querySelector('.daxini-card__title');
-        const outputEl = card.querySelector('[data-logic-output]');
-        
-        nameEl.innerText = scenario.title;
-        titleEl.innerText = scenario.sub;
-        outputEl.innerText = scenario.insight;
-        
-        container.appendChild(card);
-        
-        // Update Act Indicator
-        const actEl = document.getElementById('act-indicator');
-        actEl.innerText = scenario.act;
-        actEl.style.color = scenario.color || '#ff671f';
-        
-        // Add Logic Trigger
-        const btn = card.querySelector('[data-run-logic]');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerLogic();
-        });
-    }
-
-    function triggerLogic() {
-        const output = document.querySelector('[data-logic-output]');
-        output.innerText = "Executing quantum logic...\\n" + SCENARIOS[state].logic_result;
-        // Visual trigger for p5.js
-        window.logicTriggered = true;
-        setTimeout(() => { window.logicTriggered = false; }, 1000);
-    }
-
-    /* ── Draw loop ───────────────────────────────────────────────── */
-    function draw() {
-        background(5, 10, 20);
-        
-        // Injected p5.js Logic (VisualForge)
-        
-            time += 0.02;
-            let scale = getScale();
-            // Forest Roots
-            stroke(76, 175, 80, 60);
-            for(let i=0; i<10; i++) {
-                let x = width/2 + sin(time + i) * 100;
-                line(x, height, x + cos(time) * 50, height - 400 * scale);
-            }
-            // Tribal Sun
-            fill(255, 235, 59, 100); noStroke();
-            ellipse(width/2, 100, 80 * scale);
-        
-
-        // Fade overlay
-        if (isTransitioning) {
-            fadeAlpha += FADE_SPEED * fadeDirection;
-            if (fadeDirection === 1 && fadeAlpha >= 255) {
-                fadeAlpha = 255; fadeDirection = -1;
-                state = targetState; time = 0;
-                updateUI();
-                document.getElementById('daxini-container').style.opacity = 1;
-                document.getElementById('act-indicator').style.opacity = 1;
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
                 document.getElementById('nav-hint').style.opacity = 1;
-            } else if (fadeDirection === -1 && fadeAlpha <= 0) {
-                fadeAlpha = 0; isTransitioning = false;
-            }
-            push(); fill(5, 10, 20, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
+        push(); fill(4, 8, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function getScale() { return min(1, width / 800); }
-    </script>
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Forest canopy silhouette with green glow
+function drawS0() {
+    push();
+    fill(76, 175, 80, 50);
+    noStroke();
+    beginShape();
+    vertex(-400, 200);
+    for (let x = -400; x <= 400; x += 20) {
+        let y = map(noise(x * 0.01 + time), 0, 1, 0, 100);
+        vertex(x, y);
+    }
+    vertex(400, 200);
+    endShape(CLOSE);
+    pop();
+}
+
+// S1: Bow and arrow aim
+function drawS1() {
+    push();
+    stroke(255);
+    strokeWeight(2);
+    noFill();
+    arc(-100, 0, 100, 200, -HALF_PI, HALF_PI);
+    line(-100, 0, 50, 0); // Arrow
+    triangle(50, 0, 30, -5, 30, 5);
+    pop();
+}
+
+// S2: Tribal drum pulse
+function drawS2() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(76, 175, 80, 200 - i * 40);
+        strokeWeight(3);
+        ellipse(0, 0, i * 60 + (time * 120) % 60);
+    }
+    pop();
+}
+
+// S3: Banyan tree silhouette
+function drawS3() {
+    push();
+    fill(0);
+    rect(-10, 0, 20, 200);
+    for (let i = 0; i < 5; i++) {
+        let a = PI * i / 4;
+        ellipse(cos(a) * 50, sin(a) * 50 - 50, 150, 100);
+    }
+    pop();
+}
+
+// S4: Earth/Soil glow pulse
+function drawS4() {
+    push();
+    fill(255, 235, 59, 20);
+    ellipse(0, 150, 400, 100);
+    pop();
+}
+
+// S5: Forest silhouette from distance
+function drawS5() {
+    push();
+    fill(0);
+    rect(-400, 50, 800, 150);
+    pop();
+}
+
+// S6: Speartip pulse
+function drawS6() {
+    push();
+    stroke(255);
+    line(0, 150, 0, -50);
+    fill(100);
+    triangle(0, -100, -15, -50, 15, -50);
+    pop();
+}
+
+// S7: Chains breaking
+function drawS7() {
+    push();
+    stroke(200);
+    strokeWeight(5);
+    noFill();
+    ellipse(-40 + sin(time) * 10, 0, 40);
+    line(-20, 0, 20, 0); // Broken link
+    ellipse(40 - sin(time) * 10, 0, 40);
+    pop();
+}
+
+// S8: Rising sun over mountains
+function drawS8() {
+    push();
+    fill(255, 152, 0, 150);
+    ellipse(0, 100 - sin(time) * 50, 200);
+    fill(0, 150);
+    triangle(-200, 200, 0, 0, 200, 200);
+    pop();
+}
+
+// S9: "ULGULAN" pulse
+function drawS9() {
+    push();
+    fill(76, 175, 80);
+    textSize(50);
+    textAlign(CENTER);
+    text("ULGULAN", 0, 0);
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>

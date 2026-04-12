@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Iron Man of India (Sardar Vallabhbhai Patel)</title>
+    <title>ViaLogic | The First Shot of 1857 (Mangal Pandey)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080604; overflow: hidden;
+            margin: 0; padding: 0; background-color: #080404; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #F44336; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #795548;
+            letter-spacing: 1px; border-left: 4px solid #F44336;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 6, 4, 0.88); padding-right: 20px;
+            background: rgba(8, 4, 4, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #F44336; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(121, 85, 72, 0.08);
-            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            background: rgba(244, 67, 54, 0.08);
+            border-top: 1px solid rgba(244, 67, 54, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #795548; font-weight: bold; }
+        .highlight { color: #F44336; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF9800; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: BARDOLI SATYAGRAHA</div>
+    <div id="act-indicator">ACT I: THE GREASED CARTRIDGE</div>
     <div id="label">
-        <h1 id="title">The Sardar</h1>
-        <p id="subtitle">1875 — 1950 CE</p>
-        <p id="description">Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.</p>
+        <h1 id="title">The Spark of Mutiny</h1>
+        <p id="subtitle">1827 — 1857 CE</p>
+        <p id="description">Born in Nagwa (Uttar Pradesh). A soldier in the 34th Bengal Native Infantry, he became the catalyst for the greatest uprising against the British Empire.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">The title 'Sardar' (Leader) was given to him by the women of Bardoli.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">His name 'Pandey' became a slang for 'rebel' among British officers for decades.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "BARDOLI SATYAGRAHA";
-const ACT2_LABEL = "THE ARCHITECT OF UNITY";
-const ACCENT1 = "#795548";
-const ACCENT2 = "#FF9800";
+const ACT1_LABEL = "THE GREASED CARTRIDGE";
+const ACT2_LABEL = "BARRACKPORE REBELLION";
+const ACCENT1 = "#F44336";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "The Sardar", sub: "1875 — 1950 CE", desc: "Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.", insight: "The title 'Sardar' (Leader) was given to him by the women of Bardoli.", label: "HISTORICAL INSIGHT" },
-    { title: "Kheda and Bardoli", sub: "Peasant Revolts", desc: "He led the peasants of Kheda and Bardoli against unfair British taxes. His organizational skills forced the government to yield to the farmers' demands.", insight: "He taught the farmers how to resist without a single drop of blood being shed.", label: "HISTORICAL INSIGHT" },
-    { title: "The Iron Will", sub: "Integrity over Interests", desc: "Known as the 'Iron Man of India' for his uncompromising stand on national interest. He was the first Deputy Prime Minister and Home Minister of India.", insight: "He once said: 'Every citizen of India must remember that he is an Indian and he has every right in this country but with certain duties.'", label: "HISTORICAL INSIGHT" },
-    { title: "Integration of States", sub: "The Map Maker", desc: "At independence, India was a jigsaw puzzle of 565 princely states. Patel unified them all into a single nation with firm diplomacy and a vision of unity.", insight: "Without his iron hand, India would have been fragmented into hundreds of tiny countries.", label: "HISTORICAL INSIGHT" },
-    { title: "Steel Frame of India", sub: "The IAS Foundation", desc: "He established the Indian Administrative Service (IAS), calling it the 'Steel Frame' that would hold the diverse country together through governance.", insight: "He believed that a strong administration was the backbone of a strong democracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Political Realism", sub: "Strategy of Unity", desc: "He used a mix of 'Sam, Dam, Dand, Bhed' to persuade princely rulers to join the Indian Union, prioritizing national survival above all.", insight: "His realism balanced Gandhi's idealism in the crucial years of nation-building.", label: "POLITICAL GENIUS" },
-    { title: "Operation Polo", sub: "Hyderabad Unification", desc: "When the Nizam of Hyderabad refused to join India, Patel authorized 'Operation Polo,' a swift military action that integrated the state in just five days.", insight: "This was the final piece of the Indian unification puzzle.", label: "POLITICAL GENIUS" },
-    { title: "The Shield of the Nation", sub: "Partition Crisis", desc: "During the chaos of Partition, he managed the massive refugee crisis and maintained law and order with an iron grip, preventing further collapse.", insight: "He was the silent anchor that kept the new ship of state from sinking.", label: "POLITICAL GENIUS" },
-    { title: "Legacy of the Statue", sub: "Statue of Unity", desc: "Today, he is honored by the tallest statue in the world, the Statue of Unity, symbolizing his role as the architect of modern India.", insight: "His legacy is the very map of India we see today.", label: "POLITICAL GENIUS" },
-    { title: "The Unsung Architect", sub: "Unity in Diversity", desc: "He proved that many can become one. His life is a testament to the power of organizational genius and patriotic duty.", insight: "The Iron Man's heart beat for the unity of his motherland. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "The Spark of Mutiny", sub: "1827 — 1857 CE", desc: "Born in Nagwa (Uttar Pradesh). A soldier in the 34th Bengal Native Infantry, he became the catalyst for the greatest uprising against the British Empire.", insight: "His name 'Pandey' became a slang for 'rebel' among British officers for decades.", label: "HISTORICAL INSIGHT" },
+    { title: "The Grease Rumor", sub: "Religious Defiance", desc: "Rumors spread that the new Enfield rifle cartridges were greased with cow and pig fat — offensive to both Hindus and Muslims. To Mangal Pandey, this was a direct attack on faith.", insight: "The act of biting the cartridge was seen as a ritual pollution forced by the East India Company.", label: "HISTORICAL INSIGHT" },
+    { title: "The Barrackpore Incident", sub: "March 29, 1857", desc: "On a Sunday afternoon, he marched onto the parade ground, calling his comrades to rise up. He shot the first British adjutant to arrive on the scene.", insight: "'Come out, the Europeans are here!' he shouted to his fellow soldiers.", label: "HISTORICAL INSIGHT" },
+    { title: "The Lone Stand", sub: "Defiance at the Quarter Guard", desc: "For hours, he held his ground against superior officers, refusing to surrender even when his own comrades were ordered to arrest him.", insight: "Only one soldier, Shaikh Paltu, assisted the British in capturing him.", label: "HISTORICAL INSIGHT" },
+    { title: "The Execution", sub: "April 8, 1857", desc: "He was sentenced to death and hanged in Barrackpore. His execution was brought forward because the British feared a massive military revolt.", insight: "He walked to the gallows with absolute calm, refusing to name any conspirators.", label: "HISTORICAL INSIGHT" },
+    { title: "Mutiny Strategy", sub: "The First Domino", desc: "His act was not a planned military move, but a spontaneous burst of individual defiance that gave courage to millions.", insight: "Within weeks of his death, mutinies broke out in Meerut, Delhi, and Lucknow.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Enfield Rifle", sub: "The Weapon of Change", desc: "The very technology intended to modernize the British army became the instrument of its near destruction in India.", insight: "The Enfield rifle's precision was matched by the precision of the rebellion it sparked.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Halla Bol!", sub: "Cry of the People", desc: "'Halla Bol' (Attack/Raise a Clamour) became the spirit of the 1857 uprising, a chaotic but powerful rejection of foreign rule.", insight: "Mangal Pandey was the first to give this voiceless rage a face.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Sacrifice or Suicide", sub: "The Heroic Wound", desc: "When he saw he would be captured, he tried to shoot himself to die as a free man. Though he survived to be hanged, his intent was clear.", insight: "He chose death over the dishonor of serving a company that insulted his beliefs.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Legacy of the First Shot", sub: "Father of the Rebellion", desc: "He was the first martyr of 1857. Every freedom fighter for the next 90 years looked back at Barrackpore as the place where it all began.", insight: "The fire he lit in 1857 never truly went out until 1947. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 6, 4);
+    background(8, 4, 4);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 6, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(8, 4, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,114 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map fragments merging
+// S0: Barrackpore parade ground lines
 function drawS0() {
     push();
-    for (let i = 0; i < 5; i++) {
-        let x = sin(time + i) * 50;
-        let y = cos(time + i) * 50;
-        fill(121, 85, 72, 100);
-        ellipse(x, y, 100);
+    stroke(244, 67, 54, 100);
+    for (let i = 0; i < 10; i++) {
+        line(-width/2, 100 + i * 10, width/2, 100 + i * 10);
     }
     pop();
 }
 
-// S1: Peasant protest line
+// S1: Cartridge bite animation (Pulse)
 function drawS1() {
     push();
-    stroke(255, 50);
-    for (let i = -5; i < 5; i++) {
-        line(i * 60, 100, i * 60 + sin(time) * 10, 0);
-    }
+    fill(244, 67, 54, 50);
+    rect(-20, -50, 40, 100, 5);
+    noFill();
+    stroke(255);
+    strokeWeight(2);
+    ellipse(0, -60, 40 + sin(time * 5) * 20);
     pop();
 }
 
-// S2: Iron bars (Iron Man)
+// S2: First shot flash
 function drawS2() {
     push();
-    stroke(100);
-    strokeWeight(15);
-    for (let i = -2; i <= 2; i++) {
-        line(i * 50, -200, i * 50, 200);
-    }
+    fill(255, 255, 255, 150 + sin(time * 20) * 105);
+    noStroke();
+    ellipse(100, 0, 80);
+    stroke(244, 67, 54);
+    line(-150, 0, 100, 0); // Rifle silhouette
     pop();
 }
 
-// S3: Jigsaw puzzle pieces merging
+// S3: Uniform braid pattern
 function drawS3() {
     push();
-    let gap = map(sin(time), -1, 1, 0, 50);
-    fill(121, 85, 72, 150);
-    rect(-100 - gap, -50, 100, 100);
-    rect(0 + gap, -50, 100, 100);
+    stroke(255, 193, 7, 100);
+    strokeWeight(1);
+    for (let i = -5; i < 5; i++) {
+        noFill();
+        arc(0, i * 40, 100, 40, 0, PI);
+    }
     pop();
 }
 
-// S4: Steel Frame grid
+// S4: Mutiny spreading pulse
 function drawS4() {
     push();
-    stroke(200, 100);
-    for (let i = -5; i <= 5; i++) {
-        line(i * 40, -200, i * 40, 200);
-        line(-200, i * 40, 200, i * 40);
+    noFill();
+    for (let i = 0; i < 6; i++) {
+        stroke(244, 67, 54, 200 - i * 30);
+        ellipse(0, 0, i * 80 + (time * 150) % 80);
     }
     pop();
 }
 
-// S5: Sam, Dam, Dand, Bhed (4 quadrant glow)
+// S5: Gallows silhouette
 function drawS5() {
     push();
-    let col = [ACCENT1, ACCENT2, "#2196F3", "#F44336"];
-    for (let i = 0; i < 4; i++) {
-        fill(col[i] + '40');
-        let a = i * HALF_PI;
-        ellipse(cos(a) * 100, sin(a) * 100, 120);
-    }
+    stroke(100);
+    strokeWeight(10);
+    line(-50, 150, -50, -150);
+    line(-50, -150, 50, -150);
+    strokeWeight(2);
+    line(50, -150, 50, -50);
+    noFill();
+    ellipse(50, -30, 20, 40);
     pop();
 }
 
-// S6: Integration gear rotation
+// S6: Marching soldiers shadow
 function drawS6() {
     push();
-    rotate(time);
-    noFill();
-    stroke(255, 152, 0);
-    strokeWeight(5);
-    ellipse(0, 0, 150);
-    for (let i = 0; i < 12; i++) {
-        let a = PI * i / 6;
-        line(cos(a) * 75, sin(a) * 75, cos(a) * 90, sin(a) * 90);
+    fill(0, 80);
+    for (let i = 0; i < 5; i++) {
+        rect(-300 + i * 120 + sin(time * 2) * 20, 50, 30, 100);
     }
     pop();
 }
 
-// S7: National Map glow (Whole India)
+// S7: British company crest silhouette
 function drawS7() {
     push();
-    fill(255, 152, 0, 50);
-    ellipse(0, 0, 300, 400); // Unified India
+    noFill();
+    stroke(255, 193, 7, 50);
+    ellipse(0, 0, 200);
+    line(-70, -70, 70, 70);
+    line(70, -70, -70, 70);
     pop();
 }
 
-// S8: Statue silhouette
+// S8: "HALLA BOL" pulse
 function drawS8() {
     push();
-    fill(121, 85, 72, 150);
-    rect(-30, -100, 60, 250);
+    fill(244, 67, 54);
+    textSize(50);
+    textAlign(CENTER);
+    text("HALLA BOL", 0, 0);
     pop();
 }
 
-// S9: Foundation stone glow
+// S9: Eternal martyr glow
 function drawS9() {
     push();
-    fill(121, 85, 72);
-    rect(-100, 50, 200, 100);
+    for (let i = 0; i < 20; i++) {
+        fill(244, 67, 54, random(100, 255));
+        ellipse(random(-200, 200), random(-200, 200), 5);
+    }
     pop();
 }
 
