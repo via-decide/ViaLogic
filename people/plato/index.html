@@ -3,172 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Plato</title>
+    <title>ViaLogic | The Architect of Ideas (Plato)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="../../daxini-renderer.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #050a14; overflow: hidden;
-            color: white; font-family: 'JetBrains Mono', monospace;
+            margin: 0; padding: 0; background-color: #04080C; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
-        
-        #daxini-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-            pointer-events: none;
-        }
-
-        #daxini-container * { pointer-events: auto; }
-
-        #nav-hint {
-            position: absolute; top: 30px; right: 30px;
-            color: rgba(0, 229, 255, 0.4); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            z-index: 1000; text-align: right;
-        }
-        .vialogic-logo { color: #00e5ff; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
-
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #ff671f; font-size: 14px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; z-index: 1000;
+            color: #2196F3; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #2196F3;
+            padding-left: 20px; z-index: 10;
+            background: rgba(4, 8, 12, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #2196F3; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(33, 150, 243, 0.08);
+            border-top: 1px solid rgba(33, 150, 243, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #2196F3; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFEB3B; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
-            #act-indicator { top: 20px; left: 20px; font-size: 11px; }
-            #nav-hint { top: 20px; right: 20px; font-size: 10px; }
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
         }
     </style>
 </head>
 <body onclick="nextScreen()">
-
     <div id="nav-hint">
-        <a href="../../index.html" style="text-decoration:none"><div class="vialogic-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
+    <div id="act-indicator">ACT I: THE ALLEGORY OF THE CAVE</div>
+    <div id="label">
+        <h1 id="title">Plato</h1>
+        <p id="subtitle">428 — 348 BCE</p>
+        <p id="description">Socrates' greatest student and the founder of the Academy. He believed that the physical world we see is only a shadow of a higher, more perfect reality.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He founded the Academy in Athens, the first institution of higher learning in the Western world.</span>
+    </div>
 
-    <div id="act-indicator">ACT I: INITIALIZATION</div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div id="daxini-container"></div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE ALLEGORY OF THE CAVE";
+const ACT2_LABEL = "THE REPUBLIC OF REASON";
+const ACCENT1 = "#2196F3";
+const ACCENT2 = "#FFEB3B";
 
-    <script>
-    let time = 0;
-    let state = 0;
-    let isTransitioning = false;
-    let fadeAlpha = 0;
-    let fadeDirection = 0;
-    let targetState = 0;
-    const FADE_SPEED = 14;
-    const TOTAL_SCREENS = 10;
+const content = [
+    { title: "Plato", sub: "428 — 348 BCE", desc: "Socrates' greatest student and the founder of the Academy. He believed that the physical world we see is only a shadow of a higher, more perfect reality.", insight: "He founded the Academy in Athens, the first institution of higher learning in the Western world.", label: "HISTORICAL INSIGHT" },
+    { title: "The Academy", sub: "School of Sages", desc: "At the gates of the Academy, a sign reportedly read: 'Let no one ignorant of geometry enter here.' He saw math as the first step toward the divine.", insight: "The Academy survived for nearly 900 years.", label: "HISTORICAL INSIGHT" },
+    { title: "Allegory of the Cave", sub: "Shadows as Reality", desc: "Imagine prisoners in a cave seeing only shadows on a wall. To them, the shadows are reality. Only by leaving the cave can they see the true sun.", insight: "The 'sun' in his allegory represents the form of the Good.", label: "HISTORICAL INSIGHT" },
+    { title: "Theory of Forms", sub: "The World of Ideas", desc: "He argued that everything in the material world (a chair, a tree, a person) is a flawed copy of a perfect, unchanging 'Form' in the realm of Ideas.", insight: "He believed that truth could be found only through reason, not the senses.", label: "HISTORICAL INSIGHT" },
+    { title: "The Soul's Chariot", sub: "Phaedrus", desc: "He described the human soul as a chariot pulled by two horses: one noble and white (reason), the other dark and unruly (desire).", insight: "The charioteer must control both to reach the heights of wisdom.", label: "HISTORICAL INSIGHT" },
+    { title: "The Republic", sub: "Ideal Governance", desc: "In his most famous work, he envisioned a state ruled by 'Philosopher Kings'—leaders who prioritize wisdom over power or wealth.", insight: "He believed that justice in the state is a reflection of justice in the soul.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Platonic Solids", sub: "Geometry of Nature", desc: "He identified five regular polyhedra as the building blocks of the universe, representing fire, earth, air, water, and the cosmos.", insight: "This was an early attempt to find a mathematical foundation for physics.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Theory of Anamnesis", sub: "Learning as Memory", desc: "He believed that learning is actually a process of remembering knowledge our souls possessed in the world of Forms before we were born.", insight: "He used a slave boy's intuitive grasp of geometry to prove this theory.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "The Demiurge", sub: "Craftsman of Cosmos", desc: "In the Timaeus, he introduced the concept of a master craftsman who fashioned the universe according to the eternal patterns of the Forms.", insight: "This idea bridged the gap between philosophy and early theology.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Architect of Ideas", sub: "Eternal Legacy", desc: "Plato's Republic, Symposium, and Phaedo remain the blueprint for the Western mind. He taught us to look beyond the veil. Welcome to ViaLogic.", insight: "The safest general characterization of Western philosophy is that it consists of a series of footnotes to Plato. Welcome to ViaLogic.", label: "REFLECTION" },
+];
 
-    /* ── Content Data (Injected by VisualForge) ────────────────────── */
-    const PERSONA = {"id":"plato","name":"Plato","title":"Philosophy | Classical","summary":"Sovereign UI profile for Plato. Part of ViaLogic's historical population.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = [{"act":"Act I: THE ALLEGORY","title":"The Cave of Shadows","sub":"The Academy (c. 380 BC)","desc":"Plato described humanity as prisoners in a cave, seeing only shadows of reality. True knowledge lies in emerging into the light of the Forms.","insight":"Reality is a shadow of the ideal.","logic_result":"Projection: Shadow (2D) -> Form (4D)","color":"#00e5ff"},{"act":"Act II: THE REPUBLIC","title":"The Ideal State","sub":"Political Logic","desc":"Plato architected a society governed by Philosopher Kings, where logic and justice outweigh individual desire.","insight":"Knowledge without justice ought to be called cunning rather than wisdom.","logic_result":"Governance model: Meritocratic Order.","color":"#ff671f"}];
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    /* ── Setup ───────────────────────────────────────────────────── */
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        updateUI();
+function draw() {
+    background(4, 8, 12);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function nextScreen() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        fadeDirection = 1;
-        targetState = (state + 1) % TOTAL_SCREENS;
-        
-        document.getElementById('daxini-container').style.opacity = 0;
-        document.getElementById('act-indicator').style.opacity = 0;
-        document.getElementById('nav-hint').style.opacity = 0;
-    }
-
-    function updateUI() {
-        const scenario = SCENARIOS[state];
-        const container = document.getElementById('daxini-container');
-        container.innerHTML = '';
-        
-        // Render Using DaxiniRenderer
-        const card = window.DaxiniRenderer.renderCard(PERSONA, scenario.desc);
-        
-        // Customize card for current screen
-        const nameEl = card.querySelector('.daxini-card__name');
-        const titleEl = card.querySelector('.daxini-card__title');
-        const outputEl = card.querySelector('[data-logic-output]');
-        
-        nameEl.innerText = scenario.title;
-        titleEl.innerText = scenario.sub;
-        outputEl.innerText = scenario.insight;
-        
-        container.appendChild(card);
-        
-        // Update Act Indicator
-        const actEl = document.getElementById('act-indicator');
-        actEl.innerText = scenario.act;
-        actEl.style.color = scenario.color || '#ff671f';
-        
-        // Add Logic Trigger
-        const btn = card.querySelector('[data-run-logic]');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerLogic();
-        });
-    }
-
-    function triggerLogic() {
-        const output = document.querySelector('[data-logic-output]');
-        output.innerText = "Executing quantum logic...\\n" + SCENARIOS[state].logic_result;
-        // Visual trigger for p5.js
-        window.logicTriggered = true;
-        setTimeout(() => { window.logicTriggered = false; }, 1000);
-    }
-
-    /* ── Draw loop ───────────────────────────────────────────────── */
-    function draw() {
-        background(5, 10, 20);
-        
-        // Injected p5.js Logic (VisualForge)
-        
-            time += 0.02;
-            let scale = getScale();
-            // Shadows vs Forms
-            fill(255, 255, 255, 20); noStroke();
-            rect(width/2 - 100 * scale, height/2 - 100 * scale, 200 * scale, 200 * scale);
-            // The Form
-            noFill(); stroke(0, 229, 255); strokeWeight(3);
-            push();
-            translate(width/2, height/2);
-            rotate(time);
-            box(100 * scale);
-            pop();
-        
-
-        // Fade overlay
-        if (isTransitioning) {
-            fadeAlpha += FADE_SPEED * fadeDirection;
-            if (fadeDirection === 1 && fadeAlpha >= 255) {
-                fadeAlpha = 255; fadeDirection = -1;
-                state = targetState; time = 0;
-                updateUI();
-                document.getElementById('daxini-container').style.opacity = 1;
-                document.getElementById('act-indicator').style.opacity = 1;
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
                 document.getElementById('nav-hint').style.opacity = 1;
-            } else if (fadeDirection === -1 && fadeAlpha <= 0) {
-                fadeAlpha = 0; isTransitioning = false;
-            }
-            push(); fill(5, 10, 20, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
+        push(); fill(4, 8, 12, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function getScale() { return min(1, width / 800); }
-    </script>
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Cave shadows (Abstract silhouettes)
+function drawS0() {
+    push();
+    fill(0, 150); rect(-200, 0, 400, 150); // Floor
+    fill(255, 100, 0, 100 + sin(time * 5) * 50);
+    ellipse(0, -100, 150); // Fire
+    fill(0, 180); ellipse(-100, 50, 60, 100); // Shadow
+    pop();
+}
+
+// S1: Academy gates silhouette
+function drawS1() {
+    push();
+    stroke(255, 100); strokeWeight(5);
+    line(-100, 100, -100, -100); line(100, 100, 100, -100);
+    line(-120, -100, 120, -100);
+    pop();
+}
+
+// S2: Cave exit sun pulse
+function drawS2() {
+    push();
+    fill(255, 235, 59, 150);
+    ellipse(0, 0, 100 + sin(time) * 50);
+    pop();
+}
+
+// S3: Perfect Geometry (Platonic solids abstract)
+function drawS3() {
+    push();
+    rotate(time);
+    noFill(); stroke(33, 150, 243, 200);
+    rect(-50, -50, 100, 100);
+    ellipse(0, 0, 120);
+    pop();
+}
+
+// S4: Charioteer two horses (Abstract wings)
+function drawS4() {
+    push();
+    fill(255, 100); triangle(0, 0, -100, -50, -100, 50); // White horse
+    fill(0, 100); triangle(0, 0, 100, -50, 100, 50); // Black horse
+    pop();
+}
+
+// S5: Republic gear pulse
+function drawS5() {
+    push();
+    noFill(); stroke(33, 150, 243, 150);
+    for (let i = 0; i < 5; i++) {
+        rotate(time);
+        ellipse(0, 0, i * 40, 20);
+    }
+    pop();
+}
+
+// S6: Perfect circle (Geometry)
+function drawS6() {
+    push();
+    noFill(); stroke(255);
+    ellipse(0, 0, 200);
+    pop();
+}
+
+// S7: Remembrance/Memory pulse
+function drawS7() {
+    push();
+    fill(33, 150, 243, 100);
+    ellipse(0, 0, 150 + sin(time * 5) * 50);
+    pop();
+}
+
+// S8: Demiurge/Craftsman glow
+function drawS8() {
+    push();
+    fill(255, 235, 59, 150 + sin(time * 10) * 105);
+    ellipse(0, 0, 20);
+    pop();
+}
+
+// S9: Eternal Ideas star field
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>
