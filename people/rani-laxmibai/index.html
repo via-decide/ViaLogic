@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Netaji of Azad Hind (Subhash Chandra Bose)</title>
+    <title>ViaLogic | The Warrior Queen of Jhansi (Rani Laxmibai)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #040C08; overflow: hidden;
+            margin: 0; padding: 0; background-color: #0A0404; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #00C853; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #D32F2F; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #00C853;
+            letter-spacing: 1px; border-left: 4px solid #D32F2F;
             padding-left: 20px; z-index: 10;
-            background: rgba(4, 12, 8, 0.88); padding-right: 20px;
+            background: rgba(10, 4, 4, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #00C853; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #D32F2F; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(0, 200, 83, 0.08);
-            border-top: 1px solid rgba(0, 200, 83, 0.4);
+            background: rgba(211, 47, 47, 0.08);
+            border-top: 1px solid rgba(211, 47, 47, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #00C853; font-weight: bold; }
+        .highlight { color: #D32F2F; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FFD600; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: GIVE ME BLOOD</div>
+    <div id="act-indicator">ACT I: THE ADOPTED SON</div>
     <div id="label">
-        <h1 id="title">The Rebel Patriot</h1>
-        <p id="subtitle">1897 — 1945 CE</p>
-        <p id="description">Born in Cuttack, Odisha. A brilliant student who cleared the ICS exam but resigned to join the freedom movement. He believed that 'Freedom is not given, it is taken.'</p>
+        <h1 id="title">The Rebel Queen</h1>
+        <p id="subtitle">1828 — 1858 CE</p>
+        <p id="description">Born Manikarnika in Varanasi. She was trained in horse riding, sword fighting, and archery — skills that were unconventional for women of her time.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was twice elected president of the Indian National Congress.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">She became the Rani of Jhansi after marrying Raja Gangadhar Rao.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "GIVE ME BLOOD";
-const ACT2_LABEL = "AZAD HIND FAUJ";
-const ACCENT1 = "#00C853";
-const ACCENT2 = "#FFD600";
+const ACT1_LABEL = "THE ADOPTED SON";
+const ACT2_LABEL = "DEFIANCE TILL DEATH";
+const ACCENT1 = "#D32F2F";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "The Rebel Patriot", sub: "1897 — 1945 CE", desc: "Born in Cuttack, Odisha. A brilliant student who cleared the ICS exam but resigned to join the freedom movement. He believed that 'Freedom is not given, it is taken.'", insight: "He was twice elected president of the Indian National Congress.", label: "HISTORICAL INSIGHT" },
-    { title: "The Great Escape", sub: "Calcutta to Berlin", desc: "Under house arrest, he escaped in the middle of the night disguised as 'Mohammad Ziauddin.' He traveled across Afghanistan and the Soviet Union to reach Germany.", insight: "This daring journey proved his commitment to seeking international alliances for India's freedom.", label: "HISTORICAL INSIGHT" },
-    { title: "The Berlin-Tokyo Flight", sub: "The Submarine Journey", desc: "In the middle of WWII, he traveled for months in a German U-boat to the Indian Ocean, transferred to a Japanese submarine, and reached Southeast Asia.", insight: "This remains the only known transfer between two submarines of different nations in the open sea during the war.", label: "HISTORICAL INSIGHT" },
-    { title: "The Azad Hind Proclamation", sub: "Singapore, 1943", desc: "He took command of the Indian National Army (INA) and proclaimed the formation of the Provisional Government of Azad Hind in Singapore.", insight: "He was the first to address Gandhi as 'Father of the Nation' in a radio broadcast from Singapore.", label: "HISTORICAL INSIGHT" },
-    { title: "Give Me Blood", sub: "The Call to Action", desc: "'Give me blood, and I shall give you freedom!' His speech in Burma mobilized thousands of Indian overseas residents to join the struggle.", insight: "He formed the Rani of Jhansi Regiment, one of the first all-female combat units in 20th-century Asia.", label: "HISTORICAL INSIGHT" },
-    { title: "March to Delhi", sub: "The Imphal Campaign", desc: "The INA, fighting alongside Japan, crossed the Indo-Burma border and reached Kohima and Imphal, raising the Indian flag on Indian soil for the first time.", insight: "Though military defeat followed, the trials of the INA officers later sparked a widespread revolt in the British Indian army.", label: "MILITARY GENIUS" },
-    { title: "Sovereign Diplomacy", sub: "India First", desc: "He navigated the complex geopolitics of WWII with a single-minded focus: the total independence of India. He recognized no colonial masters.", insight: "His diplomacy secured the recognition of the Azad Hind government by nine sovereign nations.", label: "MILITARY GENIUS" },
-    { title: "The Tiger's Spirit", sub: "Azad Hind Fauj Symbol", desc: "The Leaping Tiger on the INA flag symbolized the predatory fearlessness needed to strike at an imperial giant.", insight: "The INA used modern military radio and propaganda as effectively as any western army.", label: "MILITARY GENIUS" },
-    { title: "The Mystery of Taihoku", sub: "August 18, 1945", desc: "Officially reported to have died in a plane crash in Taiwan. However, the mystery of his death remains one of India's greatest historical enigmas.", insight: "Whether he died in 1945 or survived, his Netaji persona became immortal in the Indian psyche.", label: "MILITARY GENIUS" },
-    { title: "Delhi Chalo!", sub: "The Eternal Commander", desc: "His slogan 'Delhi Chalo' (March to Delhi) became the rallying cry of a nation on the brink of liberty.", insight: "He proved that an Indian could command a modern army against the British Empire. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "The Rebel Queen", sub: "1828 — 1858 CE", desc: "Born Manikarnika in Varanasi. She was trained in horse riding, sword fighting, and archery — skills that were unconventional for women of her time.", insight: "She became the Rani of Jhansi after marrying Raja Gangadhar Rao.", label: "HISTORICAL INSIGHT" },
+    { title: "The Doctrine of Lapse", sub: "Jhansi Annexation", desc: "After the death of her husband, the British refused to recognize her adopted son as the heir and annexed Jhansi under the Doctrine of Lapse.", insight: "She famously declared, 'Mein apni Jhansi nahi dungi' (I will not give up my Jhansi).", label: "HISTORICAL INSIGHT" },
+    { title: "The Siege of Jhansi", sub: "March 1858", desc: "British forces under Sir Hugh Rose besieged Jhansi. The Rani led the defense from the ramparts, showing extraordinary bravery for two weeks.", insight: "The British commander later described her as 'the most dangerous of all rebel leaders.'", label: "HISTORICAL INSIGHT" },
+    { title: "The Great Leap", sub: "Escape from the Fort", desc: "With her son Damodar Rao tied to her back, she leaped from the high walls of the Jhansi fort on her horse, Badal, to escape the falling city.", insight: "Badal died in the leap, but the Rani survived to continue the fight from Kalpi and Gwalior.", label: "HISTORICAL INSIGHT" },
+    { title: "The Battle of Gwalior", sub: "June 1858", desc: "She captured the Gwalior fort and fought a final, fierce battle against the British cavalry near the city.", insight: "Her death in battle at the age of 29 made her an eternal martyr of the Indian resistance.", label: "HISTORICAL INSIGHT" },
+    { title: "Warrior General", sub: "Military Strategy", desc: "She was not just a symbol; she was a combatant and a strategist who led an army of men and women into the heart of the rebellion.", insight: "She organized a women's army called the 'Durga Dal' to defend Jhansi.", label: "MILITARY GENIUS" },
+    { title: "Fortress Defense", sub: "Rampart Tactics", desc: "She personally supervised the casting of cannons and the strengtheninig of fort walls, understanding the mechanics of siege warfare.", insight: "Her cannons 'Bhawani Shankar' and 'Gadh Kanak' were legendary for their range.", label: "MILITARY GENIUS" },
+    { title: "The Cavalry Charge", sub: "Mobile Warfare", desc: "She favored fast cavalry maneuvers, often leading charges herself to break British infantry blocks.", insight: "She was known for her ability to handle two swords simultaneously while riding.", label: "MILITARY GENIUS" },
+    { title: "Icon of 1857", sub: "National Heroine", desc: "Her struggle became the defining narrative of the First War of Indian Independence, inspiring future revolutionaries like Subhash Chandra Bose.", insight: "The first all-women regiment of the INA was named after her.", label: "MILITARY GENIUS" },
+    { title: "The Unbowed Spirit", sub: "Legend of the Rani", desc: "She remains the ultimate symbol of female courage and patriotism in India, immortalized in the poem 'Khoob ladi mardaani woh toh Jhansi wali rani thi.'", insight: "Her legacy is a testament to the fact that courage has no gender. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(4, 12, 8);
+    background(10, 4, 4);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(4, 12, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(10, 4, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,112 +177,112 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map outline glow
+// S0: Fort ramparts silhouette
 function drawS0() {
     push();
-    fill(0, 200, 83, 30);
-    noStroke();
-    ellipse(0, 0, 300, 400); // Abstract India
+    fill(211, 47, 47, 50);
+    rect(-400, 100, 800, 100);
+    for (let i = 0; i < 5; i++) {
+        rect(-250 + i * 100, 50, 60, 50);
+    }
     pop();
 }
 
-// S1: Footsteps/Invisible trail
+// S1: Red ink/blood drop pulse
 function drawS1() {
     push();
-    for (let i = 0; i < 10; i++) {
-        let alpha = map(i, 0, 10, 255, 0);
-        fill(255, alpha);
-        ellipse(sin(time + i) * 100, -150 + i * 30, 10, 20);
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(211, 47, 47, 200 - i * 40);
+        strokeWeight(2);
+        ellipse(0, 50, i * 40 + (time * 80) % 40);
     }
     pop();
 }
 
-// S2: Submarine silhouette moving in dark water
+// S2: Siege cannon fire (Glow)
 function drawS2() {
     push();
-    fill(10, 10, 40);
-    rect(-width/2, 50, width, height/2); // Sea
-    fill(0);
-    let x = -200 + (time * 50) % 400;
-    rect(x, 40, 100, 20, 10);
-    rect(x + 40, 20, 20, 20);
+    fill(255, 193, 7, 150);
+    ellipse(-100, 0, 40 + sin(time * 10) * 20);
+    stroke(211, 47, 47);
+    strokeWeight(10);
+    line(-150, 10, -80, 10);
     pop();
 }
 
-// S3: Proclamation text scroll
+// S3: Horse gallop silhouette (Abstract)
 function drawS3() {
     push();
+    let x = -200 + (time * 150) % 400;
     fill(255);
-    rect(-100, -100, 200, 250);
-    fill(0);
-    for (let i = 0; i < 10; i++) rect(-80, -80 + i * 20, 160, 2);
+    ellipse(x, 100, 60, 30);
+    ellipse(x + 20, 70, 20, 40); // Head
     pop();
 }
 
-// S4: Blood red pulse
+// S4: Falling red petals/fire
 function drawS4() {
     push();
-    noFill();
-    for (let i = 0; i < 5; i++) {
-        stroke(255, 0, 0, 200 - i * 40);
-        strokeWeight(3);
-        ellipse(0, 0, i * 60 + (time * 100) % 60);
+    for (let i = 0; i < 20; i++) {
+        fill(211, 47, 47, 100);
+        ellipse(sin(i + time) * 300, -200 + (i * 40 + time * 100) % 400, 10);
     }
     pop();
 }
 
-// S5: Marching shadows
+// S5: Crossed swords and shield
 function drawS5() {
     push();
-    fill(0, 50);
+    stroke(255);
+    strokeWeight(4);
+    line(-50, -50, 50, 50);
+    line(50, -50, -50, 50);
+    noFill();
+    ellipse(0, 0, 80);
+    pop();
+}
+
+// S6: Cavalry charge (Multiple horses)
+function drawS6() {
+    push();
     for (let i = 0; i < 5; i++) {
-        rect(-200 + i * 80 + sin(time * 3) * 10, 50, 40, 100);
+        fill(255, 193, 7, 50);
+        ellipse(-300 + i * 120 + sin(time * 5 + i) * 30, 100, 80, 40);
     }
     pop();
 }
 
-// S6: Globe lines connecting nations
-function drawS6() {
-    push();
-    noFill();
-    stroke(255, 214, 0, 80);
-    ellipse(0, 0, 300);
-    line(-100, 50, 150, -50);
-    line(-100, 50, 50, 100);
-    pop();
-}
-
-// S7: Leaping tiger symbol
+// S7: Shield wall (Vertical lines)
 function drawS7() {
     push();
-    fill(255, 214, 0);
-    beginShape();
-    vertex(-50, 0);
-    vertex(0, -50);
-    vertex(50, 0);
-    vertex(0, 20);
-    endShape(CLOSE);
+    stroke(211, 47, 47);
+    strokeWeight(10);
+    for (let i = -3; i <= 3; i++) {
+        line(i * 60, -100, i * 60, 100);
+    }
     pop();
 }
 
-// S8: Propeller spin/plane wing
+// S8: Sword glint pulse
 function drawS8() {
     push();
-    rotate(time * 10);
-    stroke(255, 50);
-    strokeWeight(10);
-    line(-100, 0, 100, 0);
-    line(0, -100, 0, 100);
+    rotate(PI/4);
+    stroke(255);
+    strokeWeight(2);
+    line(-150, 0, 150, 0);
+    fill(255, 200 + sin(time * 10) * 55);
+    ellipse(sin(time * 5) * 100, 0, 20);
     pop();
 }
 
-// S9: "DELHI CHALO" marquee
+// S9: Eternal flame of sacrifice
 function drawS9() {
     push();
-    fill(0, 200, 83);
-    textSize(40);
-    textAlign(CENTER);
-    text("DELHI CHALO", 0, 0);
+    for (let i = 0; i < 15; i++) {
+        fill(211, 47, 47, 200 - i * 10);
+        ellipse(sin(time * 2 + i) * 20, 150 - i * 20, 40 - i * 2);
+    }
     pop();
 }
 

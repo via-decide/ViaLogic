@@ -1,323 +1,372 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ViaLogic | Mission Tracks</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+Gujarati:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, sans-serif; background: #05060f; color: #e2e8f0; }
-    .app { max-width: 980px; margin: 0 auto; padding: 24px; display: grid; gap: 20px; }
-    .panel { background: #0f172a; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 16px; }
-    .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
-    .track-card { border: 1px solid rgba(255,255,255,.18); border-radius: 14px; padding: 14px; cursor: pointer; }
-    .track-card.active { border-color: #ff8f00; box-shadow: 0 0 0 1px #ff8f00 inset; }
-    .muted { color: #94a3b8; }
-    .stats { display:flex; gap: 16px; flex-wrap: wrap; }
-    .pill { background:#1e293b; padding:6px 10px; border-radius:999px; font-size:12px; }
-    .missions { display: grid; gap: 10px; }
-    .mission { border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 12px; }
-    .mission.locked { opacity: .55; }
-    .concepts { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
-    .concepts span { font-size: 12px; background: #1e293b; padding: 4px 8px; border-radius: 999px; }
-    .question { display: grid; gap: 10px; }
-    .gu { font-family: 'Noto Sans Gujarati', sans-serif; font-size: 14px; color: #94a3b8; }
-    .options { display:grid; gap:8px; }
-    .opt { text-align:left; background:#1e293b; color:#e2e8f0; border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:10px; cursor:pointer; }
-    .feedback { min-height: 24px; font-weight: 600; }
-    .toast { position: fixed; right: 12px; top: 12px; background:#14532d; color:#dcfce7; padding:10px 12px; border-radius:8px; display:none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaMath | The Man Who Gave Zero a Number (Brahmagupta)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #050810; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #FF7043; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #FF7043;
+            padding-left: 20px; z-index: 10;
+            background: rgba(5, 8, 16, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #FF7043; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 112, 67, 0.08);
+            border-top: 1px solid rgba(255, 112, 67, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #FF7043; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #42A5F5; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
 </head>
-<body>
-  <div class="app">
-    <div class="panel">
-      <h1>Mission Tracks</h1>
-      <p class="muted">Choose a Genius Card track to begin.</p>
-      <div class="cards" id="track-list"></div>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: THE BRAHMASPHUTASIDDHANTA</div>
+    <div id="label">
+        <h1 id="title">The Scholar of Ujjain</h1>
+        <p id="subtitle">598 — 668 CE</p>
+        <p id="description">Born 598 CE in Bhinmal, Rajasthan. Became head of the astronomical observatory at Ujjain — the mathematical capital of ancient India.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">Ujjain sits on India's ancient prime meridian — the Greenwich of antiquity.</span>
     </div>
 
-    <div class="panel" id="summary-panel" hidden>
-      <h2 id="track-name"></h2>
-      <div class="stats">
-        <div class="pill" id="genius-name"></div>
-        <div class="pill" id="level-name"></div>
-        <div class="pill" id="sparks-total"></div>
-        <div class="pill" id="xp-total"></div>
-      </div>
-    </div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div class="panel" id="mission-panel" hidden>
-      <h2>Missions</h2>
-      <div class="missions" id="mission-list"></div>
-    </div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE BRAHMASPHUTASIDDHANTA";
+const ACT2_LABEL = "THE ARITHMETIC OF ZERO";
+const ACCENT1 = "#FF7043";
+const ACCENT2 = "#42A5F5";
 
-    <div class="panel" id="question-panel" hidden>
-      <h2 id="question-mission-title"></h2>
-      <div class="question">
-        <div id="q-en"></div>
-        <div id="q-gu" class="gu"></div>
-        <div class="options" id="options"></div>
-        <div class="feedback" id="feedback"></div>
-      </div>
-    </div>
-  </div>
-  <div class="toast" id="toast"></div>
+const content = [
+    { title: "The Scholar of Ujjain", sub: "598 — 668 CE", desc: "Born 598 CE in Bhinmal, Rajasthan. Became head of the astronomical observatory at Ujjain — the mathematical capital of ancient India.", insight: "Ujjain sits on India's ancient prime meridian — the Greenwich of the ancient world.", label: "HISTORICAL INSIGHT" },
+    { title: "The Established Doctrine", sub: "Brahmasphutasiddhanta", desc: "At age 30, he wrote the Brahmasphutasiddhanta — 'The Correctly Established Doctrine of Brahma.' A 628-verse mathematical masterpiece in Sanskrit.", insight: "It was the first text in history to treat zero as a standalone number with its own rules.", label: "HISTORICAL INSIGHT" },
+    { title: "Challenging the Models", sub: "Circumference of Earth", desc: "He challenged the flat-earth cosmology of his predecessors in print. He calculated the circumference of the Earth as 36,000 km.", insight: "He calculated the circumference of the Earth as 36,000 km (modern: 40,075 km).", label: "HISTORICAL INSIGHT" },
+    { title: "Debts and Fortunes", sub: "Negative Integers", desc: "He introduced the concept of negative numbers as 'debts' and positive numbers as 'fortunes' — the first formal arithmetic of negative integers.", insight: "'A debt minus a debt is a fortune.' Clean, transactional, rigorous.", label: "HISTORICAL INSIGHT" },
+    { title: "The Identity of Squares", sub: "Brahmagupta's Identity", desc: "He discovered what is now called Brahmagupta's Identity for multiplying sums of squares. This reappears in Euler's work 1,100 years later.", insight: "Brahmagupta's Identity is foundational to modern number theory.", label: "HISTORICAL INSIGHT" },
+    { title: "The Rules of Zero", sub: "The First Systematic Treatment", desc: "A + 0 = A. A - 0 = A. A x 0 = 0. He was wrong about A ÷ 0 = 0, but 1,200 years ahead of everyone else.", insight: "Every zero in computing traces back to these seven rules.", label: "MATHEMATICAL GENIUS" },
+    { title: "Cyclic Quadrilaterals", sub: "Brahmagupta's Formula", desc: "Area of a cyclic quadrilateral = √[(s-a)(s-b)(s-c)(s-d)]. This is a generalization of Heron's formula for segments in a circle.", insight: "It works for any quadrilateral inscribed in a circle.", label: "MATHEMATICAL GENIUS" },
+    { title: "Solving Indeterminates", sub: "Pell's Equation (Nx² + 1 = y²)", desc: "He gave the solution to the general linear Diophantine equation and the Pell equation 1,000 years before European mathematicians.", insight: "The Pell equation wasn't solved in Europe until Fermat in 1657.", label: "MATHEMATICAL GENIUS" },
+    { title: "Universal Attractive Force", sub: "The Nature of Gravity", desc: "He computed the length of the year within 17 minutes of modern records. He also described gravitation as an attractive force of the Earth.", insight: "He described gravitation as an attractive force — 1,000 years before Newton.", label: "MATHEMATICAL GENIUS" },
+    { title: "The Bridge to Modernity", sub: "Zero to Europe", desc: "Al-Khwarizmi translated his work. Fibonacci brought his zero to Europe. Every digital calculation runs on his base-zero logic.", insight: "He is the reason zero exists as a number. Welcome to ViaMath.", label: "REFLECTION" },
+];
 
-  <script>
-    const GG_STATE_KEY = 'vialogic_gg_state';
-    const GG_PROGRESS_KEY = 'vialogic_gg_progress';
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    const fallbackLeonardoTrack = {
-      track: 'Default Track',
-      genius_card: 'Leonardo da Vinci',
-      progression: { genius_card_levels: [{ level: 1, name: 'Polymath', xp_required: 0 }], unlock_order: [] },
-      missions: []
-    };
+function draw() {
+    background(5, 8, 16);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
 
-    const appState = {
-      tracks: { default: fallbackLeonardoTrack, gg: null },
-      activeTrack: null,
-      ggMission: null,
-      ggQuestionIndex: 0,
-      ggMissionCorrect: {}
-    };
-
-    function mergeState(existing, updates) {
-      return { ...existing, ...updates };
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function getCurrentLevel(totalXP, levels) {
-      return levels.filter(l => totalXP >= l.xp_required).at(-1);
-    }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function initGGState() {
-      const existing = JSON.parse(localStorage.getItem(GG_STATE_KEY) || '{}');
-      const base = {
-        track: 'Gujarat Ganitam',
-        total_sparks: 0,
-        total_genius_xp: 0,
-        current_level: 1,
-        missions_completed: [],
-        missions_unlocked: ['mission_01'],
-        questions_answered: {}
-      };
-      const merged = mergeState(base, existing);
-      localStorage.setItem(GG_STATE_KEY, JSON.stringify(merged));
-      localStorage.setItem(GG_PROGRESS_KEY, JSON.stringify(merged));
-      return merged;
-    }
-
-    function saveGGState(updates) {
-      const existing = initGGState();
-      const merged = mergeState(existing, updates);
-      localStorage.setItem(GG_STATE_KEY, JSON.stringify(merged));
-      localStorage.setItem(GG_PROGRESS_KEY, JSON.stringify(merged));
-      return merged;
-    }
-
-    async function loadTracks() {
-      const res = await fetch('../../data/gujarat-ganitam.json');
-      appState.tracks.gg = await res.json();
-      renderTrackSelector();
-    }
-
-    function renderTrackSelector() {
-      const list = document.getElementById('track-list');
-      list.textContent = '';
-      const ggState = initGGState();
-      const ggLevel = getCurrentLevel(ggState.total_genius_xp, appState.tracks.gg.progression.genius_card_levels);
-
-      [
-        { id: 'default', track: appState.tracks.default.track, genius: appState.tracks.default.genius_card, level: 'Polymath', desc: 'Existing Leonardo track remains available.' },
-        { id: 'gg', track: appState.tracks.gg.track, genius: appState.tracks.gg.genius_card, level: ggLevel.name, desc: 'Bilingual mission track.' }
-      ].forEach(item => {
-        const card = document.createElement('button');
-        card.className = 'track-card';
-        card.type = 'button';
-        const t = document.createElement('div'); t.textContent = item.genius;
-        const d = document.createElement('div'); d.className = 'muted'; d.textContent = item.track;
-        const l = document.createElement('div'); l.className = 'pill'; l.textContent = `Level: ${item.level}`;
-        const p = document.createElement('p'); p.className = 'muted'; p.textContent = item.desc;
-        card.append(t, d, l, p);
-        card.addEventListener('click', () => selectTrack(item.id));
-        list.appendChild(card);
-      });
-    }
-
-    function selectTrack(trackId) {
-      appState.activeTrack = trackId;
-      document.querySelectorAll('.track-card').forEach((c, idx) => c.classList.toggle('active', (idx === (trackId === 'default' ? 0 : 1))));
-      if (trackId === 'default') {
-        showDefaultTrack();
-        return;
-      }
-      showGGTrack();
-    }
-
-    function showDefaultTrack() {
-      document.getElementById('summary-panel').hidden = false;
-      document.getElementById('mission-panel').hidden = false;
-      document.getElementById('question-panel').hidden = true;
-      document.getElementById('track-name').textContent = 'Default Track';
-      document.getElementById('genius-name').textContent = 'Genius: Leonardo da Vinci';
-      document.getElementById('level-name').textContent = 'Level: Polymath';
-      document.getElementById('sparks-total').textContent = 'Sparks: Existing system';
-      document.getElementById('xp-total').textContent = 'XP: Existing system';
-      const missionList = document.getElementById('mission-list');
-      missionList.textContent = '';
-      const p = document.createElement('p');
-      p.className = 'muted';
-      p.textContent = 'This track is unchanged in this page; use existing Leonardo flow as before.';
-      missionList.appendChild(p);
-    }
-
-    function showGGTrack() {
-      const ggState = initGGState();
-      const track = appState.tracks.gg;
-      const level = getCurrentLevel(ggState.total_genius_xp, track.progression.genius_card_levels);
-      document.getElementById('summary-panel').hidden = false;
-      document.getElementById('mission-panel').hidden = false;
-      document.getElementById('question-panel').hidden = true;
-      document.getElementById('track-name').textContent = track.track;
-      document.getElementById('genius-name').textContent = `Genius Card: ${track.genius_card}`;
-      document.getElementById('level-name').textContent = `Level: ${level.name}`;
-      document.getElementById('sparks-total').textContent = `Sparks: ${ggState.total_sparks}`;
-      document.getElementById('xp-total').textContent = `XP: ${ggState.total_genius_xp}`;
-      renderMissionList();
-    }
-
-    function renderMissionList() {
-      const track = appState.tracks.gg;
-      const ggState = initGGState();
-      const list = document.getElementById('mission-list');
-      list.textContent = '';
-      track.progression.unlock_order.forEach((id) => {
-        const mission = track.missions.find((m) => m.id === id);
-        const unlocked = ggState.missions_unlocked.includes(id) || id === 'mission_01';
-        const card = document.createElement('div');
-        card.className = `mission${unlocked ? '' : ' locked'}`;
-        const h = document.createElement('h3'); h.textContent = `${unlocked ? '' : '🔒 '}${mission.title}`;
-        const lore = document.createElement('p'); lore.className = 'muted'; lore.textContent = unlocked ? mission.lore.slice(0, 160) + (mission.lore.length > 160 ? '…' : '') : '';
-        const rewards = document.createElement('div'); rewards.className = 'stats';
-        const s = document.createElement('span'); s.className = 'pill'; s.textContent = `Sparks +${mission.sparks_reward}`;
-        const x = document.createElement('span'); x.className = 'pill'; x.textContent = `XP +${mission.genius_xp}`;
-        rewards.append(s, x);
-        const concepts = document.createElement('div'); concepts.className = 'concepts';
-        mission.concepts.forEach((c) => { const tag = document.createElement('span'); tag.textContent = c; concepts.appendChild(tag); });
-        card.append(h, lore, rewards);
-        if (unlocked) {
-          card.append(concepts);
-          card.addEventListener('click', () => openMission(mission.id));
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        list.appendChild(card);
-      });
+        push(); fill(5, 8, 16, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function openMission(missionId) {
-      appState.ggMission = appState.tracks.gg.missions.find((m) => m.id === missionId);
-      appState.ggQuestionIndex = 0;
-      appState.ggMissionCorrect = {};
-      document.getElementById('question-panel').hidden = false;
-      document.getElementById('question-mission-title').textContent = appState.ggMission.title;
-      renderQuestion();
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
     }
+}
 
-    function renderQuestion() {
-      const mission = appState.ggMission;
-      const q = mission.questions[appState.ggQuestionIndex];
-      document.getElementById('q-en').textContent = q.text_en;
-      document.getElementById('q-gu').textContent = q.text_gu;
-      document.getElementById('feedback').textContent = '';
-      const options = document.getElementById('options');
-      options.textContent = '';
-      q.options.forEach((opt) => {
-        const btn = document.createElement('button');
-        btn.className = 'opt';
-        btn.type = 'button';
-        btn.textContent = `${opt.label}. ${opt.value}`;
-        btn.addEventListener('click', () => submitAnswer(q, opt.label));
-        options.appendChild(btn);
-      });
+// S0: Ujjain meridian line on globe
+function drawS0() {
+    push();
+    rotateY(time * 0.2);
+    noFill();
+    stroke(255, 112, 67, 100);
+    strokeWeight(1);
+    ellipse(0, 0, 300, 300);
+    // Meridian
+    stroke(255, 112, 67);
+    strokeWeight(3);
+    line(0, -150, 0, 150);
+    // Glow at Ujjain
+    fill(255, 112, 67, 150);
+    ellipse(0, 20, 20);
+    pop();
+}
+
+// S1: Sanskrit verse flowing
+function drawS1() {
+    push();
+    fill(255, 112, 67, 150);
+    textSize(32);
+    textAlign(CENTER);
+    let verse = "ब्रह्मस्फुटसिद्धान्त";
+    for (let i = 0; i < verse.length; i++) {
+        let x = sin(time + i) * 20;
+        text(verse[i], -150 + i * 40, -50 + x);
     }
+    // Formulas emerging
+    fill(255, 100);
+    textSize(20);
+    text("0 x n = 0", 0, 50);
+    text("n - 0 = n", 0, 80);
+    pop();
+}
 
-    function submitAnswer(question, selectedLabel) {
-      const ggState = initGGState();
-      const existingQuestion = ggState.questions_answered[question.id] || { correct: false, attempts: 0 };
-      const updatedQuestion = { ...existingQuestion, attempts: existingQuestion.attempts + 1 };
-      if (selectedLabel === question.answer) {
-        updatedQuestion.correct = true;
-        appState.ggMissionCorrect[question.id] = true;
-        document.getElementById('feedback').textContent = question.lore_feedback_correct;
-        const newSparks = ggState.total_sparks + question.sparks;
-        saveGGState({
-          total_sparks: newSparks,
-          questions_answered: { ...ggState.questions_answered, [question.id]: updatedQuestion }
-        });
-        setTimeout(() => {
-          appState.ggQuestionIndex += 1;
-          if (appState.ggQuestionIndex >= appState.ggMission.questions.length) {
-            completeMission();
-          } else {
-            renderQuestion();
-          }
-        }, 300);
-      } else {
-        document.getElementById('feedback').textContent = question.lore_feedback_wrong;
-        saveGGState({
-          questions_answered: { ...ggState.questions_answered, [question.id]: updatedQuestion }
-        });
-      }
-      showGGTrack();
+// S2: Rotating globe with circumference arc
+function drawS2() {
+    push();
+    noFill();
+    stroke(255, 112, 67, 80);
+    ellipse(0, 0, 300);
+    // Arryabhata model being pushed out
+    stroke(255, 50);
+    line(-200, -200, 200, 200);
+    // Globe rotating
+    rotate(time * 0.5);
+    stroke(255, 112, 67);
+    arc(0, 0, 320, 320, 0, PI);
+    pop();
+}
+
+// S3: Debt/Fortune number line
+function drawS3() {
+    push();
+    stroke(255, 100);
+    line(-300, 0, 300, 0);
+    for (let i = -5; i <= 5; i++) {
+        line(i * 50, -10, i * 50, 10);
     }
+    // Negatives (Debts)
+    fill(255, 112, 67);
+    for (let i = 1; i <= 3; i++) {
+        ellipse(-i * 50, 20 + sin(time * 2 + i) * 5, 15);
+        rect(-i * 50 - 5, 40, 10, 20); // Holes/Debts
+    }
+    // Positives (Fortunes)
+    fill(66, 165, 245);
+    for (let i = 1; i <= 3; i++) {
+        ellipse(i * 50, -20 + sin(time * 2 + i) * 5, 15);
+        rect(i * 50 - 5, -40, 10, -20); // Coins/Fortunes
+    }
+    pop();
+}
 
-    function completeMission() {
-      const mission = appState.ggMission;
-      const ggState = initGGState();
-      if (!ggState.missions_completed.includes(mission.id)) {
-        const completed = [...ggState.missions_completed, mission.id];
-        const unlocked = [...ggState.missions_unlocked];
-        const order = appState.tracks.gg.progression.unlock_order;
-        const currentIndex = order.indexOf(mission.id);
-        if (currentIndex >= 0 && currentIndex < order.length - 1) {
-          const nextMission = order[currentIndex + 1];
-          if (!unlocked.includes(nextMission)) unlocked.push(nextMission);
+// S4: Sum of squares recombination
+function drawS4() {
+    push();
+    let s = 80;
+    fill(255, 112, 67, 150);
+    rect(-s*1.5, -s, s, s);
+    rect(s*0.5, -s, s, s);
+    // Arrows recombining
+    stroke(255);
+    line(-s, 0, 0, 100);
+    line(s, 0, 0, 100);
+    fill(66, 165, 245, 150);
+    rect(-s/2, 100, s, s);
+    pop();
+}
+
+// S5: Zero symbol with rules
+function drawS5() {
+    push();
+    noFill();
+    stroke(255, 112, 67);
+    strokeWeight(10);
+    ellipse(0, 0, 150);
+    // Rules
+    fill(255);
+    textSize(18);
+    textAlign(CENTER);
+    let rules = ["n + 0 = n", "n - 0 = n", "0 x n = 0", "0 / 0 = 0", "0 / n = 0"];
+    for (let i = 0; i < rules.length; i++) {
+        let a = PI * i / 2.5 - HALF_PI;
+        text(rules[i], cos(a) * 150, sin(a) * 150);
+    }
+    pop();
+}
+
+// S6: Cyclic quadrilateral formula
+function drawS6() {
+    push();
+    noFill();
+    stroke(255, 112, 67);
+    ellipse(0, 0, 300);
+    // Quad
+    stroke(66, 165, 245);
+    beginShape();
+    vertex(cos(0.5) * 150, sin(0.5) * 150);
+    vertex(cos(2) * 150, sin(2) * 150);
+    vertex(cos(4) * 150, sin(4) * 150);
+    vertex(cos(5.5) * 150, sin(5.5) * 150);
+    endShape(CLOSE);
+    fill(255);
+    text("Area = √[(s-a)(s-b)(s-c)(s-d)]", 0, 0);
+    pop();
+}
+
+// S7: Pell equation solution point trail
+function drawS7() {
+    push();
+    stroke(255, 50);
+    for (let i = -200; i < 200; i += 40) {
+        line(i, -200, i, 200);
+        line(-200, i, 200, i);
+    }
+    // Spiral trail
+    noFill();
+    stroke(66, 165, 245);
+    beginShape();
+    for (let i = 0; i < 20; i++) {
+        let r = i * 10;
+        let a = i * 0.5 + time;
+        vertex(cos(a) * r, sin(a) * r);
+    }
+    endShape();
+    pop();
+}
+
+// S8: Observatory dome and star field
+function drawS8() {
+    push();
+    for (let i = 0; i < 50; i++) {
+        ellipse(random(-400, 400), random(-400, 400), random(1, 3));
+    }
+    fill(100);
+    arc(0, 200, 400, 400, PI, TWO_PI);
+    fill(255, 215, 0, 150);
+    ellipse(0, -100, 40); // Attractive force (Sun/Earth)
+    pop();
+}
+
+// S9: Timeline chain of zero
+function drawS9() {
+    push();
+    let names = ["BRAHMAGUPTA", "AL-KHWARIZMI", "FIBONACCI", "MODERN"];
+    for (let i = 0; i < names.length; i++) {
+        let x = -300 + i * 200;
+        fill(66, 165, 245, 100);
+        rect(x - 60, -20, 120, 40, 10);
+        fill(255);
+        textSize(12);
+        text(names[i], x, 5);
+        if (i < names.length - 1) {
+            stroke(255);
+            line(x + 60, 0, x + 140, 0);
         }
-        const totalXP = ggState.total_genius_xp + mission.genius_xp;
-        const totalSparks = ggState.total_sparks + mission.sparks_reward;
-        const prevLevel = getCurrentLevel(ggState.total_genius_xp, appState.tracks.gg.progression.genius_card_levels);
-        const newLevel = getCurrentLevel(totalXP, appState.tracks.gg.progression.genius_card_levels);
-        saveGGState({
-          total_sparks: totalSparks,
-          total_genius_xp: totalXP,
-          current_level: newLevel.level,
-          missions_completed: completed,
-          missions_unlocked: unlocked
-        });
-        if (newLevel.level > prevLevel.level) {
-          showToast(`Level Up! ${newLevel.name}`);
-        }
-      }
-      showGGTrack();
     }
+    // Glowing particle
+    let px = -300 + (time * 100) % 600;
+    fill(255, 112, 67);
+    ellipse(px, 0, 15);
+    pop();
+}
 
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 1800);
-    }
+</script>
 
-    loadTracks().catch((err) => {
-      console.error(err);
-      showToast('Failed to load Gujarat Ganitam data');
-    });
-  </script>
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
 
-    <!-- Sovereign Audit: Back to Map -->
-    <a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
-        
 </body>
 </html>

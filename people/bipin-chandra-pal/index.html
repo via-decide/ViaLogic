@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Iron Man of India (Sardar Vallabhbhai Patel)</title>
+    <title>ViaLogic | The Voice of Bengal (Bipin Chandra Pal)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080604; overflow: hidden;
+            margin: 0; padding: 0; background-color: #040808; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #009688; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #795548;
+            letter-spacing: 1px; border-left: 4px solid #009688;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 6, 4, 0.88); padding-right: 20px;
+            background: rgba(4, 8, 8, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #009688; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(121, 85, 72, 0.08);
-            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            background: rgba(0, 150, 136, 0.08);
+            border-top: 1px solid rgba(0, 150, 136, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #795548; font-weight: bold; }
+        .highlight { color: #009688; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF9800; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: BARDOLI SATYAGRAHA</div>
+    <div id="act-indicator">ACT I: THE SWADESHI AWAKENING</div>
     <div id="label">
-        <h1 id="title">The Sardar</h1>
-        <p id="subtitle">1875 — 1950 CE</p>
-        <p id="description">Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.</p>
+        <h1 id="title">The Prophet of Nationalism</h1>
+        <p id="subtitle">1858 — 1932 CE</p>
+        <p id="description">Born in Poil, Bengal. Bipin Chandra Pal was the third pillar of the Lal-Bal-Pal trio, a master orator and the architect of the Swadeshi movement's ideology.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">The title 'Sardar' (Leader) was given to him by the women of Bardoli.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was one of the loudest voices against the partition of Bengal in 1905.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "BARDOLI SATYAGRAHA";
-const ACT2_LABEL = "THE ARCHITECT OF UNITY";
-const ACCENT1 = "#795548";
-const ACCENT2 = "#FF9800";
+const ACT1_LABEL = "THE SWADESHI AWAKENING";
+const ACT2_LABEL = "THE NEW INDIA";
+const ACCENT1 = "#009688";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "The Sardar", sub: "1875 — 1950 CE", desc: "Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.", insight: "The title 'Sardar' (Leader) was given to him by the women of Bardoli.", label: "HISTORICAL INSIGHT" },
-    { title: "Kheda and Bardoli", sub: "Peasant Revolts", desc: "He led the peasants of Kheda and Bardoli against unfair British taxes. His organizational skills forced the government to yield to the farmers' demands.", insight: "He taught the farmers how to resist without a single drop of blood being shed.", label: "HISTORICAL INSIGHT" },
-    { title: "The Iron Will", sub: "Integrity over Interests", desc: "Known as the 'Iron Man of India' for his uncompromising stand on national interest. He was the first Deputy Prime Minister and Home Minister of India.", insight: "He once said: 'Every citizen of India must remember that he is an Indian and he has every right in this country but with certain duties.'", label: "HISTORICAL INSIGHT" },
-    { title: "Integration of States", sub: "The Map Maker", desc: "At independence, India was a jigsaw puzzle of 565 princely states. Patel unified them all into a single nation with firm diplomacy and a vision of unity.", insight: "Without his iron hand, India would have been fragmented into hundreds of tiny countries.", label: "HISTORICAL INSIGHT" },
-    { title: "Steel Frame of India", sub: "The IAS Foundation", desc: "He established the Indian Administrative Service (IAS), calling it the 'Steel Frame' that would hold the diverse country together through governance.", insight: "He believed that a strong administration was the backbone of a strong democracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Political Realism", sub: "Strategy of Unity", desc: "He used a mix of 'Sam, Dam, Dand, Bhed' to persuade princely rulers to join the Indian Union, prioritizing national survival above all.", insight: "His realism balanced Gandhi's idealism in the crucial years of nation-building.", label: "POLITICAL GENIUS" },
-    { title: "Operation Polo", sub: "Hyderabad Unification", desc: "When the Nizam of Hyderabad refused to join India, Patel authorized 'Operation Polo,' a swift military action that integrated the state in just five days.", insight: "This was the final piece of the Indian unification puzzle.", label: "POLITICAL GENIUS" },
-    { title: "The Shield of the Nation", sub: "Partition Crisis", desc: "During the chaos of Partition, he managed the massive refugee crisis and maintained law and order with an iron grip, preventing further collapse.", insight: "He was the silent anchor that kept the new ship of state from sinking.", label: "POLITICAL GENIUS" },
-    { title: "Legacy of the Statue", sub: "Statue of Unity", desc: "Today, he is honored by the tallest statue in the world, the Statue of Unity, symbolizing his role as the architect of modern India.", insight: "His legacy is the very map of India we see today.", label: "POLITICAL GENIUS" },
-    { title: "The Unsung Architect", sub: "Unity in Diversity", desc: "He proved that many can become one. His life is a testament to the power of organizational genius and patriotic duty.", insight: "The Iron Man's heart beat for the unity of his motherland. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "The Prophet of Nationalism", sub: "1858 — 1932 CE", desc: "Born in Poil, Bengal. Bipin Chandra Pal was the third pillar of the Lal-Bal-Pal trio, a master orator and the architect of the Swadeshi movement's ideology.", insight: "He was one of the loudest voices against the partition of Bengal in 1905.", label: "HISTORICAL INSIGHT" },
+    { title: "Swadeshi Spirit", sub: "Self-Reliance", desc: "He believed that political freedom was impossible without economic independence. He advocated for the boycott of British goods and the use of Indian 'Swadeshi' products.", insight: "He turned the boycott into a form of active resistance, not just an economic choice.", label: "HISTORICAL INSIGHT" },
+    { title: "New India Journal", sub: "1901 — 1907", desc: "Through his journal 'New India,' he spread the message of absolute Swaraj (Full Independence), long before it became the official goal of the Congress.", insight: "He used journalism to create a sense of national pride and common purpose.", label: "HISTORICAL INSIGHT" },
+    { title: "Vande Mataram Trials", sub: "1907", desc: "He refused to testify against Sri Aurobindo in the 'Vande Mataram' sedition case, leading to his own imprisonment for six months.", insight: "His refusal to cooperate with the British court made him a hero in the eyes of the youth.", label: "HISTORICAL INSIGHT" },
+    { title: "The Anti-Partition Strive", sub: "Bengal 1905", desc: "The British attempts to divide Bengal on communal lines were met with his fierce opposition. He organized the first mass-protests that eventually forced the British to annul the partition.", insight: "He promoted the 'Raksha Bandhan' as a symbol of Hindu-Muslim unity against partition.", label: "HISTORICAL INSIGHT" },
+    { title: "Intellectual Giant", sub: "Philosophy of Freedom", desc: "He was a philosopher of the 'New Spirit' in India, arguing that true freedom meant the total rejection of Western cultural and political dominance.", insight: "He was deeply influenced by the Brahmo Samaj and the ideals of universal humanity.", label: "POLITICAL GENIUS" },
+    { title: "The Orator's Impact", sub: "Master of Public Speaking", desc: "His speeches in Madras and Bengal were so powerful that the British authorities frequently banned him from certain districts to prevent a general uprising.", insight: "Lord Curzon famously called him one of the most dangerous men in India.", label: "POLITICAL GENIUS" },
+    { title: "Passive Resistance", sub: "Blueprint for Future", desc: "He was one of the first to articulate the strategy of 'Passive Resistance' — the non-violent withdrawal of cooperation from the government.", insight: "His ideas were later adopted and expanded into 'Satyagraha' by Mahatma Gandhi.", label: "POLITICAL GENIUS" },
+    { title: "Vision of New India", sub: "The Goals of HSRA", desc: "He envisioned an India that was not just free from the British, but a modern, industrial, and socially equitable nation.", insight: "He was a staunch advocate for widow remarriage and women's education.", label: "POLITICAL GENIUS" },
+    { title: "The Immortal Voice", sub: "Echo of Bengal", desc: "Bipin Chandra Pal's voice remains the echo of a Bengal that refused to be divided or defeated. He is the eternal philosopher of Swaraj. Welcome to ViaLogic.", insight: "The Prophet's vision for a New India is the inheritance of every free citizen. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 6, 4);
+    background(4, 8, 8);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 6, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(4, 8, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,109 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map fragments merging
+// S0: Bengal delta pulse
 function drawS0() {
     push();
+    stroke(0, 150, 136, 100);
+    noFill();
     for (let i = 0; i < 5; i++) {
-        let x = sin(time + i) * 50;
-        let y = cos(time + i) * 50;
-        fill(121, 85, 72, 100);
-        ellipse(x, y, 100);
+        beginShape();
+        for (let x = -200; x < 200; x += 10) vertex(x, i * 40 + sin(x * 0.05 + time) * 10 - 100);
+        endShape();
     }
     pop();
 }
 
-// S1: Peasant protest line
+// S1: Charkha spinning pulse
 function drawS1() {
     push();
-    stroke(255, 50);
-    for (let i = -5; i < 5; i++) {
-        line(i * 60, 100, i * 60 + sin(time) * 10, 0);
+    rotate(time);
+    stroke(255, 193, 7, 150);
+    noFill();
+    ellipse(0, 0, 150);
+    for (let i = 0; i < 8; i++) {
+        rotate(PI / 4);
+        line(0, 0, 75, 0);
     }
     pop();
 }
 
-// S2: Iron bars (Iron Man)
+// S2: Swadeshi bonfire glow
 function drawS2() {
     push();
-    stroke(100);
-    strokeWeight(15);
-    for (let i = -2; i <= 2; i++) {
-        line(i * 50, -200, i * 50, 200);
-    }
+    fill(255, 152, 0, 150 - (time * 50) % 150);
+    noStroke();
+    ellipse(0, 100, (time * 150) % 300);
     pop();
 }
 
-// S3: Jigsaw puzzle pieces merging
+// S3: Journal silhouette
 function drawS3() {
     push();
-    let gap = map(sin(time), -1, 1, 0, 50);
-    fill(121, 85, 72, 150);
-    rect(-100 - gap, -50, 100, 100);
-    rect(0 + gap, -50, 100, 100);
+    fill(255, 100);
+    rect(-60, -80, 120, 160);
+    fill(0);
+    textSize(10);
+    text("NEW INDIA", -30, -50);
     pop();
 }
 
-// S4: Steel Frame grid
+// S4: Partition map (Abstract split)
 function drawS4() {
     push();
-    stroke(200, 100);
-    for (let i = -5; i <= 5; i++) {
-        line(i * 40, -200, i * 40, 200);
-        line(-200, i * 40, 200, i * 40);
-    }
+    fill(255, 0, 0, 50);
+    rect(-150, -100, 140, 200, 10);
+    rect(10, -100, 140, 200, 10);
     pop();
 }
 
-// S5: Sam, Dam, Dand, Bhed (4 quadrant glow)
+// S5: Oratory ring pulse
 function drawS5() {
     push();
-    let col = [ACCENT1, ACCENT2, "#2196F3", "#F44336"];
-    for (let i = 0; i < 4; i++) {
-        fill(col[i] + '40');
-        let a = i * HALF_PI;
-        ellipse(cos(a) * 100, sin(a) * 100, 120);
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(0, 150, 136, 150 - i * 30);
+        ellipse(0, 0, i * 60 + (time * 80) % 60);
     }
     pop();
 }
 
-// S6: Integration gear rotation
+// S6: Unity thread (Rakhi)
 function drawS6() {
     push();
-    rotate(time);
+    stroke(255, 193, 7);
+    strokeWeight(2);
     noFill();
-    stroke(255, 152, 0);
-    strokeWeight(5);
-    ellipse(0, 0, 150);
-    for (let i = 0; i < 12; i++) {
-        let a = PI * i / 6;
-        line(cos(a) * 75, sin(a) * 75, cos(a) * 90, sin(a) * 90);
-    }
+    ellipse(0, 0, 100);
+    fill(255, 0, 0);
+    ellipse(0, 0, 20);
     pop();
 }
 
-// S7: National Map glow (Whole India)
+// S7: Intellectual spark glow
 function drawS7() {
     push();
-    fill(255, 152, 0, 50);
-    ellipse(0, 0, 300, 400); // Unified India
+    fill(255, 193, 7, 150 + sin(time * 10) * 105);
+    ellipse(0, 0, 40);
     pop();
 }
 
-// S8: Statue silhouette
+// S8: Passive Resistance pulse
 function drawS8() {
     push();
-    fill(121, 85, 72, 150);
-    rect(-30, -100, 60, 250);
+    noFill();
+    stroke(255, 50);
+    ellipse(0, 0, 150);
     pop();
 }
 
-// S9: Foundation stone glow
+// S9: Eternal star field
 function drawS9() {
     push();
-    fill(121, 85, 72);
-    rect(-100, 50, 200, 100);
+    for (let i = 0; i < 30; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
     pop();
 }
 

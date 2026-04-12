@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Iron Man of India (Sardar Vallabhbhai Patel)</title>
+    <title>ViaLogic | The Poet of the HRA (Ashfaqulla Khan)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080604; overflow: hidden;
+            margin: 0; padding: 0; background-color: #040808; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #009688; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #795548;
+            letter-spacing: 1px; border-left: 4px solid #009688;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 6, 4, 0.88); padding-right: 20px;
+            background: rgba(4, 8, 8, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #009688; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(121, 85, 72, 0.08);
-            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            background: rgba(0, 150, 136, 0.08);
+            border-top: 1px solid rgba(0, 150, 136, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #795548; font-weight: bold; }
+        .highlight { color: #009688; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF9800; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: BARDOLI SATYAGRAHA</div>
+    <div id="act-indicator">ACT I: KAKORI BRAVERY</div>
     <div id="label">
-        <h1 id="title">The Sardar</h1>
-        <p id="subtitle">1875 — 1950 CE</p>
-        <p id="description">Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.</p>
+        <h1 id="title">The Warrior Poet</h1>
+        <p id="subtitle">1900 — 1927 CE</p>
+        <p id="description">Born in Shahjahanpur (Uttar Pradesh). A beautiful soul who wrote poetry under the pen names 'Hasrat' and 'Warsi,' he became one of the key leaders of the Hindustan Republican Association.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">The title 'Sardar' (Leader) was given to him by the women of Bardoli.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He and Ram Prasad Bismil were inseparable friends, a symbol of communal harmony.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "BARDOLI SATYAGRAHA";
-const ACT2_LABEL = "THE ARCHITECT OF UNITY";
-const ACCENT1 = "#795548";
-const ACCENT2 = "#FF9800";
+const ACT1_LABEL = "KAKORI BRAVERY";
+const ACT2_LABEL = "THE LAST VERSES";
+const ACCENT1 = "#009688";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "The Sardar", sub: "1875 — 1950 CE", desc: "Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.", insight: "The title 'Sardar' (Leader) was given to him by the women of Bardoli.", label: "HISTORICAL INSIGHT" },
-    { title: "Kheda and Bardoli", sub: "Peasant Revolts", desc: "He led the peasants of Kheda and Bardoli against unfair British taxes. His organizational skills forced the government to yield to the farmers' demands.", insight: "He taught the farmers how to resist without a single drop of blood being shed.", label: "HISTORICAL INSIGHT" },
-    { title: "The Iron Will", sub: "Integrity over Interests", desc: "Known as the 'Iron Man of India' for his uncompromising stand on national interest. He was the first Deputy Prime Minister and Home Minister of India.", insight: "He once said: 'Every citizen of India must remember that he is an Indian and he has every right in this country but with certain duties.'", label: "HISTORICAL INSIGHT" },
-    { title: "Integration of States", sub: "The Map Maker", desc: "At independence, India was a jigsaw puzzle of 565 princely states. Patel unified them all into a single nation with firm diplomacy and a vision of unity.", insight: "Without his iron hand, India would have been fragmented into hundreds of tiny countries.", label: "HISTORICAL INSIGHT" },
-    { title: "Steel Frame of India", sub: "The IAS Foundation", desc: "He established the Indian Administrative Service (IAS), calling it the 'Steel Frame' that would hold the diverse country together through governance.", insight: "He believed that a strong administration was the backbone of a strong democracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Political Realism", sub: "Strategy of Unity", desc: "He used a mix of 'Sam, Dam, Dand, Bhed' to persuade princely rulers to join the Indian Union, prioritizing national survival above all.", insight: "His realism balanced Gandhi's idealism in the crucial years of nation-building.", label: "POLITICAL GENIUS" },
-    { title: "Operation Polo", sub: "Hyderabad Unification", desc: "When the Nizam of Hyderabad refused to join India, Patel authorized 'Operation Polo,' a swift military action that integrated the state in just five days.", insight: "This was the final piece of the Indian unification puzzle.", label: "POLITICAL GENIUS" },
-    { title: "The Shield of the Nation", sub: "Partition Crisis", desc: "During the chaos of Partition, he managed the massive refugee crisis and maintained law and order with an iron grip, preventing further collapse.", insight: "He was the silent anchor that kept the new ship of state from sinking.", label: "POLITICAL GENIUS" },
-    { title: "Legacy of the Statue", sub: "Statue of Unity", desc: "Today, he is honored by the tallest statue in the world, the Statue of Unity, symbolizing his role as the architect of modern India.", insight: "His legacy is the very map of India we see today.", label: "POLITICAL GENIUS" },
-    { title: "The Unsung Architect", sub: "Unity in Diversity", desc: "He proved that many can become one. His life is a testament to the power of organizational genius and patriotic duty.", insight: "The Iron Man's heart beat for the unity of his motherland. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "The Warrior Poet", sub: "1900 — 1927 CE", desc: "Born in Shahjahanpur (Uttar Pradesh). A beautiful soul who wrote poetry under the pen names 'Hasrat' and 'Warsi,' he became one of the key leaders of the Hindustan Republican Association.", insight: "He and Ram Prasad Bismil were inseparable friends, a symbol of communal harmony.", label: "HISTORICAL INSIGHT" },
+    { title: "Joining the HRA", sub: "Unity in Action", desc: "Deeply affected by the 1920 non-cooperation movement, he joined Bismil to form the HRA. Together, they sought to overthrow the Raj through armed revolution.", insight: "He was the first Muslim to be martyred for the cause of Indian independence in the 20th century.", label: "HISTORICAL INSIGHT" },
+    { title: "The Kakori Plan", sub: "August 9, 1925", desc: "He was a key strategist in the Kakori train robbery. While Bismil planned the logistics, Ashfaqulla was on the ground, ensuring the plan's success.", insight: "He famously used his physical strength to break open the train's heavy iron safe.", label: "HISTORICAL INSIGHT" },
+    { title: "The Great Evader", sub: "Exile and Capture", desc: "After the Kakori incident, he stayed underground for over a year, escaping to Nepal and then back to Delhi, planning to join his comrades in Russia.", insight: "He was betrayed by a close friend in Delhi, leading to his arrest.", label: "HISTORICAL INSIGHT" },
+    { title: "Faizabad Prison", sub: "December 19, 1927", desc: "He was sentenced to death and hanged in Faizabad jail. He kissed the gallows and said, 'My hands are not soiled with the murder of any man.'", insight: "His last words were 'Vande Mataram' and 'La Ilaha Illallah.'", label: "HISTORICAL INSIGHT" },
+    { title: "The Soul of Verse", sub: "Poetic Resistance", desc: "His poetry was filled with fire and a love for the motherland that transcended religious boundaries. He used the pen to ignite the youth.", insight: "He wrote: 'What if we are no more, our blood will speak on the day of justice.'", label: "REVOLUTIONARY GENIUS" },
+    { title: "Unity Architect", sub: "Bismil-Ashfaq", desc: "The bond between Bismil and Ashfaqulla remains the most powerful historical refutation of the 'Two-Nation' theory.", insight: "They shared a room, a cause, and eventually, the same date of martyrdom.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Strength of Resolve", sub: "Physical Courage", desc: "He was an athlete and an expert horse rider, using his physical prowess to train HRA members for the hardships of underground life.", insight: "He was the 'Strongman' of the HRA, both in body and spirit.", label: "REVOLUTIONARY GENIUS" },
+    { title: "The Secular Flame", sub: "Indian Above All", desc: "He rejected all communal calls to leave the revolutionary path, stating that his only religion was the liberation of India.", insight: "His life is a testament to the fact that patriotism has no religious color.", label: "REVOLUTIONARY GENIUS" },
+    { title: "Eternal Verses", sub: "Spirit of HRA", desc: "His sacrifice remains a beacon for a united, secular, and free India. He is the poet who died so that his nation could sing.", insight: "His lines still echo in every heart that beats for justice. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 6, 4);
+    background(4, 8, 8);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 6, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(4, 8, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,113 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map fragments merging
+// S0: Mosque silhouette with teal glow
 function drawS0() {
     push();
-    for (let i = 0; i < 5; i++) {
-        let x = sin(time + i) * 50;
-        let y = cos(time + i) * 50;
-        fill(121, 85, 72, 100);
-        ellipse(x, y, 100);
-    }
+    fill(0, 150, 136, 50);
+    noStroke();
+    rect(-100, 100, 200, 150);
+    ellipse(0, 100, 180, 120);
     pop();
 }
 
-// S1: Peasant protest line
+// S1: Urdu poetry script flow
 function drawS1() {
     push();
-    stroke(255, 50);
-    for (let i = -5; i < 5; i++) {
-        line(i * 60, 100, i * 60 + sin(time) * 10, 0);
-    }
+    fill(0, 150, 136, 150);
+    textSize(24);
+    textAlign(CENTER);
+    text("حسرت", sin(time) * 50, -50);
+    text("وارثی", -sin(time) * 50, 50);
     pop();
 }
 
-// S2: Iron bars (Iron Man)
+// S2: Kakori train safe breaking
 function drawS2() {
     push();
-    stroke(100);
-    strokeWeight(15);
-    for (let i = -2; i <= 2; i++) {
-        line(i * 50, -200, i * 50, 200);
-    }
+    stroke(200);
+    strokeWeight(10);
+    rect(-50, -50, 100, 100);
+    stroke(255, 0, 0);
+    line(-60, 0, 60, 0); // Crack
     pop();
 }
 
-// S3: Jigsaw puzzle pieces merging
+// S3: Horse riding trail
 function drawS3() {
     push();
-    let gap = map(sin(time), -1, 1, 0, 50);
-    fill(121, 85, 72, 150);
-    rect(-100 - gap, -50, 100, 100);
-    rect(0 + gap, -50, 100, 100);
+    noFill();
+    stroke(0, 150, 136, 100);
+    beginShape();
+    for (let i = 0; i < 20; i++) {
+        vertex(sin(i * 0.5 + time) * 100, i * 20 - 200);
+    }
+    endShape();
     pop();
 }
 
-// S4: Steel Frame grid
+// S4: HRA secret map
 function drawS4() {
     push();
-    stroke(200, 100);
-    for (let i = -5; i <= 5; i++) {
-        line(i * 40, -200, i * 40, 200);
-        line(-200, i * 40, 200, i * 40);
+    stroke(0, 150, 136, 80);
+    for (let i = 0; i < 5; i++) {
+        let x = random(-200, 200);
+        let y = random(-200, 200);
+        ellipse(x, y, 10);
+        line(0, 0, x, y);
     }
     pop();
 }
 
-// S5: Sam, Dam, Dand, Bhed (4 quadrant glow)
+// S5: Poetry scroll unfurling
 function drawS5() {
     push();
-    let col = [ACCENT1, ACCENT2, "#2196F3", "#F44336"];
-    for (let i = 0; i < 4; i++) {
-        fill(col[i] + '40');
-        let a = i * HALF_PI;
-        ellipse(cos(a) * 100, sin(a) * 100, 120);
-    }
+    rotateY(time);
+    fill(255, 100);
+    rect(-60, -100, 120, 250);
     pop();
 }
 
-// S6: Integration gear rotation
+// S6: Commmual harmony aura (Teal/Yellow merge)
 function drawS6() {
     push();
-    rotate(time);
+    fill(0, 150, 136, 50);
+    ellipse(-50, 0, 150);
+    fill(255, 193, 7, 50);
+    ellipse(50, 0, 150);
+    pop();
+}
+
+// S7: Prison cell inkwell
+function drawS7() {
+    push();
+    fill(0);
+    rect(-20, 100, 40, 40);
+    stroke(255);
+    line(0, 100, -20, 0);
+    pop();
+}
+
+// S8: Unity star
+function drawS8() {
+    push();
     noFill();
-    stroke(255, 152, 0);
-    strokeWeight(5);
-    ellipse(0, 0, 150);
-    for (let i = 0; i < 12; i++) {
-        let a = PI * i / 6;
-        line(cos(a) * 75, sin(a) * 75, cos(a) * 90, sin(a) * 90);
+    stroke(255, 193, 7);
+    strokeWeight(2);
+    for (let i = 0; i < 8; i++) {
+        rotate(PI / 4);
+        line(0, 0, 150, 0);
     }
     pop();
 }
 
-// S7: National Map glow (Whole India)
-function drawS7() {
-    push();
-    fill(255, 152, 0, 50);
-    ellipse(0, 0, 300, 400); // Unified India
-    pop();
-}
-
-// S8: Statue silhouette
-function drawS8() {
-    push();
-    fill(121, 85, 72, 150);
-    rect(-30, -100, 60, 250);
-    pop();
-}
-
-// S9: Foundation stone glow
+// S9: Eternal star field
 function drawS9() {
     push();
-    fill(121, 85, 72);
-    rect(-100, 50, 200, 100);
+    for (let i = 0; i < 30; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 3);
+    }
     pop();
 }
 

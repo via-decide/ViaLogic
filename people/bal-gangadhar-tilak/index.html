@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Iron Man of India (Sardar Vallabhbhai Patel)</title>
+    <title>ViaLogic | The Father of Indian Unrest (Bal Gangadhar Tilak)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #080604; overflow: hidden;
+            margin: 0; padding: 0; background-color: #0C0408; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #E91E63; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #795548;
+            letter-spacing: 1px; border-left: 4px solid #E91E63;
             padding-left: 20px; z-index: 10;
-            background: rgba(8, 6, 4, 0.88); padding-right: 20px;
+            background: rgba(12, 4, 8, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #E91E63; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(121, 85, 72, 0.08);
-            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            background: rgba(233, 30, 99, 0.08);
+            border-top: 1px solid rgba(233, 30, 99, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #795548; font-weight: bold; }
+        .highlight { color: #E91E63; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FF9800; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: BARDOLI SATYAGRAHA</div>
+    <div id="act-indicator">ACT I: SWARAJ IS MY BIRTHRIGHT</div>
     <div id="label">
-        <h1 id="title">The Sardar</h1>
-        <p id="subtitle">1875 — 1950 CE</p>
-        <p id="description">Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.</p>
+        <h1 id="title">Lokmanya Tilak</h1>
+        <p id="subtitle">1856 — 1920 CE</p>
+        <p id="description">Born in Ratnagiri, Maharashtra. Known as 'The Father of Indian Unrest,' he was the first leader to transform the independence struggle into a mass movement.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">The title 'Sardar' (Leader) was given to him by the women of Bardoli.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He gave the famous slogan: 'Swaraj is my birthright, and I shall have it!'</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "BARDOLI SATYAGRAHA";
-const ACT2_LABEL = "THE ARCHITECT OF UNITY";
-const ACCENT1 = "#795548";
-const ACCENT2 = "#FF9800";
+const ACT1_LABEL = "SWARAJ IS MY BIRTHRIGHT";
+const ACT2_LABEL = "THE KESARI THUNDER";
+const ACCENT1 = "#E91E63";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "The Sardar", sub: "1875 — 1950 CE", desc: "Born in Nadiaad (Gujarat). A successful lawyer who gave up his practice to fight for the rights of peasants. He became the commander of the non-violent struggle.", insight: "The title 'Sardar' (Leader) was given to him by the women of Bardoli.", label: "HISTORICAL INSIGHT" },
-    { title: "Kheda and Bardoli", sub: "Peasant Revolts", desc: "He led the peasants of Kheda and Bardoli against unfair British taxes. His organizational skills forced the government to yield to the farmers' demands.", insight: "He taught the farmers how to resist without a single drop of blood being shed.", label: "HISTORICAL INSIGHT" },
-    { title: "The Iron Will", sub: "Integrity over Interests", desc: "Known as the 'Iron Man of India' for his uncompromising stand on national interest. He was the first Deputy Prime Minister and Home Minister of India.", insight: "He once said: 'Every citizen of India must remember that he is an Indian and he has every right in this country but with certain duties.'", label: "HISTORICAL INSIGHT" },
-    { title: "Integration of States", sub: "The Map Maker", desc: "At independence, India was a jigsaw puzzle of 565 princely states. Patel unified them all into a single nation with firm diplomacy and a vision of unity.", insight: "Without his iron hand, India would have been fragmented into hundreds of tiny countries.", label: "HISTORICAL INSIGHT" },
-    { title: "Steel Frame of India", sub: "The IAS Foundation", desc: "He established the Indian Administrative Service (IAS), calling it the 'Steel Frame' that would hold the diverse country together through governance.", insight: "He believed that a strong administration was the backbone of a strong democracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Political Realism", sub: "Strategy of Unity", desc: "He used a mix of 'Sam, Dam, Dand, Bhed' to persuade princely rulers to join the Indian Union, prioritizing national survival above all.", insight: "His realism balanced Gandhi's idealism in the crucial years of nation-building.", label: "POLITICAL GENIUS" },
-    { title: "Operation Polo", sub: "Hyderabad Unification", desc: "When the Nizam of Hyderabad refused to join India, Patel authorized 'Operation Polo,' a swift military action that integrated the state in just five days.", insight: "This was the final piece of the Indian unification puzzle.", label: "POLITICAL GENIUS" },
-    { title: "The Shield of the Nation", sub: "Partition Crisis", desc: "During the chaos of Partition, he managed the massive refugee crisis and maintained law and order with an iron grip, preventing further collapse.", insight: "He was the silent anchor that kept the new ship of state from sinking.", label: "POLITICAL GENIUS" },
-    { title: "Legacy of the Statue", sub: "Statue of Unity", desc: "Today, he is honored by the tallest statue in the world, the Statue of Unity, symbolizing his role as the architect of modern India.", insight: "His legacy is the very map of India we see today.", label: "POLITICAL GENIUS" },
-    { title: "The Unsung Architect", sub: "Unity in Diversity", desc: "He proved that many can become one. His life is a testament to the power of organizational genius and patriotic duty.", insight: "The Iron Man's heart beat for the unity of his motherland. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "Lokmanya Tilak", sub: "1856 — 1920 CE", desc: "Born in Ratnagiri, Maharashtra. Known as 'The Father of Indian Unrest,' he was the first leader to transform the independence struggle into a mass movement.", insight: "He gave the famous slogan: 'Swaraj is my birthright, and I shall have it!'", label: "HISTORICAL INSIGHT" },
+    { title: "Kesari and Maratha", sub: "The Pen of Rebellion", desc: "Through his newspapers 'Kesari' (Marathi) and 'The Mahratta' (English), he fearlessly criticized British policies and called for self-rule.", insight: "He used the lion image of 'Kesari' to wake up the pride of Maharashtra.", label: "HISTORICAL INSIGHT" },
+    { title: "Cultural Revival", sub: "Ganesh and Shivaji Festivals", desc: "He transformed the domestic Ganesh festival and the Shivaji Jayanti into massive public events to foster national unity and circumvent British bans on political meetings.", insight: "His festivals were the first steps in creating a collective Indian identity.", label: "HISTORICAL INSIGHT" },
+    { title: "Mandalay Prison", sub: "1908 — 1914", desc: "Sentenced to six years of exile for 'sedition' in Mandalay, Burma. He spent his time writing the 'Gita Rahasya,' a commentary emphasizing the path of action (Karma Yoga).", insight: "Even in prison, his influence over the Indian masses never waned.", label: "HISTORICAL INSIGHT" },
+    { title: "Home Rule League", sub: "Self-Government Call", desc: "In 1916, he along with Annie Besant co-founded the Home Rule League to demand dominion status for India within the British Empire.", insight: "He proved that constitutional agitation could be just as powerful as direct action.", label: "HISTORICAL INSIGHT" },
+    { title: "Political Mobilizer", sub: "Beyond Petitions", desc: "He rejected the 'mendicancy' of the moderate Congress, insisting that freedom must be claimed as a right, not asked for as a favor.", insight: "He was the bridge between the old elite Congress and the new mass-based movement.", label: "POLITICAL GENIUS" },
+    { title: "New Education Society", sub: "Fergusson College", desc: "He co-founded the Fergusson College in Pune, believing that a nation's strength lies in providing high-quality, indigenous education to its youth.", insight: "He was an expert mathematician and Sanskrit scholar himself.", label: "POLITICAL GENIUS" },
+    { title: "Karma Yoga Approach", sub: "Philosophical Foundation", desc: "He re-interpreted the Bhagavad Gita for the modern age, teaching that the highest path to God is selfless service to the nation.", insight: "His philosophy gave a moral backbone to the entire independence movement.", label: "POLITICAL GENIUS" },
+    { title: "The Unrest Catalyst", sub: "Father of Mass Politics", desc: "By bringing religion and history onto the political platform, he created a framework that would later be utilized and refined by Mahatma Gandhi.", insight: "Valentine Chirol famously called him 'The Father of Indian Unrest.'", label: "POLITICAL GENIUS" },
+    { title: "Legend of Lokmanya", sub: "Accepted by the People", desc: "The title 'Lokmanya' means 'Accepted by the people' — and he remains one of the most beloved figures in the history of Indian resistance. Welcome to ViaLogic.", insight: "His thunderous call for Swaraj still resonates in every Indian heart. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(8, 6, 4);
+    background(12, 4, 8);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(8, 6, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(12, 4, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,108 +177,99 @@ function drawScreen(s) {
     }
 }
 
-// S0: India map fragments merging
+// S0: Pune landscape pulse
 function drawS0() {
     push();
-    for (let i = 0; i < 5; i++) {
-        let x = sin(time + i) * 50;
-        let y = cos(time + i) * 50;
-        fill(121, 85, 72, 100);
-        ellipse(x, y, 100);
-    }
+    fill(233, 30, 99, 40);
+    ellipse(0, 50, 400, 100);
     pop();
 }
 
-// S1: Peasant protest line
+// S1: Kesari Lion head (Abstract)
 function drawS1() {
     push();
-    stroke(255, 50);
-    for (let i = -5; i < 5; i++) {
-        line(i * 60, 100, i * 60 + sin(time) * 10, 0);
+    noFill();
+    stroke(255, 235, 59, 150);
+    strokeWeight(2);
+    ellipse(0, 0, 120);
+    for(let i=0; i<8; i++) {
+        let a = PI * i/4;
+        line(cos(a)*60, sin(a)*60, cos(a)*90, sin(a)*90);
     }
     pop();
 }
 
-// S2: Iron bars (Iron Man)
+// S2: Ganesha silhouette pulse
 function drawS2() {
     push();
-    stroke(100);
-    strokeWeight(15);
-    for (let i = -2; i <= 2; i++) {
-        line(i * 50, -200, i * 50, 200);
-    }
+    fill(233, 30, 99, 50);
+    ellipse(0, 0, 150, 200 + sin(time)*20);
     pop();
 }
 
-// S3: Jigsaw puzzle pieces merging
+// S3: Book (Gita Rahasya)
 function drawS3() {
     push();
-    let gap = map(sin(time), -1, 1, 0, 50);
-    fill(121, 85, 72, 150);
-    rect(-100 - gap, -50, 100, 100);
-    rect(0 + gap, -50, 100, 100);
+    fill(255, 100);
+    rect(-60, -80, 120, 160, 5);
     pop();
 }
 
-// S4: Steel Frame grid
+// S4: Prison bars grid
 function drawS4() {
     push();
-    stroke(200, 100);
-    for (let i = -5; i <= 5; i++) {
-        line(i * 40, -200, i * 40, 200);
-        line(-200, i * 40, 200, i * 40);
-    }
+    stroke(200, 80);
+    strokeWeight(10);
+    for(let i=-4; i<=4; i++) line(i * 50, -200, i * 50, 200);
     pop();
 }
 
-// S5: Sam, Dam, Dand, Bhed (4 quadrant glow)
+// S5: Oratory ring pulse
 function drawS5() {
     push();
-    let col = [ACCENT1, ACCENT2, "#2196F3", "#F44336"];
-    for (let i = 0; i < 4; i++) {
-        fill(col[i] + '40');
-        let a = i * HALF_PI;
-        ellipse(cos(a) * 100, sin(a) * 100, 120);
+    noFill();
+    for(let i=0; i<5; i++) {
+        stroke(233, 30, 99, 150 - i*30);
+        ellipse(0, 0, i*60 + (time*100)%60);
     }
     pop();
 }
 
-// S6: Integration gear rotation
+// S6: Education building silhouette
 function drawS6() {
     push();
-    rotate(time);
-    noFill();
-    stroke(255, 152, 0);
-    strokeWeight(5);
-    ellipse(0, 0, 150);
-    for (let i = 0; i < 12; i++) {
-        let a = PI * i / 6;
-        line(cos(a) * 75, sin(a) * 75, cos(a) * 90, sin(a) * 90);
-    }
+    fill(255, 235, 59, 50);
+    rect(-150, 100, 300, 100);
+    for(let i=-2; i<=2; i++) rect(i*60, 0, 40, 100);
     pop();
 }
 
-// S7: National Map glow (Whole India)
+// S7: "SWARAJ" character glow
 function drawS7() {
     push();
-    fill(255, 152, 0, 50);
-    ellipse(0, 0, 300, 400); // Unified India
+    fill(255, 235, 59, 150 + sin(time*5)*50);
+    textSize(50);
+    textAlign(CENTER);
+    text("SWARAJ", 0, 0);
     pop();
 }
 
-// S8: Statue silhouette
+// S8: Pen writing trail
 function drawS8() {
     push();
-    fill(121, 85, 72, 150);
-    rect(-30, -100, 60, 250);
+    stroke(255);
+    let x = -200 + (time*150)%400;
+    line(x, 0, x-50, sin(time*10)*20);
     pop();
 }
 
-// S9: Foundation stone glow
+// S9: Eternal star field
 function drawS9() {
     push();
-    fill(121, 85, 72);
-    rect(-100, 50, 200, 100);
+    for(let i=0; i<30; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
     pop();
 }
 

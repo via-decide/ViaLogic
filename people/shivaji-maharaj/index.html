@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaMath | The Poet of the Infinite (Bhaskaracharya II)</title>
+    <title>ViaLogic | The Father of Indian Navy (Chhatrapati Shivaji Maharaj)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #0A0505; overflow: hidden;
+            margin: 0; padding: 0; background-color: #0C0804; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
@@ -22,7 +22,7 @@
             position: absolute; top: 60px; left: 30px;
             letter-spacing: 1px; border-left: 4px solid #FF9800;
             padding-left: 20px; z-index: 10;
-            background: rgba(10, 5, 5, 0.88); padding-right: 20px;
+            background: rgba(12, 8, 4, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
@@ -46,7 +46,7 @@
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #E91E63; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FF5722; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -59,17 +59,17 @@
 </head>
 <body onclick="nextScreen()">
     <div id="nav-hint">
-        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIAMATH</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: LILAVATI & BIJAGANITA</div>
+    <div id="act-indicator">ACT I: THE SWARAJYA DREAM</div>
     <div id="label">
-        <h1 id="title">The Prince of Analysts</h1>
-        <p id="subtitle">1114 — 1185 CE</p>
-        <p id="description">Born in Bijapur, Karnataka. Head of the Ujjain observatory. He was the standard-bearer of Indian mathematics for the next 700 years.</p>
+        <h1 id="title">The Born King</h1>
+        <p id="subtitle">1630 — 1680 CE</p>
+        <p id="description">Born in Shivneri Fort to Shahaji and Jijabai. In an era of Mughal and Adilshahi dominance, he dared to dream of 'Hindavi Swarajya' — self-rule for the people.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was the first to realize that any finite number divided by zero is infinity.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He took the oath of Swarajya at the age of 15 at Raireshwar temple.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "LILAVATI & BIJAGANITA";
-const ACT2_LABEL = "CALCULUS BEFORE NEWTON";
+const ACT1_LABEL = "THE SWARAJYA DREAM";
+const ACT2_LABEL = "THE MOUNTAIN RAT";
 const ACCENT1 = "#FF9800";
-const ACCENT2 = "#E91E63";
+const ACCENT2 = "#FF5722";
 
 const content = [
-    { title: "The Prince of Analysts", sub: "1114 — 1185 CE", desc: "Born in Bijapur, Karnataka. Head of the Ujjain observatory. He was the standard-bearer of Indian mathematics for the next 700 years.", insight: "He unified arithmetic, algebra, and astronomy into a single grand system.", label: "HISTORICAL INSIGHT" },
-    { title: "Lilavati", sub: "Mathematical Poetry", desc: "Named after his daughter, the Lilavati is a book on arithmetic written in verse. It presents problems through charming stories and nature puzzles.", insight: "It was used as a primary textbook from India to the Middle East for centuries.", label: "HISTORICAL INSIGHT" },
-    { title: "Bijaganita", sub: "The Seed of Algebra", desc: "His second book, Bijaganita ('Seed Counting'), provides methods for solving indeterminate quadratic and higher-degree equations.", insight: "He was the first to realize that a positive number has two square roots (positive and negative).", label: "HISTORICAL INSIGHT" },
-    { title: "The Siddhanta Shiromani", sub: "Crown of Treatises", desc: "The definitive encyclopedia of medieval Indian science. It covered everything from planetary motion to the physics of time and gravity.", insight: "He predicted the motion of the planets with modern accuracy.", label: "HISTORICAL INSIGHT" },
-    { title: "Division by Zero", sub: "Khahara - The Infinite", desc: "He stated: 'A quantity divided by zero becomes a fraction of which the denominator is zero. This fraction is termed an infinite quantity.'", insight: "He called it 'Khahara' — a quantity that remains unchanged no matter what is added or subtracted.", label: "HISTORICAL INSIGHT" },
-    { title: "Instantaneous Velocity", sub: "Tatkalika Gati", desc: "500 years before Newton, Bhaskaracharya defined the 'instantaneous' motion of a planet — the core concept of the derivative.", insight: "He calculated the change in sine at the exact instant of motion.", label: "MATHEMATICAL GENIUS" },
-    { title: "The Chakravata Method", sub: "Cyclic Algorithms", desc: "He perfected the 'Chakravata' (cyclic) method for solving Pell's equation — arguably the most challenging problem in early algebra.", insight: "He called mathematicians who couldn't solve these 'mere boys.'", label: "MATHEMATICAL GENIUS" },
-    { title: "Sphere and Surface", sub: "Differential Calculus", desc: "He calculated the surface area and volume of a sphere by integrating small, infinitesimal strips — the first use of integration.", insight: "He proved that the surface area of a sphere is 4πr² by calculus-like methods.", label: "MATHEMATICAL GENIUS" },
-    { title: "Attraction of the Earth", sub: "Pre-Newtonian Gravity", desc: "He wrote: 'The Earth has an attractive power (akuustishakti). Objects fall to the Earth by this power... for the Earth is heavier than the air.'", insight: "He theorized that planets orbit due to a balance of these attractive forces.", label: "MATHEMATICAL GENIUS" },
-    { title: "The Poet of the Infinite", sub: "Last of the Classics", desc: "He was the last great classicist of the Ujjain school. His legacy is the foundation of modern spherical trigonometry.", insight: "Infinity is his signature on the universe. Welcome to ViaMath.", label: "REFLECTION" },
+    { title: "The Born King", sub: "1630 — 1680 CE", desc: "Born in Shivneri Fort to Shahaji and Jijabai. In an era of Mughal and Adilshahi dominance, he dared to dream of 'Hindavi Swarajya' — self-rule for the people.", insight: "He took the oath of Swarajya at the age of 15 at Raireshwar temple.", label: "HISTORICAL INSIGHT" },
+    { title: "Torana: The First Victory", sub: "1646 CE", desc: "At just 16, he captured Torana Fort. This was the opening move of a revolution that would eventually challenge the mighty Mughal Empire.", insight: "He renamed the fort 'Prachandagad' due to its massive size.", label: "HISTORICAL INSIGHT" },
+    { title: "The Rajmudra", sub: "The Royal Seal", desc: "He created a unique Sanskrit seal. It stated: 'This seal of Shivaji, son of Shahaji, will grow like the moon of the first day... and rule the universe for the welfare of all.'", insight: "Unlike other kings of his time, his seal was in Sanskrit, not Persian.", label: "HISTORICAL INSIGHT" },
+    { title: "Escape from Agra", sub: "The Fruit Basket", desc: "Imprisoned by Aurangzeb in Agra, he executed a legendary escape by hiding in large baskets of sweets meant for the poor.", insight: "This daring feat made him a folk hero across the entire Indian subcontinent.", label: "HISTORICAL INSIGHT" },
+    { title: "Coronation at Raigad", sub: "1674 CE", desc: "He was crowned 'Chhatrapati' at Raigad Fort, establishing a formal sovereign state that defied the existing imperial order.", insight: "He established a council of eight ministers known as the Ashta Pradhan.", label: "HISTORICAL INSIGHT" },
+    { title: "Ganimi Kava", sub: "Guerilla Warfare", desc: "He pioneered 'Ganimi Kava' — using the rugged Sahyadri terrain for hit-and-run tactics against massive, slow-moving imperial armies.", insight: "Aurangzeb famously called him the 'Mountain Rat' due to his evasive tactics.", label: "MILITARY GENIUS" },
+    { title: "Father of Indian Navy", sub: "The Sea Forts", desc: "He realized sooner than anyone that 'He who rules the sea, rules the land.' He built a powerful independent navy and sea forts like Sindhudurg.", insight: "He was the first Indian ruler of his era to build a native coastal defense system.", label: "MILITARY GENIUS" },
+    { title: "Pratapgad Strategy", sub: "The Tiger Claws", desc: "Outnumbered by Afzal Khan's army, he used a diplomatic meeting to lure the general into a trap, killing him with the hidden 'Wagh Nakh' (tiger claws).", insight: "This victory at the foothills of Pratapgad changed the course of Maratha history.", label: "MILITARY GENIUS" },
+    { title: "The Blueprint of Defense", sub: "Architect of Forts", desc: "He built or repaired over 300 forts. Each fort was a self-sustaining ecosystem with its own water supply, granaries, and strategic escape routes.", insight: "Raigad was considered the 'Gibraltar of the East' by European travelers.", label: "MILITARY GENIUS" },
+    { title: "The Sovereign Legacy", sub: "Eternal Inspiration", desc: "He left behind a code of conduct for administration and a spirit of resistance that fueled the Indian freedom struggle for centuries.", insight: "His naval and guerilla strategies are still studied in modern military academies. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,7 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(10, 5, 5);
+    background(12, 8, 4);
     stroke(255, 5); strokeWeight(1);
     for (let i = 0; i < width; i += 80) line(i, 0, i, height);
     for (let j = 0; j < height; j += 80) line(0, j, width, j);
@@ -163,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(10, 5, 5, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(12, 8, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -177,143 +177,127 @@ function drawScreen(s) {
     }
 }
 
-// S0: Golden crown geometry rotating
+// S0: Sahyadri mountains silhouette with orange glow
 function drawS0() {
     push();
-    rotateY(time);
-    noFill();
-    stroke(255, 152, 0);
-    strokeWeight(2);
-    for (let i = 0; i < 8; i++) {
-        let a = TWO_PI * i / 8;
-        line(cos(a) * 50, sin(a) * 50, -100, cos(a) * 100, sin(a) * 100, 0);
-        line(cos(a) * 100, sin(a) * 100, 0, cos(a) * 50, sin(a) * 50, 10);
+    fill(255, 152, 0, 50);
+    noStroke();
+    beginShape();
+    vertex(-400, 200);
+    for (let x = -400; x <= 400; x += 10) {
+        let y = map(noise(x * 0.01), 0, 1, 0, 150);
+        vertex(x, y);
     }
+    vertex(400, 200);
+    endShape(CLOSE);
     pop();
 }
 
-// S1: Flowing Lilavati verse characters
+// S1: Waving Bhagwa flag
 function drawS1() {
     push();
-    fill(255, 152, 0, 150);
-    textSize(24);
-    for (let i = 0; i < 5; i++) {
-        text("लीलावती", -100, -100 + i * 50 + sin(time + i) * 20);
+    rotate(sin(time) * 0.05);
+    stroke(255, 87, 34);
+    strokeWeight(10);
+    line(-50, -100, -50, 100);
+    fill(255, 152, 0);
+    noStroke();
+    beginShape();
+    for (let y = -100; y < 0; y++) {
+        let x = sin(y * 0.05 + time * 2) * 20;
+        vertex(x - 50, y);
     }
+    vertex(100, -50);
+    endShape(CLOSE);
     pop();
 }
 
-// S2: Falling star/object geometry
+// S2: Rajmudra seal glow
 function drawS2() {
     push();
-    fill(255, 152, 0, 200);
-    let y = -200 + (time * 100) % 400;
-    ellipse(0, y, 20);
-    // Gravity field lines
-    stroke(255, 50);
-    for (let i = 0; i < 10; i++) {
-        line(-width/2, 200 - i * 5, width/2, 200 - i * 5);
-    }
+    noFill();
+    stroke(255, 152, 0, 150);
+    strokeWeight(2);
+    ellipse(0, 0, 150, 200);
+    fill(255, 152, 0, 20);
+    ellipse(0, 0, 140, 190);
     pop();
 }
 
-// S3: Seed (algebra) growth animation
+// S3: Escape from Agra (moving basket)
 function drawS3() {
     push();
-    noFill();
-    stroke(255, 152, 0);
-    beginShape();
-    for (let i = 0; i < 50; i++) {
-        let r = i * 2;
-        let a = i * 0.2 + time;
-        vertex(cos(a) * r, sin(a) * r);
-    }
-    endShape();
+    let x = -200 + (time * 100) % 400;
+    fill(255, 152, 0);
+    rect(x, 100, 80, 50, 10);
     pop();
 }
 
-// S4: Infinite pool - division by zero
+// S4: Coronation throne silhouette
 function drawS4() {
     push();
-    noFill();
-    for (let i = 0; i < 5; i++) {
-        stroke(255, 152, 0, 100 - i * 20);
-        ellipse(0, 0, 50 + i * 50 + (time * 100) % 50);
-    }
-    fill(255);
-    text("n / 0 = ∞", 0, 0);
+    fill(255, 215, 0, 100);
+    rect(-100, 50, 200, 100);
     pop();
 }
 
-// S5: Instantaneous velocity delta visualize
+// S5: Guerilla warfare trails (Ganimi Kava)
 function drawS5() {
     push();
     noFill();
-    stroke(233, 30, 99);
+    stroke(255, 87, 34);
+    strokeWeight(2);
     beginShape();
-    for (let x = -200; x < 200; x++) {
-        vertex(x, sin(x * 0.05 + time) * 50);
+    for (let i = 0; i < 20; i++) {
+        vertex(sin(i * 0.5 + time) * 100, i * 15 - 150);
     }
     endShape();
-    // Tangent point
-    let tx = 0, ty = sin(time) * 50;
-    fill(255);
-    ellipse(tx, ty, 10);
-    stroke(255, 100);
-    line(tx - 50, ty - 25, tx + 50, ty + 25);
     pop();
 }
 
-// S6: Chakravata spiral
+// S6: Naval ships sailing at sea
 function drawS6() {
     push();
-    noFill();
-    stroke(233, 30, 99);
-    for (let i = 0; i < 6; i++) {
-        rotate(time * 0.1);
-        ellipse(i * 30, 0, 40);
+    noStroke();
+    fill(0, 105, 92, 100);
+    rect(-400, 100, 800, 100); // Sea
+    fill(255, 87, 34);
+    for (let i = 0; i < 3; i++) {
+        let x = -200 + i * 150 + sin(time) * 20;
+        triangle(x, 80, x - 20, 110, x + 20, 110);
     }
     pop();
 }
 
-// S7: Surface of sphere integration strips
+// S7: Wagh Nakh (Tiger Claws) animation
 function drawS7() {
     push();
-    noFill();
-    stroke(233, 30, 99, 100);
-    for (let i = -10; i <= 10; i++) {
-        let r = sqrt(1 - (i/10)*(i/10)) * 150;
-        ellipse(0, i * 15, r * 2, r * 0.4);
+    stroke(255, 255, 255, 200);
+    strokeWeight(4);
+    for (let i = 0; i < 4; i++) {
+        arc(-30 + i * 20, 0, 20, 60, PI, TWO_PI);
     }
     pop();
 }
 
-// S8: Planetary orbit ellipse
+// S8: Fort Raigad top-down blueprint
 function drawS8() {
     push();
+    stroke(255, 152, 0, 100);
     noFill();
-    stroke(233, 30, 99);
-    ellipse(0, 0, 300, 150);
-    fill(255, 200, 0);
-    ellipse(-50, 0, 30); // Focus
-    let a = time * 0.5;
-    fill(233, 30, 99);
-    ellipse(cos(a) * 150, sin(a) * 75, 10);
+    rect(-150, -100, 300, 200, 20);
+    ellipse(0, 0, 50);
     pop();
 }
 
-// S9: Infinity symbol glow
+// S9: Eternal flame glow
 function drawS9() {
     push();
-    noFill();
-    stroke(233, 30, 99);
-    strokeWeight(5);
-    beginShape();
-    for (let a = 0; a < TWO_PI; a += 0.1) {
-        let r = 100 * cos(a) / (1 + sin(a) * sin(a));
-        vertex(r * cos(a), r * sin(a));
+    for (let i = 0; i < 10; i++) {
+        fill(255, 152, 0, 150 - i * 15);
+        noStroke();
+        ellipse(0, 100 - i * 15, 20 + noise(time + i) * 60);
     }
-    endShape(CLOSE);
     pop();
 }
 
