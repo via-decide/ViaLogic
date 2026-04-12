@@ -3,159 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Marcus Aurelius</title>
+    <title>ViaLogic | The Philosopher King (Marcus Aurelius)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="../../daxini-renderer.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #050a14; overflow: hidden;
-            color: white; font-family: 'JetBrains Mono', monospace;
+            margin: 0; padding: 0; background-color: #080402; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
-        
-        #daxini-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-            pointer-events: none;
-        }
-
-        #daxini-container * { pointer-events: auto; }
-
-        #nav-hint {
-            position: absolute; top: 30px; right: 30px;
-            color: rgba(0, 229, 255, 0.4); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            z-index: 1000; text-align: right;
-        }
-        .vialogic-logo { color: #00e5ff; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
-
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #ff671f; font-size: 14px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; z-index: 1000;
+            color: #795548; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #795548;
+            padding-left: 20px; z-index: 10;
+            background: rgba(8, 4, 2, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #795548; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(121, 85, 72, 0.08);
+            border-top: 1px solid rgba(121, 85, 72, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #795548; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
-            #act-indicator { top: 20px; left: 20px; font-size: 11px; }
-            #nav-hint { top: 20px; right: 20px; font-size: 10px; }
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
         }
     </style>
 </head>
 <body onclick="nextScreen()">
-
     <div id="nav-hint">
-        <a href="../../index.html" style="text-decoration:none"><div class="vialogic-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
+    <div id="act-indicator">ACT I: MEDITATIONS IN THE TENT</div>
+    <div id="label">
+        <h1 id="title">Marcus Aurelius</h1>
+        <p id="subtitle">121 — 180 CE</p>
+        <p id="description">The last of the 'Five Good Emperors' of Rome. He ruled the world's most powerful empire while maintaining a secret journal of stoic wisdom, written in military tents during his campaigns.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">His 'Meditations' was never intended for publication; it was his private diary for self-improvement.</span>
+    </div>
 
-    <div id="act-indicator">ACT I: INITIALIZATION</div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div id="daxini-container"></div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "MEDITATIONS IN THE TENT";
+const ACT2_LABEL = "STOIC FORTRESS";
+const ACCENT1 = "#795548";
+const ACCENT2 = "#FFC107";
 
-    <script>
-    let time = 0;
-    let state = 0;
-    let isTransitioning = false;
-    let fadeAlpha = 0;
-    let fadeDirection = 0;
-    let targetState = 0;
-    const FADE_SPEED = 14;
-    const TOTAL_SCREENS = 10;
+const content = [
+    { title: "Marcus Aurelius", sub: "121 — 180 CE", desc: "The last of the 'Five Good Emperors' of Rome. He ruled the world's most powerful empire while maintaining a secret journal of stoic wisdom, written in military tents during his campaigns.", insight: "His 'Meditations' was never intended for publication; it was his private diary for self-improvement.", label: "HISTORICAL INSIGHT" },
+    { title: "The Imperial Burden", sub: "Rome 161 — 180 CE", desc: "His reign was marked by constant warfare, the Antonine Plague, and the threat of Germanic invasions. He stood as the calm center of a storm-tossed empire.", insight: "He spent most of his final decade on the northern frontiers of the Danube.", label: "HISTORICAL INSIGHT" },
+    { title: "The Inner Citadel", sub: "Stoic Fortress", desc: "He taught that while we cannot control external events, we can control how we respond to them. Our mind is an unassailable fortress if we choose it to be.", insight: "He believed that the soul is dyed by the color of its thoughts.", label: "HISTORICAL INSIGHT" },
+    { title: "The Meditations", sub: "Private Wisdom", desc: "Written in Greek, his journal is a collection of reminders to himself to stay humble, just, and disciplined in the face of absolute power and constant betrayal.", insight: "He never once refers to himself as 'Emperor' in the entire text.", label: "HISTORICAL INSIGHT" },
+    { title: "Memento Mori", sub: "The Reality of Death", desc: "He frequently reminded himself of his own mortality, believing that the knowledge of death should motivate us to live every moment with virtue.", insight: "Death is a release from the impressions of the senses and the puppet-strings of desire.", label: "HISTORICAL INSIGHT" },
+    { title: "The View from Above", sub: "Cosmic Perspective", desc: "He practiced a 'view from above,' imagining himself looking down at the earth from the stars to realize how small and fleeting human concerns are.", insight: "He saw the entire universe as a single, living organism, governed by Logos.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Amor Fati", sub: "Love of Fate", desc: "A core stoic principle he lived by: to not just accept what happens, but to embrace it as necessary for the harmony of the whole.", insight: "Accept whatever comes to you woven in the pattern of your destiny.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Obstacle is the Way", sub: "Turning Trials into Triumph", desc: "He believed that the mind can turn any hurdle into an opportunity for growth. 'The impediment to action advances action. What stands in the way becomes the way.'", insight: "This quote has become a foundation for modern resilience training.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "The Citizen of the World", sub: "Cosmopolitanism", desc: "He viewed himself first as a citizen of the world (Cosmopolis) and only then as Emperor of Rome, believing that all humans share a spark of the divine reason.", insight: "What is bad for the hive is bad for the bee.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "The Eternal Calm", sub: "Legacy of the King", desc: "Marcus Aurelius' life proves that power does not have to corrupt. He was the king Plato dreamed of, and his voice remains a guide for those seeking peace in chaos. Welcome to ViaLogic.", insight: "Very little is needed to make a happy life; it is all within yourself. Welcome to ViaLogic.", label: "REFLECTION" },
+];
 
-    /* ── Content Data (Injected by VisualForge) ────────────────────── */
-    const PERSONA = {"id":"marcus-aurelius","name":"Marcus Aurelius","title":"Philosophy | Classical","summary":"Sovereign UI profile for Marcus Aurelius. Part of ViaLogic's historical population.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = undefined;
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    /* ── Setup ───────────────────────────────────────────────────── */
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        updateUI();
+function draw() {
+    background(8, 4, 2);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function nextScreen() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        fadeDirection = 1;
-        targetState = (state + 1) % TOTAL_SCREENS;
-        
-        document.getElementById('daxini-container').style.opacity = 0;
-        document.getElementById('act-indicator').style.opacity = 0;
-        document.getElementById('nav-hint').style.opacity = 0;
-    }
-
-    function updateUI() {
-        const scenario = SCENARIOS[state];
-        const container = document.getElementById('daxini-container');
-        container.innerHTML = '';
-        
-        // Render Using DaxiniRenderer
-        const card = window.DaxiniRenderer.renderCard(PERSONA, scenario.desc);
-        
-        // Customize card for current screen
-        const nameEl = card.querySelector('.daxini-card__name');
-        const titleEl = card.querySelector('.daxini-card__title');
-        const outputEl = card.querySelector('[data-logic-output]');
-        
-        nameEl.innerText = scenario.title;
-        titleEl.innerText = scenario.sub;
-        outputEl.innerText = scenario.insight;
-        
-        container.appendChild(card);
-        
-        // Update Act Indicator
-        const actEl = document.getElementById('act-indicator');
-        actEl.innerText = scenario.act;
-        actEl.style.color = scenario.color || '#ff671f';
-        
-        // Add Logic Trigger
-        const btn = card.querySelector('[data-run-logic]');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerLogic();
-        });
-    }
-
-    function triggerLogic() {
-        const output = document.querySelector('[data-logic-output]');
-        output.innerText = "Executing quantum logic...\\n" + SCENARIOS[state].logic_result;
-        // Visual trigger for p5.js
-        window.logicTriggered = true;
-        setTimeout(() => { window.logicTriggered = false; }, 1000);
-    }
-
-    /* ── Draw loop ───────────────────────────────────────────────── */
-    function draw() {
-        background(5, 10, 20);
-        
-        // Injected p5.js Logic (VisualForge)
-        undefined
-
-        // Fade overlay
-        if (isTransitioning) {
-            fadeAlpha += FADE_SPEED * fadeDirection;
-            if (fadeDirection === 1 && fadeAlpha >= 255) {
-                fadeAlpha = 255; fadeDirection = -1;
-                state = targetState; time = 0;
-                updateUI();
-                document.getElementById('daxini-container').style.opacity = 1;
-                document.getElementById('act-indicator').style.opacity = 1;
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
                 document.getElementById('nav-hint').style.opacity = 1;
-            } else if (fadeDirection === -1 && fadeAlpha <= 0) {
-                fadeAlpha = 0; isTransitioning = false;
-            }
-            push(); fill(5, 10, 20, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
+        push(); fill(8, 4, 2, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function getScale() { return min(1, width / 800); }
-    </script>
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Roman eagle silhouette
+function drawS0() {
+    push();
+    fill(121, 85, 72, 80);
+    // Eagle wings
+    beginShape();
+    vertex(-100, 0); vertex(-150, -50); vertex(-50, -50); vertex(0, 0);
+    vertex(50, -50); vertex(150, -50); vertex(100, 0);
+    endShape(CLOSE);
+    pop();
+}
+
+// S1: Military camp fireplace glow
+function drawS1() {
+    push();
+    fill(255, 87, 34, 150 + sin(time * 5) * 50);
+    noStroke();
+    ellipse(0, 50, 100);
+    pop();
+}
+
+// S2: Inner Citadel wall abstract
+function drawS2() {
+    push();
+    noFill(); stroke(121, 85, 72, 150); strokeWeight(5);
+    rect(-100, -100, 200, 200);
+    ellipse(0, 0, 80); // Core
+    pop();
+}
+
+// S3: Scribe hand writing paper
+function drawS3() {
+    push();
+    fill(255, 100);
+    rect(-60, -80, 120, 160);
+    stroke(0); line(-40, -50, 40, -50); line(-40, -30, 20, -30);
+    pop();
+}
+
+// S4: Skull silhouette (Memento Mori)
+function drawS4() {
+    push();
+    fill(200, 50);
+    ellipse(0, -20, 80, 100); // head
+    rect(-30, 40, 60, 30); // jaw
+    pop();
+}
+
+// S5: View from Above (Sphere glow)
+function drawS5() {
+    push();
+    noFill(); stroke(121, 85, 72, 100);
+    ellipse(0, 0, 300, 300);
+    fill(255, 235, 59, 10); ellipse(0, 0, 40); // Earth
+    pop();
+}
+
+// S6: Amor Fati (Patterns)
+function drawS6() {
+    push();
+    noFill(); stroke(255, 235, 59, 100);
+    for (let i = 0; i < 5; i++) {
+        ellipse(0, 0, i * 40, 100 + sin(time + i) * 50);
+    }
+    pop();
+}
+
+// S7: Obstacle is the Way (Blocks)
+function drawS7() {
+    push();
+    fill(121, 85, 72);
+    rect(-150, 0, 300, 20); // obstacle
+    let x = map(sin(time), -1, 1, -200, 200);
+    fill(255); ellipse(x, -30, 30); // action
+    pop();
+}
+
+// S8: Beehive / Hive (Abstract)
+function drawS8() {
+    push();
+    noFill(); stroke(255, 193, 7, 100);
+    for (let i = 0; i < 6; i++) {
+        beginShape();
+        for (let j = 0; j < 6; j++) {
+            let a = PI * j / 3;
+            vertex(cos(a) * 40 + i * 20, sin(a) * 40);
+        }
+        endShape(CLOSE);
+    }
+    pop();
+}
+
+// S9: Eternal star field
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>

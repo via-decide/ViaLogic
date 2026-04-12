@@ -3,174 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | Aristotle</title>
+    <title>ViaLogic | The Master of Those Who Know (Aristotle)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="../../daxini-renderer.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #050a14; overflow: hidden;
-            color: white; font-family: 'JetBrains Mono', monospace;
+            margin: 0; padding: 0; background-color: #040804; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
-        
-        #daxini-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-            pointer-events: none;
-        }
-
-        #daxini-container * { pointer-events: auto; }
-
-        #nav-hint {
-            position: absolute; top: 30px; right: 30px;
-            color: rgba(0, 229, 255, 0.4); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            z-index: 1000; text-align: right;
-        }
-        .vialogic-logo { color: #00e5ff; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
-
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #ff671f; font-size: 14px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; z-index: 1000;
+            color: #4CAF50; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #4CAF50;
+            padding-left: 20px; z-index: 10;
+            background: rgba(4, 8, 4, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #4CAF50; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(76, 175, 80, 0.08);
+            border-top: 1px solid rgba(76, 175, 80, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #4CAF50; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
-            #act-indicator { top: 20px; left: 20px; font-size: 11px; }
-            #nav-hint { top: 20px; right: 20px; font-size: 10px; }
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
         }
     </style>
 </head>
 <body onclick="nextScreen()">
-
     <div id="nav-hint">
-        <a href="../../index.html" style="text-decoration:none"><div class="vialogic-logo">← VIALOGIC</div></a>
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
+    <div id="act-indicator">ACT I: THE LYCEUM</div>
+    <div id="label">
+        <h1 id="title">Aristotle</h1>
+        <p id="subtitle">384 — 322 BCE</p>
+        <p id="description">Born in Stagira, Greece. Plato's brightest student and the tutor of Alexander the Great. He grounded philosophy in the physical world, creating the first systematic classification of knowledge.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He founded the Lyceum, where he and his students would walk while debating (Peripatetics).</span>
+    </div>
 
-    <div id="act-indicator">ACT I: INITIALIZATION</div>
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
 
-    <div id="daxini-container"></div>
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE LYCEUM";
+const ACT2_LABEL = "THE ORGANON";
+const ACCENT1 = "#4CAF50";
+const ACCENT2 = "#FFC107";
 
-    <script>
-    let time = 0;
-    let state = 0;
-    let isTransitioning = false;
-    let fadeAlpha = 0;
-    let fadeDirection = 0;
-    let targetState = 0;
-    const FADE_SPEED = 14;
-    const TOTAL_SCREENS = 10;
+const content = [
+    { title: "Aristotle", sub: "384 — 322 BCE", desc: "Born in Stagira, Greece. Plato's brightest student and the tutor of Alexander the Great. He grounded philosophy in the physical world, creating the first systematic classification of knowledge.", insight: "He founded the Lyceum, where he and his students would walk while debating (Peripatetics).", label: "HISTORICAL INSIGHT" },
+    { title: "Tutor of a Conqueror", sub: "Alexander the Great", desc: "He spent years in Macedon educating a young Alexander, instilling in him a love for Greek culture, medicine, and the epic of Homer.", insight: "Alexander reportedly sent back biological specimens from his conquests for Aristotle's research.", label: "HISTORICAL INSIGHT" },
+    { title: "The Lyceum", sub: "The Peripatetic School", desc: "Unlike the Academy, the Lyceum focused on empirical observation. Aristotle believed that to understand the 'Form' of something, you must study its physical existence.", insight: "He was the first comprehensive biologist in history.", label: "HISTORICAL INSIGHT" },
+    { title: "Formal Logic", sub: "The Organon", desc: "He invented the Syllogism: a logical argument that applies deductive reasoning to arrive at a conclusion based on two or more propositions.", insight: "All men are mortal; Socrates is a man; therefore, Socrates is mortal.", label: "HISTORICAL INSIGHT" },
+    { title: "The Golden Mean", sub: "Nicomachean Ethics", desc: "He believed that virtue lies in the 'mean' between two extremes. For example, courage is the mean between cowardice and recklessness.", insight: "Character is formed by habit and finding this balance in every action.", label: "HISTORICAL INSIGHT" },
+    { title: "Biology and Taxonomy", sub: "Scala Naturae", desc: "He classified over 500 species of animals, observing their anatomy and behavior with a precision that was not matched for 2,000 years.", insight: "He was the first to recognize that dolphins were mammals, not fish.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "The Four Causes", sub: "Physics of Change", desc: "He argued that to truly know a thing, you must know its: Material, Formal, Efficient, and Final causes (its ultimate purpose).", insight: "Everything in nature has a 'Telos' or a purpose it strives to fulfill.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "The Unmoved Mover", sub: "Metaphysics", desc: "He reasoned that there must be a primary cause of all motion in the universe—a being that is pure thought and the ultimate source of all order.", insight: "This 'Prime Mover' initiated the first cause without being moved itself.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Poetics", sub: "Catharsis and Drama", desc: "He wrote the first work of literary criticism, defining 'Catharsis' as the purging of emotions through the experience of tragedy.", insight: "His rules for drama influenced storytelling from Shakespeare to modern cinema.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Master of Those Who Know", sub: "Foundations of Science", desc: "Aristotle's logic and biology remained the undisputed authority for two millennia. He taught us to look at the world as it is. Welcome to ViaLogic.", insight: "We are what we repeatedly do. Excellence, then, is not an act, but a habit. Welcome to ViaLogic.", label: "REFLECTION" },
+];
 
-    /* ── Content Data (Injected by VisualForge) ────────────────────── */
-    const PERSONA = {"id":"aristotle","name":"Aristotle","title":"Philosophy | Classical","summary":"Sovereign UI profile for Aristotle. Part of ViaLogic's historical population.","design_tokens":{"cyan":"#00e5ff","saffron":"#ff671f"}};
-    const SCENARIOS = [{"act":"Act I: THE LYCEUM","title":"The Master of Logic","sub":"Categorization of Reality","desc":"Aristotle organized all human knowledge into categories. He invented Formal Logic (Syllogism) and laid the foundation for the scientific method.","insight":"All men by nature desire to know.","logic_result":"Syllogism: All A are B. X is A. Therefore, X is B.","color":"#00e5ff"},{"act":"Act II: THE GOLDEN MEAN","title":"The Ethics of Balance","sub":"Virtue Ethics","desc":"Virtue is the balance between two extremes. Courage is the mean between cowardice and recklessness.","insight":"We are what we repeatedly do. Excellence, then, is not an act, but a habit.","logic_result":"Optimization constant: Mean Value Found.","color":"#ff671f"}];
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
 
-    /* ── Setup ───────────────────────────────────────────────────── */
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        updateUI();
+function draw() {
+    background(4, 8, 4);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
     }
 
-    function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
 
-    function nextScreen() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        fadeDirection = 1;
-        targetState = (state + 1) % TOTAL_SCREENS;
-        
-        document.getElementById('daxini-container').style.opacity = 0;
-        document.getElementById('act-indicator').style.opacity = 0;
-        document.getElementById('nav-hint').style.opacity = 0;
-    }
-
-    function updateUI() {
-        const scenario = SCENARIOS[state];
-        const container = document.getElementById('daxini-container');
-        container.innerHTML = '';
-        
-        // Render Using DaxiniRenderer
-        const card = window.DaxiniRenderer.renderCard(PERSONA, scenario.desc);
-        
-        // Customize card for current screen
-        const nameEl = card.querySelector('.daxini-card__name');
-        const titleEl = card.querySelector('.daxini-card__title');
-        const outputEl = card.querySelector('[data-logic-output]');
-        
-        nameEl.innerText = scenario.title;
-        titleEl.innerText = scenario.sub;
-        outputEl.innerText = scenario.insight;
-        
-        container.appendChild(card);
-        
-        // Update Act Indicator
-        const actEl = document.getElementById('act-indicator');
-        actEl.innerText = scenario.act;
-        actEl.style.color = scenario.color || '#ff671f';
-        
-        // Add Logic Trigger
-        const btn = card.querySelector('[data-run-logic]');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerLogic();
-        });
-    }
-
-    function triggerLogic() {
-        const output = document.querySelector('[data-logic-output]');
-        output.innerText = "Executing quantum logic...\\n" + SCENARIOS[state].logic_result;
-        // Visual trigger for p5.js
-        window.logicTriggered = true;
-        setTimeout(() => { window.logicTriggered = false; }, 1000);
-    }
-
-    /* ── Draw loop ───────────────────────────────────────────────── */
-    function draw() {
-        background(5, 10, 20);
-        
-        // Injected p5.js Logic (VisualForge)
-        
-            time += 0.03;
-            let scale = getScale();
-            // Geometry of Categories
-            noFill(); stroke(255, 255, 255, 50);
-            for(let i=0; i<8; i++) {
-                let r = (100 + i * 40) * scale;
-                ellipse(width/2, height/2, r * 2);
-                let x = width/2 + cos(time + i) * r;
-                let y = height/2 + sin(time + i) * r;
-                fill(0, 229, 255); noStroke();
-                ellipse(x, y, 10);
-                noFill(); stroke(0, 229, 255, 100);
-                line(width/2, height/2, x, y);
-            }
-        
-
-        // Fade overlay
-        if (isTransitioning) {
-            fadeAlpha += FADE_SPEED * fadeDirection;
-            if (fadeDirection === 1 && fadeAlpha >= 255) {
-                fadeAlpha = 255; fadeDirection = -1;
-                state = targetState; time = 0;
-                updateUI();
-                document.getElementById('daxini-container').style.opacity = 1;
-                document.getElementById('act-indicator').style.opacity = 1;
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
                 document.getElementById('nav-hint').style.opacity = 1;
-            } else if (fadeDirection === -1 && fadeAlpha <= 0) {
-                fadeAlpha = 0; isTransitioning = false;
-            }
-            push(); fill(5, 10, 20, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
+        push(); fill(4, 8, 4, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
+}
 
-    function getScale() { return min(1, width / 800); }
-    </script>
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Lyceum garden path pulse
+function drawS0() {
+    push();
+    stroke(76, 175, 80, 100);
+    noFill();
+    beginShape();
+    for (let x = -200; x < 200; x += 10) vertex(x, 100 + sin(x * 0.05 + time) * 20);
+    endShape();
+    pop();
+}
+
+// S1: Shield/Armor abstract (Alexander context)
+function drawS1() {
+    push();
+    fill(100, 50); ellipse(0, 0, 150);
+    line(-70, -70, 70, 70);
+    pop();
+}
+
+// S2: Peripatetic walking dots
+function drawS2() {
+    push();
+    let x = sin(time) * 100;
+    fill(76, 175, 80); ellipse(x, 100, 20);
+    ellipse(x - 40, 100, 15);
+    pop();
+}
+
+// S3: Syllogism Diagram (Linked circles)
+function drawS3() {
+    push();
+    stroke(255); noFill();
+    ellipse(-40, 0, 100); ellipse(40, 0, 100);
+    fill(255, 50); ellipse(0, 0, 40); // intersection
+    pop();
+}
+
+// S4: Golden Mean (Balance scale)
+function drawS4() {
+    push();
+    stroke(255); line(-100, 50, 100, 50); // beam
+    line(0, 50, 0, -50); // support
+    fill(255, 235, 59); ellipse(0, 50, 20); // balance point
+    pop();
+}
+
+// S5: Biological taxonomy tree (Abstract)
+function drawS5() {
+    push();
+    stroke(76, 175, 80);
+    line(0, 150, 0, 0);
+    line(0, 0, -50, -50); line(0, 0, 50, -50);
+    pop();
+}
+
+// S6: Four Causes (Nested blocks)
+function drawS6() {
+    push();
+    noFill(); stroke(76, 175, 80, 150);
+    for (let i = 1; i <= 4; i++) rect(-i * 20, -i * 20, i * 40, i * 40);
+    pop();
+}
+
+// S7: Prime Mover (Infinite spiral)
+function drawS7() {
+    push();
+    noFill(); stroke(255, 235, 59, 100);
+    beginShape();
+    for (let a = 0; a < TWO_PI * 3; a += 0.1) {
+        let r = a * 10;
+        vertex(cos(a + time) * r, sin(a + time) * r);
+    }
+    endShape();
+    pop();
+}
+
+// S8: Catharsis splash (Pulse)
+function drawS8() {
+    push();
+    fill(76, 175, 80, 150 + sin(time * 5) * 50);
+    ellipse(0, 0, 200);
+    pop();
+}
+
+// S9: Eternal logic star field
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>

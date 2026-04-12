@@ -1,12 +1,284 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Seneca | ViaLogic Sovereign UI</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"></head>
-<body><nav class="nav"><a href="../../">← VIALOGIC</a></nav>
-<main class="viewport">
-<section class="hero"><span class="badge">SOVEREIGN_ID_0080</span><h1>Seneca</h1><p class="epithet">The Stoic of Letters</p></section>
-<section class="stats glass"><div class="s"><label>ERA</label><span>4 BC–65 AD</span></div><div class="s"><label>ORIGIN</label><span>Córdoba, Spain</span></div><div class="s"><label>FIELD</label><span>Stoic Philosophy</span></div></section>
-<article class="bio glass"><p>Seneca's letters and essays on anger, grief, and the shortness of life remain profoundly relevant. He served as tutor to Nero and faced his own death with legendary composure.</p></article>
-</main><canvas id="bg"></canvas><script src="script.js"></script><a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
-</body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaLogic | The Voice of Tranquility (Seneca)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #0C0408; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #E91E63; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #E91E63;
+            padding-left: 20px; z-index: 10;
+            background: rgba(12, 4, 8, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #E91E63; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(233, 30, 99, 0.08);
+            border-top: 1px solid rgba(233, 30, 99, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #E91E63; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: NERO'S ADVISOR</div>
+    <div id="label">
+        <h1 id="title">Seneca the Younger</h1>
+        <p id="subtitle">4 BCE — 65 CE</p>
+        <p id="description">Born in Cordoba, Spain. A Roman statesman, dramatist, and the most eloquent voice of Stoicism, who balanced a life of immense wealth and political danger with a philosophy of radical inner calm.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was the tutor and later the advisor to the notorious Emperor Nero.</span>
+    </div>
+
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
+
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "NERO'S ADVISOR";
+const ACT2_LABEL = "ON THE SHORTNESS OF LIFE";
+const ACCENT1 = "#E91E63";
+const ACCENT2 = "#FFC107";
+
+const content = [
+    { title: "Seneca the Younger", sub: "4 BCE — 65 CE", desc: "Born in Cordoba, Spain. A Roman statesman, dramatist, and the most eloquent voice of Stoicism, who balanced a life of immense wealth and political danger with a philosophy of radical inner calm.", insight: "He was the tutor and later the advisor to the notorious Emperor Nero.", label: "HISTORICAL INSIGHT" },
+    { title: "The Stoic Courtier", sub: "Rome's Golden Age", desc: "As Nero's advisor, he managed the Roman Empire with relative stability for five years (the Quinquennium Neronis), while navigating the deadly intrigues of the imperial court.", insight: "He was one of the wealthiest men in Rome, which critics often pointed to as a contradiction to his stoic teachings.", label: "HISTORICAL INSIGHT" },
+    { title: "Letters to Lucilius", sub: "Moral Epistles", desc: "He wrote 124 letters providing practical advice on how to live virtuously—covering everything from friendship and grief to the fear of death.", insight: "He saw himself not as a master, but as a fellow-patient in the hospital of life.", label: "HISTORICAL INSIGHT" },
+    { title: "The Dramatist", sub: "Roman Tragedies", desc: "His plays (like Medea and Phaedra) explored the destructive power of uncontrolled emotions, reflecting his stoic belief in the necessity of reason over passion.", insight: "His tragedies deeply influenced Renaissance drama, including Shakespeare.", label: "HISTORICAL INSIGHT" },
+    { title: "The Death of Seneca", sub: "Stoic Martyrdom", desc: "Ordered by Nero to commit suicide after a failed conspiracy, he faced his death with the same calm he had preached, comforting his weeping friends until the end.", insight: "He met his fate with the poise of Socrates, whom he deeply admired.", label: "HISTORICAL INSIGHT" },
+    { title: "Shortness of Life", sub: "On the Use of Time", desc: "He argued that life is not short, but that many of us waste it. 'It is not that we have a short time to live, but that we waste a lot of it.'", insight: "He believed that studying philosophy was the only way to truly live forever.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Premeditatio Malorum", sub: "Rehearsal of Evils", desc: "He practiced the regular meditation on potential misfortunes, arguing that if you imagine the worst in advance, it cannot shock or defeat you when it arrives.", insight: "Nothing happens to the wise man against his expectation.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Inner Tranquility", sub: "Ataraxia", desc: "He defined tranquility as the state of mind where one is undisturbed by the storms of fate or the opinions of others.", insight: "If you really want to escape the things that harass you, what you need is not to be in a different place but to be a different person.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "A World Citizen", sub: "Stoic Humanity", desc: "He emphasized the kinship of all mankind, arguing that even slaves should be treated with the same respect as fellow human beings.", insight: "Wherever there is a human being, there is an opportunity for kindness.", label: "PHILOSOPHICAL GENIUS" },
+    { title: "Voice of Tranquility", sub: "Legacy of Reason", desc: "Seneca's life reminds us that philosophy is not just for the poor or the ivory tower. It is a tool for the powerful to remain human. Welcome to ViaLogic.", insight: "True happiness is to enjoy the present, without anxious dependence upon the future. Welcome to ViaLogic.", label: "REFLECTION" },
+];
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
+
+function draw() {
+    background(12, 4, 8);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
+    }
+
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
+
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
+        }
+        push(); fill(12, 4, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+    }
+}
+
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Roman theater masks (Comedy/Tragedy)
+function drawS0() {
+    push();
+    fill(233, 30, 99, 100);
+    ellipse(-50, 0, 80, 100); // Mask 1
+    ellipse(50, 0, 80, 100); // Mask 2
+    pop();
+}
+
+// S1: Imperial crown/wreath
+function drawS1() {
+    push();
+    noFill(); stroke(255, 193, 7, 150);
+    arc(0, 0, 150, 150, 0, PI);
+    for (let i = 0; i < 10; i++) {
+        let a = map(i, 0, 10, 0, PI);
+        line(cos(a) * 75, sin(a) * 75, cos(a) * 100, sin(a) * 100);
+    }
+    pop();
+}
+
+// S2: Letter quill writing
+function drawS2() {
+    push();
+    stroke(255);
+    line(-50, 100, 50, -100); // Quill
+    fill(255, 100);
+    rect(-100, 20, 200, 120); // Letter
+    pop();
+}
+
+// S3: Mask of tragedy
+function drawS3() {
+    push();
+    fill(233, 30, 99, 50);
+    ellipse(0, 0, 120, 150);
+    fill(0); ellipse(-30, -20, 20); ellipse(30, -20, 20);
+    arc(0, 40, 60, 40, 0, PI); // Sad mouth
+    pop();
+}
+
+// S4: Ship in a storm (Abstract)
+function drawS4() {
+    push();
+    stroke(33, 150, 243, 150);
+    beginShape();
+    for (let x = -200; x < 200; x += 10) vertex(x, 100 + sin(x * 0.1 + time * 10) * 30);
+    endShape();
+    fill(255); rect(-20, 50, 40, 20); // Boat
+    pop();
+}
+
+// S5: Hourglass sand pulse
+function drawS5() {
+    push();
+    noFill(); stroke(255, 100);
+    triangle(-50, -100, 50, -100, 0, 0); // top
+    triangle(-50, 100, 50, 100, 0, 0); // bottom
+    fill(233, 30, 99, 150 + sin(time * 2) * 50);
+    ellipse(0, 50, 40); // sand
+    pop();
+}
+
+// S6: Premeditatio Malorum (Shadows)
+function drawS6() {
+    push();
+    for (let i = 0; i < 5; i++) {
+        fill(0, 150 - i * 30);
+        ellipse(random(-200, 200), random(-200, 200), random(50, 150));
+    }
+    pop();
+}
+
+// S7: Inner calm pulse
+function drawS7() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(233, 30, 99, 150 - i * 30);
+        ellipse(0, 0, i * 60 + (time * 80) % 60);
+    }
+    pop();
+}
+
+// S8: Wealth pile vs Bare feet (Scale)
+function drawS8() {
+    push();
+    fill(255, 193, 7, 100); rect(-100, 50, 80, 50); // Gold
+    fill(255, 50); rect(20, 80, 80, 20); // Feet
+    pop();
+}
+
+// S9: Eternal star field
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
+</body>
+</html>

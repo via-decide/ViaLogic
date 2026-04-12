@@ -3,41 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign UI | Galileo Galilei</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>ViaLogic | The Father of Observational Astronomy (Galileo Galilei)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #040808; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #009688; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #009688;
+            padding-left: 20px; z-index: 10;
+            background: rgba(4, 8, 8, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #009688; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(0, 150, 136, 0.08);
+            border-top: 1px solid rgba(0, 150, 136, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #009688; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #FFEB3B; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
 </head>
-<body>
-    <nav class="back-link"><a href="../../">← VIAMATH</a></nav>
-    <main class="sovereign-viewport">
-        <section class="hero">
-            <span class="id-badge">ID_0017</span>
-            <h1 class="glitch-text">Galileo Galilei</h1>
-            <p class="epithet">Father of Modern Science</p>
-        </section>
-        <section class="details glass">
-            <div class="stat-box">
-                <label>ERA</label>
-                <span>1564–1642</span>
-            </div>
-            <div class="stat-box">
-                <label>ORIGIN</label>
-                <span>Pisa, Italy</span>
-            </div>
-            <div class="stat-box">
-                <label>FIELD</label>
-                <span>Astronomy, Physics</span>
-            </div>
-        </section>
-        <article class="bio-content glass">
-            <p>Galileo improved the telescope, discovered the moons of Jupiter, and stood firm on the heliocentric theory despite the Inquisition. He pioneered the experimental scientific method.</p>
-        </article>
-    </main>
-    <canvas id="background-canvas"></canvas>
-    <script src="script.js"></script>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: THE STARRY MESSENGER</div>
+    <div id="label">
+        <h1 id="title">Galileo Galilei</h1>
+        <p id="subtitle">1564 — 1642 CE</p>
+        <p id="description">Born in Pisa, Italy. A giant of the Renaissance who turned his telescope to the heavens and proved that we live in a universe of motion, not a fixed, unchanging sphere.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He was the first to see the craters of the moon and the moons of Jupiter.</span>
+    </div>
 
-    <!-- Sovereign Audit: Back to Map -->
-    <a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
-        
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
+
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "THE STARRY MESSENGER";
+const ACT2_LABEL = "DIALOGUE ON THE TWO SYSTEMS";
+const ACCENT1 = "#009688";
+const ACCENT2 = "#FFEB3B";
+
+const content = [
+    { title: "Galileo Galilei", sub: "1564 — 1642 CE", desc: "Born in Pisa, Italy. A giant of the Renaissance who turned his telescope to the heavens and proved that we live in a universe of motion, not a fixed, unchanging sphere.", insight: "He was the first to see the craters of the moon and the moons of Jupiter.", label: "HISTORICAL INSIGHT" },
+    { title: "Sidereus Nuncius", sub: "The Starry Messenger", desc: "In 1610, he published his telescopic observations: mountains on the moon, thousands of hidden stars, and four satellites orbiting Jupiter.", insight: "This book shattered the Aristotelian view of celestial perfection.", label: "HISTORICAL INSIGHT" },
+    { title: "The Moons of Jupiter", sub: "Proof of Motion", desc: "By observing four moons orbiting Jupiter, he proved that not everything in the universe revolved around the Earth.", insight: "He named them the 'Medicean Stars' after his patrons.", label: "HISTORICAL INSIGHT" },
+    { title: "Phases of Venus", sub: "The Copernican Proof", desc: "He discovered that Venus shows phases like the moon, which could only happen if Venus orbited the Sun, not the Earth.", insight: "This was the definitive proof for the Heliocentric model.", label: "HISTORICAL INSIGHT" },
+    { title: "Sunspots", sub: "The Imperfect Heavens", desc: "He observed dark spots moving across the surface of the sun, proving that even the brightest celestial body was subject to change and decay.", insight: "He nearly went blind from observing the sun directly through his telescope.", label: "HISTORICAL INSIGHT" },
+    { title: "Laws of Falling Bodies", sub: "The Tower of Pisa", desc: "He proved that objects of different masses fall at the same rate, debunking Aristotle's claim that heavier objects fall faster.", insight: "He used inclined planes to accurately measure the acceleration of gravity.", label: "SCIENTIFIC GENIUS" },
+    { title: "Isochronism of Pendulums", sub: "The Cathedral Lamp", desc: "Watching a swinging chandelier, he realized that the time a pendulum takes to swing depends only on its length, not its amplitude.", insight: "This discovery led to the development of accurate mechanical clocks.", label: "SCIENTIFIC GENIUS" },
+    { title: "Eppur Si Muove", sub: "The Church Trial", desc: "Sentenced by the Inquisition for supporting the Copernican theory. Legend says that after his forced recantation, he whispered: 'And yet it moves.'", insight: "He spent the last 8 years of his life under house arrest.", label: "SCIENTIFIC GENIUS" },
+    { title: "Two New Sciences", sub: "Final Masterpiece", desc: "While under arrest and blind, he wrote a book on mechanics and local motion, laying the foundation for modern materials science.", insight: "This book was smuggled out of Italy and published in the Netherlands.", label: "SCIENTIFIC GENIUS" },
+    { title: "The Eternal Star", sub: "Spirit of Inquiry", desc: "Galileo's life reminds us that the truth cannot be suppressed by decree. He proved that observation is higher than dogma. Welcome to ViaLogic.", insight: "Mathematics is the language in which God has written the universe. Welcome to ViaLogic.", label: "REFLECTION" },
+];
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
+
+function draw() {
+    background(4, 8, 8);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
+    }
+
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
+
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
+        }
+        push(); fill(4, 8, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+    }
+}
+
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Jupiter and 4 Medicean moons
+function drawS0() {
+    push();
+    fill(255, 193, 7, 150); ellipse(0, 0, 100); // Jupiter
+    noFill(); stroke(0, 150, 136, 100);
+    let orbits = [120, 160, 200, 240];
+    let speeds = [1, 0.7, 0.5, 0.3];
+    for (let i = 0; i < 4; i++) {
+        ellipse(0, 0, orbits[i], orbits[i] * 0.4);
+        fill(255);
+        let a = time * speeds[i];
+        ellipse(cos(a) * orbits[i] / 2, sin(a) * orbits[i] * 0.2, 8);
+    }
+    pop();
+}
+
+// S1: Moon craters texture
+function drawS1() {
+    push();
+    fill(200); ellipse(0, 0, 250);
+    fill(0, 50);
+    for (let i = 0; i < 15; i++) {
+        let x = random(-100, 100);
+        let y = random(-100, 100);
+        if (dist(x, y, 0, 0) < 100) ellipse(x, y, random(10, 40));
+    }
+    pop();
+}
+
+// S2: Phases of Venus
+function drawS2() {
+    push();
+    fill(255);
+    for (let i = 0; i < 5; i++) {
+        let x = -200 + i * 100;
+        let p = map(i, 0, 4, -PI / 2, PI / 2);
+        arc(x, 0, 60, 60, -HALF_PI, HALF_PI);
+        fill(0);
+        ellipse(x + cos(p) * 30, 0, 60 * sin(p), 60);
+        fill(255);
+    }
+    pop();
+}
+
+// S3: Sunspots (Rotating sphere)
+function drawS3() {
+    push();
+    fill(255, 200, 0, 200); ellipse(0, 0, 200);
+    fill(0, 150);
+    for (let i = 0; i < 5; i++) {
+        let a = time + i * 1.2;
+        ellipse(cos(a) * 60, sin(a) * 30, 15, 10);
+    }
+    pop();
+}
+
+// S4: Telescope pointing (Glow)
+function drawS4() {
+    push();
+    stroke(100); strokeWeight(12);
+    line(-100, 100, 150, -150);
+    strokeWeight(1); fill(0, 150, 136, 50);
+    ellipse(150, -150, 100);
+    pop();
+}
+
+// S5: Leaning tower ball drop
+function drawS5() {
+    push();
+    fill(100); rect(-100, -200, 40, 400); // Tower
+    let h = -200 + (time * 150) % 400;
+    fill(255); ellipse(-40, h, 20); // Large ball
+    ellipse(-80, h, 10); // Small ball
+    pop();
+}
+
+// S6: Pendulum swing
+function drawS6() {
+    push();
+    let a = sin(time * 2) * QUARTER_PI;
+    line(0, -200, cos(a + HALF_PI) * 300, sin(a + HALF_PI) * 300);
+    ellipse(cos(a + HALF_PI) * 300, sin(a + HALF_PI) * 300, 40);
+    pop();
+}
+
+// S7: Church trial shadow
+function drawS7() {
+    push();
+    fill(0, 100);
+    triangle(-150, 200, 0, -100, 150, 200); // Abstract steeple
+    pop();
+}
+
+// S8: "Eppur Si Muove" pulse
+function drawS8() {
+    push();
+    fill(0, 150, 136, 150 + sin(time * 5) * 50);
+    textSize(40); textAlign(CENTER);
+    text("EPPUR SI MUOVE", 0, 0);
+    pop();
+}
+
+// S9: Eternal star glow
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
 </body>
 </html>

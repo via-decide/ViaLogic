@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Architect of Spacetime (Albert Einstein)</title>
+    <title>ViaLogic | The Wizard of Wireless (Nikola Tesla)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
@@ -14,13 +14,13 @@
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #03A9F4; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #00BCD4; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #03A9F4;
+            letter-spacing: 1px; border-left: 4px solid #00BCD4;
             padding-left: 20px; z-index: 10;
             background: rgba(2, 4, 8, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
@@ -28,25 +28,25 @@
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #03A9F4; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #00BCD4; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(3, 169, 244, 0.08);
-            border-top: 1px solid rgba(3, 169, 244, 0.4);
+            background: rgba(0, 188, 212, 0.08);
+            border-top: 1px solid rgba(0, 188, 212, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #03A9F4; font-weight: bold; }
+        .highlight { color: #00BCD4; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FFEB3B; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: THE ANNUS MIRABILIS</div>
+    <div id="act-indicator">ACT I: THE WARDENCLYFFE TOWER</div>
     <div id="label">
-        <h1 id="title">Albert Einstein</h1>
-        <p id="subtitle">1879 — 1955 CE</p>
-        <p id="description">Born in Ulm, Germany. A patent clerk who reimagined the universe, proving that time, space, and gravity are not absolute, but a dynamic, interwoven fabric.</p>
+        <h1 id="title">Nikola Tesla</h1>
+        <p id="subtitle">1856 — 1943 CE</p>
+        <p id="description">Born in Smiljan, Croatia. An inventor, electrical engineer, and futurist who dreamt of a world powered by free, wireless energy and the invisible forces of the lightning bolt.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He won the Nobel Prize for the discovery of the Photoelectric Effect.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He held over 300 patents, including the fundamental design for AC power.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "THE ANNUS MIRABILIS";
-const ACT2_LABEL = "GENERAL RELATIVITY";
-const ACCENT1 = "#03A9F4";
-const ACCENT2 = "#FFEB3B";
+const ACT1_LABEL = "THE WARDENCLYFFE TOWER";
+const ACT2_LABEL = "THE ALTERNATING CURRENT";
+const ACCENT1 = "#00BCD4";
+const ACCENT2 = "#FFC107";
 
 const content = [
-    { title: "Albert Einstein", sub: "1879 — 1955 CE", desc: "Born in Ulm, Germany. A patent clerk who reimagined the universe, proving that time, space, and gravity are not absolute, but a dynamic, interwoven fabric.", insight: "He won the Nobel Prize for the discovery of the Photoelectric Effect.", label: "HISTORICAL INSIGHT" },
-    { title: "The Annus Mirabilis", sub: "Bern, 1905", desc: "In a single year, while working at the Swiss Patent Office, he published four papers that revolutionized physics: Brownian motion, photoelectric effect, special relativity, and mass-energy equivalence.", insight: "He had no academic position and no research laboratory at the time.", label: "HISTORICAL INSIGHT" },
-    { title: "E = mc²", sub: "Mass-Energy Equivalence", desc: "He proved that mass and energy are two forms of the same thing. A tiny amount of mass can be converted into a massive pulse of energy.", insight: "This equation laid the theoretical foundation for nuclear energy.", label: "HISTORICAL INSIGHT" },
-    { title: "Photoelectric Effect", sub: "Quantum Light", desc: "By proving that light consists of discrete packets of energy (quanta or photons), he kickstarted the quantum revolution in physics.", insight: "This work earned him the 1921 Nobel Prize in Physics.", label: "HISTORICAL INSIGHT" },
-    { title: "Brownian Motion", sub: "The Reality of Atoms", desc: "He provided the first definitive mathematical proof for the existence of atoms by analyzing the zig-zag motion of particles suspended in a fluid.", insight: "His analysis converted atomic theory into established fact.", label: "HISTORICAL INSIGHT" },
-    { title: "General Relativity", sub: "Gravity as Geometry", desc: "In 1915, he completed his masterpiece: General Relativity. He showed that gravity is not a force, but the curvature of spacetime caused by mass.", insight: "Mass tells spacetime how to curve; spacetime tells mass how to move.", label: "SCIENTIFIC GENIUS" },
-    { title: "Light Bending", sub: "The 1919 Eclipse", desc: "His theory predicted that gravity could bend light. During a 1919 solar eclipse, Arthur Eddington's measurements confirmed this, making Einstein a global celebrity overnight.", insight: "He once joked: 'Before, I was a local celebrity; now, I am one of the world's most hated men.'", label: "SCIENTIFIC GENIUS" },
-    { title: "Time Dilation", sub: "Stretching Time", desc: "He proved that time runs slower near massive objects and at high speeds. Your head actually ages slightly faster than your feet.", insight: "This effect must be accounted for by the GPS satellites to remain accurate.", label: "SCIENTIFIC GENIUS" },
-    { title: "Unified Field Theory", sub: "The Holy Grail", desc: "He spent the last 30 years of his life trying to find a single set of equations that could describe all the forces of the universe.", insight: "He never succeeded, but his quest paved the way for modern String Theory.", label: "SCIENTIFIC GENIUS" },
-    { title: "The Cosmic Voyager", sub: "Legacy across Stars", desc: "Einstein's imagination remains our greatest tool for understanding the cosmos. He proved that curiosity is more important than knowledge. Welcome to ViaLogic.", insight: "He believed that 'God does not play dice with the universe.' Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "Nikola Tesla", sub: "1856 — 1943 CE", desc: "Born in Smiljan, Croatia. An inventor, electrical engineer, and futurist who dreamt of a world powered by free, wireless energy and the invisible forces of the lightning bolt.", insight: "He held over 300 patents, including the fundamental design for AC power.", label: "HISTORICAL INSIGHT" },
+    { title: "The War of Currents", sub: "AC vs DC", desc: "In a brutal battle with Thomas Edison, Tesla proved that Alternating Current (AC) was far superior for long-distance power transmission. Today, the entire world is powered by his design.", insight: "He worked with George Westinghouse to build the first AC power plant at Niagara Falls.", label: "HISTORICAL INSIGHT" },
+    { title: "Wardenclyffe Tower", sub: "Wireless Energy Dream", desc: "His most ambitious project was the Wardenclyffe Tower, intended to transmit free electricity and information through the Earth and its atmosphere without a single wire.", insight: "The project was shut down when J.P. Morgan realized he couldn't put a meter on free energy.", label: "HISTORICAL INSIGHT" },
+    { title: "Tesla Coil", sub: "Resonant Transformer", desc: "He invented the Tesla Coil to produce high-voltage, high-frequency electricity. It remains a fixture in science labs and became the basis for radio and neon lighting.", insight: "He frequently used his own body as a conductor to demonstrate the safety of high-frequency power.", label: "HISTORICAL INSIGHT" },
+    { title: "Radio Pioneer", sub: "Beyond Marconi", desc: "While Marconi is often credited with radio, the US Supreme Court eventually recognized that Tesla's patents were the definitive foundation for the invention of radio.", insight: "He demonstrated a remote-controlled boat — the first 'tele-automaton' — in 1898.", label: "HISTORICAL INSIGHT" },
+    { title: "Universal Energy", sub: "Free and Infinite", desc: "Tesla believed that the entire universe was filled with energy, and that we could 'hook our machinery onto the very wheelwork of nature.'", insight: "He was obsessed with the numbers 3, 6, and 9, calling them the keys to the universe.", label: "SCIENTIFIC GENIUS" },
+    { title: "The Polyphase System", sub: "Grid Foundation", desc: "He invented the polyphase system of induction motors and transformers that allow us to distribute massive amounts of industrial power with minimal loss.", insight: "His motor design is still the most efficient in existence.", label: "SCIENTIFIC GENIUS" },
+    { title: "Terrestrial Stationary Waves", sub: "Earth as Conductor", desc: "He discovered that the Earth itself could act as a giant conductor for low-frequency waves, allowing energy to travel across oceans through the crust.", insight: "His experiments in Colorado Springs produced man-made lightning bolts 130 feet long.", label: "SCIENTIFIC GENIUS" },
+    { title: "Futurist Vision", sub: "Wireless Communication", desc: "Over 100 years ago, he predicted that we would one day carry devices in our pockets that would allow us to communicate instantly and see events as they happen far away.", insight: "He described the 'Smart Phone' and the internet in 1926.", label: "SCIENTIFIC GENIUS" },
+    { title: "Wizard of Wireless", sub: "Legacy of Light", desc: "Nikola Tesla's life proves that a single mind can illuminate the path for all humanity. He died alone and poor, but he left us the electric world. Welcome to ViaLogic.", insight: "The present is theirs; the future, for which I really worked, is mine. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -177,121 +177,109 @@ function drawScreen(s) {
     }
 }
 
-// S0: Spacetime fabric (Warping grid)
+// S0: Tesla Coil Lightning Sparks
 function drawS0() {
     push();
-    stroke(3, 169, 244, 40);
-    noFill();
-    for (let i = -10; i <= 10; i++) {
-        beginShape();
-        for (let j = -10; j <= 10; j++) {
-            let x = j * 40;
-            let y = i * 40;
-            let d = dist(x, y, 0, 0);
-            let z = 100 / (1 + d / 50);
-            vertex(x, y + z * sin(time));
+    stroke(0, 188, 212, 150 + sin(time * 10) * 105);
+    strokeWeight(2);
+    for (let i = 0; i < 8; i++) {
+        let a = PI * i / 4 + time;
+        line(0, 0, cos(a) * 200, sin(a) * 200);
+        for (let j = 0; j < 5; j++) {
+            let x = cos(a) * (j * 40);
+            let y = sin(a) * (j * 40);
+            line(x, y, x + random(-20, 20), y + random(-20, 20));
         }
-        endShape();
     }
     pop();
 }
 
-// S1: E=mc2 pulse
+// S1: AC Sine Wave pulse
 function drawS1() {
     push();
-    fill(3, 169, 244, 20);
-    ellipse(0, 0, 300 + sin(time) * 100);
-    fill(255);
-    textSize(50);
-    textAlign(CENTER);
-    text("E = mc²", 0, 0);
-    pop();
-}
-
-// S2: Photoelectric sparks
-function drawS2() {
-    push();
-    for (let i = 0; i < 20; i++) {
-        let x = random(-200, 200);
-        let y = random(-200, 200);
-        stroke(3, 169, 244);
-        line(x, y, x + random(-10, 10), y + random(-10, 10));
-    }
-    pop();
-}
-
-// S3: Brownian motion particles
-function drawS3() {
-    push();
-    for (let i = 0; i < 30; i++) {
-        let x = noise(i + time) * 400 - 200;
-        let y = noise(i + 100 + time) * 400 - 200;
-        fill(3, 169, 244);
-        ellipse(x, y, 5);
-    }
-    pop();
-}
-
-// S4: Light beam bending
-function drawS4() {
-    push();
-    stroke(255, 235, 59, 150);
-    strokeWeight(2);
-    noFill();
-    ellipse(0, 0, 100); // Sun
+    stroke(0, 188, 212); noFill();
     beginShape();
-    for (let x = -300; x < 300; x += 10) {
-        let d = dist(x, 0, 0, 0);
-        let bend = 50 / (1 + d / 40);
-        vertex(x, bend - 50);
+    for (let x = -300; x < 300; x += 5) {
+        vertex(x, sin(x * 0.05 + time * 5) * 100);
     }
     endShape();
     pop();
 }
 
-// S5: Spacetime curvature (Intense)
+// S2: Wireless Energy Rings (Expansion)
+function drawS2() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(0, 188, 212, 150 - i * 30);
+        ellipse(0, 0, i * 60 + (time * 150) % 60);
+    }
+    pop();
+}
+
+// S3: Tesla Coil pulse
+function drawS3() {
+    push();
+    fill(0, 188, 212, 50);
+    rect(-20, -100, 40, 200);
+    ellipse(0, -120, 80);
+    pop();
+}
+
+// S4: Radio wave rings (Abstract)
+function drawS4() {
+    push();
+    stroke(255, 100);
+    for (let i = 0; i < 8; i++) {
+        ellipse(0, 0, i * 40);
+    }
+    pop();
+}
+
+// S5: Oratory ring pulse
 function drawS5() {
     push();
-    stroke(255, 235, 59, 100);
-    for (let i = 0; i < 10; i++) {
-        ellipse(0, 0, i * 40, i * 20 + sin(time + i) * 20);
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(0, 188, 212, 150 - i * 30);
+        ellipse(0, 0, i * 60 + (time * 80) % 60);
     }
     pop();
 }
 
-// S6: Clock dilation (Spinning hands)
+// S6: Polyphase Motor (Rotating arrows)
 function drawS6() {
     push();
-    stroke(255);
-    noFill();
-    ellipse(0, 0, 200);
-    line(0, 0, cos(time * 2) * 80, sin(time * 2) * 80);
-    line(0, 0, cos(time * 0.2) * 60, sin(time * 0.2) * 60);
+    rotate(time * 3);
+    for (let i = 0; i < 3; i++) {
+        rotate(TWO_PI / 3);
+        fill(255, 193, 7, 150);
+        triangle(-20, -100, 20, -100, 0, -150);
+    }
     pop();
 }
 
-// S7: Unified Field (Infinite lines)
+// S7: Earth as Conductor grid
 function drawS7() {
     push();
-    stroke(255, 235, 59, 50);
-    for (let i = 0; i < 20; i++) {
-        line(-300, random(-200, 200), 300, random(-200, 200));
+    stroke(0, 188, 212, 50);
+    for (let i = -5; i <= 5; i++) {
+        line(-300, i * 40, 300, i * 40);
+        line(i * 60, -200, i * 60, 200);
     }
     pop();
 }
 
-// S8: Gravity Well (Converging)
+// S8: 3-6-9 pattern (Glow)
 function drawS8() {
     push();
-    noFill();
-    stroke(3, 169, 244, 150);
-    for (let i = 0; i < 10; i++) {
-        ellipse(0, 0, i * 30 + (time * 50) % 30);
-    }
+    fill(255, 193, 7, 150 + sin(time * 5) * 50);
+    textSize(50); textAlign(CENTER);
+    text("3   6   9", 0, 0);
     pop();
 }
 
-// S9: Eternal star glow
+// S9: Eternal electric spark
 function drawS9() {
     push();
     for (let i = 0; i < 40; i++) {

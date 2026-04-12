@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaLogic | The Gadfly of Athens (Socrates)</title>
+    <title>ViaLogic | The Mother of Radioactivity (Marie Curie)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
-            margin: 0; padding: 0; background-color: #0C0C0C; overflow: hidden;
+            margin: 0; padding: 0; background-color: #080408; overflow: hidden;
             color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
         canvas { display: block; }
         #act-indicator {
             position: absolute; top: 30px; left: 30px;
-            color: #9E9E9E; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            color: #9C27B0; font-size: 14px; font-weight: bold; letter-spacing: 3px;
             text-transform: uppercase; z-index: 10;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         #label {
             position: absolute; top: 60px; left: 30px;
-            letter-spacing: 1px; border-left: 4px solid #9E9E9E;
+            letter-spacing: 1px; border-left: 4px solid #9C27B0;
             padding-left: 20px; z-index: 10;
-            background: rgba(12, 12, 12, 0.88); padding-right: 20px;
+            background: rgba(8, 4, 8, 0.88); padding-right: 20px;
             padding-bottom: 15px; border-radius: 0 10px 10px 0;
             backdrop-filter: blur(8px); max-width: 80%;
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
         h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
-        #subtitle { color: #9E9E9E; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #subtitle { color: #9C27B0; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
         #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
         #insight-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(158, 158, 158, 0.08);
-            border-top: 1px solid rgba(158, 158, 158, 0.4);
+            background: rgba(156, 39, 176, 0.08);
+            border-top: 1px solid rgba(156, 39, 176, 0.4);
             padding: 15px 0; text-align: center;
             font-size: 16px; color: #ddd; letter-spacing: 1px;
             font-family: monospace; backdrop-filter: blur(5px);
             transition: opacity 0.4s ease-in-out; opacity: 1;
         }
-        .highlight { color: #9E9E9E; font-weight: bold; }
+        .highlight { color: #9C27B0; font-weight: bold; }
         #nav-hint {
             position: absolute; top: 30px; right: 30px;
             color: #777; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer;
             transition: opacity 0.4s ease-in-out; text-align: right;
         }
-        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        .viamath-logo { color: #8BC34A; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
         @media (max-width: 700px) {
             #act-indicator { top: 20px; left: 10px; font-size: 12px; }
             #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
@@ -62,14 +62,14 @@
         <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
         Tap anywhere to advance ➔
     </div>
-    <div id="act-indicator">ACT I: THE AGORA DEBATES</div>
+    <div id="act-indicator">ACT I: POLONIUM AND RADIUM</div>
     <div id="label">
-        <h1 id="title">Socrates</h1>
-        <p id="subtitle">470 — 399 BCE</p>
-        <p id="description">Born in Athens, Greece. The father of Western philosophy, who never wrote a single page, but whose relentless questioning exposed the ignorance of the powerful.</p>
+        <h1 id="title">Marie Curie</h1>
+        <p id="subtitle">1867 — 1934 CE</p>
+        <p id="description">Born Maria Skłodowska in Warsaw, Poland. A pioneer who sacrificed her health to discover the glowing power of radioactive elements, forever changing medicine and physics.</p>
     </div>
     <div id="insight-bar">
-        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He served as a hoplite soldier in the Peloponnesian War before becoming a philosopher.</span>
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">She is the only person to win Nobel Prizes in two different scientific fields: Physics and Chemistry.</span>
     </div>
 
 <script>
@@ -80,22 +80,22 @@ const TOTAL_SCREENS = 10;
 let particles = [];
 
 const ACT1_COUNT = 5;
-const ACT1_LABEL = "THE AGORA DEBATES";
-const ACT2_LABEL = "THE HEMLOCK CHOICE";
-const ACCENT1 = "#9E9E9E";
-const ACCENT2 = "#FFC107";
+const ACT1_LABEL = "POLONIUM AND RADIUM";
+const ACT2_LABEL = "THE RADIUM INSTITUTE";
+const ACCENT1 = "#9C27B0";
+const ACCENT2 = "#8BC34A";
 
 const content = [
-    { title: "Socrates", sub: "470 — 399 BCE", desc: "Born in Athens, Greece. The father of Western philosophy, who never wrote a single page, but whose relentless questioning exposed the ignorance of the powerful.", insight: "He served as a hoplite soldier in the Peloponnesian War before becoming a philosopher.", label: "HISTORICAL INSIGHT" },
-    { title: "The Gadfly of Athens", sub: "The Agora Life", desc: "He spent his days in the marketplace (Agora), engaging anyone—from poets to politicians—in debates to uncover the true meaning of justice, virtue, and piety.", insight: "He called himself a 'gadfly' stinging the lazy horse of Athens into thought.", label: "HISTORICAL INSIGHT" },
-    { title: "The Socratic Method", sub: "Elenchus", desc: "He didn't teach; he asked. By asking a series of questions, he would lead his opponent to realize the inherent contradictions in their own beliefs.", insight: "This method is still the foundation of legal and ethical education today.", label: "HISTORICAL INSIGHT" },
-    { title: "Know Thyself", sub: "Gnothi Seauton", desc: "He believed that 'the unexamined life is not worth living.' To him, wisdom began with the admission of one's own ignorance.", insight: "The Oracle at Delphi called him the wisest man because he knew he knew nothing.", label: "HISTORICAL INSIGHT" },
-    { title: "The Trial of 399 BCE", sub: "Corrupting the Youth", desc: "Accused of impiety and corrupting the youth of Athens, he was brought to trial before a jury of 501 citizens. He refused to beg for mercy.", insight: "He suggested his 'punishment' should be free meals at the city's expense for life.", label: "HISTORICAL INSIGHT" },
-    { title: "The Hemlock Choice", sub: "Philosophy over Life", desc: "Sentenced to death by drinking poison hemlock, he refused the chance to escape. He believed that a citizen must either persuade the state or obey its laws.", insight: "His death made him the first martyr for the freedom of thought.", label: "PHILOSOPHICAL GENIUS" },
-    { title: "Virtue as Knowledge", sub: "The Eudaimonic Goal", desc: "He taught that no one does evil knowingly. To know what is right is to do what is right. For him, a person's character was their destiny.", insight: "He prioritized the health of the soul over physical wealth or fame.", label: "PHILOSOPHICAL GENIUS" },
-    { title: "Universal Definitions", sub: "The Birth of Logic", desc: "He was obsessed with finding universal definitions for moral concepts, moving philosophy from the study of the stars to the study of human conduct.", insight: "His focus on definitions paved the way for Aristotle's formal logic.", label: "PHILOSOPHICAL GENIUS" },
-    { title: "The Inner Daemon", sub: "Conscience as Guide", desc: "He claimed to be guided by a 'daimonion'—an inner voice that warned him whenever he was about to make a mistake or do something unjust.", insight: "This was an early philosophical concept of the individual conscience.", label: "PHILOSOPHICAL GENIUS" },
-    { title: "Eternal Dialogue", sub: "Voice of Reason", desc: "Socrates' life proves that truth is not a destination, but a journey. He died so that the truth could never again be silenced by a majority vote. Welcome to ViaLogic.", insight: "The dialogue continues as long as humans have the courage to ask 'Why?'. Welcome to ViaLogic.", label: "REFLECTION" },
+    { title: "Marie Curie", sub: "1867 — 1934 CE", desc: "Born Maria Skłodowska in Warsaw, Poland. A pioneer who sacrificed her health to discover the glowing power of radioactive elements, forever changing medicine and physics.", insight: "She is the only person to win Nobel Prizes in two different scientific fields: Physics and Chemistry.", label: "HISTORICAL INSIGHT" },
+    { title: "The Flying University", sub: "Underground Education", desc: "In Russian-occupied Poland, she attended a secret, underground university because women were barred from higher education. She later moved to Paris to study at the Sorbonne.", insight: "She survived on bread and butter to save money for her studies.", label: "HISTORICAL INSIGHT" },
+    { title: "Discovery of Polonium", sub: "Named for Poland", desc: "Working with her husband Pierre, she isolated a new element from uranium ore. She named it 'Polonium' to draw attention to the lack of freedom in her homeland.", insight: "Her notebooks are still radioactive and must be kept in lead-lined boxes.", label: "HISTORICAL INSIGHT" },
+    { title: "The Glowing Radium", sub: "The Miracle Element", desc: "She spent years boiling tons of pitchblende in a leaky shed to isolate a single decigram of Radium — an element that glowed in the dark with its own heat.", insight: "She refused to patent her discovery, believing that scientific findings belong to the world.", label: "HISTORICAL INSIGHT" },
+    { title: "Les Petites Curies", sub: "Physics on the Frontline", desc: "During World War I, she developed mobile X-ray units and drove them to the frontlines to help surgeons locate shrapnel in wounded soldiers.", insight: "She trained over 150 women to operate these X-ray machines.", label: "HISTORICAL INSIGHT" },
+    { title: "The Radium Institute", sub: "Global Center for Cure", desc: "She founded the Radium Institute in Paris and Warsaw, which became global hubs for cancer research and the development of radiotherapy.", insight: "Her daughter, Irène Joliot-Curie, also won a Nobel Prize in Chemistry.", label: "SCIENTIFIC GENIUS" },
+    { title: "Radioactive Decay", sub: "Defining Radioactivity", desc: "She coined the term 'Radioactivity' and proved that it was an atomic property, meaning the atom itself was not indivisible as previously thought.", insight: "Her work provided the definitive proof that atoms have complex internal structures.", label: "SCIENTIFIC GENIUS" },
+    { title: "Periodic Table Expansion", sub: "Mapping the Elements", desc: "Her discoveries of Polonium and Radium filled crucial gaps in Mendeleev's periodic table, opening the door to the nuclear age.", insight: "She proved that matter can emit energy without a chemical reaction.", label: "SCIENTIFIC GENIUS" },
+    { title: "Scientific Martyrdom", sub: "The Cost of Discovery", desc: "She died of aplastic anemia, a direct result of her long-term exposure to ionizing radiation. She literally gave her life for her research.", insight: "Her burial in the Panthéon reflects the highest honor France can bestow.", label: "SCIENTIFIC GENIUS" },
+    { title: "Eternal Glow", sub: "Legacy of Healing", desc: "Marie Curie's life proves that a woman's mind can conquer any barrier. She turned her sacrifice into a beacon of hope for medical science. Welcome to ViaLogic.", insight: "Nothing in life is to be feared, it is only to be understood. Welcome to ViaLogic.", label: "REFLECTION" },
 ];
 
 function setup() {
@@ -133,7 +133,10 @@ function updateUI() {
 function getScaleFactor() { return min(1, width / 800); }
 
 function draw() {
-    background(12, 12, 12);
+    background(8, 4, 8);
+    stroke(255, 5); strokeWeight(1);
+    for (let i = 0; i < width; i += 80) line(i, 0, i, height);
+    for (let j = 0; j < height; j += 80) line(0, j, width, j);
     time += 0.02;
 
     for (let p of particles) {
@@ -160,7 +163,7 @@ function draw() {
         } else if (fadeDirection === -1 && fadeAlpha <= 0) {
             fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
         }
-        push(); fill(12, 12, 12, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+        push(); fill(8, 4, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
     }
 }
 
@@ -174,97 +177,91 @@ function drawScreen(s) {
     }
 }
 
-// S0: Agora marketplace (Abstract stalls)
+// S0: Radium green glow pulse
 function drawS0() {
     push();
-    fill(100, 50);
-    rect(-150, 100, 300, 50); // Floor
-    for (let i = -2; i <= 2; i++) {
-        rect(i * 80 - 20, 0, 40, 100);
+    fill(139, 195, 74, 150 + sin(time * 5) * 50);
+    noStroke();
+    ellipse(0, 0, 200);
+    pop();
+}
+
+// S1: Secret University books
+function drawS1() {
+    push();
+    fill(255, 100);
+    rect(-100, -80, 80, 120, 5);
+    rect(20, -100, 80, 140, 5);
+    pop();
+}
+
+// S2: Chemical boiling flask
+function drawS2() {
+    push();
+    stroke(255); noFill();
+    ellipse(0, 50, 120);
+    line(-20, 50, -20, -50); line(20, 50, 20, -50);
+    for (let i = 0; i < 5; i++) {
+        let x = random(-30, 30);
+        let y = 50 - (time * 100 + i * 20) % 80;
+        ellipse(x, y, 5);
     }
     pop();
 }
 
-// S1: Socratic Gadfly pulse
-function drawS1() {
+// S3: Nobel Medals pulse
+function drawS3() {
     push();
-    fill(158, 158, 158, 100 + sin(time * 10) * 55);
-    ellipse(0, 0, 40, 20); // body
-    noFill(); stroke(255); line(-20, 0, -40, -30); line(20, 0, 40, -30); // wings
+    fill(255, 235, 59, 150);
+    ellipse(-80, 0, 80); ellipse(80, 0, 80);
     pop();
 }
 
-// S2: Question mark ring pulse
-function drawS2() {
+// S4: X-Ray hand silhouette
+function drawS4() {
+    push();
+    fill(255, 20);
+    rect(-50, -100, 100, 200, 20); // Arm
+    for (let i = 0; i < 5; i++) rect(-60 + i * 25, -150, 15, 60, 5); // Fingers
+    pop();
+}
+
+// S5: Particle expansion
+function drawS5() {
     push();
     noFill();
     for (let i = 0; i < 5; i++) {
-        stroke(158, 158, 158, 150 - i * 30);
+        stroke(156, 39, 176, 150 - i * 30);
         ellipse(0, 0, i * 60 + (time * 80) % 60);
     }
     pop();
 }
 
-// S3: "KNOW THYSELF" text
-function drawS3() {
-    push();
-    fill(255); textSize(40); textAlign(CENTER);
-    text("KNOW THYSELF", 0, 0);
-    pop();
-}
-
-// S4: Jury trial (Multiple dots)
-function drawS4() {
-    push();
-    for (let i = 0; i < 50; i++) {
-        fill(random(100, 255), 50);
-        ellipse(random(-200, 200), random(-200, 200), 5);
-    }
-    pop();
-}
-
-// S5: Hemlock cup (Abstract glow)
-function drawS5() {
-    push();
-    noFill(); stroke(255, 235, 59, 200);
-    beginShape();
-    vertex(-30, -50); vertex(30, -50); vertex(20, 50); vertex(-20, 50);
-    endShape(CLOSE);
-    fill(255, 235, 59, 50);
-    rect(-20, 0, 40, 50);
-    pop();
-}
-
-// S6: Heart/Soul pulse
+// S6: Periodic Table section (Po/Ra)
 function drawS6() {
     push();
-    fill(255, 100);
-    ellipse(0, 0, 100 + sin(time * 2) * 20);
+    stroke(255); fill(156, 39, 176, 50);
+    rect(-60, -60, 60, 60); text("Po", -45, -30);
+    rect(0, -60, 60, 60); text("Ra", 15, -30);
     pop();
 }
 
-// S7: Question mark growing
+// S7: Mobile X-ray unit truck pulse
 function drawS7() {
     push();
-    stroke(158, 158, 158); noFill();
-    beginShape();
-    for (let i = 0; i < TWO_PI; i += 0.1) {
-        let r = 50 + sin(i * 3 + time) * 10;
-        vertex(cos(i) * r, sin(i) * r);
-    }
-    endShape(CLOSE);
+    fill(100); rect(-100, 50, 200, 50); // Body
+    ellipse(-60, 100, 30); ellipse(60, 100, 30); // Wheels
     pop();
 }
 
-// S8: Inner voice spark
+// S8: Lab desk shadow
 function drawS8() {
     push();
-    fill(255, 235, 59, 150 + sin(time * 20) * 105);
-    ellipse(0, 0, 20);
+    fill(0, 100); rect(-200, 100, 400, 100);
     pop();
 }
 
-// S9: Eternal dialogue star field
+// S9: Eternal star glow
 function drawS9() {
     push();
     for (let i = 0; i < 40; i++) {
