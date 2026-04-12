@@ -1,2 +1,280 @@
-<!DOCTYPE html><html><head><title>Stephen Hawking</title><link rel="stylesheet" href="styles.css"></head><body><main class="sovereign"><h1>Stephen Hawking</h1><p>The Voice of the Singularity</p><div class="glass">Hawking predicted that black holes emit radiation (Hawking Radiation) and spent his life exploring the origins of the Big Bang and the nature of time.</div><canvas id="app"></canvas></main><script src="script.js"></script><a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaLogic | The Voyager of the Void (Stephen Hawking)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0; background-color: #040208; overflow: hidden;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        canvas { display: block; }
+        #act-indicator {
+            position: absolute; top: 30px; left: 30px;
+            color: #6200EA; font-size: 14px; font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 10;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        #label {
+            position: absolute; top: 60px; left: 30px;
+            letter-spacing: 1px; border-left: 4px solid #6200EA;
+            padding-left: 20px; z-index: 10;
+            background: rgba(4, 2, 8, 0.88); padding-right: 20px;
+            padding-bottom: 15px; border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(8px); max-width: 80%;
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #6200EA; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(98, 0, 234, 0.08);
+            border-top: 1px solid rgba(98, 0, 234, 0.4);
+            padding: 15px 0; text-align: center;
+            font-size: 16px; color: #ddd; letter-spacing: 1px;
+            font-family: monospace; backdrop-filter: blur(5px);
+            transition: opacity 0.4s ease-in-out; opacity: 1;
+        }
+        .highlight { color: #6200EA; font-weight: bold; }
+        #nav-hint {
+            position: absolute; top: 30px; right: 30px;
+            color: #777; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer;
+            transition: opacity 0.4s ease-in-out; text-align: right;
+        }
+        .viamath-logo { color: #03A9F4; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) {
+            #act-indicator { top: 20px; left: 10px; font-size: 12px; }
+            #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; }
+            h1 { font-size: 20px; } #subtitle { font-size: 14px; }
+            #description { font-size: 13px; max-width: 100%; }
+            #insight-bar { font-size: 12px; padding: 10px 0; }
+            #nav-hint { top: 10px; right: 10px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body onclick="nextScreen()">
+    <div id="nav-hint">
+        <a href="../../" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>
+        Tap anywhere to advance ➔
+    </div>
+    <div id="act-indicator">ACT I: A BRIEF HISTORY OF TIME</div>
+    <div id="label">
+        <h1 id="title">Stephen Hawking</h1>
+        <p id="subtitle">1942 — 2018 CE</p>
+        <p id="description">Born in Oxford, England. Despite a life-altering disability, he traveled to the edge of black holes and the beginning of time using only the power of his mind.</p>
+    </div>
+    <div id="insight-bar">
+        <span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">He held the Lucasian Chair of Mathematics at Cambridge, once held by Isaac Newton.</span>
+    </div>
+
+<script>
+let time = 0, state = 0;
+let isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12;
+const TOTAL_SCREENS = 10;
+let particles = [];
+
+const ACT1_COUNT = 5;
+const ACT1_LABEL = "A BRIEF HISTORY OF TIME";
+const ACT2_LABEL = "HAWKING RADIATION";
+const ACCENT1 = "#6200EA";
+const ACCENT2 = "#03A9F4";
+
+const content = [
+    { title: "Stephen Hawking", sub: "1942 — 2018 CE", desc: "Born in Oxford, England. Despite a life-altering disability, he traveled to the edge of black holes and the beginning of time using only the power of his mind.", insight: "He held the Lucasian Chair of Mathematics at Cambridge, once held by Isaac Newton.", label: "HISTORICAL INSIGHT" },
+    { title: "Singularity Theorems", sub: "1970s Research", desc: "Collaborating with Roger Penrose, he proved that Einstein's theory of general relativity implied that the universe must have started from a singularity — the Big Bang.", insight: "He unified large-scale gravity with the birth of the universe.", label: "HISTORICAL INSIGHT" },
+    { title: "A Brief History of Time", sub: "Global Phenomenon", desc: "Published in 1988, this book became one of the most successful science books ever, explaining the deepest mysteries of the cosmos to millions of non-experts.", insight: "It stayed on the best-seller list for a record-breaking 237 weeks.", label: "HISTORICAL INSIGHT" },
+    { title: "The Voice of Science", sub: "Technological Triumph", desc: "After losing his voice due to a tracheotomy, he used a computer-generated voice that became his iconic signature, symbolizing the triumph of mind over matter.", insight: "He refused to update the voice to more realistic ones, as it had become his identity.", label: "HISTORICAL INSIGHT" },
+    { title: "Hawking Radiation", sub: "Black Holes Glow", desc: "In 1974, he made his most famous discovery: Black holes are not completely black. They emit radiation and can eventually evaporate completely.", insight: "This proved that black holes have a temperature and entropy.", label: "HISTORICAL INSIGHT" },
+    { title: "Information Paradox", sub: "Cosmic Memory", desc: "He proposed a massive challenge to physics: Does the information that falls into a black hole disappear forever? This debate still rages in quantum physics.", insight: "He eventually conceded that information is likely preserved, but in a scrambled form.", label: "SCIENTIFIC GENIUS" },
+    { title: "The No-Boundary Proposal", sub: "Origin of Time", desc: "He suggested that time is circular or has no edge, meaning the universe has no boundaries in space-time and no need for an external creator.", insight: "He famously asked: 'What is it that breathes fire into the equations?'", label: "SCIENTIFIC GENIUS" },
+    { title: "Black Hole Thermodynamics", sub: " Hawking's Law", desc: "He proved that the area of a black hole's event horizon can only increase, similar to the law of entropy in physics.", insight: "The Hawking temperature formula is one of the few that links G, h, and c.", label: "SCIENTIFIC GENIUS" },
+    { title: "Theory of Everything", sub: "Final Quest", desc: "He sought a M-Theory that could unify all physical aspects of the universe, working until his final days to bridge the gap between quantum and gravity.", insight: "He believed that a complete theory would allow us to 'know the mind of God.'", label: "SCIENTIFIC GENIUS" },
+    { title: "Voyager of Void", sub: "Eternal Mind", desc: "Stephen Hawking's life proves that there are no boundaries to human endeavor. We are just an advanced breed of monkeys on a minor planet, but we can understand the universe. Welcome to ViaLogic.", insight: "Look up at the stars, not down at your feet. Welcome to ViaLogic.", label: "REFLECTION" },
+];
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    for (let i = 0; i < 80; i++)
+        particles.push({ x: random(width), y: random(height), s: random(2, 4), a: random(TWO_PI) });
+    updateUI();
+}
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+function nextScreen() {
+    if (isTransitioning) return;
+    isTransitioning = true; fadeDirection = 1;
+    targetState = (state + 1) % TOTAL_SCREENS;
+    ['label','insight-bar','nav-hint','act-indicator'].forEach(id =>
+        document.getElementById(id).style.opacity = 0);
+}
+function updateUI() {
+    const s = content[state];
+    document.getElementById('title').innerText = s.title;
+    document.getElementById('subtitle').innerText = s.sub;
+    document.getElementById('description').innerText = s.desc;
+    document.getElementById('insight-text').innerText = s.insight;
+    const actInd = document.getElementById('act-indicator');
+    const label = document.getElementById('label');
+    const highlight = document.querySelector('.highlight');
+    const isAct1 = state < ACT1_COUNT;
+    const col = isAct1 ? ACCENT1 : ACCENT2;
+    actInd.innerText = isAct1 ? `ACT I: ${ACT1_LABEL}` : `ACT II: ${ACT2_LABEL}`;
+    actInd.style.color = col;
+    label.style.borderLeftColor = col;
+    document.getElementById('subtitle').style.color = col;
+    highlight.innerText = s.label + ':';
+    highlight.style.color = col;
+}
+function getScaleFactor() { return min(1, width / 800); }
+
+function draw() {
+    background(4, 2, 8);
+    time += 0.02;
+
+    for (let p of particles) {
+        p.y -= 0.3; p.x += sin(p.a + time) * 0.5;
+        if (p.y < 0) { p.y = height; p.x = random(width); }
+        const col = state < ACT1_COUNT ? ACCENT1 : ACCENT2;
+        fill(col + '40'); noStroke();
+        ellipse(p.x, p.y, p.s);
+    }
+
+    push(); translate(width/2, height/2); scale(getScaleFactor());
+    drawScreen(state);
+    pop();
+
+    if (isTransitioning) {
+        fadeAlpha += FADE_SPEED * fadeDirection;
+        if (fadeDirection === 1 && fadeAlpha >= 255) {
+            fadeAlpha = 255; fadeDirection = -1;
+            state = targetState; time = 0; updateUI();
+            ['label','insight-bar','act-indicator'].forEach(id =>
+                document.getElementById(id).style.opacity = 1);
+            if (state !== TOTAL_SCREENS - 1)
+                document.getElementById('nav-hint').style.opacity = 1;
+        } else if (fadeDirection === -1 && fadeAlpha <= 0) {
+            fadeAlpha = 0; isTransitioning = false; fadeDirection = 0;
+        }
+        push(); fill(4, 2, 8, fadeAlpha); noStroke(); rect(0, 0, width, height); pop();
+    }
+}
+
+function drawScreen(s) {
+    switch(s) {
+        case 0: drawS0(); break; case 1: drawS1(); break;
+        case 2: drawS2(); break; case 3: drawS3(); break;
+        case 4: drawS4(); break; case 5: drawS5(); break;
+        case 6: drawS6(); break; case 7: drawS7(); break;
+        case 8: drawS8(); break; case 9: drawS9(); break;
+    }
+}
+
+// S0: Black hole event horizon (Glow)
+function drawS0() {
+    push();
+    fill(0); stroke(98, 0, 234, 150 + sin(time * 5) * 50);
+    strokeWeight(10);
+    ellipse(0, 0, 150);
+    noStroke(); fill(98, 0, 234, 30);
+    ellipse(0, 0, 250 + sin(time) * 50);
+    pop();
+}
+
+// S1: Big Bang Singularity pulse
+function drawS1() {
+    push();
+    fill(255);
+    ellipse(0, 0, 5 + sin(time * 20) * 105 % 200);
+    pop();
+}
+
+// S2: Brief History Book silhouette
+function drawS2() {
+    push();
+    fill(255, 100);
+    rect(-80, -100, 160, 200, 5);
+    pop();
+}
+
+// S3: Voice pulse (Abstract)
+function drawS3() {
+    push();
+    noFill();
+    for (let i = 0; i < 5; i++) {
+        stroke(98, 0, 234, 150 - i * 30);
+        rect(-100, -10 * i, 200, 20 * i);
+    }
+    pop();
+}
+
+// S4: Hawking Radiation (Escaping particles)
+function drawS4() {
+    push();
+    fill(0); ellipse(0, 0, 100);
+    for (let i = 0; i < 20; i++) {
+        let a = PI * i / 10 + time;
+        let d = 50 + (time * 100 + i * 20) % 200;
+        fill(3, 169, 244);
+        ellipse(cos(a) * d, sin(a) * d, 5);
+    }
+    pop();
+}
+
+// S5: Information Paradox (Lines)
+function drawS5() {
+    push();
+    stroke(0, 169, 244, 100);
+    for (let i = 0; i < 20; i++) {
+        line(-300, random(-200, 200), 0, 0);
+    }
+    pop();
+}
+
+// S6: No-boundary (Infinite torus)
+function drawS6() {
+    push();
+    noFill(); stroke(98, 0, 234, 100);
+    for (let i = 0; i < 10; i++) {
+        ellipse(0, 0, i * 40, 200);
+    }
+    pop();
+}
+
+// S7: Black hole area expansion
+function drawS7() {
+    push();
+    noFill(); stroke(98, 0, 234, 150);
+    ellipse(0, 0, 50 + (time * 50) % 200);
+    pop();
+}
+
+// S8: M-Theory / Formula abstract
+function drawS8() {
+    push();
+    stroke(255, 50);
+    textSize(20); textAlign(CENTER);
+    text("S = A / 4G", 0, 0);
+    pop();
+}
+
+// S9: Eternal star field
+function drawS9() {
+    push();
+    for (let i = 0; i < 40; i++) {
+        fill(255, random(100, 255));
+        ellipse(random(-300, 300), random(-300, 300), 2);
+    }
+    pop();
+}
+
+</script>
+
+<a href="../../index.html" class="vialogic-back-btn" style="position:fixed; top:20px; left:20px; z-index:9999; text-decoration:none; color:white; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.4); padding:8px 16px; border-radius:99px; font-family:sans-serif; font-size:12px; font-weight:bold; backdrop-filter:blur(8px); cursor:pointer;">← VIALOGIC MAP</a>
+
+</body>
+</html>
