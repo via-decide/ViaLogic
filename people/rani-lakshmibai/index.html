@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=../rani-laxmibai/index.html">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaLogic | The Warrior Queen of Jhansi (Rani Lakshmibai)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #0A0404; overflow: hidden; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; }
+        canvas { display: block; }
+        #act-indicator { position: absolute; top: 30px; left: 30px; color: #D32F2F; font-size: 14px; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; z-index: 10; transition: opacity 0.4s ease-in-out; opacity: 1; }
+        #label { position: absolute; top: 60px; left: 30px; letter-spacing: 1px; border-left: 4px solid #D32F2F; padding-left: 20px; z-index: 10; background: rgba(10, 4, 4, 0.88); padding-right: 20px; padding-bottom: 15px; border-radius: 0 10px 10px 0; backdrop-filter: blur(8px); max-width: 80%; transition: opacity 0.4s ease-in-out; opacity: 1; }
+        h1 { margin: 0; font-size: 26px; font-weight: 300; text-transform: uppercase; color: #fff; }
+        #subtitle { color: #D32F2F; font-size: 16px; margin-top: 5px; font-weight: bold; letter-spacing: 2px; }
+        #description { color: #ccc; font-size: 15px; margin-top: 10px; max-width: 450px; line-height: 1.6; }
+        #insight-bar { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(211, 47, 47, 0.08); border-top: 1px solid rgba(211, 47, 47, 0.4); padding: 15px 0; text-align: center; font-size: 16px; color: #ddd; letter-spacing: 1px; font-family: monospace; backdrop-filter: blur(5px); transition: opacity 0.4s ease-in-out; opacity: 1; }
+        .highlight { color: #D32F2F; font-weight: bold; }
+        #nav-hint { position: absolute; top: 30px; right: 30px; color: #777; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: opacity 0.4s ease-in-out; text-align: right; }
+        .viamath-logo { color: #FFC107; font-weight: bold; font-size: 16px; margin-bottom: 5px; letter-spacing: 3px; }
+        @media (max-width: 700px) { #act-indicator { top: 20px; left: 10px; font-size: 12px; } #label { top: 45px; left: 10px; padding-left: 15px; max-width: 90%; } h1 { font-size: 20px; } #subtitle { font-size: 14px; } #description { font-size: 13px; max-width: 100%; } #insight-bar { font-size: 12px; padding: 10px 0; } #nav-hint { top: 10px; right: 10px; font-size: 10px; } }
+    </style>
 </head>
-<body>
-    <p>Redirecting to canonical page: <a href="../rani-laxmibai/index.html">Rani Laxmibai</a></p>
+<body onclick="nextScreen()">
+    <div id="nav-hint"><a href="../../index.html" style="text-decoration:none"><div class="viamath-logo">← VIALOGIC MAP</div></a>Tap anywhere to advance ➔</div>
+    <div id="act-indicator">ACT I: THE ADOPTED SON</div>
+    <div id="label"><h1 id="title">The Rebel Queen</h1><p id="subtitle">1828 — 1858 CE</p><p id="description">Born Manikarnika in Varanasi. She was trained in horse riding, sword fighting, and archery — skills that were unconventional for women of her time.</p></div>
+    <div id="insight-bar"><span class="highlight">HISTORICAL INSIGHT:</span> <span id="insight-text">She became the Rani of Jhansi after marrying Raja Gangadhar Rao.</span></div>
+
+<script>
+let time = 0, state = 0, isTransitioning = false, fadeAlpha = 0, fadeDirection = 0, targetState = 0;
+const FADE_SPEED = 12, TOTAL_SCREENS = 10, ACT1_COUNT = 5, ACT1_LABEL = "THE ADOPTED SON", ACT2_LABEL = "DEFIANCE TILL DEATH", ACCENT1 = "#D32F2F", ACCENT2 = "#FFC107";
+const particles = [];
+const content = [
+ { title: "The Rebel Queen", sub: "1828 — 1858 CE", desc: "Born Manikarnika in Varanasi. She was trained in horse riding, sword fighting, and archery — skills that were unconventional for women of her time.", insight: "She became the Rani of Jhansi after marrying Raja Gangadhar Rao.", label: "HISTORICAL INSIGHT" },
+ { title: "The Doctrine of Lapse", sub: "Jhansi Annexation", desc: "After the death of her husband, the British refused to recognize her adopted son as the heir and annexed Jhansi under the Doctrine of Lapse.", insight: "She famously declared, 'Mein apni Jhansi nahi dungi' (I will not give up my Jhansi).", label: "HISTORICAL INSIGHT" },
+ { title: "The Siege of Jhansi", sub: "March 1858", desc: "British forces under Sir Hugh Rose besieged Jhansi. The Rani led the defense from the ramparts, showing extraordinary bravery for two weeks.", insight: "The British commander later described her as 'the most dangerous of all rebel leaders.'", label: "HISTORICAL INSIGHT" },
+ { title: "The Great Leap", sub: "Escape from the Fort", desc: "With her son Damodar Rao tied to her back, she leaped from the high walls of the Jhansi fort on her horse, Badal, to escape the falling city.", insight: "Badal died in the leap, but the Rani survived to continue the fight from Kalpi and Gwalior.", label: "HISTORICAL INSIGHT" },
+ { title: "The Battle of Gwalior", sub: "June 1858", desc: "She captured the Gwalior fort and fought a final, fierce battle against the British cavalry near the city.", insight: "Her death in battle at the age of 29 made her an eternal martyr of the Indian resistance.", label: "HISTORICAL INSIGHT" },
+ { title: "Warrior General", sub: "Military Strategy", desc: "She was not just a symbol; she was a combatant and a strategist who led an army of men and women into the heart of the rebellion.", insight: "She organized a women's army called the 'Durga Dal' to defend Jhansi.", label: "MILITARY GENIUS" },
+ { title: "Fortress Defense", sub: "Rampart Tactics", desc: "She personally supervised the casting of cannons and the strengthening of fort walls, understanding the mechanics of siege warfare.", insight: "Her cannons 'Bhawani Shankar' and 'Gadh Kanak' were legendary for their range.", label: "MILITARY GENIUS" },
+ { title: "The Cavalry Charge", sub: "Mobile Warfare", desc: "She favored fast cavalry maneuvers, often leading charges herself to break British infantry blocks.", insight: "She was known for her ability to handle two swords simultaneously while riding.", label: "MILITARY GENIUS" },
+ { title: "Icon of 1857", sub: "National Heroine", desc: "Her struggle became the defining narrative of the First War of Indian Independence, inspiring future revolutionaries like Subhash Chandra Bose.", insight: "The first all-women regiment of the INA was named after her.", label: "MILITARY GENIUS" },
+ { title: "The Unbowed Spirit", sub: "Legend of the Rani", desc: "She remains the ultimate symbol of female courage and patriotism in India, immortalized in the poem 'Khoob ladi mardaani woh toh Jhansi wali rani thi.'", insight: "Her legacy is a testament to the fact that courage has no gender. Welcome to ViaLogic.", label: "REFLECTION" }
+];
+function setup(){ createCanvas(windowWidth, windowHeight); for(let i=0;i<80;i++) particles.push({x: random(width), y: random(height), s: random(2,4), a: random(TWO_PI)}); updateUI(); }
+function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
+function nextScreen(){ if(isTransitioning) return; isTransitioning=true; fadeDirection=1; targetState=(state+1)%TOTAL_SCREENS; ['label','insight-bar','nav-hint','act-indicator'].forEach(id=>document.getElementById(id).style.opacity=0); }
+function updateUI(){ const s=content[state], col=state<ACT1_COUNT?ACCENT1:ACCENT2; title.innerText=s.title; subtitle.innerText=s.sub; description.innerText=s.desc; document.getElementById('insight-text').innerText=s.insight; const act=document.getElementById('act-indicator'); act.innerText=state<ACT1_COUNT?`ACT I: ${ACT1_LABEL}`:`ACT II: ${ACT2_LABEL}`; act.style.color=col; document.getElementById('label').style.borderLeftColor=col; subtitle.style.color=col; const h=document.querySelector('.highlight'); h.innerText=s.label+':'; h.style.color=col; }
+function getScaleFactor(){ return min(1,width/800); }
+function draw(){
+    background(10,4,4); stroke(255,5); strokeWeight(1); for(let i=0;i<width;i+=80) line(i,0,i,height); for(let j=0;j<height;j+=80) line(0,j,width,j); time += 0.02;
+    for(const p of particles){ p.y -= 0.3; p.x += sin(p.a + time)*0.5; if(p.y<0){ p.y=height; p.x=random(width);} fill((state<ACT1_COUNT?ACCENT1:ACCENT2)+'40'); noStroke(); ellipse(p.x,p.y,p.s); }
+    push(); translate(width/2,height/2); scale(getScaleFactor()); drawScreen(state); pop();
+    if(isTransitioning){ fadeAlpha += FADE_SPEED*fadeDirection; if(fadeDirection===1 && fadeAlpha>=255){ fadeAlpha=255; fadeDirection=-1; state=targetState; time=0; updateUI(); ['label','insight-bar','act-indicator','nav-hint'].forEach(id=>document.getElementById(id).style.opacity=1);} else if(fadeDirection===-1 && fadeAlpha<=0){ fadeAlpha=0; isTransitioning=false; fadeDirection=0;} fill(10,4,4,fadeAlpha); noStroke(); rect(0,0,width,height); }
+}
+function drawScreen(s){ [drawS0,drawS1,drawS2,drawS3,drawS4,drawS5,drawS6,drawS7,drawS8,drawS9][s](); }
+function drawS0(){ fill(211,47,47,50); noStroke(); rect(-400,100,800,100); for(let i=0;i<5;i++) rect(-250+i*100,50,60,50); }
+function drawS1(){ noFill(); for(let i=0;i<5;i++){ stroke(211,47,47,200-i*40); strokeWeight(2); ellipse(0,50,i*40+(time*80)%40);} }
+function drawS2(){ fill(255,193,7,150); noStroke(); ellipse(-100,0,40+sin(time*10)*20); stroke(211,47,47); strokeWeight(10); line(-150,10,-80,10); }
+function drawS3(){ let x=-200+(time*150)%400; fill(255); noStroke(); ellipse(x,100,60,30); ellipse(x+20,70,20,40); }
+function drawS4(){ fill(211,47,47,160); triangle(-80,80,80,80,0,-120); fill(255,193,7,200); ellipse(0,-120,20); }
+function drawS5(){ noFill(); stroke(255,193,7,160); for(let i=0;i<4;i++) ellipse(0,0,90+i*45+sin(time*4+i)*10); }
+function drawS6(){ stroke(211,47,47,180); strokeWeight(3); line(-200,80,200,-80); line(-200,-80,200,80); }
+function drawS7(){ fill(255,193,7,150); noStroke(); for(let i=0;i<12;i++){ const a=time+i*TWO_PI/12; ellipse(cos(a)*140,sin(a)*70,8);} }
+function drawS8(){ stroke(255,193,7,180); noFill(); rect(-170,-110,340,220); stroke(211,47,47,180); line(-170,0,170,0); }
+function drawS9(){ noFill(); stroke(255,193,7,200); for(let i=0;i<14;i++){ const a=i*TWO_PI/14+time*.3; line(0,0,cos(a)*230,sin(a)*230);} }
+</script>
 </body>
 </html>
