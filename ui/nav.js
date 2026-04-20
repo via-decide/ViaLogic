@@ -1,0 +1,1 @@
+(function(g){'use strict';const l=[{id:'atlas',label:'Atlas',icon:'🌍'},{id:'people',label:'People',icon:'👥'},{id:'graph',label:'Knowledge Graph',icon:'🕸️'}];function i(){const c=document.getElementById('nav-links');if(!c)return;c.innerHTML=l.map(x=>`<a href="#${x.id}" class="nav__link" data-view="${x.id}">${x.label}</a>`).join('')}g.ViaLogicNav={init:i}})(window);
