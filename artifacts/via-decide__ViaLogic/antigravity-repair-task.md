@@ -4,7 +4,7 @@ TARGET
 Validate and repair only the files touched by the previous implementation.
 
 TASK
-Implement a Rule Execution Engine (core/rule-engine.js) to evaluate logical conditions and trigger actions based on facts.
+Implement an Explanation Engine (core/explainer.js) to provide reasoning traces for rule evaluations.
 
 RULES
 1. Audit touched files first and identify regressions.
