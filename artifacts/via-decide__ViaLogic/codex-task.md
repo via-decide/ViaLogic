@@ -1,10 +1,10 @@
 You are working in repository via-decide/ViaLogic on branch main.
 
 MISSION
-Implement a Rule Execution Engine (core/rule-engine.js) to evaluate logical conditions and trigger actions based on facts.
+Implement an Explanation Engine (core/explainer.js) to provide reasoning traces for rule evaluations.
 
 CONSTRAINTS
-- Max 1 new file (core/rule-engine.js) - Zero external dependencies - Rule evaluation <5ms - Must be deterministic (same input → same output)
+- Max 1 new file (core/explainer.js) - Zero external dependencies - Explanation overhead <5ms - Must not affect rule determinism
 
 PROCESS (MANDATORY)
 1. Read README.md and AGENTS.md before editing.

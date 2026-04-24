@@ -1,17 +1,17 @@
 {
   "repo": "via-decide/ViaLogic",
   "mode": "codex_then_antigravity",
-  "branch": "simba/implement-a-rule-execution-engine-corerule-engin",
+  "branch": "simba/implement-an-explanation-engine-coreexplainerjs-",
   "files_to_create": [
     "codex-task.md",
     "antigravity-repair-task.md",
     "pr-package.md",
     "execution.json",
-    "core/rule-engine.js"
+    "core/explainer.js"
   ],
   "files_to_modify": [],
   "codex_prompt_path": "codex-task.md",
   "repair_prompt_path": "antigravity-repair-task.md",
-  "synthesized_file": "core/rule-engine.js",
-  "synthesized_size": 1626
+  "synthesized_file": "core/explainer.js",
+  "synthesized_size": 2630
 }

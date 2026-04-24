@@ -1,9 +1,9 @@
-Branch: simba/implement-a-rule-execution-engine-corerule-engin
-Title: Implement a Rule Execution Engine (core/rule-engine.js) to evaluate l...
+Branch: simba/implement-an-explanation-engine-coreexplainerjs-
+Title: Implement an Explanation Engine (core/explainer.js) to provide reason...
 
 ## Summary
 - Repo orchestration task for via-decide/ViaLogic
-- Goal: Implement a Rule Execution Engine (core/rule-engine.js) to evaluate logical conditions and trigger actions based on facts.
+- Goal: Implement an Explanation Engine (core/explainer.js) to provide reasoning traces for rule evaluations.
 
 ## Testing Checklist
 - [ ] Run unit/integration tests
