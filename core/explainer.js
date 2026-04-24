@@ -1,6 +1,6 @@
 /**
  * Explanation Engine (core/explainer.js)
- * Provides reasoning traces for rule evaluations
+ * Provides reasoning traces for rule evaluations.
  */
 
 const { Trace } = require('./trace');
@@ -8,8 +8,8 @@ const { Rule } = require('../rules/rule');
 
 class Explainer {
   /**
-   * @param {Rule} rule The evaluated rule
-   * @param {boolean} matched Whether the rule matched or not
+   * @param {Rule} rule The evaluated rule.
+   * @param {boolean} matched Whether the rule matched or not.
    */
   async explain(rule, matched) {
     const trace = new Trace();
@@ -18,67 +18,54 @@ class Explainer {
   }
 
   /**
-   * Builds the reasoning trace for the given rule and match status
+   * Builds a reasoning trace for the given rule and match status.
    *
-   * @param {Rule} rule The evaluated rule
-   * @param {boolean} matched Whether the rule matched or not
-   * @param {Trace} trace The trace to build upon
+   * @param {Rule} rule The evaluated rule.
+   * @param {boolean} matched Whether the rule matched or not.
+   * @param {Trace} trace The trace to build upon.
    */
   async buildTrace(rule, matched, trace) {
-    // Add the rule's description as the starting point of the trace
-    trace.add(`Rule: ${rule.description}`);
+    // Add the rule's description as the initial step
+    await trace.addStep(`Rule: ${rule.name}`);
 
     if (matched) {
-      // If the rule matched, add a "Matched" statement and continue building the trace
-      trace.add('Matched');
-      await this.buildMatchingTrace(rule, trace);
+      // If the rule matched, add steps for each condition
+      for (const condition of rule.conditions) {
+        await this.buildConditionStep(condition, trace);
+      }
     } else {
-      // If the rule did not match, add a "Did Not Match" statement and stop building the trace
-      trace.add('Did Not Match');
+      // If the rule didn't match, add a step indicating the failure
+      await trace.addStep(`Rule did not match: ${rule.name}`);
+    }
+
+    // Add a final step summarizing the result
+    await trace.addStep(matched ? 'Matched' : 'Did not match');
+  }
+
+  /**
+   * Builds a step for a given condition.
+   *
+   * @param {Condition} condition The condition to build a step for.
+   * @param {Trace} trace The trace to add the step to.
+   */
+  async buildConditionStep(condition, trace) {
+    await trace.addStep(`Condition: ${condition.name}`);
+    if (condition.expression) {
+      // If the condition has an expression, add steps for each part
+      for (const part of condition.expression.parts) {
+        await this.buildExpressionPartStep(part, trace);
+      }
     }
   }
 
   /**
-   * Builds the reasoning trace for a matched rule
+   * Builds a step for a given expression part.
    *
-   * @param {Rule} rule The evaluated rule
-   * @param {Trace} trace The trace to build upon
+   * @param {ExpressionPart} part The part to build a step for.
+   * @param {Trace} trace The trace to add the step to.
    */
-  async buildMatchingTrace(rule, trace) {
-    // Add the conditions that led to the match
-    await this.buildConditionsTrace(rule.conditions, trace);
-
-    // Add a statement indicating the rule was matched
-    trace.add('Matched due to the following conditions:');
-  }
-
-  /**
-   * Builds the reasoning trace for a set of conditions
-   *
-   * @param {Condition[]} conditions The conditions to build upon
-   * @param {Trace} trace The trace to build upon
-   */
-  async buildConditionsTrace(conditions, trace) {
-    // Add each condition as a separate statement in the trace
-    for (const condition of conditions) {
-      await this.buildConditionTrace(condition, trace);
-    }
-  }
-
-  /**
-   * Builds the reasoning trace for a single condition
-   *
-   * @param {Condition} condition The condition to build upon
-   * @param {Trace} trace The trace to build upon
-   */
-  async buildConditionTrace(condition, trace) {
-    // Add the condition's description as a statement in the trace
-    trace.add(`Condition: ${condition.description}`);
-
-    // If the condition has sub-conditions, recursively build their traces
-    if (condition.subConditions.length > 0) {
-      await this.buildConditionsTrace(condition.subConditions, trace);
-    }
+  async buildExpressionPartStep(part, trace) {
+    await trace.addStep(`Part: ${part.type} - ${part.value}`);
   }
 }
 
