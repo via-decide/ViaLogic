@@ -8,7 +8,7 @@
 
 | Full name | Birth | Death | Primary field | Time period | Repository references | Documentation status | Missing information |
 |---|---:|---:|---|---|---|---|---|
-| Mahaviracharya | repository does not specify | repository does not specify | Mathematician | Golden Age | `people/Mahaviracharya/` | Complete v1 package | Person-specific primary-source expansion where not already encoded |
+| Mahaviracharya | c. 800 | c. 870 | mathematics | Golden Age | `data/entities.json`; `people/Mahaviracharya/` | Complete v1.1 package with authoritative references | Exact birth and death dates not securely documented; chronology is approximate |
 | Ada Lovelace | 1815 | 1852 | mathematics and computing | Modern | `people/ada-lovelace/` | Complete v1 package | Person-specific primary-source expansion where not already encoded |
 | Adi Shankara | repository does not specify | repository does not specify | Philosopher | Golden Age | `people/adi-shankara/` | Complete v1 package | Person-specific primary-source expansion where not already encoded |
 | Al Khwarizmi | c. 780 | c. 850 | algebra and algorithms | Golden Age | `people/al-khwarizmi/` | Complete v1 package | Person-specific primary-source expansion where not already encoded |
