@@ -1,0 +1,35 @@
+# Mahaviracharya — overview
+
+- **Validation ID:** VIA-HIST-MAHAVIRACHARYA-OVERVIEW
+- **Version:** 1.0
+- **Last reviewed:** 2026-07-09
+- **Repository source:** `people/Mahaviracharya/`, `data/entities.json`, `people-registry.json`
+- **Research source list:** see `references.md` in this package.
+
+## Engineering summary
+Mahaviracharya is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Mahaviracharya wrote Ganita Sara Sangraha, the first Sanskrit textbook on algebra. into problems, constraints, solution mechanisms, and later system impact.
+
+## Historical summary
+- **Birth:** repository does not specify
+- **Death:** repository does not specify
+- **Primary field:** Mathematician
+- **Time period:** Golden Age
+
+## Cross references
+- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
+- **Related people:** see `../knowledge-graph.md` and `influence.md`.
+- **Successors:** later engineering and scientific communities that operationalized these ideas.
+- **Repository links:** [ViaLogic profile](../../people/Mahaviracharya/)
+
+## Modern relevance
+This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+
+## Who they were
+Mahaviracharya (repository does not specify–repository does not specify) is included because the repository associates them with Mathematician.
+
+## Historical context
+Their work is documented here as part of a longer chain from theory to implementable engineering practice.
+
+## Major contributions
+- Mahaviracharya wrote Ganita Sara Sangraha, the first Sanskrit textbook on algebra..
+- The package separates repository statements from externally verifiable claims and points readers to human-written references.
