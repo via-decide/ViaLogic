@@ -1,41 +1,43 @@
 # Euclid — influence
 
 - **Validation ID:** VIA-HIST-EUCLID-INFLUENCE
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/euclid/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/euclid/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Euclid is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Elements; axiomatic geometry into problems, constraints, solution mechanisms, and later system impact.
+Influence is represented as a directed relationship: prerequisites flow into Euclid; Euclid's contribution flows into later theories, technologies, or institutions.
 
 ## Historical summary
-- **Birth:** c. 325 BCE
-- **Death:** c. 265 BCE
-- **Primary field:** geometry
-- **Time period:** Classical
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/euclid/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The verified local contribution marker is: Elements; axiomatic geometry..
 
 ## Directed knowledge graph
-
 ```mermaid
-graph LR
-  prerequisites["Prerequisite traditions"] --> current["Euclid"]
-  current --> contribution["Elements; axiomatic geometry"]
-  contribution --> successors["Later engineers / scientists"]
-  successors --> modern["Modern engineering systems"]
+graph TD
+  Prior[Earlier traditions and prerequisite problems] --> Person[Euclid]
+  Person --> Contribution[Elements; axiomatic geometry.]
+  Contribution --> Method[Reusable method or concept]
+  Method --> Later[Later science, mathematics, engineering, or institutions]
+  Later --> Modern[Modern applications and curricula]
 ```
 
 ## Influenced by
-- To be read with source-backed predecessor links in `../knowledge-graph.md`.
+- Earlier practitioners in geometry.
+- The mathematical, scientific, philosophical, political, or institutional vocabulary available in the Classical period.
+- Practical constraints that required a more reliable way to reason, compute, measure, organize, or build.
 
 ## People influenced
-- To be validated through references before adding person-specific claims.
+Specific successors require source-backed expansion. The local knowledge graph should only name successors when a traceable source supports the lineage.
+
+## Competing theories and interpretations
+Historical interpretation may be contested. Competing claims should be recorded with attribution rather than forced into a single narrative.
+
+## Cross references
+- **Prerequisites:** earlier nodes in `../knowledge-graph.md`.
+- **Related people:** adjacent figures in the same field and period.
+- **Successors:** downstream users of the contribution.
+- **Repository links:** `data/entities.json`; profile path `people/euclid/` where available.
+
+## Modern relevance
+The influence graph helps readers see engineering evolution as a chain of constraints, abstractions, and reuse rather than as isolated biographies.

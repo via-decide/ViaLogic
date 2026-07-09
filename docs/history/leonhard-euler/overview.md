@@ -1,13 +1,13 @@
 # Leonhard Euler — overview
 
 - **Validation ID:** VIA-HIST-LEONHARD-EULER-OVERVIEW
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/leonhard-euler/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/leonhard-euler/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Leonhard Euler is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about graph theory; analysis; mechanics notation into problems, constraints, solution mechanisms, and later system impact.
+Leonhard Euler is treated as an engineering-evolution node because the recorded contribution — graph theory; analysis; mechanics notation. — connects a historical person to a reusable idea, method, instrument, proof pattern, or institutional technique. The central question is not merely who the person was, but how the contribution changed the way later practitioners reasoned, calculated, measured, organized, or built systems.
 
 ## Historical summary
 - **Birth:** 1707
@@ -15,21 +15,23 @@ Leonhard Euler is represented in ViaLogic as a science figure. The engineering k
 - **Primary field:** mathematics and mechanics
 - **Time period:** Enlightenment
 
+Where dates or biographical details remain unspecified in the local metadata, the absence is preserved rather than filled by conjecture. Later expansion should use person-specific primary works, university biographies, academy records, prize archives, or recognized history-of-science publications.
+
 ## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/leonhard-euler/)
+- **Prerequisites:** earlier mathematical, scientific, philosophical, institutional, or engineering traditions that made the contribution intelligible.
+- **Related people:** see `influence.md` and `../knowledge-graph.md` for local relationships.
+- **Successors:** later practitioners who converted the idea into a method, technology, discipline, or curriculum.
+- **Repository links:** `data/entities.json`; profile path `people/leonhard-euler/` where available.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+Modern relevance should be read through the contribution rather than through biography alone. A theorem can become an algorithm; a measurement practice can become instrumentation; a philosophical distinction can become a design constraint; a political or social organizer can influence institutions that later shape technical education and infrastructure.
 
 ## Who they were
-Leonhard Euler (1707–1783) is included because the repository associates them with mathematics and mechanics.
+Leonhard Euler belongs to the mathematics and mechanics lineage represented for the Enlightenment period. The minimum verified repository claim is: graph theory; analysis; mechanics notation..
 
 ## Historical context
-Their work is documented here as part of a longer chain from theory to implementable engineering practice.
+The contribution should be placed against the technical problem of its period: limited notation, limited instruments, contested theories, social constraints on education, or the need to make knowledge reproducible across generations.
 
 ## Major contributions
-- graph theory; analysis; mechanics notation.
-- The package separates repository statements from externally verifiable claims and points readers to human-written references.
+- graph theory; analysis; mechanics notation..
+- The contribution is documented here as a historical engineering node: a point where knowledge became more teachable, calculable, measurable, formal, or operational.

@@ -1,40 +1,40 @@
 # David Hume — engineering
 
 - **Validation ID:** VIA-HIST-DAVID-HUME-ENGINEERING
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/david-hume/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/david-hume/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-David Hume is represented in ViaLogic as a philosophy figure. The engineering knowledge package maps repository claims about David Hume · Enlightenment into problems, constraints, solution mechanisms, and later system impact.
+The engineering question for David Hume is how David Hume · Enlightenment. changed practice. Engineering analysis asks what problem existed, what abstraction or mechanism was introduced, what constraints shaped it, and how later systems reused the idea.
 
 ## Historical summary
-- **Birth:** repository does not specify
-- **Death:** repository does not specify
-- **Primary field:** philosophy
-- **Time period:** Enlightenment
+David Hume is associated with philosophy during the Enlightenment period. The available repository claim is intentionally narrow: David Hume · Enlightenment..
+
+## What problem existed
+The recurring problem was the conversion of knowledge into reliable action. In mathematics this means computable procedures or proofs; in physics it means measurable laws; in engineering it means artifacts or repeatable design methods; in logic and philosophy it means distinctions precise enough to guide reasoning; in civic history it means institutions and coordination patterns that change technical capacity.
+
+## What solution they created
+The recorded contribution should be read as a solution pattern: David Hume · Enlightenment.. A complete expansion must identify the inputs, the transformation performed, the validation method, and the output that later practitioners could reuse.
+
+## Engineering constraints
+- Notation, language, instruments, and materials available in the period.
+- Institutional support, patronage, publication channels, and educational access.
+- Reproducibility across teachers, workshops, laboratories, courts, or universities.
+- Accuracy, simplicity, generality, and transmission trade-offs.
+
+## Trade-offs
+Historical engineering rarely optimizes every objective simultaneously. A compact rule may sacrifice proof detail; an instrument may trade precision for robustness; a political institution may trade speed for legitimacy; a formal theory may sacrifice accessibility for rigor.
+
+## Impact on later systems
+The later-system impact should be expanded from authoritative sources, but the engineering lens is stable: identify where the contribution appears as an algorithm, law, architecture, educational method, design discipline, or institutional precedent.
 
 ## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/david-hume/)
+- **Prerequisites:** earlier theories, tools, or institutions required by the contribution.
+- **Related people:** see `influence.md`.
+- **Modern equivalents:** algorithms, protocols, standards, instruments, curricula, proof systems, or design heuristics.
+- **Repository links:** `data/entities.json`; profile path `people/david-hume/` where available.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
-
-## Engineering problem
-What recurring problem did this node address? For David Hume, ViaLogic currently points to: David Hume · Enlightenment.
-
-## Solution mechanism
-The solution is described as a transferable method: formal model, measurement technique, instrument, machine architecture, algorithm, proof pattern, or physical law.
-
-## Constraints and trade-offs
-- Available instruments and materials.
-- Mathematical language available in the period.
-- Institutional, publication, and transmission limits.
-- Accuracy, complexity, reproducibility, and usability trade-offs.
-
-## Later-system impact
-Readers should connect this node to modern systems in computing, electronics, physics, robotics, AI, cryptography, operations research, or infrastructure when supported by references.
+The modern engineering value is the transfer from historical contribution to reusable abstraction.

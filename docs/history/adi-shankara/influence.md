@@ -1,41 +1,43 @@
 # Adi Shankara — influence
 
 - **Validation ID:** VIA-HIST-ADI-SHANKARA-INFLUENCE
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/adi-shankara/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/adi-shankara/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Adi Shankara is represented in ViaLogic as a philosophy figure. The engineering knowledge package maps repository claims about Consolidated non-dualism in Hindu philosophy. into problems, constraints, solution mechanisms, and later system impact.
+Influence is represented as a directed relationship: prerequisites flow into Adi Shankara; Adi Shankara's contribution flows into later theories, technologies, or institutions.
 
 ## Historical summary
-- **Birth:** repository does not specify
-- **Death:** repository does not specify
-- **Primary field:** Philosopher
-- **Time period:** Golden Age
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/adi-shankara/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The verified local contribution marker is: Consolidated non-dualism in Hindu philosophy..
 
 ## Directed knowledge graph
-
 ```mermaid
-graph LR
-  prerequisites["Prerequisite traditions"] --> current["Adi Shankara"]
-  current --> contribution["Consolidated non-dualism in Hindu philosophy."]
-  contribution --> successors["Later engineers / scientists"]
-  successors --> modern["Modern engineering systems"]
+graph TD
+  Prior[Earlier traditions and prerequisite problems] --> Person[Adi Shankara]
+  Person --> Contribution[Consolidated non-dualism in Hindu philosophy.]
+  Contribution --> Method[Reusable method or concept]
+  Method --> Later[Later science, mathematics, engineering, or institutions]
+  Later --> Modern[Modern applications and curricula]
 ```
 
 ## Influenced by
-- To be read with source-backed predecessor links in `../knowledge-graph.md`.
+- Earlier practitioners in Philosopher.
+- The mathematical, scientific, philosophical, political, or institutional vocabulary available in the Golden Age period.
+- Practical constraints that required a more reliable way to reason, compute, measure, organize, or build.
 
 ## People influenced
-- To be validated through references before adding person-specific claims.
+Specific successors require source-backed expansion. The local knowledge graph should only name successors when a traceable source supports the lineage.
+
+## Competing theories and interpretations
+Historical interpretation may be contested. Competing claims should be recorded with attribution rather than forced into a single narrative.
+
+## Cross references
+- **Prerequisites:** earlier nodes in `../knowledge-graph.md`.
+- **Related people:** adjacent figures in the same field and period.
+- **Successors:** downstream users of the contribution.
+- **Repository links:** `data/entities.json`; profile path `people/adi-shankara/` where available.
+
+## Modern relevance
+The influence graph helps readers see engineering evolution as a chain of constraints, abstractions, and reuse rather than as isolated biographies.

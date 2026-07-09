@@ -1,29 +1,42 @@
 # Sukhdev Thapar — references
 
 - **Validation ID:** VIA-HIST-SUKHDEV-THAPAR-REFERENCES
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/sukhdev-thapar/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/sukhdev-thapar/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
-## Human-written reference policy
-This file intentionally contains only human-authored reference channels. Wikipedia, Reddit, Quora, Medium, random blogs, and AI-generated summaries are not accepted as sole evidence.
+## Engineering summary
+References are the audit trail for claims about Sukhdev Thapar. This page separates local repository evidence from authoritative source categories needed for future expansion.
+
+## Historical summary
+The local metadata records the following contribution marker: local profile requires authoritative expansion.. Dates are recorded as birth `not specified in local metadata` and death `not specified in local metadata` when available in local metadata.
 
 ## Repository references
-- `people/sukhdev-thapar/README.md`
-- `people/sukhdev-thapar/index.html`
 - `data/entities.json`
-- `people-registry.json`
+- profile path `people/sukhdev-thapar/` where available
+- this history package under `docs/history/sukhdev-thapar/`
 
-## Authoritative research sources
-- MacTutor History of Mathematics archive, University of St Andrews — https://mathshistory.st-andrews.ac.uk/
-- Encyclopaedia Britannica author-reviewed entries — https://www.britannica.com/
-- Nobel Prize official biographical and prize materials, where applicable — https://www.nobelprize.org/
-- ACM A.M. Turing Award official laureate materials, where applicable — https://amturing.acm.org/
-- IEEE History Center / Engineering and Technology History Wiki, where applicable — https://ethw.org/
-- NASA History and NACA/NASA technical documentation, where applicable — https://history.nasa.gov/
-- The Royal Society Biographical Memoirs and archives, where applicable — https://royalsocietypublishing.org/journal/rsbm
-- Library of Congress, national academy, museum, and university archive pages when a person-specific primary source is needed.
+## Authoritative research sources to use for expansion
+- Primary works, original papers, original books, and translated primary texts.
+- University biographies and university history-of-science resources.
+- MacTutor History of Mathematics, University of St Andrews, for mathematicians and mathematical scientists.
+- Official Nobel Prize, Turing Award, academy, museum, IEEE, ACM, SIAM, AMS, IETF, NIST, NASA, Linux, or project documentation where applicable.
+- Recognized scholarly books and publisher materials in the history of science, mathematics, engineering, philosophy, and political institutions.
 
-## Verification notes
-- Person-specific claims should be checked against primary works, official prize/academy pages, university archives, or recognized history-of-science publications before expansion.
+## Sources not accepted as sole evidence
+Wikipedia alone, Reddit, Quora, Medium, AI-generated summaries, unsourced blogs, and marketing pages are not sufficient for historical or engineering claims.
+
+## Traceability map
+- **Identity and repository inclusion:** `data/entities.json`.
+- **Contribution marker:** local history package and local metadata: local profile requires authoritative expansion..
+- **Unverified biography, education, exact chronology, and detailed influence:** must be expanded only after authoritative source review.
+
+## Cross references
+- **Prerequisites:** see `influence.md`.
+- **Related people:** see `../knowledge-graph.md`.
+- **Successors:** record only with source attribution.
+- **Repository links:** `data/entities.json`; profile path `people/sukhdev-thapar/` where available.
+
+## Modern relevance
+A historical engineering platform is only useful if claims can be audited. This page defines the evidence boundary for Sukhdev Thapar.

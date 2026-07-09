@@ -1,41 +1,43 @@
 # Richard Feynman — influence
 
 - **Validation ID:** VIA-HIST-RICHARD-FEYNMAN-INFLUENCE
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/richard-feynman/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/richard-feynman/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Richard Feynman is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about QED path integrals; Feynman diagrams; engineering safety evidence in Challenger inquiry into problems, constraints, solution mechanisms, and later system impact.
+Influence is represented as a directed relationship: prerequisites flow into Richard Feynman; Richard Feynman's contribution flows into later theories, technologies, or institutions.
 
 ## Historical summary
-- **Birth:** 1918
-- **Death:** 1988
-- **Primary field:** physics
-- **Time period:** Modern
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/richard-feynman/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The verified local contribution marker is: QED path integrals; Feynman diagrams; engineering safety evidence in Challenger inquiry..
 
 ## Directed knowledge graph
-
 ```mermaid
-graph LR
-  prerequisites["Prerequisite traditions"] --> current["Richard Feynman"]
-  current --> contribution["QED path integrals; Feynman diagrams; engineering safety evidence in Challenger inquiry"]
-  contribution --> successors["Later engineers / scientists"]
-  successors --> modern["Modern engineering systems"]
+graph TD
+  Prior[Earlier traditions and prerequisite problems] --> Person[Richard Feynman]
+  Person --> Contribution[QED path integrals; Feynman diagrams; engineering safety evidence in Challenger inquiry.]
+  Contribution --> Method[Reusable method or concept]
+  Method --> Later[Later science, mathematics, engineering, or institutions]
+  Later --> Modern[Modern applications and curricula]
 ```
 
 ## Influenced by
-- To be read with source-backed predecessor links in `../knowledge-graph.md`.
+- Earlier practitioners in physics.
+- The mathematical, scientific, philosophical, political, or institutional vocabulary available in the Modern period.
+- Practical constraints that required a more reliable way to reason, compute, measure, organize, or build.
 
 ## People influenced
-- To be validated through references before adding person-specific claims.
+Specific successors require source-backed expansion. The local knowledge graph should only name successors when a traceable source supports the lineage.
+
+## Competing theories and interpretations
+Historical interpretation may be contested. Competing claims should be recorded with attribution rather than forced into a single narrative.
+
+## Cross references
+- **Prerequisites:** earlier nodes in `../knowledge-graph.md`.
+- **Related people:** adjacent figures in the same field and period.
+- **Successors:** downstream users of the contribution.
+- **Repository links:** `data/entities.json`; profile path `people/richard-feynman/` where available.
+
+## Modern relevance
+The influence graph helps readers see engineering evolution as a chain of constraints, abstractions, and reuse rather than as isolated biographies.
