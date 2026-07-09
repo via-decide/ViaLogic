@@ -32,101 +32,101 @@
 | c. 287 BCE | [Archimedes](archimedes/overview.md) | hydrostatics, levers, approximation methods | See package influence graph |
 | c. 325 BCE | [Euclid](euclid/overview.md) | Elements; axiomatic geometry | See package influence graph |
 | c. 780 | [Al Khwarizmi](al-khwarizmi/overview.md) | al-jabr methods; Hindu-Arabic numeral transmission | See package influence graph |
-| repository does not specify | [Mahaviracharya](Mahaviracharya/overview.md) | Mahaviracharya wrote Ganita Sara Sangraha, the first Sanskrit textbook on algebra. | See package influence graph |
-| repository does not specify | [Adi Shankara](adi-shankara/overview.md) | Consolidated non-dualism in Hindu philosophy. | See package influence graph |
-| repository does not specify | [Albert Camus](albert-camus/overview.md) | Albert Camus · Classical | See package influence graph |
-| repository does not specify | [Albert Einstein](albert-einstein/overview.md) | Developed theory of relativity. | See package influence graph |
-| repository does not specify | [Alluri Sitarama Raju](alluri-sitarama-raju/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Aristotle](aristotle/overview.md) | Systematized logic and natural philosophy. | See package influence graph |
-| repository does not specify | [Arthur Schopenhauer](arthur-schopenhauer/overview.md) | Arthur Schopenhauer · Classical | See package influence graph |
-| repository does not specify | [Aruna Asaf Ali](aruna-asaf-ali/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Aryabhata](aryabhata/overview.md) | Aryabhata · Classical | See package influence graph |
-| repository does not specify | [Ashfaqulla Khan](ashfaqulla-khan/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Augustine Of Hippo](augustine-of-hippo/overview.md) | Augustine Of Hippo · Classical | See package influence graph |
-| repository does not specify | [Bal Gangadhar Tilak](bal-gangadhar-tilak/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Baruch Spinoza](baruch-spinoza/overview.md) | Baruch Spinoza · Enlightenment | See package influence graph |
-| repository does not specify | [Benoit Mandelbrot](benoit-mandelbrot/overview.md) | Benoit Mandelbrot · Modern | See package influence graph |
-| repository does not specify | [Bertrand Russell](bertrand-russell/overview.md) | Bertrand Russell · Classical | See package influence graph |
-| repository does not specify | [Bhagat Singh](bhagat-singh/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Bhashkaracharya](bhashkaracharya/overview.md) | Bhashkaracharya · Classical | See package influence graph |
-| repository does not specify | [Bipin Chandra Pal](bipin-chandra-pal/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Birsa Munda](birsa-munda/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Blaise Pascal](blaise-pascal/overview.md) | Blaise Pascal · Enlightenment | See package influence graph |
-| repository does not specify | [Brahmagupta](brahmagupta/overview.md) | Brahmagupta · Golden Age | See package influence graph |
-| repository does not specify | [Brian Greene](brian-greene/overview.md) | Brian Greene · Modern | See package influence graph |
-| repository does not specify | [Chanakya](chanakya/overview.md) | Chanakya · Classical | See package influence graph |
-| repository does not specify | [Chandra Shekhar Azad](chandra-shekhar-azad/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Confucius](confucius/overview.md) | Confucius · Classical | See package influence graph |
-| repository does not specify | [David Hilbert](david-hilbert/overview.md) | David Hilbert · Classical | See package influence graph |
-| repository does not specify | [David Hume](david-hume/overview.md) | David Hume · Enlightenment | See package influence graph |
-| repository does not specify | [Diogenes Of Sinope](diogenes-of-sinope/overview.md) | Diogenes Of Sinope · Classical | See package influence graph |
-| repository does not specify | [Dr Br Ambedkar](dr-br-ambedkar/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Edward Witten](edward-witten/overview.md) | Edward Witten · Modern | See package influence graph |
-| repository does not specify | [Epicurus](epicurus/overview.md) | Epicurus · Classical | See package influence graph |
-| repository does not specify | [Erwin Schrodinger](erwin-schrodinger/overview.md) | Erwin Schrodinger · Classical | See package influence graph |
-| repository does not specify | [Friedrich Nietzsche](friedrich-nietzsche/overview.md) | Friedrich Nietzsche · Enlightenment | See package influence graph |
-| repository does not specify | [Georg Hegel](georg-hegel/overview.md) | Georg Hegel · Enlightenment | See package influence graph |
-| repository does not specify | [Gottfried Leibniz](gottfried-leibniz/overview.md) | Gottfried Leibniz · Enlightenment | See package influence graph |
-| repository does not specify | [Grigori Perelman](grigori-perelman/overview.md) | Grigori Perelman · Modern | See package influence graph |
-| repository does not specify | [Henri Poincare](henri-poincare/overview.md) | Henri Poincare · Classical | See package influence graph |
-| repository does not specify | [Heraclitus](heraclitus/overview.md) | Heraclitus · Classical | See package influence graph |
-| repository does not specify | [Hypatia](hypatia/overview.md) | First notable woman mathematician in history. | See package influence graph |
-| repository does not specify | [Immanuel Kant](immanuel-kant/overview.md) | Immanuel Kant · Enlightenment | See package influence graph |
-| repository does not specify | [Jean Paul Sartre](jean-paul-sartre/overview.md) | Jean Paul Sartre · Classical | See package influence graph |
-| repository does not specify | [John Conway](john-conway/overview.md) | John Conway · Classical | See package influence graph |
-| repository does not specify | [John Locke](john-locke/overview.md) | John Locke · Enlightenment | See package influence graph |
-| repository does not specify | [John Nash](john-nash/overview.md) | John Nash · Modern | See package influence graph |
-| repository does not specify | [Joseph Louis Lagrange](joseph-louis-lagrange/overview.md) | Joseph Louis Lagrange · Enlightenment | See package influence graph |
-| repository does not specify | [Karl Marx](karl-marx/overview.md) | Karl Marx · Enlightenment | See package influence graph |
-| repository does not specify | [Khudiram Bose](khudiram-bose/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Kip Thorne](kip-thorne/overview.md) | Kip Thorne · Modern | See package influence graph |
-| repository does not specify | [Lala Lajpat Rai](lala-lajpat-rai/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Laozi](laozi/overview.md) | Laozi · Classical | See package influence graph |
-| repository does not specify | [Leonard Susskind](leonard-susskind/overview.md) | Leonard Susskind · Modern | See package influence graph |
-| repository does not specify | [Leonardo Da Vinci](leonardo-da-vinci/overview.md) | Leonardo Da Vinci · Classical | See package influence graph |
-| repository does not specify | [Ludwig Wittgenstein](ludwig-wittgenstein/overview.md) | Ludwig Wittgenstein · Classical | See package influence graph |
-| repository does not specify | [Mahatma Gandhi](mahatma-gandhi/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Mangal Pandey](mangal-pandey/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Marcus Aurelius](marcus-aurelius/overview.md) | Marcus Aurelius · Classical | See package influence graph |
-| repository does not specify | [Martin Heidegger](martin-heidegger/overview.md) | Martin Heidegger · Classical | See package influence graph |
-| repository does not specify | [Maryam Mirzakhani](maryam-mirzakhani/overview.md) | Maryam Mirzakhani · Modern | See package influence graph |
-| repository does not specify | [Matangini Hazra](matangini-hazra/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Nagarjuna](nagarjuna/overview.md) | Nagarjuna · Classical | See package influence graph |
-| repository does not specify | [Niccolo Machiavelli](niccolo-machiavelli/overview.md) | Niccolo Machiavelli · Classical | See package influence graph |
-| repository does not specify | [Niels Bohr](niels-bohr/overview.md) | Niels Bohr · Classical | See package influence graph |
-| repository does not specify | [Noam Chomsky](noam-chomsky/overview.md) | Noam Chomsky · Classical | See package influence graph |
-| repository does not specify | [Omar Khayyam](omar-khayyam/overview.md) | Omar Khayyam · Golden Age | See package influence graph |
-| repository does not specify | [Parmenides](parmenides/overview.md) | Parmenides · Classical | See package influence graph |
-| repository does not specify | [Paul Erdos](paul-erdos/overview.md) | Paul Erdos · Classical | See package influence graph |
-| repository does not specify | [Pierre De Fermat](pierre-de-fermat/overview.md) | Pierre De Fermat · Classical | See package influence graph |
-| repository does not specify | [Pierre Simon Laplace](pierre-simon-laplace/overview.md) | Pierre Simon Laplace · Enlightenment | See package influence graph |
-| repository does not specify | [Plato](plato/overview.md) | Plato · Classical | See package influence graph |
-| repository does not specify | [Ptolemy](ptolemy/overview.md) | Ptolemy · Classical | See package influence graph |
-| repository does not specify | [Pythagoras](pythagoras/overview.md) | Pythagoras · Classical | See package influence graph |
-| repository does not specify | [Pythagorous](pythagorous/overview.md) | Pythagorous · Classical | See package influence graph |
-| repository does not specify | [Rani Chennamma](rani-chennamma/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Rani Lakshmibai](rani-lakshmibai/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Rani Laxmibai](rani-laxmibai/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Rumi](rumi/overview.md) | Rumi · Golden Age | See package influence graph |
-| repository does not specify | [Sardar Vallabhbhai Patel](sardar-vallabhbhai-patel/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Sarojini Naidu](sarojini-naidu/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Seneca](seneca/overview.md) | Seneca · Classical | See package influence graph |
-| repository does not specify | [Shivaji Maharaj](shivaji-maharaj/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Simone De Beauvoir](simone-de-beauvoir/overview.md) | Simone De Beauvoir · Classical | See package influence graph |
-| repository does not specify | [Socrates](socrates/overview.md) | Socrates · Classical | See package influence graph |
-| repository does not specify | [Sofia Kovalevskaya](sofia-kovalevskaya/overview.md) | Sofia Kovalevskaya · Classical | See package influence graph |
-| repository does not specify | [Soren Kierkegaard](soren-kierkegaard/overview.md) | Soren Kierkegaard · Classical | See package influence graph |
-| repository does not specify | [Srinivasa Ramanujan](srinivasa-ramanujan/overview.md) | Self-taught genius with extraordinary number theory results. | See package influence graph |
-| repository does not specify | [Stephen Hawking](stephen-hawking/overview.md) | Stephen Hawking · Modern | See package influence graph |
-| repository does not specify | [Subhash Chandra Bose](subhash-chandra-bose/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Sukhdev Thapar](sukhdev-thapar/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Sun Tzu](sun-tzu/overview.md) | Sun Tzu · Classical | See package influence graph |
-| repository does not specify | [Tantia Tope](tantia-tope/overview.md) | repository profile requires authoritative expansion | See package influence graph |
-| repository does not specify | [Terence Tao](terence-tao/overview.md) | Terence Tao · Modern | See package influence graph |
-| repository does not specify | [Thales](thales/overview.md) | Thales · Classical | See package influence graph |
-| repository does not specify | [Thales Of Miletus](thales-of-miletus/overview.md) | Thales Of Miletus · Classical | See package influence graph |
-| repository does not specify | [Thomas Aquinas](thomas-aquinas/overview.md) | Thomas Aquinas · Classical | See package influence graph |
-| repository does not specify | [Voltaire](voltaire/overview.md) | Voltaire · Classical | See package influence graph |
-| repository does not specify | [Werner Heisenberg](werner-heisenberg/overview.md) | Werner Heisenberg · Classical | See package influence graph |
-| repository does not specify | [Zeno Of Citium](zeno-of-citium/overview.md) | Zeno Of Citium · Classical | See package influence graph |
-| repository does not specify | [Zhuangzi](zhuangzi/overview.md) | Zhuangzi · Classical | See package influence graph |
+| not specified in local metadata | [Mahaviracharya](Mahaviracharya/overview.md) | Mahaviracharya wrote Ganita Sara Sangraha, the first Sanskrit textbook on algebra. | See package influence graph |
+| not specified in local metadata | [Adi Shankara](adi-shankara/overview.md) | Consolidated non-dualism in Hindu philosophy. | See package influence graph |
+| not specified in local metadata | [Albert Camus](albert-camus/overview.md) | Albert Camus · Classical | See package influence graph |
+| not specified in local metadata | [Albert Einstein](albert-einstein/overview.md) | Developed theory of relativity. | See package influence graph |
+| not specified in local metadata | [Alluri Sitarama Raju](alluri-sitarama-raju/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Aristotle](aristotle/overview.md) | Systematized logic and natural philosophy. | See package influence graph |
+| not specified in local metadata | [Arthur Schopenhauer](arthur-schopenhauer/overview.md) | Arthur Schopenhauer · Classical | See package influence graph |
+| not specified in local metadata | [Aruna Asaf Ali](aruna-asaf-ali/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Aryabhata](aryabhata/overview.md) | Aryabhata · Classical | See package influence graph |
+| not specified in local metadata | [Ashfaqulla Khan](ashfaqulla-khan/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Augustine Of Hippo](augustine-of-hippo/overview.md) | Augustine Of Hippo · Classical | See package influence graph |
+| not specified in local metadata | [Bal Gangadhar Tilak](bal-gangadhar-tilak/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Baruch Spinoza](baruch-spinoza/overview.md) | Baruch Spinoza · Enlightenment | See package influence graph |
+| not specified in local metadata | [Benoit Mandelbrot](benoit-mandelbrot/overview.md) | Benoit Mandelbrot · Modern | See package influence graph |
+| not specified in local metadata | [Bertrand Russell](bertrand-russell/overview.md) | Bertrand Russell · Classical | See package influence graph |
+| not specified in local metadata | [Bhagat Singh](bhagat-singh/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Bhashkaracharya](bhashkaracharya/overview.md) | Bhashkaracharya · Classical | See package influence graph |
+| not specified in local metadata | [Bipin Chandra Pal](bipin-chandra-pal/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Birsa Munda](birsa-munda/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Blaise Pascal](blaise-pascal/overview.md) | Blaise Pascal · Enlightenment | See package influence graph |
+| not specified in local metadata | [Brahmagupta](brahmagupta/overview.md) | Brahmagupta · Golden Age | See package influence graph |
+| not specified in local metadata | [Brian Greene](brian-greene/overview.md) | Brian Greene · Modern | See package influence graph |
+| not specified in local metadata | [Chanakya](chanakya/overview.md) | Chanakya · Classical | See package influence graph |
+| not specified in local metadata | [Chandra Shekhar Azad](chandra-shekhar-azad/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Confucius](confucius/overview.md) | Confucius · Classical | See package influence graph |
+| not specified in local metadata | [David Hilbert](david-hilbert/overview.md) | David Hilbert · Classical | See package influence graph |
+| not specified in local metadata | [David Hume](david-hume/overview.md) | David Hume · Enlightenment | See package influence graph |
+| not specified in local metadata | [Diogenes Of Sinope](diogenes-of-sinope/overview.md) | Diogenes Of Sinope · Classical | See package influence graph |
+| not specified in local metadata | [Dr Br Ambedkar](dr-br-ambedkar/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Edward Witten](edward-witten/overview.md) | Edward Witten · Modern | See package influence graph |
+| not specified in local metadata | [Epicurus](epicurus/overview.md) | Epicurus · Classical | See package influence graph |
+| not specified in local metadata | [Erwin Schrodinger](erwin-schrodinger/overview.md) | Erwin Schrodinger · Classical | See package influence graph |
+| not specified in local metadata | [Friedrich Nietzsche](friedrich-nietzsche/overview.md) | Friedrich Nietzsche · Enlightenment | See package influence graph |
+| not specified in local metadata | [Georg Hegel](georg-hegel/overview.md) | Georg Hegel · Enlightenment | See package influence graph |
+| not specified in local metadata | [Gottfried Leibniz](gottfried-leibniz/overview.md) | Gottfried Leibniz · Enlightenment | See package influence graph |
+| not specified in local metadata | [Grigori Perelman](grigori-perelman/overview.md) | Grigori Perelman · Modern | See package influence graph |
+| not specified in local metadata | [Henri Poincare](henri-poincare/overview.md) | Henri Poincare · Classical | See package influence graph |
+| not specified in local metadata | [Heraclitus](heraclitus/overview.md) | Heraclitus · Classical | See package influence graph |
+| not specified in local metadata | [Hypatia](hypatia/overview.md) | First notable woman mathematician in history. | See package influence graph |
+| not specified in local metadata | [Immanuel Kant](immanuel-kant/overview.md) | Immanuel Kant · Enlightenment | See package influence graph |
+| not specified in local metadata | [Jean Paul Sartre](jean-paul-sartre/overview.md) | Jean Paul Sartre · Classical | See package influence graph |
+| not specified in local metadata | [John Conway](john-conway/overview.md) | John Conway · Classical | See package influence graph |
+| not specified in local metadata | [John Locke](john-locke/overview.md) | John Locke · Enlightenment | See package influence graph |
+| not specified in local metadata | [John Nash](john-nash/overview.md) | John Nash · Modern | See package influence graph |
+| not specified in local metadata | [Joseph Louis Lagrange](joseph-louis-lagrange/overview.md) | Joseph Louis Lagrange · Enlightenment | See package influence graph |
+| not specified in local metadata | [Karl Marx](karl-marx/overview.md) | Karl Marx · Enlightenment | See package influence graph |
+| not specified in local metadata | [Khudiram Bose](khudiram-bose/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Kip Thorne](kip-thorne/overview.md) | Kip Thorne · Modern | See package influence graph |
+| not specified in local metadata | [Lala Lajpat Rai](lala-lajpat-rai/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Laozi](laozi/overview.md) | Laozi · Classical | See package influence graph |
+| not specified in local metadata | [Leonard Susskind](leonard-susskind/overview.md) | Leonard Susskind · Modern | See package influence graph |
+| not specified in local metadata | [Leonardo Da Vinci](leonardo-da-vinci/overview.md) | Leonardo Da Vinci · Classical | See package influence graph |
+| not specified in local metadata | [Ludwig Wittgenstein](ludwig-wittgenstein/overview.md) | Ludwig Wittgenstein · Classical | See package influence graph |
+| not specified in local metadata | [Mahatma Gandhi](mahatma-gandhi/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Mangal Pandey](mangal-pandey/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Marcus Aurelius](marcus-aurelius/overview.md) | Marcus Aurelius · Classical | See package influence graph |
+| not specified in local metadata | [Martin Heidegger](martin-heidegger/overview.md) | Martin Heidegger · Classical | See package influence graph |
+| not specified in local metadata | [Maryam Mirzakhani](maryam-mirzakhani/overview.md) | Maryam Mirzakhani · Modern | See package influence graph |
+| not specified in local metadata | [Matangini Hazra](matangini-hazra/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Nagarjuna](nagarjuna/overview.md) | Nagarjuna · Classical | See package influence graph |
+| not specified in local metadata | [Niccolo Machiavelli](niccolo-machiavelli/overview.md) | Niccolo Machiavelli · Classical | See package influence graph |
+| not specified in local metadata | [Niels Bohr](niels-bohr/overview.md) | Niels Bohr · Classical | See package influence graph |
+| not specified in local metadata | [Noam Chomsky](noam-chomsky/overview.md) | Noam Chomsky · Classical | See package influence graph |
+| not specified in local metadata | [Omar Khayyam](omar-khayyam/overview.md) | Omar Khayyam · Golden Age | See package influence graph |
+| not specified in local metadata | [Parmenides](parmenides/overview.md) | Parmenides · Classical | See package influence graph |
+| not specified in local metadata | [Paul Erdos](paul-erdos/overview.md) | Paul Erdos · Classical | See package influence graph |
+| not specified in local metadata | [Pierre De Fermat](pierre-de-fermat/overview.md) | Pierre De Fermat · Classical | See package influence graph |
+| not specified in local metadata | [Pierre Simon Laplace](pierre-simon-laplace/overview.md) | Pierre Simon Laplace · Enlightenment | See package influence graph |
+| not specified in local metadata | [Plato](plato/overview.md) | Plato · Classical | See package influence graph |
+| not specified in local metadata | [Ptolemy](ptolemy/overview.md) | Ptolemy · Classical | See package influence graph |
+| not specified in local metadata | [Pythagoras](pythagoras/overview.md) | Pythagoras · Classical | See package influence graph |
+| not specified in local metadata | [Pythagorous](pythagorous/overview.md) | Pythagorous · Classical | See package influence graph |
+| not specified in local metadata | [Rani Chennamma](rani-chennamma/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Rani Lakshmibai](rani-lakshmibai/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Rani Laxmibai](rani-laxmibai/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Rumi](rumi/overview.md) | Rumi · Golden Age | See package influence graph |
+| not specified in local metadata | [Sardar Vallabhbhai Patel](sardar-vallabhbhai-patel/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Sarojini Naidu](sarojini-naidu/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Seneca](seneca/overview.md) | Seneca · Classical | See package influence graph |
+| not specified in local metadata | [Shivaji Maharaj](shivaji-maharaj/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Simone De Beauvoir](simone-de-beauvoir/overview.md) | Simone De Beauvoir · Classical | See package influence graph |
+| not specified in local metadata | [Socrates](socrates/overview.md) | Socrates · Classical | See package influence graph |
+| not specified in local metadata | [Sofia Kovalevskaya](sofia-kovalevskaya/overview.md) | Sofia Kovalevskaya · Classical | See package influence graph |
+| not specified in local metadata | [Soren Kierkegaard](soren-kierkegaard/overview.md) | Soren Kierkegaard · Classical | See package influence graph |
+| not specified in local metadata | [Srinivasa Ramanujan](srinivasa-ramanujan/overview.md) | Self-taught genius with extraordinary number theory results. | See package influence graph |
+| not specified in local metadata | [Stephen Hawking](stephen-hawking/overview.md) | Stephen Hawking · Modern | See package influence graph |
+| not specified in local metadata | [Subhash Chandra Bose](subhash-chandra-bose/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Sukhdev Thapar](sukhdev-thapar/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Sun Tzu](sun-tzu/overview.md) | Sun Tzu · Classical | See package influence graph |
+| not specified in local metadata | [Tantia Tope](tantia-tope/overview.md) | local profile requires authoritative expansion | See package influence graph |
+| not specified in local metadata | [Terence Tao](terence-tao/overview.md) | Terence Tao · Modern | See package influence graph |
+| not specified in local metadata | [Thales](thales/overview.md) | Thales · Classical | See package influence graph |
+| not specified in local metadata | [Thales Of Miletus](thales-of-miletus/overview.md) | Thales Of Miletus · Classical | See package influence graph |
+| not specified in local metadata | [Thomas Aquinas](thomas-aquinas/overview.md) | Thomas Aquinas · Classical | See package influence graph |
+| not specified in local metadata | [Voltaire](voltaire/overview.md) | Voltaire · Classical | See package influence graph |
+| not specified in local metadata | [Werner Heisenberg](werner-heisenberg/overview.md) | Werner Heisenberg · Classical | See package influence graph |
+| not specified in local metadata | [Zeno Of Citium](zeno-of-citium/overview.md) | Zeno Of Citium · Classical | See package influence graph |
+| not specified in local metadata | [Zhuangzi](zhuangzi/overview.md) | Zhuangzi · Classical | See package influence graph |

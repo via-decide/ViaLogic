@@ -32,4 +32,4 @@ The strongest source is the translated primary text; the remaining human-written
 - **Repository links:** `data/entities.json`; `people/Mahaviracharya/`.
 
 ## Modern relevance
-These sources allow later readers to distinguish repository metadata from historically verified claims and to audit each technical statement against human-written scholarship.
+These sources allow later readers to distinguish local metadata from historically verified claims and to audit each technical statement against human-written scholarship.

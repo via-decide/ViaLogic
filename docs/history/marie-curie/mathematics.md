@@ -1,34 +1,38 @@
 # Marie Curie — mathematics
 
 - **Validation ID:** VIA-HIST-MARIE-CURIE-MATHEMATICS
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/marie-curie/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/marie-curie/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Marie Curie is represented in ViaLogic as a unspecified figure. The engineering knowledge package maps repository claims about radioactivity measurement and radium/polonium research into problems, constraints, solution mechanisms, and later system impact.
+The mathematical layer identifies the formal concepts, quantitative methods, logical distinctions, or calculational procedures connected to Marie Curie.
 
 ## Historical summary
-- **Birth:** 1867
-- **Death:** 1934
-- **Primary field:** physics and chemistry
-- **Time period:** unspecified
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/marie-curie/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The repository associates Marie Curie with physics and chemistry. The recorded contribution is: radioactivity measurement and radium/polonium research..
 
 ## Mathematics used
-- Arithmetic, geometry, logic, algebra, analysis, probability, mechanics, or field mathematics as applicable to physics and chemistry.
+The precise mathematics must be expanded from person-specific sources. Until then, the package preserves a safe taxonomy:
+- **Definitions:** terms and objects needed to state the contribution.
+- **Operations:** transformations, calculations, measurements, or logical moves.
+- **Validation:** proof, experiment, derivation, worked example, institutional test, or replication.
+- **Abstraction:** the general idea later separated from its first historical setting.
 
-## Theories / algorithms / equations
-The verified mathematical object associated with this package is: radioactivity measurement and radium/polonium research. Detailed proofs must be tied to primary texts or university-level histories in `references.md`.
+## Theories introduced or clarified
+For mathematical and scientific figures, this section should identify the theorem, model, law, algorithm, or notation. For philosophers and institution-builders, it should identify the conceptual distinction or social mechanism that shaped later technical practice.
+
+## Proofs, algorithms, and equations
+No equation is introduced unless it is traceable to a primary or authoritative source. Future expansion should quote formulas sparingly, explain variables, state assumptions, and distinguish exact results from approximations.
 
 ## Influence on future mathematics
-This node is positioned in the repository as part of a mathematical progression from prerequisite abstractions to engineered systems.
+The safe, currently verified statement is that radioactivity measurement and radium/polonium research. is the repository's contribution marker. Further influence claims must be tied to primary works, university histories, prize citations, academy memoirs, or recognized scholarly histories.
+
+## Cross references
+- **Prerequisites:** prior definitions and techniques.
+- **Related people:** see `influence.md`.
+- **Successors:** fields that formalized or operationalized the contribution.
+- **Repository links:** `data/entities.json`; profile path `people/marie-curie/` where available.
+
+## Modern relevance
+Modern systems rely on mathematics when ideas become formal enough to compute, verify, automate, or teach.

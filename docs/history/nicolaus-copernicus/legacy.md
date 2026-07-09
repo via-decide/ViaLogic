@@ -1,35 +1,35 @@
 # Nicolaus Copernicus — legacy
 
 - **Validation ID:** VIA-HIST-NICOLAUS-COPERNICUS-LEGACY
-- **Version:** 1.0
+- **Version:** 1.1
 - **Last reviewed:** 2026-07-09
-- **Repository source:** `people/nicolaus-copernicus/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+- **Repository source:** `data/entities.json`; profile path `people/nicolaus-copernicus/` where available
+- **Research source list:** see `references.md` in this package; claims not already present in local metadata are marked for authoritative source expansion before further historical enlargement.
 
 ## Engineering summary
-Nicolaus Copernicus is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about heliocentric model into problems, constraints, solution mechanisms, and later system impact.
+Nicolaus Copernicus's legacy is evaluated by whether heliocentric model. became part of later technical reasoning, scientific education, institutional practice, or engineered systems.
 
 ## Historical summary
-- **Birth:** 1473
-- **Death:** 1543
-- **Primary field:** astronomy
-- **Time period:** Enlightenment
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/nicolaus-copernicus/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The historically safe starting point is the repository contribution marker: heliocentric model.. Broader legacy claims require person-specific authoritative sources.
 
 ## Modern engineering relevance
-- **Computer science:** abstractions, algorithms, proofs, automata, computation, or data representation when applicable.
-- **Embedded systems / electronics:** measurement, control, signal, power, or instrumentation relevance when applicable.
-- **Networking / distributed systems:** protocol, reliability, information, or coordination relevance when applicable.
-- **AI / robotics:** modeling, optimization, geometry, probability, or control relevance when applicable.
-- **Cryptography:** number theory, logic, probability, or computation relevance when applicable.
+- **Computer science:** relevant when the contribution becomes an algorithm, formal language, computable model, data structure, proof method, or design abstraction.
+- **Embedded systems and electronics:** relevant when the contribution affects measurement, control, circuits, materials, or constrained computation.
+- **Networking and distributed systems:** relevant when it affects protocols, coordination, consensus, institutions, or information flow.
+- **AI and robotics:** relevant when it affects logic, probability, geometry, optimization, learning, control, or representation.
+- **Cryptography and security:** relevant when it affects number theory, information theory, formal proof, adversarial reasoning, or institutional trust.
 
-## Modern equivalents
-Modern equivalents are systems, textbooks, standards, or engineering practices that operationalize this node's ideas.
+## Common misconceptions
+- A historical person should not be reduced to a name in a graph. The contribution must be connected to a problem and a method.
+- Modern impact should not be asserted merely because a modern field sounds related; it must be traceable.
+- Absence of repository dates is not evidence for dates; it is a research gap.
+
+## Cross references
+- **Prerequisites:** earlier mathematical, scientific, social, or institutional developments.
+- **Related people:** see `influence.md`.
+- **Successors:** later systems that reused the method.
+- **Modern equivalents:** technical standards, textbooks, algorithms, instruments, or organizational patterns.
+- **Repository links:** `data/entities.json`; profile path `people/nicolaus-copernicus/` where available.
+
+## Modern relevance
+Legacy is strongest when a historical contribution can be traced into a modern engineering practice without skipping evidence.
