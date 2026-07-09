@@ -1,41 +1,33 @@
 # John Von Neumann — influence
 
-- **Validation ID:** VIA-HIST-JOHN-VON-NEUMANN-INFLUENCE
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/john-von-neumann/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-JOHN-VON-NEUMANN-INFLUENCE  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-John Von Neumann is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about stored-program architecture; game theory; numerical methods into problems, constraints, solution mechanisms, and later system impact.
-
-## Historical summary
-- **Birth:** 1903
-- **Death:** 1957
-- **Primary field:** mathematics and computer architecture
-- **Time period:** Classical
-
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/john-von-neumann/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
-
-## Directed knowledge graph
+## Directed influence graph
 
 ```mermaid
 graph LR
-  prerequisites["Prerequisite traditions"] --> current["John Von Neumann"]
-  current --> contribution["stored-program architecture; game theory; numerical methods"]
-  contribution --> successors["Later engineers / scientists"]
-  successors --> modern["Modern engineering systems"]
+  A[Earlier practices and inherited problems] --> B[John Von Neumann]
+  B --> C[mathematics and computer architecture]
+  C --> D[general-purpose computers, operating systems, simulation, game theory, and high-performance computing]
 ```
 
 ## Influenced by
-- To be read with source-backed predecessor links in `../knowledge-graph.md`.
+John Von Neumann should be read against earlier tools, teachers, texts, institutions, and technical needs. Influence is strongest when a source shows direct reading, correspondence, apprenticeship, translation, patronage, or explicit criticism.
 
-## People influenced
-- To be validated through references before adding person-specific claims.
+## People and fields influenced
+Later influence appears when a method is reused outside its original setting. The most important successors are often not biographical admirers but engineers, scientists, mathematicians, teachers, and institutions that turned the method into routine practice.
+
+## Controversies and caution
+Influence claims are easy to overstate. Similar ideas can arise independently when communities face similar constraints. Reliable influence requires chronology plus transmission evidence.
+
+## Primary works and authoritative sources
+- First Draft of a Report on the EDVAC (1945).
+- Theory of Games and Economic Behavior.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
+
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

@@ -1,35 +1,28 @@
 # Brian Greene — legacy
 
-- **Validation ID:** VIA-HIST-BRIAN-GREENE-LEGACY
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/brian-greene/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-BRIAN-GREENE-LEGACY  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Brian Greene is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Brian Greene · Modern into problems, constraints, solution mechanisms, and later system impact.
+## Lasting technical relevance
+later education, scientific vocabulary, social organization, technical reasoning, and interpretive frameworks. The durable legacy is not fame; it is the survival of a method. A method survives when it can be abstracted, taught, criticized, and recombined with later instruments.
 
-## Historical summary
-- **Birth:** repository does not specify
-- **Death:** repository does not specify
-- **Primary field:** science
-- **Time period:** Modern
+## Modern applications
+- **Computer science:** relevant when the work contributes to algorithms, formal reasoning, representation, complexity, language, or automated procedure.
+- **Electronics and embedded systems:** relevant when the work contributes to measurement, control, signal reasoning, timing, power, or physical modeling.
+- **Operating and distributed systems:** relevant when the work informs coordination, reliability, state, proof, communication, or resource management.
+- **AI and robotics:** relevant when the work informs geometry, probability, learning, optimization, perception, language, or planning.
+- **Cryptography and security:** relevant when the work informs number theory, logic, randomness, proof, or adversarial reasoning.
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/brian-greene/)
+## Misread legacy
+A historical figure’s legacy should not be reduced to a single modern keyword. The correct question is: which abstraction crossed time, and what engineering constraint did it help later practitioners overcome?
 
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+## Primary works and authoritative sources
+- Primary writings or attested works require person-specific verification.
+- Authoritative scholarly biographies and editions should be consulted.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Modern engineering relevance
-- **Computer science:** abstractions, algorithms, proofs, automata, computation, or data representation when applicable.
-- **Embedded systems / electronics:** measurement, control, signal, power, or instrumentation relevance when applicable.
-- **Networking / distributed systems:** protocol, reliability, information, or coordination relevance when applicable.
-- **AI / robotics:** modeling, optimization, geometry, probability, or control relevance when applicable.
-- **Cryptography:** number theory, logic, probability, or computation relevance when applicable.
-
-## Modern equivalents
-Modern equivalents are systems, textbooks, standards, or engineering practices that operationalize this node's ideas.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

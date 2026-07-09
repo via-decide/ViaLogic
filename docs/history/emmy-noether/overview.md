@@ -1,35 +1,41 @@
 # Emmy Noether — overview
 
-- **Validation ID:** VIA-HIST-EMMY-NOETHER-OVERVIEW
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/emmy-noether/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-EMMY-NOETHER-OVERVIEW  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Emmy Noether is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Noether theorem; ring theory into problems, constraints, solution mechanisms, and later system impact.
+## Who Emmy Noether was
+Emmy Noether (1882–1935) worked in abstract algebra and mathematical physics. Emmy Noether · Classical
 
-## Historical summary
-- **Birth:** 1882
-- **Death:** 1935
-- **Primary field:** abstract algebra and mathematical physics
-- **Time period:** Classical
+## Historical and engineering summary
+Emmy Noether belongs to the long history of abstract algebra and mathematical physics. The central technical question is not merely what events occurred, but how a person working with the instruments, languages, institutions, and constraints of the period converted a hard problem into a teachable method. In this chapter, Emmy Noether is treated as a node in engineering evolution: a contributor whose work changed how later people calculated, reasoned, measured, designed, governed, or built.
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/emmy-noether/)
+## Historical setting
+The relevant period is Classical. The available tools were not modern abstractions but manuscripts, instruments, schools, workshops, observatories, courts, laboratories, or early industrial systems. That environment matters because every technical idea has a cost: notation can be immature, measurement can be noisy, materials can fail, and institutions can resist unfamiliar evidence.
+
+## Technical problem
+physics used conservation laws without a general mathematical explanation of their origin. Earlier approaches were limited because they depended on custom examples, authority, hand labor, local tradition, or qualitative explanation. A durable contribution had to make the work repeatable enough that later practitioners could test it, teach it, and extend it.
+
+## Breakthrough and method
+she proved that continuous symmetries correspond to conservation laws. The engineering importance lies in the transfer from isolated insight to reusable procedure. A procedure can be inspected for assumptions, repeated under constraints, and adapted when instruments or social needs change.
+
+## Mathematical or formal concepts
+Key concepts include groups, rings, ideals, invariants, variational calculus. These ideas matter because mathematics is the compression layer of engineering history: it lets a community replace a pile of cases with a rule, a diagram, a proof, a table, a model, or an algorithm.
+
+## Engineering reasoning
+The engineering lesson is a sequence of decisions: define the unknown, choose a representation, accept certain approximations, and make the result communicable. Trade-offs include exactness versus usability, theoretical elegance versus available instruments, and generality versus the risk of abstraction outrunning evidence.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The later impact reaches theoretical physics, cryptographic algebra, coding theory, and modern abstraction in software. Modern engineers inherit not only results but habits: abstraction, verification, diagramming, controlled measurement, skepticism toward unsupported claims, and the discipline of turning experience into transmissible technique.
 
-## Who they were
-Emmy Noether (1882–1935) is included because the repository associates them with abstract algebra and mathematical physics.
+## Common misconceptions
+A common error is to treat Emmy Noether as an isolated genius detached from predecessors and successors. Another is to confuse a celebrated anecdote with the technical mechanism of the work. A third is to read modern categories backward into an older period without explaining the historical instruments and assumptions.
+## Primary works and authoritative sources
+- Invariant Variation Problems (1918).
+- Idealtheorie in Ringbereichen (1921).
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Historical context
-Their work is documented here as part of a longer chain from theory to implementable engineering practice.
-
-## Major contributions
-- Noether theorem; ring theory.
-- The package separates repository statements from externally verifiable claims and points readers to human-written references.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

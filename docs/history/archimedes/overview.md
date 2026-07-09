@@ -1,35 +1,42 @@
 # Archimedes — overview
 
-- **Validation ID:** VIA-HIST-ARCHIMEDES-OVERVIEW
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/archimedes/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-ARCHIMEDES-OVERVIEW  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Archimedes is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about hydrostatics, levers, approximation methods into problems, constraints, solution mechanisms, and later system impact.
+## Who Archimedes was
+Archimedes (c. 287 BCE–212 BCE) worked in mechanics and mathematical physics. Principles of buoyancy and the lever.
 
-## Historical summary
-- **Birth:** c. 287 BCE
-- **Death:** 212 BCE
-- **Primary field:** mathematics and mechanics
-- **Time period:** Classical
+## Historical and engineering summary
+Archimedes belongs to the long history of mechanics and mathematical physics. The central technical question is not merely what events occurred, but how a person working with the instruments, languages, institutions, and constraints of the period converted a hard problem into a teachable method. In this chapter, Archimedes is treated as a node in engineering evolution: a contributor whose work changed how later people calculated, reasoned, measured, designed, governed, or built.
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/archimedes/)
+## Historical setting
+The relevant period is Classical. The available tools were not modern abstractions but manuscripts, instruments, schools, workshops, observatories, courts, laboratories, or early industrial systems. That environment matters because every technical idea has a cost: notation can be immature, measurement can be noisy, materials can fail, and institutions can resist unfamiliar evidence.
+
+## Technical problem
+engineers needed quantitative laws for levers, centers of gravity, buoyancy, and approximation. Earlier approaches were limited because they depended on custom examples, authority, hand labor, local tradition, or qualitative explanation. A durable contribution had to make the work repeatable enough that later practitioners could test it, teach it, and extend it.
+
+## Breakthrough and method
+he joined geometric proof with mechanical reasoning, turning physical balance into mathematical argument. The engineering importance lies in the transfer from isolated insight to reusable procedure. A procedure can be inspected for assumptions, repeated under constraints, and adapted when instruments or social needs change.
+
+## Mathematical or formal concepts
+Key concepts include exhaustion method, hydrostatics, statics, approximation of pi, centers of mass. These ideas matter because mathematics is the compression layer of engineering history: it lets a community replace a pile of cases with a rule, a diagram, a proof, a table, a model, or an algorithm.
+
+## Engineering reasoning
+The engineering lesson is a sequence of decisions: define the unknown, choose a representation, accept certain approximations, and make the result communicable. Trade-offs include exactness versus usability, theoretical elegance versus available instruments, and generality versus the risk of abstraction outrunning evidence.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The later impact reaches mechanical design, naval architecture, calculus precursors, and mathematical modeling. Modern engineers inherit not only results but habits: abstraction, verification, diagramming, controlled measurement, skepticism toward unsupported claims, and the discipline of turning experience into transmissible technique.
 
-## Who they were
-Archimedes (c. 287 BCE–212 BCE) is included because the repository associates them with mathematics and mechanics.
+## Common misconceptions
+A common error is to treat Archimedes as an isolated genius detached from predecessors and successors. Another is to confuse a celebrated anecdote with the technical mechanism of the work. A third is to read modern categories backward into an older period without explaining the historical instruments and assumptions.
+## Primary works and authoritative sources
+- On Floating Bodies.
+- On the Equilibrium of Planes.
+- The Method.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Historical context
-Their work is documented here as part of a longer chain from theory to implementable engineering practice.
-
-## Major contributions
-- hydrostatics, levers, approximation methods.
-- The package separates repository statements from externally verifiable claims and points readers to human-written references.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

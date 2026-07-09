@@ -1,35 +1,52 @@
 # John Von Neumann — timeline
 
-- **Validation ID:** VIA-HIST-JOHN-VON-NEUMANN-TIMELINE
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/john-von-neumann/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-JOHN-VON-NEUMANN-TIMELINE  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-John Von Neumann is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about stored-program architecture; game theory; numerical methods into problems, constraints, solution mechanisms, and later system impact.
+## Chronological narrative
+Chronology is an engineering tool because it shows dependency: which instruments existed, which mathematical languages were available, and which institutions could preserve or reject an idea.
 
-## Historical summary
-- **Birth:** 1903
-- **Death:** 1957
-- **Primary field:** mathematics and computer architecture
-- **Time period:** Classical
+| Period | Event | Technical significance |
+|---|---|---|
+| 1903 | Birth or earliest biographical marker | Establishes the historical environment in which training and tools became available. |
+| Formation years | Education, apprenticeship, patronage, or self-study | Shows how mathematical language, craft practice, and intellectual networks entered the work. |
+| Main work | First Draft of a Report on the EDVAC (1945) | Marks the period when the central method became visible to others. |
+| Later reception | Teaching, translation, controversy, or institutional adoption | Indicates whether the method became reusable knowledge or remained local. |
+| 1957 | Death or later life marker | Separates the person’s work from its posthumous interpretation. |
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/john-von-neumann/)
+## Parallel developments
+Technical discoveries rarely happen in isolation. Contemporaries may have used different notation, different instruments, or different philosophical assumptions to address related problems. Priority disputes should be evaluated by comparing dated manuscripts, editions, correspondence, instruments, and institutional records.
+
+## Historical and engineering summary
+John Von Neumann belongs to the long history of mathematics and computer architecture. The central technical question is not merely what events occurred, but how a person working with the instruments, languages, institutions, and constraints of the period converted a hard problem into a teachable method. In this chapter, John Von Neumann is treated as a node in engineering evolution: a contributor whose work changed how later people calculated, reasoned, measured, designed, governed, or built.
+
+## Historical setting
+The relevant period is Classical. The available tools were not modern abstractions but manuscripts, instruments, schools, workshops, observatories, courts, laboratories, or early industrial systems. That environment matters because every technical idea has a cost: notation can be immature, measurement can be noisy, materials can fail, and institutions can resist unfamiliar evidence.
+
+## Technical problem
+early computers were rewired for each task and lacked a clean model for stored instructions. Earlier approaches were limited because they depended on custom examples, authority, hand labor, local tradition, or qualitative explanation. A durable contribution had to make the work repeatable enough that later practitioners could test it, teach it, and extend it.
+
+## Breakthrough and method
+he articulated a stored-program architecture in which data and instructions share addressable memory. The engineering importance lies in the transfer from isolated insight to reusable procedure. A procedure can be inspected for assumptions, repeated under constraints, and adapted when instruments or social needs change.
+
+## Mathematical or formal concepts
+Key concepts include set theory, operator theory, game theory, numerical analysis, automata. These ideas matter because mathematics is the compression layer of engineering history: it lets a community replace a pile of cases with a rule, a diagram, a proof, a table, a model, or an algorithm.
+
+## Engineering reasoning
+The engineering lesson is a sequence of decisions: define the unknown, choose a representation, accept certain approximations, and make the result communicable. Trade-offs include exactness versus usability, theoretical elegance versus available instruments, and generality versus the risk of abstraction outrunning evidence.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The later impact reaches general-purpose computers, operating systems, simulation, game theory, and high-performance computing. Modern engineers inherit not only results but habits: abstraction, verification, diagramming, controlled measurement, skepticism toward unsupported claims, and the discipline of turning experience into transmissible technique.
 
-## Chronological timeline
-| Date | Event | Traceability |
-|---|---|---|
-| 1903 | Birth / earliest historical marker. | External verification required in references. |
-| Classical | Main period of work represented by ViaLogic. | Repository era metadata. |
-| 1957 | Death / living status marker. | External verification required in references. |
+## Common misconceptions
+A common error is to treat John Von Neumann as an isolated genius detached from predecessors and successors. Another is to confuse a celebrated anecdote with the technical mechanism of the work. A third is to read modern categories backward into an older period without explaining the historical instruments and assumptions.
+## Primary works and authoritative sources
+- First Draft of a Report on the EDVAC (1945).
+- Theory of Games and Economic Behavior.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Chronology notes
-Conflicting dates, transliterations, and attributions must be recorded here when source traditions disagree.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

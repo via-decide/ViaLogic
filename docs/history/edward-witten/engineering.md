@@ -1,40 +1,33 @@
 # Edward Witten — engineering
 
-- **Validation ID:** VIA-HIST-EDWARD-WITTEN-ENGINEERING
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/edward-witten/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-EDWARD-WITTEN-ENGINEERING  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Edward Witten is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Edward Witten · Modern into problems, constraints, solution mechanisms, and later system impact.
+## The engineering problem
+the historical community around Edward Witten faced questions of explanation, order, practical judgment, or formal reasoning that shaped later intellectual work. This was an engineering problem in the broad sense: a repeated human difficulty had to be made tractable under constraints of notation, instruments, labor, materials, or institutions.
 
-## Historical summary
-- **Birth:** repository does not specify
-- **Death:** repository does not specify
-- **Primary field:** science
-- **Time period:** Modern
+## Why earlier methods failed
+Earlier methods often worked only for special cases. They could be slow, opaque, dependent on a master practitioner, or fragile when conditions changed. A better method had to preserve correctness while reducing cognitive and operational cost.
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/edward-witten/)
-
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
-
-## Engineering problem
-What recurring problem did this node address? For Edward Witten, ViaLogic currently points to: Edward Witten · Modern.
-
-## Solution mechanism
-The solution is described as a transferable method: formal model, measurement technique, instrument, machine architecture, algorithm, proof pattern, or physical law.
+## The solution as a system
+their contribution should be read as a method for organizing evidence, concepts, rules, institutions, or calculations rather than as a simple biographical anecdote. The system can be analyzed as inputs, representation, operations, checks, and outputs. Engineering history becomes clear when the contribution is read as a pipeline rather than as a slogan.
 
 ## Constraints and trade-offs
-- Available instruments and materials.
-- Mathematical language available in the period.
-- Institutional, publication, and transmission limits.
-- Accuracy, complexity, reproducibility, and usability trade-offs.
+- **Representation:** the available notation shaped what could be calculated or argued.
+- **Verification:** results needed independent checks, observations, proofs, or repeatable use.
+- **Transmission:** a method that cannot be taught or copied has limited engineering value.
+- **Scalability:** later systems succeed when a method handles more cases without collapsing into ad hoc rules.
 
-## Later-system impact
-Readers should connect this node to modern systems in computing, electronics, physics, robotics, AI, cryptography, operations research, or infrastructure when supported by references.
+## Later systems
+later education, scientific vocabulary, social organization, technical reasoning, and interpretive frameworks. The modern connection should be understood through mechanism: what abstraction survived, what constraint disappeared, and what new system became possible.
+
+## Primary works and authoritative sources
+- Primary writings or attested works require person-specific verification.
+- Authoritative scholarly biographies and editions should be consulted.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
+
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

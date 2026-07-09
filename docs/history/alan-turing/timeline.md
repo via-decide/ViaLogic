@@ -1,35 +1,52 @@
 # Alan Turing — timeline
 
-- **Validation ID:** VIA-HIST-ALAN-TURING-TIMELINE
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/alan-turing/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-ALAN-TURING-TIMELINE  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Alan Turing is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about Turing machine model; codebreaking; early AI criteria into problems, constraints, solution mechanisms, and later system impact.
+## Chronological narrative
+Chronology is an engineering tool because it shows dependency: which instruments existed, which mathematical languages were available, and which institutions could preserve or reject an idea.
 
-## Historical summary
-- **Birth:** 1912
-- **Death:** 1954
-- **Primary field:** mathematical logic and computing
-- **Time period:** Modern
+| Period | Event | Technical significance |
+|---|---|---|
+| 1912 | Birth or earliest biographical marker | Establishes the historical environment in which training and tools became available. |
+| Formation years | Education, apprenticeship, patronage, or self-study | Shows how mathematical language, craft practice, and intellectual networks entered the work. |
+| Main work | On Computable Numbers (1936) | Marks the period when the central method became visible to others. |
+| Later reception | Teaching, translation, controversy, or institutional adoption | Indicates whether the method became reusable knowledge or remained local. |
+| 1954 | Death or later life marker | Separates the person’s work from its posthumous interpretation. |
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/alan-turing/)
+## Parallel developments
+Technical discoveries rarely happen in isolation. Contemporaries may have used different notation, different instruments, or different philosophical assumptions to address related problems. Priority disputes should be evaluated by comparing dated manuscripts, editions, correspondence, instruments, and institutional records.
+
+## Historical and engineering summary
+Alan Turing belongs to the long history of mathematical logic and computing. The central technical question is not merely what events occurred, but how a person working with the instruments, languages, institutions, and constraints of the period converted a hard problem into a teachable method. In this chapter, Alan Turing is treated as a node in engineering evolution: a contributor whose work changed how later people calculated, reasoned, measured, designed, governed, or built.
+
+## Historical setting
+The relevant period is Modern. The available tools were not modern abstractions but manuscripts, instruments, schools, workshops, observatories, courts, laboratories, or early industrial systems. That environment matters because every technical idea has a cost: notation can be immature, measurement can be noisy, materials can fail, and institutions can resist unfamiliar evidence.
+
+## Technical problem
+mathematicians needed a precise boundary between effective calculation and unsolvable formal questions. Earlier approaches were limited because they depended on custom examples, authority, hand labor, local tradition, or qualitative explanation. A durable contribution had to make the work repeatable enough that later practitioners could test it, teach it, and extend it.
+
+## Breakthrough and method
+he reduced calculation to a finite control reading and writing symbols on an unbounded tape. The engineering importance lies in the transfer from isolated insight to reusable procedure. A procedure can be inspected for assumptions, repeated under constraints, and adapted when instruments or social needs change.
+
+## Mathematical or formal concepts
+Key concepts include computability, decision problems, universal machines, cryptanalytic statistics. These ideas matter because mathematics is the compression layer of engineering history: it lets a community replace a pile of cases with a rule, a diagram, a proof, a table, a model, or an algorithm.
+
+## Engineering reasoning
+The engineering lesson is a sequence of decisions: define the unknown, choose a representation, accept certain approximations, and make the result communicable. Trade-offs include exactness versus usability, theoretical elegance versus available instruments, and generality versus the risk of abstraction outrunning evidence.
 
 ## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+The later impact reaches computer architecture, programming languages, cryptography, AI, formal verification. Modern engineers inherit not only results but habits: abstraction, verification, diagramming, controlled measurement, skepticism toward unsupported claims, and the discipline of turning experience into transmissible technique.
 
-## Chronological timeline
-| Date | Event | Traceability |
-|---|---|---|
-| 1912 | Birth / earliest historical marker. | External verification required in references. |
-| Modern | Main period of work represented by ViaLogic. | Repository era metadata. |
-| 1954 | Death / living status marker. | External verification required in references. |
+## Common misconceptions
+A common error is to treat Alan Turing as an isolated genius detached from predecessors and successors. Another is to confuse a celebrated anecdote with the technical mechanism of the work. A third is to read modern categories backward into an older period without explaining the historical instruments and assumptions.
+## Primary works and authoritative sources
+- On Computable Numbers (1936).
+- Computing Machinery and Intelligence (1950).
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Chronology notes
-Conflicting dates, transliterations, and attributions must be recorded here when source traditions disagree.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.

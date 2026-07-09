@@ -1,34 +1,28 @@
 # Galileo Galilei — mathematics
 
-- **Validation ID:** VIA-HIST-GALILEO-GALILEI-MATHEMATICS
-- **Version:** 1.0
-- **Last reviewed:** 2026-07-09
-- **Repository source:** `people/galileo-galilei/`, `data/entities.json`, `people-registry.json`
-- **Research source list:** see `references.md` in this package.
+> Validation ID: VIA-HIST-GALILEO-GALILEI-MATHEMATICS  
+> Version: 2.0  
+> Last reviewed: 2026-07-09
 
-## Engineering summary
-Galileo Galilei is represented in ViaLogic as a science figure. The engineering knowledge package maps repository claims about telescopic observation; kinematics into problems, constraints, solution mechanisms, and later system impact.
+## Mathematical core
+The mathematical core associated with Galileo Galilei is classification, argument structure, measurement, proportional reasoning, or formal concepts where applicable. The point is not that every historical actor used modern notation, but that later mathematics can identify the structure of the reasoning.
 
-## Historical summary
-- **Birth:** 1564
-- **Death:** 1642
-- **Primary field:** physics and astronomy
-- **Time period:** Enlightenment
+## Concepts explained
+- **Representation:** a difficult situation is converted into symbols, diagrams, tables, measurements, or classifications.
+- **Operation:** transformations are applied according to rules that can be repeated.
+- **Invariant:** something remains stable while the representation changes; invariants make verification possible.
+- **Approximation:** when exact measurement is impossible, controlled approximation permits useful engineering action.
+- **Proof or check:** a result becomes durable when it survives criticism, reproduction, or calculation.
 
-## Cross references
-- **Prerequisites:** earlier mathematics, instrumentation, logic, or institutional traditions referenced by this person's work.
-- **Related people:** see `../knowledge-graph.md` and `influence.md`.
-- **Successors:** later engineering and scientific communities that operationalized these ideas.
-- **Repository links:** [ViaLogic profile](../../people/galileo-galilei/)
+## Mathematical legacy
+later education, scientific vocabulary, social organization, technical reasoning, and interpretive frameworks. In modern terms, the contribution belongs to the movement from tacit skill to explicit structure. That movement is the foundation of algorithms, models, standards, and teachable engineering practice.
 
-## Modern relevance
-This page treats the person as an engineering-evolution node, not as a standalone biography: it emphasizes reusable abstractions, failure modes, measurement methods, algorithms, instruments, and design lineage.
+## Primary works and authoritative sources
+- Primary writings or attested works require person-specific verification.
+- Authoritative scholarly biographies and editions should be consulted.
+- MacTutor History of Mathematics, University of St Andrews.
+- Encyclopaedia Britannica author-reviewed historical entries.
+- Nobel Prize official materials, ACM A.M. Turing Award materials, IEEE History Center, NASA History, Royal Society Biographical Memoirs, national libraries, museum archives, university editions, and recognized history-of-science books where applicable.
 
-## Mathematics used
-- Arithmetic, geometry, logic, algebra, analysis, probability, mechanics, or field mathematics as applicable to physics and astronomy.
-
-## Theories / algorithms / equations
-The verified mathematical object associated with this package is: telescopic observation; kinematics. Detailed proofs must be tied to primary texts or university-level histories in `references.md`.
-
-## Influence on future mathematics
-This node is positioned in the repository as part of a mathematical progression from prerequisite abstractions to engineered systems.
+## Traceability standard
+Major claims should be checked against primary texts, scholarly editions, official prize biographies, university archives, academy memoirs, or peer-reviewed historical studies. Conflicting dates, attributions, transliterations, and priority disputes should be recorded rather than hidden.
